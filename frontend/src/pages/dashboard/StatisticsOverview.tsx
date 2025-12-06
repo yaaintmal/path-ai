@@ -143,9 +143,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
           >
             <ArrowLeft className="w-6 h-6 text-foreground" />
           </button>
-          <h1 className="text-3xl font-bold text-foreground">
-            Your Journey to Success{' '}
-          </h1>
+          <h1 className="text-3xl font-bold text-foreground">Your Journey to Success </h1>
         </div>
 
         {loading ? (
@@ -197,9 +195,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
             {/* Learning Statistics */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                learning progress
-              </h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">learning progress</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
                   icon={BookOpen}
@@ -236,9 +232,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
             {/* Additional Metrics */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                Additional Metrics
-              </h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Additional Metrics</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <StatCard
                   icon={Target}
@@ -255,9 +249,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                   bgColor="bg-yellow-50 dark:bg-yellow-900/20"
                 />
                 <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-border flex flex-col justify-center">
-                  <p className="text-sm font-semibold text-card-foreground mb-2">
-                    Quote
-                  </p>
+                  <p className="text-sm font-semibold text-card-foreground mb-2">Quote</p>
                   <p className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
                     {Math.min(Math.floor((stats.topicsLearned / stats.topicsSearched) * 100), 100)}%
                   </p>
@@ -267,9 +259,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
             {/* Advanced Statistics */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                Advanced Metrics
-              </h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Advanced Metrics</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
                   icon={BarChart3}
@@ -314,9 +304,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-card rounded-lg p-8 border border-border shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold text-card-foreground">
-                      days active
-                    </span>
+                    <span className="text-sm font-semibold text-card-foreground">days active</span>
                     <BarChart3 className="w-6 h-6 text-blue-500" />
                   </div>
                   <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
@@ -329,9 +317,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
                 <div className="bg-card rounded-lg p-8 border border-border shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold text-card-foreground">
-                      Consistency
-                    </span>
+                    <span className="text-sm font-semibold text-card-foreground">Consistency</span>
                     <Zap className="w-6 h-6 text-yellow-500" />
                   </div>
                   <p className="text-5xl font-bold text-yellow-600 dark:text-yellow-400">

@@ -27,9 +27,7 @@ export function StartingPointsList({
 
   return (
     <div className="mb-6">
-      <h3 className="text-sm font-semibold text-foreground mb-3">
-        choose a starting point:
-      </h3>
+      <h3 className="text-sm font-semibold text-foreground mb-3">choose a starting point:</h3>
       <div className="space-y-2">
         {points.map((point) => (
           <div key={point.id} className="flex items-center gap-2">
@@ -59,7 +57,9 @@ export function StartingPointsList({
                 }`}
                 title={isLearned(point.title) ? 'Bereits gelernt' : 'Als gelernt markieren'}
               >
-                  <CheckCircle className={`w-5 h-5 ${isLearned(point.title) ? 'fill-current' : ''}`} />
+                <CheckCircle
+                  className={`w-5 h-5 ${isLearned(point.title) ? 'fill-current' : ''}`}
+                />
               </button>
               <button
                 onClick={() => onToggleBookmark(point.title, 'topic')}
@@ -80,7 +80,7 @@ export function StartingPointsList({
                 {isBookmarked(point.title) ? (
                   <BookmarkCheck className="w-5 h-5 text-yellow-500 fill-current" />
                 ) : (
-                    <Bookmark className="w-5 h-5 text-muted-foreground hover:text-yellow-500" />
+                  <Bookmark className="w-5 h-5 text-muted-foreground hover:text-yellow-500" />
                 )}
               </button>
             </div>

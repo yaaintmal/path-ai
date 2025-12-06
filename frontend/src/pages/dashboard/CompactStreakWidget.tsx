@@ -116,17 +116,13 @@ export function CompactStreakWidget({ onStatisticsClick }: CompactStreakWidgetPr
                 <span className="flex items-center gap-1">
                   <span className="text-orange-500">→</span> highest streak
                 </span>
-                <span className="font-semibold text-card-foreground">
-                  {stats.bestStreak}
-                </span>
+                <span className="font-semibold text-card-foreground">{stats.bestStreak}</span>
               </div>
               <div className="flex items-center justify-between text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <BookOpen className="w-3 h-3 text-blue-500" /> learned in total
                 </span>
-                <span className="font-semibold text-card-foreground">
-                  {stats.topicsLearned}
-                </span>
+                <span className="font-semibold text-card-foreground">{stats.topicsLearned}</span>
               </div>
               <div className="flex items-center justify-between text-muted-foreground">
                 <span className="flex items-center gap-1">

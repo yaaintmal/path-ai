@@ -461,9 +461,7 @@ export function VideoTranslationSection({ onStatisticsClick }: VideoTranslationS
                             }`}
                           >
                             <span className="text-lg">{option.flag}</span>
-                            <span className="flex-1 truncate text-foreground">
-                              {option.label}
-                            </span>
+                            <span className="flex-1 truncate text-foreground">{option.label}</span>
                             <span className="text-xs text-gray-500 dark:text-gray-400">
                               {option.code}
                             </span>

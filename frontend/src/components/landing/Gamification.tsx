@@ -179,7 +179,9 @@ export function Gamification() {
                 <Gift className="size-6 text-purple-600" />
                 Belohnungs-Shop
               </h3>
-              <p className="text-muted-foreground mb-6">Tausche deine Punkte gegen coole Items ein!</p>
+              <p className="text-muted-foreground mb-6">
+                Tausche deine Punkte gegen coole Items ein!
+              </p>
 
               <div className="space-y-3 mb-6">
                 {avatarItems.slice(0, 4).map((item, index) => (

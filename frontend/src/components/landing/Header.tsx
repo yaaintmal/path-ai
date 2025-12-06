@@ -96,7 +96,11 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
               <Moon className="size-5 text-muted-foreground" />
             )}
           </Button>
-          <Button variant="ghost" className="text-muted-foreground hover:text-foreground" onClick={handleRegistrationClick}>
+          <Button
+            variant="ghost"
+            className="text-muted-foreground hover:text-foreground"
+            onClick={handleRegistrationClick}
+          >
             Anmelden
           </Button>
           <Button onClick={handleDashboardClick} className="hidden md:flex">

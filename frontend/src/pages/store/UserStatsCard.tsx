@@ -93,9 +93,7 @@ export function UserStatsCard({ userStats, streakShields }: UserStatsCardProps) 
             )}
           </>
         ) : (
-          <div className="text-muted-foreground text-center">
-            🔥 Get a streak for bonus points
-          </div>
+          <div className="text-muted-foreground text-center">🔥 Get a streak for bonus points</div>
         )}
       </div>
 

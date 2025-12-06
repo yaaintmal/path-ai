@@ -1,4 +1,3 @@
-
 import { Globe, Youtube, Languages, Subtitles, CheckCircle2 } from 'lucide-react';
 import { Badge } from '../../ui/badge';
 import { Card } from '../../ui/card';
@@ -121,7 +120,9 @@ export function LanguageFeature() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto mb-16"
         >
-          <Badge className="bg-white/20 text-white border-0 mb-4">{t('languageFeature.badge')}</Badge>
+          <Badge className="bg-white/20 text-white border-0 mb-4">
+            {t('languageFeature.badge')}
+          </Badge>
           <h2 className="text-4xl md:text-6xl mb-6">
             {t('languageFeature.title')} <br />
             <span className="text-white/90">{t('languageFeature.titleSub')}</span>
@@ -163,7 +164,9 @@ export function LanguageFeature() {
             <div className="size-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
               <Globe className="size-6 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-foreground">{t('languageFeature.availableLanguages')}</h3>
+            <h3 className="text-2xl font-bold text-foreground">
+              {t('languageFeature.availableLanguages')}
+            </h3>
           </div>
           <motion.div
             variants={languageContainerVariants}
@@ -182,7 +185,9 @@ export function LanguageFeature() {
               </motion.div>
             ))}
           </motion.div>
-          <p className="text-center text-muted-foreground mt-6 text-sm font-medium">{t('languageFeature.moreLanguages')}</p>
+          <p className="text-center text-muted-foreground mt-6 text-sm font-medium">
+            {t('languageFeature.moreLanguages')}
+          </p>
         </motion.div>
       </div>
     </section>

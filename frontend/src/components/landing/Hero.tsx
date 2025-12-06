@@ -200,9 +200,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                 </div>
               </div>
 
-              <p className="text-sm text-muted-foreground mb-6">
-                {currentFeature.description}
-              </p>
+              <p className="text-sm text-muted-foreground mb-6">{currentFeature.description}</p>
 
               <div className="space-y-3">
                 <div className="bg-card-foreground/5 dark:bg-card-foreground/10 rounded-xl p-4">
@@ -248,7 +246,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                     className={`h-2 rounded-full transition-all ${
                       index === currentSlide
                         ? 'w-8 bg-gradient-to-r ' + currentFeature.color
-                        : "w-2 bg-muted/40 dark:bg-muted-foreground"
+                        : 'w-2 bg-muted/40 dark:bg-muted-foreground'
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />

@@ -26,7 +26,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
   const progressPercentage = Math.round((completedTopics.size / template.topics.length) * 100);
 
   return (
-  <div className="min-h-screen bg-gradient-to-b from-background to-card-foreground/5 dark:from-card/80 dark:to-card/60 rounded-lg shadow-md p-6 border border-border">
+    <div className="min-h-screen bg-gradient-to-b from-background to-card-foreground/5 dark:from-card/80 dark:to-card/60 rounded-lg shadow-md p-6 border border-border">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <button
@@ -58,9 +58,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
       {/* Progress Bar */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-semibold text-foreground">
-            Learning Progress
-          </h3>
+          <h3 className="text-sm font-semibold text-foreground">Learning Progress</h3>
           <span className="text-sm font-medium text-muted-foreground">
             {completedTopics.size} of {template.topics.length} topics
           </span>
@@ -71,9 +69,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
-        <p className="text-xs text-muted-foreground mt-1">
-          {progressPercentage}% complete
-        </p>
+        <p className="text-xs text-muted-foreground mt-1">{progressPercentage}% complete</p>
       </div>
 
       {/* Main Content Grid */}
@@ -81,9 +77,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
         {/* Topics Section */}
         <div className="lg:col-span-2">
           <div className="bg-card rounded-lg border border-border p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
-              Topics to Learn
-            </h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Topics to Learn</h3>
             <div className="space-y-2">
               {template.topics.map((topic, idx) => (
                 <button
@@ -95,7 +89,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
                     {completedTopics.has(topic) ? (
                       <CheckCircle2 className="w-5 h-5 text-green-500" />
                     ) : (
-                        <Circle className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
+                      <Circle className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
                     )}
                   </div>
                   <span
@@ -129,7 +123,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
                         onUseTemplate?.();
                       }}
                       title="Create subtopics"
-                        className="p-1 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 text-muted-foreground hover:text-blue-500 transition-colors"
+                      className="p-1 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 text-muted-foreground hover:text-blue-500 transition-colors"
                     >
                       <Sparkles className="w-4 h-4" />
                     </button>
@@ -143,9 +137,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
         {/* Skills Section */}
         <div>
           <div className="bg-card rounded-lg border border-border p-6 sticky top-6">
-                  <h3 className="text-lg font-semibold text-foreground mb-4">
-              Skills to Acquire
-            </h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Skills to Acquire</h3>
             <div className="space-y-2">
               {template.skills.map((skill, idx) => (
                 <div

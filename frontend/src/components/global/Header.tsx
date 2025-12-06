@@ -1,5 +1,16 @@
 import { Button } from '../../ui/button';
-import { BookOpen, Moon, Sun, Edit, LogOut, User, Trophy, Shield, Sparkles, Zap } from 'lucide-react';
+import {
+  BookOpen,
+  Moon,
+  Sun,
+  Edit,
+  LogOut,
+  User,
+  Trophy,
+  Shield,
+  Sparkles,
+  Zap,
+} from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -99,7 +110,11 @@ export function Header({
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo Section */}
-          <a href="/" onClick={handleLogoClick} className="flex items-center gap-3 cursor-pointer group">
+          <a
+            href="/"
+            onClick={handleLogoClick}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
             <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-2.5 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-200">
               <BookOpen className="size-6 text-white" />
             </div>
@@ -113,16 +128,28 @@ export function Header({
           <nav className="hidden lg:flex items-center gap-6">
             {!user && (
               <>
-                <a href="#languages" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                <a
+                  href="#languages"
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                >
                   Languages
                 </a>
-                <a href="#gamification" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                <a
+                  href="#gamification"
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                >
                   Gamification
                 </a>
-                <a href="#templates" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                <a
+                  href="#templates"
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                >
                   Templates
                 </a>
-                <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                <a
+                  href="#features"
+                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+                >
                   Features
                 </a>
               </>
@@ -178,7 +205,9 @@ export function Header({
                       <div className="w-20 h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-300"
-                          style={{ width: `${calculateLevel(userDetails.totalScore || 0).progressPercent}%` }}
+                          style={{
+                            width: `${calculateLevel(userDetails.totalScore || 0).progressPercent}%`,
+                          }}
                         />
                       </div>
                     </div>
@@ -202,11 +231,19 @@ export function Header({
                       <div className="flex items-center gap-1">
                         {userDetails.activeBoosts.map((b, i) => {
                           const expires = new Date(b.expiresAt);
-                          const hours = Math.max(0, Math.ceil((expires.getTime() - now) / (1000 * 60 * 60)));
+                          const hours = Math.max(
+                            0,
+                            Math.ceil((expires.getTime() - now) / (1000 * 60 * 60))
+                          );
                           return (
-                            <div key={i} className="flex items-center gap-1 text-xs bg-yellow-50 dark:bg-yellow-900/10 rounded-lg px-2 py-1">
+                            <div
+                              key={i}
+                              className="flex items-center gap-1 text-xs bg-yellow-50 dark:bg-yellow-900/10 rounded-lg px-2 py-1"
+                            >
                               <Zap className="size-3" />
-                              <span>{b.multiplier}x • {hours}h</span>
+                              <span>
+                                {b.multiplier}x • {hours}h
+                              </span>
                             </div>
                           );
                         })}
@@ -216,7 +253,11 @@ export function Header({
 
                   {/* Action Buttons */}
                   <div className="flex items-center gap-2 ml-2 pl-2 border-l border-border">
-                    <UserDashButton compact className="!px-2 !py-1" onClick={handleDashboardClick} />
+                    <UserDashButton
+                      compact
+                      className="!px-2 !py-1"
+                      onClick={handleDashboardClick}
+                    />
                     <Button
                       variant="ghost"
                       size="sm"

@@ -106,7 +106,7 @@ export function TargetAudiences() {
 
       {/* Selected Audience Details */}
       {current && (
-            <div className="bg-gradient-to-br from-card-foreground/5 to-card rounded-3xl p-8 md:p-12 border border-border">
+        <div className="bg-gradient-to-br from-card-foreground/5 to-card rounded-3xl p-8 md:p-12 border border-border">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div
@@ -212,7 +212,9 @@ function KidsPreview() {
               <Badge className="bg-orange-600 text-white border-0 mt-1">Visuell</Badge>
             </div>
           </div>
-          <p className="text-xs text-muted-foreground">Du lernst am besten mit Bildern und Videos!</p>
+          <p className="text-xs text-muted-foreground">
+            Du lernst am besten mit Bildern und Videos!
+          </p>
         </div>
 
         <div className="bg-card-foreground/5 rounded-lg p-4">

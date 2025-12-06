@@ -7,25 +7,25 @@
 :root {
   --font-size: 16px;
   /* Modern elegant light theme colors (zinc-based) — slightly less bright */
-  --background: #F1F5F9; /* slightly darker than zinc-50 — zinc-100 */
-  --foreground: #0F172A; /* zinc-900 */
-  --card: #F8FAFC; /* slightly off-white for cards */
-  --card-foreground: #0F172A;
-  --popover: #F8FAFC;
-  --popover-foreground: #0F172A;
-  --primary: #0F172A; /* primary is deep zinc */
-  --primary-foreground: #FFFFFF;
-  --secondary: #EFF6FF; /* slightly muted accent */
+  --background: #f1f5f9; /* slightly darker than zinc-50 — zinc-100 */
+  --foreground: #0f172a; /* zinc-900 */
+  --card: #f8fafc; /* slightly off-white for cards */
+  --card-foreground: #0f172a;
+  --popover: #f8fafc;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a; /* primary is deep zinc */
+  --primary-foreground: #ffffff;
+  --secondary: #eff6ff; /* slightly muted accent */
   --secondary-foreground: #374151; /* zinc-700 */
-  --muted: #F3F4F6; /* slightly darker muted surface */
-  --muted-foreground: #6B7280; /* zinc-500 */
-  --accent: #F8FAFC; /* subtle accent */
-  --accent-foreground: #0F172A;
-  --destructive: #EF4444; /* red-500 */
+  --muted: #f3f4f6; /* slightly darker muted surface */
+  --muted-foreground: #6b7280; /* zinc-500 */
+  --accent: #f8fafc; /* subtle accent */
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444; /* red-500 */
   --destructive-foreground: #ffffff;
   --border: rgba(15, 23, 42, 0.08); /* slightly stronger border for better definition */
   --input: transparent;
-  --input-background: #F3F6F9; /* slightly darker input background */
+  --input-background: #f3f6f9; /* slightly darker input background */
   --switch-background: rgba(15, 23, 42, 0.06); /* subtle switch bg */
   --font-weight-medium: 500;
   --font-weight-normal: 400;
@@ -36,12 +36,12 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: #F8FAFC;
-  --sidebar-foreground: #0F172A;
-  --sidebar-primary: #0F172A;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F1F5F9;
-  --sidebar-accent-foreground: #0F172A;
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0f172a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
   --sidebar-border: rgba(15, 23, 42, 0.04);
   --sidebar-ring: rgba(59, 130, 246, 0.12);
 }

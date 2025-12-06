@@ -35,7 +35,7 @@ export function CompletedTopicsPage({ onBack, onStartTopic }: CompletedTopicsPag
           completedTopics.map((ct, idx) => (
             <div
               key={`${ct.type}-${ct.title}-${idx}`}
-                className="flex items-center justify-between p-2 rounded-lg bg-card-foreground/5 dark:bg-card-foreground/30 border border-border"
+              className="flex items-center justify-between p-2 rounded-lg bg-card-foreground/5 dark:bg-card-foreground/30 border border-border"
             >
               <div className="flex items-center gap-3 flex-1 min-w-0">
                 <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">

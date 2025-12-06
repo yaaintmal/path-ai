@@ -24,16 +24,12 @@ export function StoreItemCard({ item, canAfford, isPurchasing, onPurchase }: Sto
       </div>
 
       <h3 className="text-lg font-semibold text-foreground mb-1">{item.name}</h3>
-      <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">
-        {item.description}
-      </p>
+      <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">{item.description}</p>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Coins className="w-5 h-5 text-yellow-500" />
-          <span className="text-xl font-bold text-foreground">
-            {item.cost.toLocaleString()}
-          </span>
+          <span className="text-xl font-bold text-foreground">{item.cost.toLocaleString()}</span>
         </div>
         <button
           onClick={() => onPurchase(item)}

@@ -11,9 +11,7 @@ export function LastTranslatedVideosWidget() {
   return (
     <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-foreground">
-          lastly translated videos
-        </h2>
+        <h2 className="text-lg font-semibold text-foreground">lastly translated videos</h2>
         <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-lg flex items-center justify-center">
           <Video className="w-6 h-6 text-white" />
         </div>
@@ -30,17 +28,13 @@ export function LastTranslatedVideosWidget() {
                 <Video className="w-4 h-4 text-muted-foreground" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">
-                  {video.title}
-                </p>
+                <p className="text-sm font-medium text-foreground truncate">{video.title}</p>
                 <p className="text-xs text-muted-foreground">{video.translatedAt}</p>
               </div>
             </div>
           ))
         ) : (
-          <p className="text-sm text-muted-foreground text-center py-6">
-            no videos translated yet
-          </p>
+          <p className="text-sm text-muted-foreground text-center py-6">no videos translated yet</p>
         )}
       </div>
     </div>

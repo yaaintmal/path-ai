@@ -163,7 +163,8 @@ export const LEARNING_TEMPLATES: LearningTemplate[] = [
   {
     id: 'cybersecurity-networking-basics',
     name: 'Security & Networking — Beginner Basics',
-    description: 'Understand network fundamentals, firewalls, and common attacks at the network layer',
+    description:
+      'Understand network fundamentals, firewalls, and common attacks at the network layer',
     duration: '3 weeks',
     level: 'beginner',
     category: 'Security',
@@ -181,7 +182,8 @@ export const LEARNING_TEMPLATES: LearningTemplate[] = [
   {
     id: 'cybersecurity-intro-linux',
     name: 'Linux for Security — Beginner Sysadmin Basics',
-    description: 'Get comfortable with Linux for security: permissions, logs, SSH hardening, and system monitoring',
+    description:
+      'Get comfortable with Linux for security: permissions, logs, SSH hardening, and system monitoring',
     duration: '3 weeks',
     level: 'beginner',
     category: 'Security',
@@ -199,7 +201,8 @@ export const LEARNING_TEMPLATES: LearningTemplate[] = [
   {
     id: 'cybersecurity-red-team',
     name: 'Offensive Security — Red Team Basics',
-    description: 'Learn the fundamentals of offensive security: recon, exploitation, and responsible testing',
+    description:
+      'Learn the fundamentals of offensive security: recon, exploitation, and responsible testing',
     duration: '8 weeks',
     level: 'advanced',
     category: 'Security',

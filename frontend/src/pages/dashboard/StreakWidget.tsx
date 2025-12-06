@@ -220,9 +220,7 @@ export function StreakWidget({ onStatisticsClick }: StreakWidgetProps) {
             <p className="text-xs text-muted-foreground mb-1">
               highest streak: {streak.bestStreak} {streak.bestStreak === 1 ? 'day' : 'days'}
             </p>
-            <p className="text-xs text-muted-foreground">
-              total score: {streak.totalScore}
-            </p>
+            <p className="text-xs text-muted-foreground">total score: {streak.totalScore}</p>
           </>
         ) : (
           <p className="text-muted-foreground">no data available</p>

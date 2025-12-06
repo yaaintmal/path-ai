@@ -180,7 +180,7 @@ export function PromptTemplates() {
       </div>
 
       {/* Quick Start Templates */}
-          <div className="mb-20">
+      <div className="mb-20">
         <h3 className="text-2xl mb-6 text-center">Beliebte Karrierepfade</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickStartTemplates.map((template, index) => (

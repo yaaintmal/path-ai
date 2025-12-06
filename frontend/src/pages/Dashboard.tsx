@@ -22,7 +22,7 @@ import type { LearningPath, LearningPathItem } from '../types/learning';
 // import { FullWidthWidget } from './dashboard/FullWidthWidget';
 // import { StreakWidget } from './dashboard/StreakWidget';
 
-export function Dashboard({  mode: initialMode }: DashboardProps) {
+export function Dashboard({ mode: initialMode }: DashboardProps) {
   const [mode, setMode] = useState<
     | 'video-translation'
     | 'learning'

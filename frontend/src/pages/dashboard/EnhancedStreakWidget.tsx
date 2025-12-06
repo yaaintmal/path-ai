@@ -98,9 +98,7 @@ export function EnhancedStreakWidget({ onStatisticsClick }: EnhancedStreakWidget
   return (
     <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold text-card-foreground">
-          Deine Erfolgsstatistiken
-        </h2>
+        <h2 className="text-lg font-semibold text-card-foreground">Deine Erfolgsstatistiken</h2>
         <button
           onClick={onStatisticsClick}
           className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
@@ -119,9 +117,7 @@ export function EnhancedStreakWidget({ onStatisticsClick }: EnhancedStreakWidget
             <p className="text-sm font-semibold text-card-foreground mb-2">
               Aktueller Streak: {stats.currentStreak} Tage {getFlame(stats.currentStreak)}
             </p>
-            <p className="text-xs text-muted-foreground">
-              Bester Streak: {stats.bestStreak} Tage
-            </p>
+            <p className="text-xs text-muted-foreground">Bester Streak: {stats.bestStreak} Tage</p>
           </div>
 
           {/* Learning Statistics */}

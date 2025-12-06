@@ -148,9 +148,7 @@ export function VideoTranslationStatsWidget({
                 <TrendingUp className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                 <span className="text-sm text-gray-700 dark:text-gray-300">per week</span>
               </div>
-              <span className="font-semibold text-foreground">
-                {stats.weeklyVideoCount}
-              </span>
+              <span className="font-semibold text-foreground">{stats.weeklyVideoCount}</span>
             </div>
 
             <div className="flex items-center justify-between p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
@@ -160,9 +158,7 @@ export function VideoTranslationStatsWidget({
                   processed in minutes
                 </span>
               </div>
-              <span className="font-semibold text-foreground">
-                {stats.totalMinutesProcessed}
-              </span>
+              <span className="font-semibold text-foreground">{stats.totalMinutesProcessed}</span>
             </div>
           </div>
 

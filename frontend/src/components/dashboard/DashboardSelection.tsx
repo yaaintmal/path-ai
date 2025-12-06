@@ -37,7 +37,7 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
             Choose an activity or customize your dashboard
           </p>
         </div>
-        
+
         {/* // Main selection buttons grid */}
         <div className="grid md:grid-cols-1 gap-8 mb-12">
           {/* <motion.button
@@ -74,9 +74,7 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
         {/* Last 3 bookmarks widget - above main buttons */}
         {lastThreeBookmarks.length > 0 && (
           <div className="mb-12 bg-card p-4 rounded-2xl shadow-lg border border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">
-              last 3 bookmarks
-            </h2>
+            <h2 className="text-lg font-bold text-foreground mb-3">last 3 bookmarks</h2>
             <div className="space-y-2 max-h-40 overflow-y-auto">
               {lastThreeBookmarks.map((bookmark) => (
                 <div
@@ -133,9 +131,7 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
                         <h3 className="font-semibold text-xs text-foreground truncate">
                           {topic.title}
                         </h3>
-                        <p className="text-xs text-muted-foreground">
-                          {topic.score} Points earned
-                        </p>
+                        <p className="text-xs text-muted-foreground">{topic.score} Points earned</p>
                       </div>
                       <span
                         className={`text-xs px-1.5 py-0.5 rounded flex-shrink-0 ${

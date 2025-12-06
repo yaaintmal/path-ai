@@ -41,9 +41,7 @@ export function NextLessonWidget({ onOpenTopicsClick }: NextLessonWidgetProps) {
       <div className="flex-1 flex flex-col justify-between">
         <div className="mb-4">
           <p className="text-sm text-muted-foreground mb-1">actual learning path</p>
-          <p className="text-lg font-semibold text-foreground">
-            {currentLearningPath.title}
-          </p>
+          <p className="text-lg font-semibold text-foreground">{currentLearningPath.title}</p>
           <p className="text-xs text-muted-foreground mt-1">
             {currentLearningPath.type === 'topic' ? 'main topic' : 'subtopic'}
           </p>

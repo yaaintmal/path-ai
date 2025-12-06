@@ -11,9 +11,7 @@ export function ImportedByVideoStudioWidget() {
   return (
     <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-foreground">
-          imported by Studio AI
-        </h2>
+        <h2 className="text-lg font-semibold text-foreground">imported by Studio AI</h2>
         <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
           <FileText className="w-6 h-6 text-white" />
         </div>
@@ -30,9 +28,7 @@ export function ImportedByVideoStudioWidget() {
                 <FileText className="w-4 h-4 text-muted-foreground" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">
-                  {item.title}
-                </p>
+                <p className="text-sm font-medium text-foreground truncate">{item.title}</p>
                 <p className="text-xs text-muted-foreground">{item.importedAt}</p>
               </div>
             </div>

@@ -70,12 +70,8 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
           <div className="flex items-center gap-2">
             <span className="text-2xl">{currentBadge.icon}</span>
             <div>
-              <p className="font-semibold text-card-foreground text-sm">
-                {currentBadge.title}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {formatExp(persistentExp)} EXP
-              </p>
+              <p className="font-semibold text-card-foreground text-sm">{currentBadge.title}</p>
+              <p className="text-xs text-muted-foreground">{formatExp(persistentExp)} EXP</p>
             </div>
           </div>
           {nextBadge && (
@@ -106,9 +102,7 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
         {/* Overall Progress */}
         <div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-muted-foreground">
-              Total Progress (Completion Rate)
-            </span>
+            <span className="text-muted-foreground">Total Progress (Completion Rate)</span>
             <span className="font-medium text-blue-600">{progress}%</span>
           </div>
           <div className="h-3 bg-muted rounded-full overflow-hidden">

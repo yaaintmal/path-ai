@@ -308,16 +308,15 @@ export function StorePage({ onBack }: StorePageProps) {
                     <ShoppingCart className="w-8 h-8 text-primary" />
                   </div>
                   <div>
-                    <h1 className="text-3xl font-bold text-foreground">
-                      Store
-                    </h1>
+                    <h1 className="text-3xl font-bold text-foreground">Store</h1>
                     <p className="text-muted-foreground text-sm mt-1">
                       Exclusive items & power-ups
                     </p>
                   </div>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Trade your hard-earned points for exclusive items and boosts to enhance your learning journey!
+                  Trade your hard-earned points for exclusive items and boosts to enhance your
+                  learning journey!
                 </p>
               </div>
 
