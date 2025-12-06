@@ -1,0 +1,74 @@
+{
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Login",
+    "description": "Login in to your account to continue learning",
+    "buttonText": "Sign In",
+    "fields": [
+      {
+        "id": "email",
+        "label": "email adress",
+        "type": "email",
+        "placeholder": "name@example.com",
+        "required": true,
+        "icon": "Mail"
+      },
+      {
+        "id": "password",
+        "label": "password",
+        "type": "password",
+        "placeholder": "••••••••",
+        "required": true,
+        "icon": "Lock"
+      }
+    ],
+    "footerText": "need an account?",
+    "footerLinkText": "Sign Up NOW"
+  },
+  "register": {
+    "title": "Start your journey",
+    "subtitle": "Sign Up",
+    "description": "Create an account to get started with our learning platform",
+    "buttonText": "It is free",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Full Name",
+        "type": "text",
+        "placeholder": "Max Mustermann",
+        "required": true,
+        "icon": "User"
+      },
+      {
+        "id": "email",
+        "label": "email adress",
+        "type": "email",
+        "placeholder": "name@example.com",
+        "required": true,
+        "icon": "Mail"
+      },
+      {
+        "id": "password",
+        "label": "password",
+        "type": "password",
+        "placeholder": "••••••••",
+        "required": true,
+        "icon": "Lock"
+      },
+      {
+        "id": "confirmPassword",
+        "label": "Passwort bestätigen",
+        "type": "password",
+        "placeholder": "Passwort wiederholen",
+        "required": true,
+        "icon": "Lock"
+      }
+    ],
+    "footerText": "Bereits registriert?",
+    "footerLinkText": "Zum Login"
+  },
+  "social": {
+    "google": "Mit Google fortfahren",
+    "github": "Mit GitHub fortfahren"
+  }
+}

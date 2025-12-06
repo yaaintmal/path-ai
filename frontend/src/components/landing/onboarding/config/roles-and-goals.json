@@ -1,0 +1,60 @@
+{
+  "roles": [
+    {
+      "id": "student",
+      "label": "Student / Weiterbildung",
+      "description": "Universität, Ausbildung, Zertifizierungen",
+      "icon": "GraduationCap",
+      "color": "blue",
+      "levelLabel": "Welches Semester?",
+      "levelPlaceholder": "z.B. 3. Semester"
+    },
+    {
+      "id": "pupil",
+      "label": "Schüler",
+      "description": "Grundschule bis Abitur",
+      "icon": "BookOpen",
+      "color": "orange",
+      "levelLabel": "Welche Klassenstufe?",
+      "levelPlaceholder": "z.B. 8. Klasse"
+    },
+    {
+      "id": "teacher",
+      "label": "Lehrkraft",
+      "description": "Lehrer, Dozent, Trainer",
+      "icon": "Users",
+      "color": "green",
+      "levelLabel": "Welche Schulart?",
+      "levelPlaceholder": "z.B. Gymnasium"
+    }
+  ],
+  "pupilGoals": [
+    "Noten verbessern",
+    "Grundlagen verstehen",
+    "Schneller lernen",
+    "Spaß am Lernen haben",
+    "Prüfungsvorbereitung",
+    "Hausaufgabenhilfe"
+  ],
+  "studentGoals": [
+    "Prüfungen bestehen",
+    "Sehr gute Noten",
+    "Fachlich tiefer gehen",
+    "Praktische Anwendung",
+    "Schneller verstehen",
+    "Zusammen mit anderen lernen"
+  ],
+  "teacherGoals": [
+    "Materialerstellung optimieren",
+    "Differenzierung verbessern",
+    "Feedback-Prozesse",
+    "Individuelle Lernpfade",
+    "Gamification einsetzen",
+    "Digitale Tools nutzen"
+  ],
+  "subjectsPlaceholder": "z.B. Mathematik, Englisch, Physik",
+  "subjectsLabel": {
+    "pupil": "Welche Fächer möchtest du verbessern?",
+    "student": "Welche Module belegst du aktuell?"
+  }
+}

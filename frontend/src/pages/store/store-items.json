@@ -1,0 +1,101 @@
+[
+  {
+    "id": "1",
+    "name": "Custom Profile Frame",
+    "description": "Style your profile frame with a custom glance.",
+    "cost": 5000,
+    "icon": "🖼️",
+    "category": "cosmetic",
+    "rarity": "common"
+  },
+  {
+    "id": "2",
+    "name": "Blinking Badge Border",
+    "description": "Lässt Deinen Badge-Status blinken",
+    "cost": 10000,
+    "icon": "🌙",
+    "category": "theme",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "3",
+    "name": "Double XP Boost (24h)",
+    "description": "2x EXP for 24 Stunden",
+    "cost": 2500,
+    "icon": "⚡",
+    "category": "boost",
+    "rarity": "rare"
+  },
+  {
+    "id": "4",
+    "name": "Golden Badge",
+    "description": "Show off your achievement with a golden badge",
+    "cost": 50000,
+    "icon": "🏅",
+    "category": "badge",
+    "rarity": "epic"
+  },
+  {
+    "id": "5",
+    "name": "Rainbow Trail",
+    "description": "Rainbox trail effect when leveling up",
+    "cost": 30000,
+    "icon": "🌈",
+    "category": "cosmetic",
+    "rarity": "rare"
+  },
+  {
+    "id": "6",
+    "name": "Streak Shield",
+    "description": "Schützt deinen Streak für einen Tag",
+    "cost": 5000,
+    "icon": "🛡️",
+    "category": "boost",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "7",
+    "name": "Legendary Crown",
+    "description": "the legendary crown of wisdom",
+    "cost": 100000,
+    "icon": "👑",
+    "category": "cosmetic",
+    "rarity": "legendary"
+  },
+  {
+    "id": "8",
+    "name": "Confetti Celebration",
+    "description": "confetti effect on level up",
+    "cost": 8000,
+    "icon": "🎉",
+    "category": "cosmetic",
+    "rarity": "common"
+  },
+  {
+    "id": "9",
+    "name": "CB2077 Overloaded",
+    "description": "Unlocks the CB2077 - Mode",
+    "cost": 77000,
+    "icon": "💻",
+    "category": "theme",
+    "rarity": "legendary"
+  },
+  {
+    "id": "10",
+    "name": "Quad XP Boost (24h)",
+    "description": "4x EXP for 24 hours",
+    "cost": 7500,
+    "icon": "⚡",
+    "category": "boost",
+    "rarity": "epic"
+  },
+  {
+    "id": "11",
+    "name": "Star Badge",
+    "description": "only tradeable for 3 golden badges",
+    "cost": 0,
+    "icon": "⭐",
+    "category": "badge",
+    "rarity": "legendary"
+  }
+]

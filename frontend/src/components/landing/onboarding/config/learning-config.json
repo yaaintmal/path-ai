@@ -1,0 +1,120 @@
+{
+  "learningTypes": [
+    {
+      "id": "reading",
+      "label": "Lesen & Schreiben",
+      "icon": "📚"
+    },
+    {
+      "id": "videos",
+      "label": "Videos anschauen",
+      "icon": "🎥"
+    },
+    {
+      "id": "audio",
+      "label": "Hören & Erklärt bekommen",
+      "icon": "🎧"
+    },
+    {
+      "id": "interactive",
+      "label": "Interaktive Übungen",
+      "icon": "✍️"
+    },
+    {
+      "id": "games",
+      "label": "Lehrreiche Spiele",
+      "icon": "🎮"
+    },
+    {
+      "id": "group",
+      "label": "Gruppenarbeit",
+      "icon": "👥"
+    }
+  ],
+  "scheduleTypes": [
+    {
+      "id": "fixed",
+      "label": "Feste Lernpläne",
+      "description": "Strukturierte Zeiten"
+    },
+    {
+      "id": "flexible",
+      "label": "Spontane Sessions",
+      "description": "Wann ich Zeit habe"
+    },
+    {
+      "id": "mixed",
+      "label": "Gemischt",
+      "description": "Beides kombiniert"
+    }
+  ],
+  "timeSlots": ["Morgens", "Vormittags", "Mittags", "Nachmittags", "Abends", "Nachts"],
+  "gamificationLevels": [
+    {
+      "id": "full",
+      "label": "Ja, voll aktiv!",
+      "description": "Alle Features nutzen",
+      "icon": "🎮"
+    },
+    {
+      "id": "light",
+      "label": "Leicht",
+      "description": "Nur Fortschritt & Level",
+      "icon": "📊"
+    },
+    {
+      "id": "none",
+      "label": "Nein, lieber klassisch",
+      "description": "Ohne Gamification",
+      "icon": "📚"
+    }
+  ],
+  "rewardTypes": [
+    {
+      "id": "games",
+      "label": "Fortschritt in Spielen",
+      "icon": "🎯"
+    },
+    {
+      "id": "visual",
+      "label": "Visuelle Belohnungen",
+      "icon": "✨"
+    },
+    {
+      "id": "collectibles",
+      "label": "Sammelobjekte",
+      "icon": "🏆"
+    },
+    {
+      "id": "none",
+      "label": "Keine Belohnungen nötig",
+      "icon": "🎓"
+    }
+  ],
+  "communicationStyles": [
+    {
+      "id": "motivating",
+      "label": "Motivierend & freundlich",
+      "icon": "😊",
+      "example": "\"Du machst das super! Lass uns gemeinsam das nächste Kapitel angehen!\""
+    },
+    {
+      "id": "casual",
+      "label": "Locker & humorvoll",
+      "icon": "😄",
+      "example": "\"Nice! Du rockst das! Weiter geht's mit dem nächsten Level 🚀\""
+    },
+    {
+      "id": "professional",
+      "label": "Sachlich & direkt",
+      "icon": "💼",
+      "example": "\"Kapitel abgeschlossen. Nächster Schritt: Übungsaufgaben bearbeiten.\""
+    },
+    {
+      "id": "minimal",
+      "label": "Sehr ruhig & minimalistisch",
+      "icon": "🎯",
+      "example": "\"Fortschritt gespeichert. Weiter.\""
+    }
+  ]
+}

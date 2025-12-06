@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "Running pre-push format check…"
+
+if ! npm run format:check; then
+  echo "Pre-push blocked: code is not formatted. Run 'npm run format', add/commit, then push again."
+  exit 1
+fi
