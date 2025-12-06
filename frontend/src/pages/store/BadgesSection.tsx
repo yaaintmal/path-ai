@@ -31,7 +31,7 @@ export function BadgesSection({ currentExp }: BadgesSectionProps) {
   return (
     <div className="mb-8 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">🏆 All Badges</h2>
+        <h2 className="text-lg font-semibold text-foreground">🏆 All Badges</h2>
         {hasConfetti && (
           <div className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
             <span>🎉</span>

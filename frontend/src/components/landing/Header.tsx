@@ -1,6 +1,7 @@
 import { Button } from '../../ui/button';
-import { Brain, Moon, Sun } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { BookOpen, Moon, Sun } from 'lucide-react';
+import config from '../../config/app.config';
+import { useTheme } from 'next-themes';
 
 interface HeaderProps {
   setShowOnboarding?: (show: boolean) => void;
@@ -8,28 +9,10 @@ interface HeaderProps {
 }
 
 export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check if user has a preference saved
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
+  const { setTheme, resolvedTheme } = useTheme();
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    if (!isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
   const handleDashboardClick = (e: React.MouseEvent) => {
@@ -58,43 +41,43 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
   };
 
   return (
-    <header className="border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+    <header className="border-b bg-background/80 dark:bg-card/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 cursor-pointer">
           <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-2 rounded-lg">
-            <Brain className="size-6 text-white" />
+            <BookOpen className="size-6 text-white" />
           </div>
-          <span className="text-xl dark:text-white">PathStudio AI</span>
+          <span className="text-xl dark:text-white">{config.app.name}</span>
         </a>
         <nav className="hidden md:flex items-center gap-8">
           <a
             href="#languages"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Sprachen
           </a>
           <a
             href="#gamification"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Gamification
           </a>
           <a
             href="#templates"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Templates
           </a>
           <a
             href="#features"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             Features
           </a>
           <a
             href="#dashboard"
             onClick={handleDashboardClick}
-            className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+            className="text-primary hover:text-primary-foreground transition-colors"
           >
             Dein Dashboard
           </a>
@@ -107,17 +90,13 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
             className="rounded-full"
             aria-label="Toggle Dark Mode"
           >
-            {isDarkMode ? (
-              <Sun className="size-5 text-gray-300" />
+            {resolvedTheme === 'dark' ? (
+              <Sun className="size-5 text-muted-foreground" />
             ) : (
-              <Moon className="size-5 text-gray-600" />
+              <Moon className="size-5 text-muted-foreground" />
             )}
           </Button>
-          <Button
-            variant="ghost"
-            className="dark:text-gray-300 dark:hover:text-white"
-            onClick={handleRegistrationClick}
-          >
+          <Button variant="ghost" className="text-muted-foreground hover:text-foreground" onClick={handleRegistrationClick}>
             Anmelden
           </Button>
           <Button onClick={handleDashboardClick} className="hidden md:flex">

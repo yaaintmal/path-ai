@@ -26,19 +26,19 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
   const progressPercentage = Math.round((completedTopics.size / template.topics.length) * 100);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+  <div className="min-h-screen bg-gradient-to-b from-background to-card-foreground/5 dark:from-card/80 dark:to-card/60 rounded-lg shadow-md p-6 border border-border">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={onBack}
-          className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 transition-colors"
           title="Back to templates"
         >
-          <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+          <ChevronLeft className="w-5 h-5 text-muted-foreground" />
         </button>
         <div className="flex-1 ml-4">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">{template.name}</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{template.description}</p>
+          <h2 className="text-2xl font-semibold text-foreground">{template.name}</h2>
+          <p className="text-sm text-muted-foreground mt-1">{template.description}</p>
         </div>
       </div>
 
@@ -58,20 +58,20 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
       {/* Progress Bar */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+          <h3 className="text-sm font-semibold text-foreground">
             Learning Progress
           </h3>
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
+          <span className="text-sm font-medium text-muted-foreground">
             {completedTopics.size} of {template.topics.length} topics
           </span>
         </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+        <div className="w-full bg-card-foreground/5 dark:bg-card-foreground/30 rounded-full h-2">
           <div
             className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-300"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           {progressPercentage}% complete
         </p>
       </div>
@@ -80,8 +80,8 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Topics Section */}
         <div className="lg:col-span-2">
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-card rounded-lg border border-border p-6">
+              <h3 className="text-lg font-semibold text-foreground mb-4">
               Topics to Learn
             </h3>
             <div className="space-y-2">
@@ -95,14 +95,14 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
                     {completedTopics.has(topic) ? (
                       <CheckCircle2 className="w-5 h-5 text-green-500" />
                     ) : (
-                      <Circle className="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-400" />
+                        <Circle className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
                     )}
                   </div>
                   <span
                     className={`flex-1 ${
                       completedTopics.has(topic)
-                        ? 'text-gray-500 dark:text-gray-400 line-through'
-                        : 'text-gray-800 dark:text-gray-200'
+                        ? 'text-muted-foreground line-through'
+                        : 'text-foreground'
                     }`}
                   >
                     {topic}
@@ -115,7 +115,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
                         setCurrentGoal?.({ title: topic, pathId: template.id, pathTopic: topic });
                       }}
                       title="Set as goal"
-                      className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-purple-600 transition-colors"
+                      className="p-1 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 text-muted-foreground hover:text-purple-600 transition-colors"
                     >
                       <Target className="w-4 h-4" />
                     </button>
@@ -129,7 +129,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
                         onUseTemplate?.();
                       }}
                       title="Create subtopics"
-                      className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-blue-500 transition-colors"
+                        className="p-1 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 text-muted-foreground hover:text-blue-500 transition-colors"
                     >
                       <Sparkles className="w-4 h-4" />
                     </button>
@@ -142,8 +142,8 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
 
         {/* Skills Section */}
         <div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 sticky top-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-card rounded-lg border border-border p-6 sticky top-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
               Skills to Acquire
             </h3>
             <div className="space-y-2">
@@ -153,7 +153,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
                   className="flex items-center gap-2 p-3 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border border-purple-200 dark:border-purple-800"
                 >
                   <div className="w-2 h-2 bg-purple-500 rounded-full" />
-                  <span className="text-sm text-gray-800 dark:text-gray-200">{skill}</span>
+                  <span className="text-sm text-foreground">{skill}</span>
                 </div>
               ))}
             </div>
@@ -171,7 +171,7 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
         </button>
         <button
           onClick={() => onBack()}
-          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition-colors"
+          className="px-4 py-2 bg-card-foreground/5 hover:bg-card-foreground/10 dark:bg-card/80 dark:hover:bg-card/60 text-foreground rounded-lg transition-colors"
         >
           Back to templates
         </button>

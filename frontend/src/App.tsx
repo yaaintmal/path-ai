@@ -76,7 +76,7 @@ export default function App() {
   if (showDashboard) {
     if (!dashboardMode) {
       return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-black transition-colors duration-300">
+        <div className="min-h-screen bg-background transition-colors duration-300">
           <Header
             setShowOnboarding={setShowOnboarding}
             setShowRegistration={setShowRegistration}
@@ -92,7 +92,7 @@ export default function App() {
     }
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <div className="min-h-screen bg-background transition-colors duration-300">
         <Header
           setShowOnboarding={setShowOnboarding}
           setShowRegistration={setShowRegistration}
@@ -108,7 +108,7 @@ export default function App() {
   }
   if (showRegistration) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <div className="min-h-screen bg-background transition-colors duration-300">
         <Header
           setShowOnboarding={setShowOnboarding}
           setShowRegistration={setShowRegistration}
@@ -123,7 +123,7 @@ export default function App() {
   }
   if (showOnboarding) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <div className="min-h-screen bg-background transition-colors duration-300">
         <Header
           setShowOnboarding={setShowOnboarding}
           setShowRegistration={setShowRegistration}
@@ -138,7 +138,7 @@ export default function App() {
   }
   if (showOnboardingEditor) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <div className="min-h-screen bg-background transition-colors duration-300">
         <Header
           setShowOnboarding={setShowOnboarding}
           setShowRegistration={setShowRegistration}
@@ -159,7 +159,7 @@ export default function App() {
   if (isAuthenticated && hasOnboardingData) {
     if (!dashboardMode) {
       return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-black transition-colors duration-300">
+        <div className="min-h-screen bg-background transition-colors duration-300">
           <Header
             setShowOnboarding={setShowOnboarding}
             setShowRegistration={setShowRegistration}
@@ -176,7 +176,7 @@ export default function App() {
     }
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+      <div className="min-h-screen bg-background transition-colors duration-300">
         <Header
           setShowOnboarding={setShowOnboarding}
           setShowRegistration={setShowRegistration}
@@ -192,7 +192,7 @@ export default function App() {
     );
   }
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-700 ease-in-out">
+    <div className="min-h-screen bg-background transition-colors duration-700 ease-in-out">
       {' '}
       <Header
         setShowOnboarding={setShowOnboarding}

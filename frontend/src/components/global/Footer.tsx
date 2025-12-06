@@ -1,4 +1,5 @@
 import { Brain, Github, Twitter, Linkedin } from 'lucide-react';
+import config from '../../config/app.config';
 
 export function Footer() {
   return (
@@ -10,7 +11,7 @@ export function Footer() {
               <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-2 rounded-lg">
                 <Brain className="size-5 text-white" />
               </div>
-              <span className="text-xl text-white">PathStudio AI</span>
+              <span className="text-xl text-white">{config.app.name}</span>
             </div>
             <p className="text-sm text-gray-400 dark:text-gray-500">
               Your AI-powered learning companion to master new skills efficiently and effectively.

@@ -121,51 +121,51 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
   };
 
   const StatCard = ({ icon: Icon, label, value, color, bgColor, subtitle }: StatCardProps) => (
-    <div className={`${bgColor} rounded-lg p-6 border border-gray-200 dark:border-gray-700`}>
+    <div className={`${bgColor} rounded-lg p-6 border border-border`}>
       <div className="flex items-center justify-between mb-3">
-        <span className={`text-sm font-semibold text-gray-700 dark:text-gray-300`}>{label}</span>
+        <span className={`text-sm font-semibold text-foreground`}>{label}</span>
         <Icon className={`w-6 h-6 ${color}`} />
       </div>
-      <p className="text-3xl font-bold text-gray-900 dark:text-white">{value}</p>
-      {subtitle && <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">{subtitle}</p>}
+      <p className="text-3xl font-bold text-foreground">{value}</p>
+      {subtitle && <p className="text-xs text-muted-foreground mt-2">{subtitle}</p>}
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 py-8 px-4">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header with Back Button */}
         <div className="flex items-center gap-4 mb-8">
           <button
             onClick={onBack}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-muted rounded-lg transition-colors"
             aria-label="Zurück"
           >
-            <ArrowLeft className="w-6 h-6 text-gray-900 dark:text-white" />
+            <ArrowLeft className="w-6 h-6 text-foreground" />
           </button>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-foreground">
             Your Journey to Success{' '}
           </h1>
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-500 py-12">Loading...</p>
+          <p className="text-center text-muted-foreground py-12">Loading...</p>
         ) : stats ? (
           <>
             {/* Motivational Message */}
             <div className="mb-8 p-6 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
-              <p className="text-lg font-semibold text-gray-900 dark:text-white">
+              <p className="text-lg font-semibold text-card-foreground">
                 {getMotivationalMessage(stats.topicsLearned)}
               </p>
             </div>
 
             {/* Streak Section */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">your streak</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">your streak</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-md">
+                <div className="bg-card rounded-lg p-8 border border-border shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-semibold text-card-foreground">
                       actual streak
                     </span>
                     <Flame className="w-6 h-6 text-orange-500" />
@@ -174,15 +174,15 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                     <p className="text-5xl font-bold text-orange-600 dark:text-orange-400">
                       {stats.currentStreak}
                     </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                    <p className="text-sm text-muted-foreground mt-2">
                       days in a row {getFlame(stats.currentStreak)}
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-md">
+                <div className="bg-card rounded-lg p-8 border border-border shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-semibold text-card-foreground">
                       highest streak
                     </span>
                     <Award className="w-6 h-6 text-amber-500" />
@@ -190,14 +190,14 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                   <p className="text-5xl font-bold text-amber-600 dark:text-amber-400">
                     {stats.bestStreak}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">days</p>
+                  <p className="text-sm text-muted-foreground mt-2">days</p>
                 </div>
               </div>
             </div>
 
             {/* Learning Statistics */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6">
                 learning progress
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -236,7 +236,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
             {/* Additional Metrics */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6">
                 Additional Metrics
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -254,8 +254,8 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                   color="text-yellow-600 dark:text-yellow-400"
                   bgColor="bg-yellow-50 dark:bg-yellow-900/20"
                 />
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-gray-200 dark:border-gray-700 flex flex-col justify-center">
-                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-border flex flex-col justify-center">
+                  <p className="text-sm font-semibold text-card-foreground mb-2">
                     Quote
                   </p>
                   <p className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
@@ -267,7 +267,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
             {/* Advanced Statistics */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6">
                 Advanced Metrics
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -310,11 +310,11 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
 
             {/* Activity Overview */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Activity</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Activity</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-md">
+                <div className="bg-card rounded-lg p-8 border border-border shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-semibold text-card-foreground">
                       days active
                     </span>
                     <BarChart3 className="w-6 h-6 text-blue-500" />
@@ -322,14 +322,14 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                   <p className="text-5xl font-bold text-blue-600 dark:text-blue-400">
                     {stats.totalDaysActive}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  <p className="text-sm text-muted-foreground mt-2">
                     registered activities in total
                   </p>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-md">
+                <div className="bg-card rounded-lg p-8 border border-border shadow-md">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-semibold text-card-foreground">
                       Consistency
                     </span>
                     <Zap className="w-6 h-6 text-yellow-500" />
@@ -337,14 +337,14 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                   <p className="text-5xl font-bold text-yellow-600 dark:text-yellow-400">
                     {Math.min(Math.floor((stats.currentStreak / 30) * 100), 100)}%
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">based on streak</p>
+                  <p className="text-sm text-muted-foreground mt-2">based on streak</p>
                 </div>
               </div>
             </div>
 
             {/* Call to Action */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border border-gray-200 dark:border-gray-700 shadow-md text-center">
-              <p className="text-lg text-gray-900 dark:text-white mb-4">
+            <div className="bg-card rounded-lg p-8 border border-border shadow-md text-center">
+              <p className="text-lg text-card-foreground mb-4">
                 You are doing great! Keep on going 🎉
               </p>
               <button
@@ -356,7 +356,7 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
             </div>
           </>
         ) : (
-          <p className="text-center text-gray-500 py-12">no stats available</p>
+          <p className="text-center text-muted-foreground py-12">no stats available</p>
         )}
       </div>
     </div>

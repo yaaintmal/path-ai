@@ -27,13 +27,13 @@ export function ProgressBar({ currentStep, totalSteps, steps, iconMap }: Progres
                       ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white scale-110'
                       : currentStep > step.id
                         ? 'bg-green-600 text-white'
-                        : 'bg-gray-200 dark:bg-gray-700 text-gray-400'
+                        : 'bg-card-foreground/10 dark:bg-card-foreground/30 text-muted-foreground'
                   }`}
                 >
                   {currentStep > step.id ? <Check className="size-5" /> : <IconComponent />}
                 </div>
                 <span
-                  className={`text-xs hidden md:block ${currentStep === step.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400'}`}
+                  className={`text-xs hidden md:block ${currentStep === step.id ? 'text-blue-600 dark:text-blue-400' : 'text-muted-foreground'}`}
                 >
                   {step.title}
                 </span>

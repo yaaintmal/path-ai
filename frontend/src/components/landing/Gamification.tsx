@@ -78,7 +78,7 @@ export function Gamification() {
   const [studentPoints] = useState(2450);
 
   return (
-    <section className="container mx-auto px-4 py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+    <section className="container mx-auto px-4 py-20 md:py-32 bg-background">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <Badge className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white border-0 mb-4">
           <Gamepad2 className="size-4 mr-2" />
@@ -90,7 +90,7 @@ export function Gamification() {
             Abenteuer
           </span>
         </h2>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-muted-foreground">
           Bleib motiviert mit Achievements, Punkten und Belohnungen - für Schüler, Studenten und
           Lehrkräfte
         </p>
@@ -115,7 +115,7 @@ export function Gamification() {
             <Card className="p-8 bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-200">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <div className="text-sm text-gray-600 mb-1">Deine Punkte</div>
+                  <div className="text-sm text-muted-foreground mb-1">Deine Punkte</div>
                   <div className="text-4xl bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
                     {studentPoints.toLocaleString()}
                   </div>
@@ -126,21 +126,21 @@ export function Gamification() {
               </div>
 
               <div className="space-y-3 mb-6">
-                <div className="flex items-center justify-between bg-white rounded-lg p-3">
+                <div className="flex items-center justify-between bg-card rounded-lg p-3">
                   <div className="flex items-center gap-2">
                     <Zap className="size-4 text-yellow-600" />
                     <span className="text-sm">Aufgabe abgeschlossen</span>
                   </div>
                   <Badge className="bg-yellow-600 text-white border-0">+50</Badge>
                 </div>
-                <div className="flex items-center justify-between bg-white rounded-lg p-3">
+                <div className="flex items-center justify-between bg-card rounded-lg p-3">
                   <div className="flex items-center gap-2">
                     <Trophy className="size-4 text-orange-600" />
                     <span className="text-sm">Streak-Bonus</span>
                   </div>
                   <Badge className="bg-orange-600 text-white border-0">+100</Badge>
                 </div>
-                <div className="flex items-center justify-between bg-white rounded-lg p-3">
+                <div className="flex items-center justify-between bg-card rounded-lg p-3">
                   <div className="flex items-center gap-2">
                     <Target className="size-4 text-green-600" />
                     <span className="text-sm">Wochenziel erreicht</span>
@@ -160,13 +160,13 @@ export function Gamification() {
                     className={`relative p-4 rounded-xl text-center ${
                       achievement.unlocked
                         ? 'bg-gradient-to-br from-yellow-600 to-orange-600'
-                        : 'bg-gray-200'
+                        : 'bg-card-foreground/5'
                     }`}
                   >
                     <div className="text-3xl mb-1">{achievement.icon}</div>
                     <div className="text-xs text-white">{achievement.points}</div>
                     {!achievement.unlocked && (
-                      <Lock className="absolute top-2 right-2 size-3 text-gray-500" />
+                      <Lock className="absolute top-2 right-2 size-3 text-muted-foreground" />
                     )}
                   </div>
                 ))}
@@ -179,13 +179,13 @@ export function Gamification() {
                 <Gift className="size-6 text-purple-600" />
                 Belohnungs-Shop
               </h3>
-              <p className="text-gray-600 mb-6">Tausche deine Punkte gegen coole Items ein!</p>
+              <p className="text-muted-foreground mb-6">Tausche deine Punkte gegen coole Items ein!</p>
 
               <div className="space-y-3 mb-6">
                 {avatarItems.slice(0, 4).map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                    className="flex items-center justify-between p-4 bg-card-foreground/5 rounded-lg hover:bg-accent/50 transition-colors cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
                       <div className="text-2xl">{item.icon}</div>
@@ -217,7 +217,7 @@ export function Gamification() {
                 <Lightbulb className="size-8 text-white" />
               </div>
               <h3 className="text-2xl mb-3">Tipps & Lösungen</h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Steckst du fest? Nutze Punkte für hilfreiche Tipps oder die komplette Lösung.
               </p>
               <div className="space-y-2">
@@ -241,7 +241,7 @@ export function Gamification() {
                 <Gamepad2 className="size-8 text-white" />
               </div>
               <h3 className="text-2xl mb-3">Lern-Spiele</h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Nimm an Spielen teil, level deine Spielfigur und schalte neue Inhalte frei!
               </p>
               <div className="space-y-3">
@@ -249,7 +249,7 @@ export function Gamification() {
                   <div className="text-2xl">🎮</div>
                   <div className="flex-1">
                     <div className="text-sm">Quest Mode</div>
-                    <div className="text-xs text-gray-600">Level 12 • 85% XP</div>
+                    <div className="text-xs text-muted-foreground">Level 12 • 85% XP</div>
                   </div>
                   <TrendingUp className="size-4 text-green-600" />
                 </div>
@@ -257,7 +257,7 @@ export function Gamification() {
                   <div className="text-2xl">⚔️</div>
                   <div className="flex-1">
                     <div className="text-sm">Battle Arena</div>
-                    <div className="text-xs text-gray-600">5 Siege diese Woche</div>
+                    <div className="text-xs text-muted-foreground">5 Siege diese Woche</div>
                   </div>
                   <Crown className="size-4 text-yellow-600" />
                 </div>
@@ -269,13 +269,13 @@ export function Gamification() {
                 <Palette className="size-8 text-white" />
               </div>
               <h3 className="text-2xl mb-3">Lernraum-Design</h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Gestalte deinen persönlichen Lernraum mit individuellen Themes und Designs.
               </p>
               <div className="grid grid-cols-3 gap-2">
                 {['🌙 Dark', '🌸 Sakura', '🌊 Ocean', '🔥 Fire', '❄️ Ice', '🌈 Rainbow'].map(
                   (theme, i) => (
-                    <div key={i} className="p-2 bg-white rounded-lg text-center text-xs">
+                    <div key={i} className="p-2 bg-card rounded-lg text-center text-xs">
                       {theme}
                     </div>
                   )
@@ -295,15 +295,15 @@ export function Gamification() {
               <div className="flex items-center justify-around text-center">
                 <div>
                   <div className="text-2xl mb-1">👕</div>
-                  <div className="text-xs text-gray-600">12 Outfits</div>
+                  <div className="text-xs text-muted-foreground">12 Outfits</div>
                 </div>
                 <div>
                   <div className="text-2xl mb-1">🎭</div>
-                  <div className="text-xs text-gray-600">8 Masken</div>
+                  <div className="text-xs text-muted-foreground">8 Masken</div>
                 </div>
                 <div>
                   <div className="text-2xl mb-1">✨</div>
-                  <div className="text-xs text-gray-600">15 Effekte</div>
+                  <div className="text-xs text-muted-foreground">15 Effekte</div>
                 </div>
               </div>
             </Card>

@@ -21,7 +21,7 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
         className={`px-4 py-2 rounded-lg font-medium transition-all ${
           selectedCategory === 'all'
             ? 'bg-purple-600 text-white'
-            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-purple-400'
+            : 'bg-card dark:bg-card text-foreground dark:text-foreground border border-border hover:border-purple-400'
         }`}
       >
         All

@@ -38,7 +38,7 @@ export function ThinkingSpinner({ message, showIcon = true }: ThinkingSpinnerPro
           <Sparkles className="w-4 h-4 text-purple-600 absolute top-1 right-1 animate-spin" />
         </div>
       )}
-      <p className="text-sm text-gray-600 dark:text-gray-400 text-center max-w-xs h-8 flex items-center">
+      <p className="text-sm text-muted-foreground text-center max-w-xs h-8 flex items-center">
         {displayMessage}
       </p>
     </div>

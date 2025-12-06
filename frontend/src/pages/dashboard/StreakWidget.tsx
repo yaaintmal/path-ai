@@ -198,9 +198,9 @@ export function StreakWidget({ onStatisticsClick }: StreakWidgetProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow h-full flex flex-col">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">actual streak</h2>
+        <h2 className="text-lg font-semibold text-foreground">actual streak</h2>
         <button
           onClick={() => onStatisticsClick && onStatisticsClick()}
           aria-label="View statistics"
@@ -211,21 +211,21 @@ export function StreakWidget({ onStatisticsClick }: StreakWidgetProps) {
       </div>
       <div className="flex-1 flex flex-col justify-center">
         {loading ? (
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-muted-foreground">Loading...</p>
         ) : streak ? (
           <>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
+            <p className="text-muted-foreground text-sm mb-2">
               {streak.currentStreak} days in a row {getFlame(streak.currentStreak)}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+            <p className="text-xs text-muted-foreground mb-1">
               highest streak: {streak.bestStreak} {streak.bestStreak === 1 ? 'day' : 'days'}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-muted-foreground">
               total score: {streak.totalScore}
             </p>
           </>
         ) : (
-          <p className="text-gray-400">no data available</p>
+          <p className="text-muted-foreground">no data available</p>
         )}
       </div>
     </div>

@@ -87,9 +87,9 @@ export function VideoTranslationStatsWidget({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow h-full flex flex-col mt-6">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow h-full flex flex-col mt-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Video Statistics</h2>
+        <h2 className="text-lg font-semibold text-foreground">Video Statistics</h2>
         <button
           onClick={onStatisticsClick}
           className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
@@ -104,19 +104,19 @@ export function VideoTranslationStatsWidget({
       ) : stats ? (
         <div className="flex-1 flex flex-col justify-between space-y-4">
           {/* Main Video Counts */}
-          <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
+          <div className="border-b border-border pb-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <p className="text-2xl font-bold text-red-600 dark:text-red-400">
                   {stats.videosTranslated}
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">videos translated</p>
+                <p className="text-xs text-muted-foreground">videos translated</p>
               </div>
               <div>
                 <p className="text-2xl font-bold text-pink-600 dark:text-pink-400">
                   {stats.videosTranscribed}
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">transcribed videos</p>
+                <p className="text-xs text-muted-foreground">transcribed videos</p>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@ export function VideoTranslationStatsWidget({
                 <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                 <span className="text-sm text-gray-700 dark:text-gray-300">avg. time</span>
               </div>
-              <span className="font-semibold text-gray-900 dark:text-white">
+              <span className="font-semibold text-foreground">
                 {stats.averageTranslationTime} min.
               </span>
             </div>
@@ -138,7 +138,7 @@ export function VideoTranslationStatsWidget({
                 <Zap className="w-4 h-4 text-green-600 dark:text-green-400" />
                 <span className="text-sm text-gray-700 dark:text-gray-300">Precision</span>
               </div>
-              <span className="font-semibold text-gray-900 dark:text-white">
+              <span className="font-semibold text-foreground">
                 {stats.averageTranscriptionAccuracy}%
               </span>
             </div>
@@ -148,7 +148,7 @@ export function VideoTranslationStatsWidget({
                 <TrendingUp className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                 <span className="text-sm text-gray-700 dark:text-gray-300">per week</span>
               </div>
-              <span className="font-semibold text-gray-900 dark:text-white">
+              <span className="font-semibold text-foreground">
                 {stats.weeklyVideoCount}
               </span>
             </div>
@@ -160,15 +160,15 @@ export function VideoTranslationStatsWidget({
                   processed in minutes
                 </span>
               </div>
-              <span className="font-semibold text-gray-900 dark:text-white">
+              <span className="font-semibold text-foreground">
                 {stats.totalMinutesProcessed}
               </span>
             </div>
           </div>
 
           {/* Performance Message */}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-            <p className="text-sm font-medium text-gray-900 dark:text-white p-3 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 rounded-lg">
+          <div className="border-t border-border pt-4">
+            <p className="text-sm font-medium text-foreground p-3 bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 rounded-lg">
               {getVideoPerformanceMessage(stats.videosTranslated)}
             </p>
           </div>

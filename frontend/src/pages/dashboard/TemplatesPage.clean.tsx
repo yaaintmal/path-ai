@@ -137,4 +137,3 @@ export function TemplatesPageClean({ onBack, onSelectTemplate }: TemplatesPagePr
 
 export const TemplatesPage = TemplatesPageClean;
 export default TemplatesPageClean;
-

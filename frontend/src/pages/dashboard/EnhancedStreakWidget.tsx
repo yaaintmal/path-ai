@@ -96,9 +96,9 @@ export function EnhancedStreakWidget({ onStatisticsClick }: EnhancedStreakWidget
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow h-full flex flex-col">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-lg font-semibold text-card-foreground">
           Deine Erfolgsstatistiken
         </h2>
         <button
@@ -111,15 +111,15 @@ export function EnhancedStreakWidget({ onStatisticsClick }: EnhancedStreakWidget
       </div>
 
       {loading ? (
-        <p className="text-gray-400 text-center py-8">Lädt...</p>
+        <p className="text-muted-foreground text-center py-8">Lädt...</p>
       ) : stats ? (
         <div className="flex-1 flex flex-col justify-between space-y-4">
           {/* Streak Section */}
-          <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
-            <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
+          <div className="border-b border-border pb-4">
+            <p className="text-sm font-semibold text-card-foreground mb-2">
               Aktueller Streak: {stats.currentStreak} Tage {getFlame(stats.currentStreak)}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-muted-foreground">
               Bester Streak: {stats.bestStreak} Tage
             </p>
           </div>
@@ -160,18 +160,18 @@ export function EnhancedStreakWidget({ onStatisticsClick }: EnhancedStreakWidget
           </div>
 
           {/* Engagement */}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+          <div className="border-t border-border pt-4">
+            <p className="text-xs text-muted-foreground mb-2">
               Durchschn. Engagement pro Tag:{' '}
               <span className="font-semibold">{stats.averageDailyEngagement} Min.</span>
             </p>
-            <p className="text-sm font-medium text-gray-900 dark:text-white mt-3 p-3 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 rounded-lg">
+            <p className="text-sm font-medium text-card-foreground mt-3 p-3 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 rounded-lg">
               {getMotivationalMessage(stats.topicsLearned)}
             </p>
           </div>
         </div>
       ) : (
-        <p className="text-gray-400 text-center py-8">Keine Statistiken verfügbar</p>
+        <p className="text-muted-foreground text-center py-8">Keine Statistiken verfügbar</p>
       )}
     </div>
   );

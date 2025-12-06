@@ -1,3 +1,4 @@
+
 import { Globe, Youtube, Languages, Subtitles, CheckCircle2 } from 'lucide-react';
 import { Badge } from '../../ui/badge';
 import { Card } from '../../ui/card';
@@ -53,7 +54,7 @@ const languageContainerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.05,
-      delayChildren: 0.3,
+      delayChildren: 0.2,
     },
   },
 };
@@ -120,9 +121,7 @@ export function LanguageFeature() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto mb-16"
         >
-          <Badge className="bg-white/20 text-white border-0 mb-4">
-            {t('languageFeature.badge')}
-          </Badge>
+          <Badge className="bg-white/20 text-white border-0 mb-4">{t('languageFeature.badge')}</Badge>
           <h2 className="text-4xl md:text-6xl mb-6">
             {t('languageFeature.title')} <br />
             <span className="text-white/90">{t('languageFeature.titleSub')}</span>
@@ -140,16 +139,14 @@ export function LanguageFeature() {
             const IconComponent = card.icon;
             return (
               <motion.div key={index} variants={cardVariants}>
-                <Card className="p-8 bg-white dark:bg-gray-950 text-gray-900 dark:text-white border-2 border-white/20 dark:border-gray-800 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
+                <Card className="p-8 bg-card dark:bg-card text-foreground dark:text-foreground border-2 border-border dark:border-border shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
                   <div
                     className={`size-16 rounded-2xl flex items-center justify-center mb-4 bg-gradient-to-br ${card.color} shadow-lg`}
                   >
                     <IconComponent className="size-8 text-white" />
                   </div>
-                  <h3 className="text-2xl mb-3 font-bold dark:text-white">{card.title}</h3>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {card.description}
-                  </p>
+                  <h3 className="text-2xl mb-3 font-bold text-foreground">{card.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{card.description}</p>
                 </Card>
               </motion.div>
             );
@@ -160,15 +157,13 @@ export function LanguageFeature() {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-white/95 dark:bg-gray-950/95 backdrop-blur-md rounded-3xl p-8 border-2 border-white/30 dark:border-gray-800 shadow-2xl"
+          className="bg-white/95 dark:bg-card/95 backdrop-blur-md rounded-3xl p-8 border-2 border-white/30 dark:border-border shadow-2xl"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="size-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
               <Globe className="size-6 text-white" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {t('languageFeature.availableLanguages')}
-            </h3>
+            <h3 className="text-2xl font-bold text-foreground">{t('languageFeature.availableLanguages')}</h3>
           </div>
           <motion.div
             variants={languageContainerVariants}
@@ -180,18 +175,18 @@ export function LanguageFeature() {
               <motion.div
                 key={index}
                 variants={languageItemVariants}
-                className="flex items-center gap-2 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 rounded-lg px-4 py-3 border border-blue-200/50 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow"
+                className="flex items-center gap-2 bg-card-foreground/5 dark:bg-card-foreground/10 rounded-lg px-4 py-3 border border-blue-200/50 dark:border-border shadow-sm hover:shadow-md transition-shadow"
               >
-                <CheckCircle2 className="size-4 flex-shrink-0 text-blue-600 dark:text-blue-400" />
-                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">{lang}</span>
+                <CheckCircle2 className="size-4 flex-shrink-0 text-primary dark:text-primary-foreground" />
+                <span className="text-sm font-medium text-foreground">{lang}</span>
               </motion.div>
             ))}
           </motion.div>
-          <p className="text-center text-gray-600 dark:text-gray-400 mt-6 text-sm font-medium">
-            {t('languageFeature.moreLanguages')}
-          </p>
+          <p className="text-center text-muted-foreground mt-6 text-sm font-medium">{t('languageFeature.moreLanguages')}</p>
         </motion.div>
       </div>
     </section>
   );
 }
+
+export default LanguageFeature;

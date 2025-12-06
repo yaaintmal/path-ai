@@ -45,9 +45,9 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
   const badgeProgress = getProgressToNextBadge(persistentExp);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow flex flex-col">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">your progress</h2>
+        <h2 className="text-lg font-semibold text-card-foreground">your progress</h2>
         <div className="flex items-center gap-2">
           {/* Store Button */}
           <button
@@ -70,17 +70,17 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
           <div className="flex items-center gap-2">
             <span className="text-2xl">{currentBadge.icon}</span>
             <div>
-              <p className="font-semibold text-gray-900 dark:text-white text-sm">
+              <p className="font-semibold text-card-foreground text-sm">
                 {currentBadge.title}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-muted-foreground">
                 {formatExp(persistentExp)} EXP
               </p>
             </div>
           </div>
           {nextBadge && (
             <div className="text-right">
-              <p className="text-xs text-gray-500 dark:text-gray-400">next:</p>
+              <p className="text-xs text-muted-foreground">next:</p>
               <p className="text-xs font-medium text-purple-600 dark:text-purple-400">
                 {nextBadge.icon} {nextBadge.title}
               </p>
@@ -89,13 +89,13 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
         </div>
         {nextBadge && (
           <div className="mt-2">
-            <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300"
                 style={{ width: `${badgeProgress}%` }}
               />
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               {badgeProgress}% to {nextBadge.title}
             </p>
           </div>
@@ -106,33 +106,33 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
         {/* Overall Progress */}
         <div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-muted-foreground">
               Total Progress (Completion Rate)
             </span>
             <span className="font-medium text-blue-600">{progress}%</span>
           </div>
-          <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="h-3 bg-muted rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             {learnedTopicsCount + learnedSubtopicsCount} of{' '}
             {totalTopicsEncountered + totalSubtopicsEncountered} learned topics
           </p>
         </div>
 
         {/* Open Topics to Learn */}
-        <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
+        <div className="pt-2 border-t border-border">
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-600 dark:text-gray-400">Main Topic Progress</span>
+            <span className="text-muted-foreground">Main Topic Progress</span>
             <span className="font-medium text-blue-600">
               {learnedTopicsCount}/{totalTopicsEncountered}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full flex-1 overflow-hidden">
+            <div className="h-2 bg-muted rounded-full flex-1 overflow-hidden">
               <div
                 className="h-full bg-blue-500"
                 style={{
@@ -147,7 +147,7 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
               %
             </span>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             {learnedTopicsCount} learned {openTopics > 0 && `• ${openTopics} open`}
           </p>
         </div>
@@ -155,13 +155,13 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
         {/* Open Subtopics to Learn */}
         <div>
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-gray-600 dark:text-gray-400">Subtopic Progress</span>
+            <span className="text-muted-foreground">Subtopic Progress</span>
             <span className="font-medium text-cyan-600">
               {learnedSubtopicsCount}/{totalSubtopicsEncountered}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-2 bg-gray-100 dark:bg-gray-700 rounded-full flex-1 overflow-hidden">
+            <div className="h-2 bg-muted rounded-full flex-1 overflow-hidden">
               <div
                 className="h-full bg-cyan-500"
                 style={{
@@ -176,20 +176,20 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
               %
             </span>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             {learnedSubtopicsCount} learned {openSubtopics > 0 && `• ${openSubtopics} open`}
           </p>
         </div>
 
         {/* Persistent EXP from Learned Topics */}
-        <div className="pt-2 border-t border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-3">
+        <div className="pt-2 border-t border-border bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-3">
           <div className="flex justify-between items-center">
             <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
               Total EXP (persistent)
             </span>
             <span className="text-lg font-bold text-green-600">{persistentExp}</span>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             {learnedTopicsCount + learnedSubtopicsCount > 0
               ? `${learnedTopicsCount} main topics + ${learnedSubtopicsCount} subtopics learned `
               : 'Mark topics as learned to collect EXP'}

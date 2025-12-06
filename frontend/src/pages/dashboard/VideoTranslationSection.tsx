@@ -416,7 +416,7 @@ export function VideoTranslationSection({ onStatisticsClick }: VideoTranslationS
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         {/* Main Action Area */}
-        <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+        <div className="lg:col-span-2 bg-card rounded-lg shadow-md p-6 border border-border">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
               Neues Video importieren
@@ -435,7 +435,7 @@ export function VideoTranslationSection({ onStatisticsClick }: VideoTranslationS
                   <button
                     type="button"
                     onClick={() => setIsLanguageOpen((prev) => !prev)}
-                    className="flex w-full items-center gap-3 rounded-lg border border-gray-300 bg-white px-3 py-2 text-left text-gray-900 shadow-sm transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"
+                    className="flex w-full items-center gap-3 rounded-lg border border-border bg-card px-3 py-2 text-left text-foreground shadow-sm transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 dark:border-border dark:bg-card dark:text-foreground"
                   >
                     <span className="text-lg">{selectedLanguageLabel?.flag}</span>
                     <span className="flex-1 truncate">
@@ -456,12 +456,12 @@ export function VideoTranslationSection({ onStatisticsClick }: VideoTranslationS
                               setTargetLanguage(option.code);
                               setIsLanguageOpen(false);
                             }}
-                            className={`flex w-full items-center gap-3 px-3 py-2 text-left text-sm hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:hover:bg-gray-800 dark:focus:bg-gray-800 ${
+                            className={`flex w-full items-center gap-3 px-3 py-2 text-left text-sm hover:bg-card-foreground/5 focus:bg-card-foreground/10 focus:outline-none dark:hover:bg-card-foreground/30 dark:focus:bg-card-foreground/30 ${
                               targetLanguage === option.code ? 'bg-gray-100 dark:bg-gray-800' : ''
                             }`}
                           >
                             <span className="text-lg">{option.flag}</span>
-                            <span className="flex-1 truncate text-gray-900 dark:text-gray-100">
+                            <span className="flex-1 truncate text-foreground">
                               {option.label}
                             </span>
                             <span className="text-xs text-gray-500 dark:text-gray-400">
@@ -492,7 +492,7 @@ export function VideoTranslationSection({ onStatisticsClick }: VideoTranslationS
                       if (fileInputRef.current) fileInputRef.current.value = '';
                     }
                   }}
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:disabled:bg-gray-800 dark:disabled:text-gray-600 dark:disabled:border-gray-700"
+                  className="w-full rounded-lg border border-border bg-card px-3 py-2 text-foreground shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:bg-card-foreground/5 disabled:text-muted-foreground disabled:border-border dark:border-border dark:bg-card dark:text-foreground dark:disabled:bg-card/80 dark:disabled:text-muted-foreground dark:disabled:border-border"
                   disabled={Boolean(videoFile)}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400">

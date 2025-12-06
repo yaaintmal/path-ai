@@ -283,31 +283,49 @@ export function StorePage({ onBack }: StorePageProps) {
     selectedCategory === 'all' ? items : items.filter((item) => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-8">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white mb-4 transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            back to Dashboard
-          </button>
+          {/* Back Button */}
+          <div className="flex justify-start mb-6">
+            <button
+              onClick={onBack}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-lg transition-all duration-200 border border-transparent hover:border-border"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Dashboard
+            </button>
+          </div>
 
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center gap-3">
-                <ShoppingCart className="w-10 h-10 text-purple-600" />
-                Store
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Trade your hard-earned points for exclusive items and boosts!
-              </p>
+          {/* Main Header Card */}
+          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 mb-6">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              {/* Title and Description */}
+              <div className="flex-1">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="p-3 bg-primary/10 rounded-xl">
+                    <ShoppingCart className="w-8 h-8 text-primary" />
+                  </div>
+                  <div>
+                    <h1 className="text-3xl font-bold text-foreground">
+                      Store
+                    </h1>
+                    <p className="text-muted-foreground text-sm mt-1">
+                      Exclusive items & power-ups
+                    </p>
+                  </div>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Trade your hard-earned points for exclusive items and boosts to enhance your learning journey!
+                </p>
+              </div>
+
+              {/* User Stats Card */}
+              <div className="flex-shrink-0">
+                <UserStatsCard userStats={userStats} streakShields={streakShields} />
+              </div>
             </div>
-
-            {/* User Stats Card Component */}
-            <UserStatsCard userStats={userStats} streakShields={streakShields} />
           </div>
         </div>
 

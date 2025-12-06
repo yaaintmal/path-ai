@@ -4,7 +4,7 @@ import storeItems from './store-items.json';
 export const MOCK_STORE_ITEMS: StoreItem[] = storeItems as StoreItem[];
 
 export const RARITY_COLORS: Record<StoreItem['rarity'], string> = {
-  common: 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/30',
+  common: 'border-border bg-background dark:bg-card/30',
   uncommon: 'border-green-400 dark:border-green-600 bg-green-50 dark:bg-green-900/20',
   rare: 'border-blue-400 dark:border-blue-600 bg-blue-50 dark:bg-blue-900/20',
   epic: 'border-purple-400 dark:border-purple-600 bg-purple-50 dark:bg-purple-900/20',

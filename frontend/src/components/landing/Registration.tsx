@@ -123,7 +123,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   Vollständiger Name
                 </Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
                   <input
                     id="name"
                     type="text"
@@ -144,7 +144,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   E-Mail-Adresse
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
                   <input
                     id="email"
                     type="email"
@@ -165,7 +165,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   Passwort
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
                   <input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
@@ -179,7 +179,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground dark:hover:text-muted-foreground"
                   >
                     {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                   </button>
@@ -190,7 +190,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                 {formData.password && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600 dark:text-gray-400">Passwortstärke:</span>
+                      <span className="text-muted-foreground">Passwortstärke:</span>
                       <span
                         className={`font-medium ${
                           strength.label === 'Schwach'
@@ -225,7 +225,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   Passwort bestätigen
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
                   <input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
@@ -241,7 +241,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground dark:hover:text-muted-foreground"
                   >
                     {showConfirmPassword ? (
                       <EyeOff className="size-5" />
@@ -300,7 +300,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
                   <div className="w-full border-t dark:border-gray-700"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                  <span className="px-4 bg-background dark:bg-card text-muted-foreground">
                     Oder
                   </span>
                 </div>
@@ -339,7 +339,7 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
 
           {/* Login Link */}
           <div className="text-center mt-6">
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-muted-foreground">
               Du hast bereits ein Konto?{' '}
               <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                 Jetzt anmelden
@@ -351,15 +351,15 @@ export function Registration({ setShowOnboarding }: RegistrationProps) {
           <div className="mt-8 grid grid-cols-3 gap-4 text-center">
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700">
               <div className="text-2xl mb-2">✨</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">KI-Powered</div>
+              <div className="text-sm text-muted-foreground">KI-Powered</div>
             </div>
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700">
               <div className="text-2xl mb-2">🌍</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">100+ Sprachen</div>
+              <div className="text-sm text-muted-foreground">100+ Sprachen</div>
             </div>
             <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700">
               <div className="text-2xl mb-2">🎮</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Gamification</div>
+              <div className="text-sm text-muted-foreground">Gamification</div>
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@ export function Step1Role({ data, updateData }: Step1RoleProps) {
                 <div className={`text-6xl`}>👤</div>
                 <div>
                   <div className="font-medium dark:text-white">{role.label}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{role.description}</div>
+                  <div className="text-sm text-muted-foreground">{role.description}</div>
                 </div>
               </Label>
             </div>

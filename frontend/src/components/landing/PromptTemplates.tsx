@@ -165,7 +165,7 @@ export function PromptTemplates() {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
 
   return (
-    <section className="container mx-auto px-4 py-20 md:py-32 bg-white">
+    <section className="container mx-auto px-4 py-20 md:py-32 bg-background">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <h2 className="text-4xl md:text-5xl mb-4">
           Vorgefertigte{' '}
@@ -173,14 +173,14 @@ export function PromptTemplates() {
             Lernplan-Templates
           </span>
         </h2>
-        <p className="text-xl text-gray-600">
+        <p className="text-xl text-muted-foreground">
           Wähle deinen Lerntyp und starte mit einem optimierten Lernplan, der perfekt auf deine
           Bedürfnisse zugeschnitten ist
         </p>
       </div>
 
       {/* Quick Start Templates */}
-      <div className="mb-20">
+          <div className="mb-20">
         <h3 className="text-2xl mb-6 text-center">Beliebte Karrierepfade</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickStartTemplates.map((template, index) => (
@@ -193,7 +193,7 @@ export function PromptTemplates() {
                   {template.difficulty}
                 </Badge>
                 <h4 className="text-lg mb-2">{template.title}</h4>
-                <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                <p className="text-sm text-muted-foreground mb-3">{template.description}</p>
               </div>
               <div className="flex flex-wrap gap-1 mb-3">
                 {template.keywords.slice(0, 3).map((keyword, i) => (
@@ -202,7 +202,7 @@ export function PromptTemplates() {
                   </Badge>
                 ))}
               </div>
-              <div className="text-sm text-gray-500 mb-3">⏱️ {template.time}</div>
+              <div className="text-sm text-muted-foreground mb-3">⏱️ {template.time}</div>
               <Button size="sm" className="w-full gap-2">
                 Plan erstellen <ArrowRight className="size-3" />
               </Button>
@@ -221,7 +221,7 @@ export function PromptTemplates() {
               <TabsTrigger
                 key={type.id}
                 value={type.id}
-                className="flex-col h-auto py-4 data-[state=active]:bg-white data-[state=active]:shadow-md"
+                className="flex-col h-auto py-4 data-[state=active]:bg-card data-[state=active]:shadow-md"
               >
                 <div className={`bg-gradient-to-br ${type.color} p-3 rounded-lg mb-2`}>
                   <type.icon className="size-6 text-white" />
@@ -233,14 +233,14 @@ export function PromptTemplates() {
 
           {learningTypes.map((type) => (
             <TabsContent key={type.id} value={type.id} className="mt-0">
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 mb-8 border border-gray-200">
+              <div className="bg-gradient-to-br from-card-foreground/5 to-card rounded-2xl p-8 mb-8 border border-border">
                 <div className="flex items-start gap-4 mb-6">
                   <div className={`bg-gradient-to-br ${type.color} p-4 rounded-xl`}>
                     <type.icon className="size-8 text-white" />
                   </div>
                   <div>
                     <h3 className="text-2xl mb-2">{type.name}</h3>
-                    <p className="text-gray-600">{type.description}</p>
+                    <p className="text-muted-foreground">{type.description}</p>
                   </div>
                 </div>
 
@@ -251,7 +251,7 @@ export function PromptTemplates() {
                       className={`p-6 cursor-pointer transition-all ${
                         selectedTemplate === `${type.id}-${index}`
                           ? 'border-2 border-blue-600 shadow-lg'
-                          : 'border-2 border-transparent hover:border-gray-300'
+                          : 'border-2 border-transparent hover:border-border'
                       }`}
                       onClick={() => setSelectedTemplate(`${type.id}-${index}`)}
                     >

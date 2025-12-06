@@ -25,18 +25,18 @@ export function UserStatsCard({ userStats, streakShields }: UserStatsCardProps) 
   }, []);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-lg min-w-[320px]">
+    <div className="bg-card rounded-xl p-4 border border-border shadow-lg min-w-[320px]">
       <div className="flex items-center gap-4">
         <div className="text-4xl">{currentBadge.icon}</div>
         <div className="flex-1">
-          <p className="font-semibold text-gray-900 dark:text-white">{currentBadge.title}</p>
+          <p className="font-semibold text-foreground">{currentBadge.title}</p>
           <div className="flex items-center gap-2 mt-1 flex-wrap">
             <div className="flex items-center gap-1">
               <Coins className="w-4 h-4 text-yellow-500" />
               <span className="text-xl font-bold text-yellow-600 dark:text-yellow-400">
                 {userStats.points.toLocaleString()}
               </span>
-              <span className="text-gray-500 dark:text-gray-400 text-sm">Points</span>
+              <span className="text-muted-foreground text-sm">Points</span>
             </div>
             {streakShields !== undefined && streakShields > 0 && (
               <div className="flex items-center gap-1 ml-2 text-sm">
@@ -69,7 +69,7 @@ export function UserStatsCard({ userStats, streakShields }: UserStatsCardProps) 
       </div>
 
       {/* Streak Info */}
-      <div className="mt-3 p-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg text-xs">
+      <div className="mt-3 p-2 bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg text-xs">
         {userStats.currentStreak > 0 ? (
           <>
             <div className="flex justify-between text-orange-600 dark:text-orange-400">
@@ -93,7 +93,7 @@ export function UserStatsCard({ userStats, streakShields }: UserStatsCardProps) 
             )}
           </>
         ) : (
-          <div className="text-gray-500 dark:text-gray-400 text-center">
+          <div className="text-muted-foreground text-center">
             🔥 Get a streak for bonus points
           </div>
         )}
@@ -101,7 +101,7 @@ export function UserStatsCard({ userStats, streakShields }: UserStatsCardProps) 
 
       {/* EXP Progress */}
       <div className="mt-3">
-        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+        <div className="flex justify-between text-xs text-muted-foreground mb-1">
           <span>{formatExp(userStats.exp)} EXP</span>
           {nextBadge && (
             <span>

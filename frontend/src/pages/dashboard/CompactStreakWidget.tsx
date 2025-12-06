@@ -83,9 +83,9 @@ export function CompactStreakWidget({ onStatisticsClick }: CompactStreakWidgetPr
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow h-full flex flex-col">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">actual streak</h2>
+        <h2 className="text-lg font-semibold text-card-foreground">actual streak</h2>
         <button
           onClick={onStatisticsClick}
           className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
@@ -97,7 +97,7 @@ export function CompactStreakWidget({ onStatisticsClick }: CompactStreakWidgetPr
 
       <div className="flex-1 flex flex-col justify-between">
         {loading ? (
-          <p className="text-gray-400 text-sm">loading...</p>
+          <p className="text-muted-foreground text-sm">loading...</p>
         ) : stats ? (
           <>
             {/* Main Streak Display */}
@@ -105,41 +105,41 @@ export function CompactStreakWidget({ onStatisticsClick }: CompactStreakWidgetPr
               <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                 {stats.currentStreak}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <p className="text-xs text-muted-foreground mb-1">
                 days in a row {getFlame(stats.currentStreak)}
               </p>
             </div>
 
             {/* Quick Stats */}
             <div className="space-y-2 text-xs">
-              <div className="flex items-center justify-between text-gray-600 dark:text-gray-400">
+              <div className="flex items-center justify-between text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <span className="text-orange-500">→</span> highest streak
                 </span>
-                <span className="font-semibold text-gray-900 dark:text-white">
+                <span className="font-semibold text-card-foreground">
                   {stats.bestStreak}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-gray-600 dark:text-gray-400">
+              <div className="flex items-center justify-between text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <BookOpen className="w-3 h-3 text-blue-500" /> learned in total
                 </span>
-                <span className="font-semibold text-gray-900 dark:text-white">
+                <span className="font-semibold text-card-foreground">
                   {stats.topicsLearned}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-gray-600 dark:text-gray-400">
+              <div className="flex items-center justify-between text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Target className="w-3 h-3 text-green-500" /> per week
                 </span>
-                <span className="font-semibold text-gray-900 dark:text-white">
+                <span className="font-semibold text-card-foreground">
                   {stats.weeklyLearningRate}
                 </span>
               </div>
             </div>
           </>
         ) : (
-          <p className="text-gray-400 text-sm">no data available</p>
+          <p className="text-muted-foreground text-sm">no data available</p>
         )}
       </div>
     </div>

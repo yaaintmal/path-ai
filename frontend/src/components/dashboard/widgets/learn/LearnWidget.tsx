@@ -28,7 +28,7 @@ export function LearnWidget({ onTemplatesClick }: LearnWidgetProps) {
   } = useLearnWidget();
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow">
       <LearnHeader onTemplatesClick={onTemplatesClick} />
       <LearnTopicForm
         value={learntopic}

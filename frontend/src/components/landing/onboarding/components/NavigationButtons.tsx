@@ -23,7 +23,7 @@ export function NavigationButtons({
         back
       </Button>
 
-      <div className="text-sm text-gray-600 dark:text-gray-400">
+      <div className="text-sm text-muted-foreground">
         step {currentStep} of {totalSteps}
       </div>
 

@@ -29,7 +29,7 @@ export function SummaryDialog({ open, onOpenChange, data, onSave }: SummaryDialo
       {/* Modal */}
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 max-w-md w-full z-50 max-h-[80vh] overflow-auto">
         <h3 className="text-lg font-semibold mb-4 dark:text-white">Summary of your inputs</h3>
-        <div className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+        <div className="text-sm text-muted-foreground mb-6">
           <pre className="whitespace-pre-wrap">{summary}</pre>
         </div>
         <div className="flex justify-end gap-3">

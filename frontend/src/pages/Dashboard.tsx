@@ -4,12 +4,12 @@ interface DashboardProps {
 }
 
 import { useState } from 'react';
-import { DashboardHeader } from './dashboard/DashboardHeader';
+// import { DashboardHeader } from './dashboard/DashboardHeader';
 import { VideoTranslationSection } from './dashboard/VideoTranslationSection';
 import { LearningSection } from './dashboard/LearningSection';
 import { OpenTopicsPage } from './dashboard/OpenTopicsPage';
 import { CompletedTopicsPage } from './dashboard/CompletedTopicsPage';
-import { TemplatesPage } from './dashboard/TemplatesPage';
+import { TemplatesPage } from './dashboard/TemplatesPage.clean';
 import { TemplateDetailsPage } from './dashboard/TemplateDetailsPage';
 import { useLearning } from '../contexts/useLearning';
 import { StatisticsOverview } from './dashboard/StatisticsOverview';
@@ -22,7 +22,7 @@ import type { LearningPath, LearningPathItem } from '../types/learning';
 // import { FullWidthWidget } from './dashboard/FullWidthWidget';
 // import { StreakWidget } from './dashboard/StreakWidget';
 
-export function Dashboard({ setShowOnboardingEditor, mode: initialMode }: DashboardProps) {
+export function Dashboard({  mode: initialMode }: DashboardProps) {
   const [mode, setMode] = useState<
     | 'video-translation'
     | 'learning'
@@ -37,11 +37,11 @@ export function Dashboard({ setShowOnboardingEditor, mode: initialMode }: Dashbo
   const [selectedTemplate, setSelectedTemplate] = useState<LearningTemplate | null>(null);
   const { setCurrentLearningPath, setCurrentPath, triggerSubtopicGeneration } = useLearning();
 
-  const handleEditDashboard = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setShowOnboardingEditor(true);
-    window.scrollTo(0, 0);
-  };
+  // const handleEditDashboard = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   setShowOnboardingEditor(true);
+  //   window.scrollTo(0, 0);
+  // };
 
   const handleStatisticsClick = () => {
     setMode('statistics');
@@ -154,13 +154,13 @@ export function Dashboard({ setShowOnboardingEditor, mode: initialMode }: Dashbo
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 py-8 px-4">
+    <div className="min-h-screen bg-background transition-colors duration-300 py-8 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
-        <DashboardHeader
+        {/* <DashboardHeader
           mode={mode as 'video-translation' | 'learning'}
           onEdit={handleEditDashboard}
-        />
+        /> */}
 
         {/* Mode-specific content */}
         {mode === 'video-translation' ? (

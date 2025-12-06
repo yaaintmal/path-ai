@@ -135,14 +135,14 @@ export function Hero({ setShowOnboarding }: HeroProps) {
             <Sparkles className="size-4" />
             <span className="text-sm">KI-gestütztes Lernen</span>
           </div>
-          <h1 className="text-5xl md:text-6xl dark:text-white">
+          <h1 className="text-5xl md:text-6xl text-foreground">
             Dein persönlicher{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               KI-Lernplan
             </span>{' '}
             in jeder Sprache
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-muted-foreground">
             Keine vorgefertigten Kurse. Wähle aus fertigen Templates für deinen Lerntyp oder
             erstelle einen komplett individuellen Lernplan mit unserer KI. Lerne mit YouTube-Videos
             (automatisch übersetzt!) oder interaktiv mit unserer KI.
@@ -155,25 +155,25 @@ export function Hero({ setShowOnboarding }: HeroProps) {
               size="lg"
               variant="outline"
               onClick={handleDashboardClick}
-              className="dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+              className="dark:border-border dark:text-muted-foreground dark:hover:bg-accent/50"
             >
               Custom Lernplan erstellen
             </Button>
           </div>
           <div className="flex items-center gap-8 pt-4">
             <div>
-              <div className="text-2xl dark:text-white">10.000+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Aktive Lernende</div>
+              <div className="text-2xl text-foreground">10.000+</div>
+              <div className="text-sm text-muted-foreground">Aktive Lernende</div>
             </div>
-            <div className="h-12 w-px bg-gray-200 dark:bg-gray-700" />
+            <div className="h-12 w-px bg-border" />
             <div>
-              <div className="text-2xl dark:text-white">4.8/5</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Bewertung</div>
+              <div className="text-2xl text-foreground">4.8/5</div>
+              <div className="text-sm text-muted-foreground">Bewertung</div>
             </div>
-            <div className="h-12 w-px bg-gray-200 dark:bg-gray-700" />
+            <div className="h-12 w-px bg-border" />
             <div>
-              <div className="text-2xl dark:text-white">50+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Themengebiete</div>
+              <div className="text-2xl text-foreground">50+</div>
+              <div className="text-sm text-muted-foreground">Themengebiete</div>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
         {/* Feature Slider */}
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-3xl opacity-20" />
-          <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 space-y-4 border dark:border-gray-700">
+          <div className="relative bg-card rounded-3xl shadow-2xl p-8 space-y-4 border border-border">
             {/* Slide Content */}
             <div className="min-h-[400px]">
               <div className="flex items-center gap-3 mb-6">
@@ -196,20 +196,20 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                   >
                     {currentFeature.badge}
                   </Badge>
-                  <h3 className="text-lg dark:text-white">{currentFeature.title}</h3>
+                  <h3 className="text-lg text-foreground">{currentFeature.title}</h3>
                 </div>
               </div>
 
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-sm text-muted-foreground mb-6">
                 {currentFeature.description}
               </p>
 
               <div className="space-y-3">
-                <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-4">
-                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                <div className="bg-card-foreground/5 dark:bg-card-foreground/10 rounded-xl p-4">
+                  <div className="text-sm text-muted-foreground mb-2">
                     {currentFeature.preview.question}
                   </div>
-                  <div className="bg-white dark:bg-gray-700 rounded-lg p-3 border-2 border-blue-600 dark:text-white">
+                  <div className="bg-card rounded-lg p-3 border-2 border-blue-600 dark:bg-card dark:text-foreground">
                     {currentFeature.preview.answer}
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                     >
                       <IconComponent className="size-4 text-white" />
                     </div>
-                    <div className="text-sm dark:text-gray-200">
+                    <div className="text-sm text-muted-foreground">
                       {currentFeature.preview.response}
                     </div>
                   </div>
@@ -237,7 +237,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="size-5 text-gray-600 dark:text-gray-400" />
+                <ChevronLeft className="size-5 text-muted-foreground" />
               </button>
 
               <div className="flex items-center gap-2">
@@ -248,7 +248,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                     className={`h-2 rounded-full transition-all ${
                       index === currentSlide
                         ? 'w-8 bg-gradient-to-r ' + currentFeature.color
-                        : 'w-2 bg-gray-300 dark:bg-gray-600'
+                        : "w-2 bg-muted/40 dark:bg-muted-foreground"
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -260,7 +260,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 aria-label="Next slide"
               >
-                <ChevronRight className="size-5 text-gray-600 dark:text-gray-400" />
+                <ChevronRight className="size-5 text-muted-foreground" />
               </button>
             </div>
           </div>

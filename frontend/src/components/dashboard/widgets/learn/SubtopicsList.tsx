@@ -28,13 +28,13 @@ export function SubtopicsList({
       <div className="space-y-2">
         {subtopics.map((subtopic) => (
           <div key={subtopic.id} className="flex items-center gap-2">
-            <button className="flex-1 text-left p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all">
+            <button className="flex-1 text-left p-3 rounded-lg bg-card-foreground/5 dark:bg-card-foreground/30 border border-border hover:border-blue-500 dark:hover:border-blue-500 hover:bg-card-foreground/10 dark:hover:bg-card-foreground/30 transition-all">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
-                  <p className="text-gray-900 dark:text-white text-sm font-medium">
+                  <p className="text-foreground text-sm font-medium">
                     <FormattedText text={subtopic.title} />
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     difficulty:{' '}
                     <span
                       className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${

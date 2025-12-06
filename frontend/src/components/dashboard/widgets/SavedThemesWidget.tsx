@@ -21,13 +21,13 @@ export function SavedThemesWidget({ onCompletedTopicsClick }: SavedThemesWidgetP
   const isCurrentPath = (title: string) => currentLearningPath?.title === title;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow flex flex-col">
+    <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">saved topics</h2>
+        <h2 className="text-lg font-semibold text-foreground">saved topics</h2>
         <div className="flex items-center gap-3">
           <button
             onClick={() => onCompletedTopicsClick && onCompletedTopicsClick()}
-            className="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="px-3 py-2 rounded-md hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 transition-colors"
             title="Completed topics"
             aria-label="Completed topics"
           >

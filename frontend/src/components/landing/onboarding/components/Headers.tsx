@@ -9,7 +9,7 @@ export function StepHeader({ title, description }: StepHeaderProps) {
   return (
     <div className="space-y-4 mb-6">
       <h2 className="text-2xl mb-2 dark:text-white">{title}</h2>
-      <p className="text-gray-600 dark:text-gray-400">{description}</p>
+      <p className="text-muted-foreground">{description}</p>
     </div>
   );
 }
@@ -35,7 +35,7 @@ export function PageHeader({ subtitle, title, highlight, description }: PageHead
         </span>{' '}
         your dashboard {title}
       </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300">{description}</p>
+      <p className="text-lg text-muted-foreground">{description}</p>
     </div>
   );
 }

@@ -23,15 +23,15 @@ export function StoreItemCard({ item, canAfford, isPurchasing, onPurchase }: Sto
         </span>
       </div>
 
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{item.name}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 min-h-[40px]">
+      <h3 className="text-lg font-semibold text-foreground mb-1">{item.name}</h3>
+      <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">
         {item.description}
       </p>
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Coins className="w-5 h-5 text-yellow-500" />
-          <span className="text-xl font-bold text-gray-900 dark:text-white">
+          <span className="text-xl font-bold text-foreground">
             {item.cost.toLocaleString()}
           </span>
         </div>
@@ -41,7 +41,7 @@ export function StoreItemCard({ item, canAfford, isPurchasing, onPurchase }: Sto
           className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
             canAfford
               ? 'bg-purple-600 hover:bg-purple-700 text-white shadow-md hover:shadow-lg'
-              : 'bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+              : 'bg-gray-300 dark:bg-gray-600 text-muted-foreground dark:text-muted-foreground cursor-not-allowed'
           }`}
         >
           {isPurchasing ? (

@@ -14,35 +14,35 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
   const openTopics = (bookmarks || []).filter((b) => b.type === 'topic');
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+    <div className="min-h-screen bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 transition-colors"
             title="Back to learning"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+            <ChevronLeft className="w-5 h-5 text-muted-foreground" />
           </button>
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Open topics</h2>
+          <h2 className="text-lg font-semibold text-foreground">Open topics</h2>
         </div>
       </div>
       <div className="space-y-2">
         {openTopics.length === 0 ? (
-          <p className="text-gray-600 dark:text-gray-400">No open topics found.</p>
+          <p className="text-muted-foreground">No open topics found.</p>
         ) : (
           openTopics.map((tb, idx) => (
             <div
               key={`${tb.type}-${tb.title}-${idx}`}
-              className="flex items-center justify-between p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600"
+              className="flex items-center justify-between p-2 rounded-lg bg-card-foreground/5 dark:bg-card-foreground/30 border border-border"
             >
               <div className="flex items-center gap-3 flex-1 min-w-0">
                 <div className="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center">
                   <Bookmark className="w-4 h-4 text-yellow-600 dark:text-yellow-300" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-gray-900 dark:text-white truncate">{tb.title}</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Bookmark</p>
+                  <p className="text-sm text-foreground truncate">{tb.title}</p>
+                  <p className="text-xs text-muted-foreground">Bookmark</p>
                 </div>
               </div>
               <div className="flex gap-2 flex-shrink-0">
