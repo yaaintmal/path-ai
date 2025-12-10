@@ -1,8 +1,7 @@
 import { defineConfig, loadEnv, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 //adding import for tailwindcss using vite plugin
-import tailwindcss from '@tailwindcss/vite'
-
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
