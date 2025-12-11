@@ -5,7 +5,18 @@
   position: absolute;
 }
 
+/* debug helper: only active in development builds; remove or guard it later if too noisy */
+.hyperspeed-lights {
+  position: absolute;
+  inset: 0;
+}
+.hyperspeed-lights canvas,
 canvas {
   width: 100%;
   height: 100%;
+  display: block;
+  /* subtle outline to help detect the canvas; can be removed later */
+  outline: 1px solid rgba(255, 255, 255, 0.03);
+  /* help the animation blend with logo colors */
+  mix-blend-mode: screen;
 }

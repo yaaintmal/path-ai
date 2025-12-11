@@ -12,6 +12,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
+import Hyperspeed from '../Hyperspeed';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useAuth } from '../../contexts/useAuth';
@@ -56,6 +57,89 @@ export function Header({
   const toggleDarkMode = () => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
+
+  const debugHyperspeed =
+    typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
+
+  // Hyperspeed effect options for light/dark mode
+  const hyperspeedEffectOptions =
+    resolvedTheme === 'dark'
+      ? {
+          onSpeedUp: () => {},
+          onSlowDown: () => {},
+          distortion: 'turbulentDistortion',
+          length: 220,
+          roadWidth: 8,
+          islandWidth: 2,
+          lanesPerRoad: 3,
+          fov: 90,
+          fovSpeedUp: 130,
+          speedUp: 1.6,
+          carLightsFade: 0.35,
+          totalSideLightSticks: 12,
+          lightPairsPerRoadWay: 20,
+          shoulderLinesWidthPercentage: 0.03,
+          brokenLinesWidthPercentage: 0.1,
+          brokenLinesLengthPercentage: 0.5,
+          lightStickWidth: [0.06, 0.2],
+          lightStickHeight: [0.8, 1.2],
+          movingAwaySpeed: [40, 60],
+          movingCloserSpeed: [-80, -120],
+          carLightsLength: [220 * 0.03, 220 * 0.18],
+          carLightsRadius: [0.04, 0.1],
+          carWidthPercentage: [0.2, 0.45],
+          carShiftX: [-0.6, 0.6],
+          carFloorSeparation: [0, 3],
+          isHyper: true,
+          colors: {
+            roadColor: 0x000000,
+            islandColor: 0x0a0a0a,
+            background: 0x000000,
+            shoulderLines: 0x444444,
+            brokenLines: 0x666666,
+            leftCars: [0xff00ff, 0xff8800, 0xff1a75],
+            rightCars: [0x00ffff, 0x00d4ff, 0x00b3ff],
+            sticks: 0x00ffff,
+          },
+        }
+      : {
+          onSpeedUp: () => {},
+          onSlowDown: () => {},
+          distortion: 'turbulentDistortion',
+          length: 160,
+          roadWidth: 10,
+          islandWidth: 2,
+          lanesPerRoad: 4,
+          fov: 90,
+          fovSpeedUp: 110,
+          speedUp: 1.0,
+          carLightsFade: 0.25,
+          totalSideLightSticks: 10,
+          lightPairsPerRoadWay: 24,
+          shoulderLinesWidthPercentage: 0.03,
+          brokenLinesWidthPercentage: 0.08,
+          brokenLinesLengthPercentage: 0.45,
+          lightStickWidth: [0.05, 0.2],
+          lightStickHeight: [0.8, 1.2],
+          movingAwaySpeed: [20, 50],
+          movingCloserSpeed: [-60, -100],
+          carLightsLength: [160 * 0.03, 160 * 0.2],
+          carLightsRadius: [0.03, 0.08],
+          carWidthPercentage: [0.2, 0.4],
+          carShiftX: [-0.4, 0.4],
+          carFloorSeparation: [0, 2],
+          isHyper: true,
+          colors: {
+            roadColor: 0xf8fafc,
+            islandColor: 0xf8fafc,
+            background: 0xffffff,
+            shoulderLines: 0xe2e8f0,
+            brokenLines: 0xc7d2fe,
+            leftCars: [0x0ea5a0, 0x2563eb, 0xff7e1a],
+            rightCars: [0x06b6d4, 0x0ea5a0, 0x10b981],
+            sticks: 0x93c5fd,
+          },
+        };
 
   const handleDashboardClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -107,7 +191,7 @@ export function Header({
 
   return (
     <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo Section */}
           <a
@@ -115,8 +199,29 @@ export function Header({
             onClick={handleLogoClick}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-2.5 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-200">
-              <BookOpen className="size-6 text-white" />
+            <div className="relative w-14 h-14 rounded-xl overflow-hidden">
+              {/* Background Hyperspeed effect - fill parent */}
+              <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+                <Hyperspeed containerId="lights-header" effectOptions={hyperspeedEffectOptions} />
+              </div>
+
+              {/* Icon overlay */}
+              <div
+                className={`relative z-10 flex items-center justify-center w-full h-full p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-200 ${
+                  debugHyperspeed
+                    ? 'bg-transparent'
+                    : 'bg-gradient-to-br from-blue-600/20 to-purple-600/20'
+                }`}
+                aria-hidden={debugHyperspeed}
+              >
+                <BookOpen
+                  className={`size-6 ${resolvedTheme === 'dark' ? 'text-white' : 'text-foreground'} drop-shadow-md`}
+                />
+              </div>
+            </div>
+            <div className="hidden sm:flex items-center gap-3">
+              {/* Placeholder for future general information */}
+              <div className="hidden md:block min-w-[180px] text-sm text-muted-foreground truncate" />
             </div>
             <div className="hidden sm:block">
               <span className="text-xl font-bold text-foreground">{config.app.name}</span>

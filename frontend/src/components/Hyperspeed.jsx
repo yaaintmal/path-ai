@@ -49,6 +49,7 @@ const Hyperspeed = ({
       sticks: 0x03b3c3,
     },
   },
+  containerId = 'lights',
 }) => {
   const hyperspeed = useRef(null);
   const appRef = useRef(null);
@@ -56,7 +57,7 @@ const Hyperspeed = ({
   useEffect(() => {
     if (appRef.current) {
       appRef.current.dispose();
-      const container = document.getElementById('lights');
+      const container = document.getElementById(containerId);
       if (container) {
         while (container.firstChild) {
           container.removeChild(container.firstChild);
@@ -579,9 +580,7 @@ const Hyperspeed = ({
           this.camera.updateProjectionMatrix();
         }
 
-        if (this.options.isHyper) {
-          console.log(this.options.isHyper);
-        }
+        // removed debug log to avoid noisy output
       }
 
       render(delta) {
@@ -1132,24 +1131,63 @@ const Hyperspeed = ({
       return needResize;
     }
 
+    let ro;
     (function () {
-      const container = document.getElementById('lights');
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
       const options = { ...effectOptions };
       options.distortion = distortions[options.distortion];
 
-      const myApp = new App(container, options);
-      appRef.current = myApp;
-      myApp.loadAssets().then(myApp.init);
+      // Safe init: only initialize when container has non-zero size
+      // will use outer `ro` variable so cleanup can disconnect
+      const initialize = () => {
+        try {
+          if (appRef.current) {
+            appRef.current.dispose();
+            appRef.current = null;
+          }
+          const myApp = new App(container, options);
+          appRef.current = myApp;
+          myApp.loadAssets().then(() => {
+            // ensure the app wasn't disposed in the meantime
+            if (appRef.current === myApp) myApp.init();
+          });
+        } catch (err) {
+          console.warn('[Hyperspeed] Failed to initialize app', err);
+        }
+      };
+
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (width > 0 && height > 0) {
+        initialize();
+      } else {
+        ro = new ResizeObserver((entries) => {
+          const r = entries[0]?.contentRect;
+          if (r?.width > 0 && r?.height > 0) {
+            ro?.disconnect();
+            initialize();
+          }
+        });
+        ro.observe(container);
+      }
+
+      // cleanup observer on unmount
+      return () => {
+        if (ro) ro.disconnect();
+      };
     })();
 
     return () => {
+      if (ro) ro.disconnect();
       if (appRef.current) {
         appRef.current.dispose();
       }
     };
-  }, [effectOptions]);
+  }, [effectOptions, containerId]);
 
-  return <div id="lights" ref={hyperspeed}></div>;
+  return <div id={containerId} ref={hyperspeed} className="hyperspeed-lights"></div>;
 };
 
 export default Hyperspeed;
