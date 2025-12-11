@@ -9,21 +9,27 @@ Welcome to PathAI! We're here to transform the way you learn—whether you're a 
 ## What Can You Do?
 
 ### 🎯 Personalized Learning Paths
+
 Tell us about your goals, skill level, and preferred learning style. PathAI creates a customized learning experience just for you—no generic content, no wasted time.
 
 ### 💡 AI-Powered Insights
+
 Get instant help with complex concepts, ask questions in plain language, and receive explanations tailored to your level. Our AI adapts to how you learn best.
 
 ### 🎮 Stay Motivated & Engaged
+
 Earn points, unlock achievements, and track your progress through gamified learning. Watch your skills grow and celebrate every milestone.
 
 ### 📚 Smart Resource Recommendations
+
 Never waste time searching for the right study materials again. We recommend learning resources, prompt templates, and practice exercises matched to your exact needs.
 
 ### 🌍 Learn in Your Language
+
 Support for multiple languages means you can learn comfortably in the language that works best for you.
 
 ### 📊 Track Your Progress
+
 See clear insights into what you've learned, where you're excelling, and what topics need more practice. Your learning journey, visualized.
 
 ---
@@ -51,4 +57,4 @@ Sign up for free and complete a quick onboarding. You'll be learning within minu
 
 ---
 
-**PathAI** — *Make Every Learning Moment Count*
+**PathAI** — _Make Every Learning Moment Count_
