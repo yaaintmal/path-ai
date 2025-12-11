@@ -1,0 +1,25 @@
+/* Experimental copy of the original VideoPlayer.module.css moved to experimental */
+/* If you need to restore styling, copy it back to the components folder */
+
+.custom-video-player {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.player__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Minimal subset for experimental usage */

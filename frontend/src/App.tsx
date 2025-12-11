@@ -1,6 +1,6 @@
 // Landing Page Components
 import { Hero } from './components/landing/Hero';
-import { LanguageFeature } from './components/landing/LanguageFeature';
+// import { LanguageFeature } from './components/landing/LanguageFeature';
 import { TargetAudiences } from './components/landing/TargetAudiences';
 import { Gamification } from './components/landing/Gamification';
 import { Features } from './components/landing/Features';
@@ -35,9 +35,7 @@ export default function App() {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showOnboardingEditor, setShowOnboardingEditor] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
-  const [dashboardMode, setDashboardMode] = useState<
-    'video-translation' | 'learning' | 'statistics' | null
-  >(null);
+  const [dashboardMode, setDashboardMode] = useState<'learning' | 'statistics' | null>(null);
   const [hasOnboardingData, setHasOnboardingData] = useState(false);
 
   useEffect(() => {
@@ -206,7 +204,7 @@ export default function App() {
       {/* 2. Features */}
       <Features />
       {/* 3. Mehrsprachig / Sprachen */}
-      <LanguageFeature />
+      {/* <LanguageFeature /> */}
       {/* 4. Weitere Sections */}
       <TargetAudiences />
       <Gamification />
@@ -214,7 +212,8 @@ export default function App() {
       <HowItWorks />
       <DashboardPreview />
       {/* <FAQ /> */}
-      <CTA />
+      {/* //TODO: CTA right now not displayed but should be implemented in next phase */}
+      {/* <CTA /> */}
       <Footer />
       <VersionIndicator />
     </div>

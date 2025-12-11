@@ -35,14 +35,14 @@ const featureSlides = [
   {
     badge: '100+ Sprachen',
     icon: Globe,
-    title: 'Videos automatisch übersetzt',
+    title: 'Inhalte automatisch lokalisiert',
     description:
-      'Lerne in jeder Sprache! YouTube-Videos werden automatisch übersetzt - mit Untertiteln und synchronisierter Übersetzung.',
+      'Lerne in jeder Sprache! Lernressourcen werden automatisch lokalisiert - mit Untertiteln und synchronisierter Übersetzung.',
     color: 'from-green-600 to-emerald-600',
     preview: {
       question: 'Sprache wählen',
       answer: '🇩🇪 Deutsch → 🇯🇵 Japanisch',
-      response: 'Video wird übersetzt... Untertitel werden synchronisiert. Bereit zum Lernen! 🎥',
+      response: 'Inhalt wird übersetzt... Untertitel werden synchronisiert. Bereit zum Lernen!',
     },
   },
   {
@@ -69,7 +69,7 @@ const featureSlides = [
       question: 'Mathe-Hausaufgaben',
       answer: 'Quadratische Gleichungen Klasse 9',
       response:
-        'Cool! Ich zeige dir das Schritt für Schritt mit Bildern und Videos. Du schaffst das! 🎯',
+        'Cool! Ich zeige dir das Schritt für Schritt mit anschaulichen Beispielen. Du schaffst das! 🎯',
     },
   },
   {
@@ -143,9 +143,9 @@ export function Hero({ setShowOnboarding }: HeroProps) {
             in jeder Sprache
           </h1>
           <p className="text-xl text-muted-foreground">
-            Keine vorgefertigten Kurse. Wähle aus fertigen Templates für deinen Lerntyp oder
-            erstelle einen komplett individuellen Lernplan mit unserer KI. Lerne mit YouTube-Videos
-            (automatisch übersetzt!) oder interaktiv mit unserer KI.
+            'Keine vorgefertigten Kurse. Wähle aus fertigen Templates für deinen Lerntyp oder
+            erstelle einen komplett individuellen Lernplan mit unserer KI. Lerne mit vielfältigen
+            Lernressourcen (automatisch lokalisiert!) oder interaktiv mit unserer KI.',
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" className="gap-2">

@@ -213,7 +213,7 @@ function KidsPreview() {
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
-            Du lernst am besten mit Bildern und Videos!
+            Du lernst am besten mit Bildern und anschaulichen Beispielen!
           </p>
         </div>
 

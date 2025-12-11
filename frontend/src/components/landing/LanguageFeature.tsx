@@ -1,4 +1,4 @@
-import { Globe, Youtube, Languages, Subtitles, CheckCircle2 } from 'lucide-react';
+import { Globe, FileText, Languages, Subtitles, CheckCircle2 } from 'lucide-react';
 import { Badge } from '../../ui/badge';
 import { Card } from '../../ui/card';
 import { motion, useInView } from 'framer-motion';
@@ -86,7 +86,7 @@ export function LanguageFeature() {
         color: 'from-blue-500 to-blue-600',
       },
       {
-        icon: Youtube,
+        icon: FileText,
         title: t('languageFeature.card2Title'),
         description: t('languageFeature.card2Description'),
         color: 'from-red-500 to-red-600',
@@ -110,7 +110,7 @@ export function LanguageFeature() {
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 text-9xl">🌍</div>
         <div className="absolute bottom-10 right-10 text-9xl">💬</div>
-        <div className="absolute top-1/2 left-1/4 text-7xl">🎥</div>
+        <div className="absolute top-1/2 left-1/4 text-7xl">📚</div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

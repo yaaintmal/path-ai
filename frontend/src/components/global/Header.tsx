@@ -22,7 +22,7 @@ interface HeaderProps {
   setShowRegistration?: (show: boolean) => void;
   setShowOnboardingEditor?: (show: boolean) => void;
   setShowDashboard?: (show: boolean) => void;
-  setDashboardMode?: (mode: 'video-translation' | 'learning' | null) => void;
+  setDashboardMode?: (mode: 'learning' | 'statistics' | null) => void;
   hasOnboardingData?: boolean;
 }
 

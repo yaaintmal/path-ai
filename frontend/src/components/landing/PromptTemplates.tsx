@@ -10,7 +10,7 @@ const learningTypes = [
     id: 'visual',
     icon: Eye,
     name: 'Visueller Lerntyp',
-    description: 'Lerne am besten durch Bilder, Diagramme und Videos',
+    description: 'Lerne am besten durch Bilder, Diagramme und interaktive Beispiele',
     color: 'from-blue-600 to-cyan-600',
     templates: [
       {
@@ -47,7 +47,7 @@ const learningTypes = [
       {
         title: 'Programmierung durch Podcasts & Talks',
         keywords: ['JavaScript', 'Tech Talks', 'Code Reviews', 'Pair Programming'],
-        prompt: 'Erstelle einen Lernplan mit Podcasts, Audio-Tutorials und erklärenden Videos',
+        prompt: 'Erstelle einen Lernplan mit Podcasts, Audio-Tutorials und erklärenden Materialien',
         duration: '8 Wochen',
         level: 'Anfänger',
       },

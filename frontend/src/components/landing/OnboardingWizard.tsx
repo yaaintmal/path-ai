@@ -467,7 +467,7 @@ function Step3Skills({ data, updateData }: any) {
 function Step4LearningType({ data, toggleArrayItem }: any) {
   const learningTypes = [
     { id: 'reading', label: 'Lesen & Schreiben', icon: '📚' },
-    { id: 'videos', label: 'Videos anschauen', icon: '🎥' },
+    { id: 'media', label: 'Inhalte ansehen', icon: '📚' },
     { id: 'audio', label: 'Hören & Erklärt bekommen', icon: '🎧' },
     { id: 'interactive', label: 'Interaktive Übungen', icon: '✍️' },
     { id: 'games', label: 'Lehrreiche Spiele', icon: '🎮' },

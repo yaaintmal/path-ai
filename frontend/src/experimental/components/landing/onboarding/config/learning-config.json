@@ -1,0 +1,9 @@
+// Experimental backup (original JSON preserved)
+{
+  "learningTypes": [
+    {
+      "id": "videos",
+      "label": "Videos anschauen"
+    }
+  ]
+}

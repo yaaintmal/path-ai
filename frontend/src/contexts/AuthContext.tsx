@@ -143,9 +143,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Clear auth data from local storage
     localStorage.removeItem('authUser');
     localStorage.removeItem('authToken');
-    // Clear video-related local history
-    localStorage.removeItem('video-studio:last-video');
-    localStorage.removeItem('video-studio:recent-videos');
     setUserDetails(null);
   };
 

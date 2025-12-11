@@ -17,7 +17,7 @@ const steps = [
     number: '03',
     title: 'Interaktiv lernen',
     description:
-      'Lerne mit YouTube-Videos, interaktiven Übungen und lass dir von der KI bei Fragen helfen.',
+      'Lerne mit hochwertigen Lernmaterialien, interaktiven Übungen und lass dir von der KI bei Fragen helfen.',
   },
   {
     number: '04',

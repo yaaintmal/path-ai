@@ -60,14 +60,14 @@ export function DashboardPreview() {
                   <CheckCircle2 className="size-5 text-green-600 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <div className="text-sm mb-1">React Grundlagen</div>
-                    <div className="text-xs text-gray-600">5 Videos abgeschlossen</div>
+                    <div className="text-xs text-gray-600">5 Lektionen abgeschlossen</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <PlayCircle className="size-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <div className="text-sm mb-1">TypeScript Basics</div>
-                    <div className="text-xs text-gray-600">3/7 Videos</div>
+                    <div className="text-xs text-gray-600">3/7 Lektionen</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">

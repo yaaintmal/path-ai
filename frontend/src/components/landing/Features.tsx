@@ -9,10 +9,10 @@ const features = [
       'Unsere KI erstellt einen personalisierten Lernplan basierend auf deinen Zielen, Vorkenntnissen und verfügbarer Zeit.',
   },
   {
-    icon: Youtube,
-    title: 'YouTube-Integration & Übersetzung',
+    icon: FileText,
+    title: 'Integration von Lerninhalten & Lokalisierung',
     description:
-      'Zugriff auf die besten Lernvideos von YouTube - automatisch in über 100 Sprachen übersetzt mit Untertiteln.',
+      'Zugriff auf die besten Lernressourcen - automatisch in über 100 Sprachen lokalisiert mit Untertiteln.',
   },
   {
     icon: Target,

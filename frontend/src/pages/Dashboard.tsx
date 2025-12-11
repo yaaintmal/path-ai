@@ -1,11 +1,10 @@
 interface DashboardProps {
   setShowOnboardingEditor: (show: boolean) => void;
-  mode: 'video-translation' | 'learning' | 'statistics' | 'video-statistics' | 'store';
+  mode: 'learning' | 'statistics' | 'store';
 }
 
 import { useState } from 'react';
 // import { DashboardHeader } from './dashboard/DashboardHeader';
-import { VideoTranslationSection } from './dashboard/VideoTranslationSection';
 import { LearningSection } from './dashboard/LearningSection';
 import { OpenTopicsPage } from './dashboard/OpenTopicsPage';
 import { CompletedTopicsPage } from './dashboard/CompletedTopicsPage';
@@ -24,16 +23,14 @@ import type { LearningPath, LearningPathItem } from '../types/learning';
 
 export function Dashboard({ mode: initialMode }: DashboardProps) {
   const [mode, setMode] = useState<
-    | 'video-translation'
     | 'learning'
     | 'statistics'
-    | 'video-statistics'
     | 'store'
     | 'open-topics'
     | 'completed-topics'
     | 'templates'
     | 'template-details'
-  >(initialMode);
+  >(initialMode ?? 'learning');
   const [selectedTemplate, setSelectedTemplate] = useState<LearningTemplate | null>(null);
   const { setCurrentLearningPath, setCurrentPath, triggerSubtopicGeneration } = useLearning();
 
@@ -47,17 +44,13 @@ export function Dashboard({ mode: initialMode }: DashboardProps) {
     setMode('statistics');
   };
 
-  const handleVideoStatisticsClick = () => {
-    setMode('video-statistics');
-  };
+  // video-statistics mode removed - nothing to do here
 
   const handleBackToLearning = () => {
     setMode('learning');
   };
 
-  const handleBackToVideoTranslation = () => {
-    setMode('video-translation');
-  };
+  // back-to-video-translation removed
 
   const handleStoreClick = () => {
     setMode('store');
@@ -149,26 +142,19 @@ export function Dashboard({ mode: initialMode }: DashboardProps) {
     return <StatisticsOverview onBack={handleBackToLearning} />;
   }
 
-  if (mode === 'video-statistics') {
-    return <StatisticsOverview onBack={handleBackToVideoTranslation} />;
-  }
+  // video-statistics handling removed
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-300 py-8 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         {/* <DashboardHeader
-          mode={mode as 'video-translation' | 'learning'}
+          mode={mode as 'learning'}
           onEdit={handleEditDashboard}
         /> */}
 
         {/* Mode-specific content */}
-        {mode === 'video-translation' ? (
-          <>
-            <VideoTranslationSection onStatisticsClick={handleVideoStatisticsClick} />
-            <div className="mb-6" />
-          </>
-        ) : mode === 'templates' ? (
+        {mode === 'templates' ? (
           <TemplatesPage onBack={handleBackToLearning} onSelectTemplate={handleSelectTemplate} />
         ) : mode === 'template-details' && selectedTemplate ? (
           <TemplateDetailsPage

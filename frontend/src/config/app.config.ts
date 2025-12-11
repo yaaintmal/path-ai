@@ -7,10 +7,6 @@ interface AppConfig {
   api: {
     baseUrl: string;
   };
-  video: {
-    baseUrl: string;
-    path: string;
-  };
   ollama: {
     apiUrl: string;
     model: string;
@@ -49,10 +45,6 @@ function getEnvBoolean(key: string, defaultValue: boolean = false): boolean {
 export const config: AppConfig = {
   api: {
     baseUrl: getEnvVariable('VITE_API_URL', 'http://localhost:3000'),
-  },
-  video: {
-    baseUrl: getEnvVariable('VITE_VIDEO_BASE', ''),
-    path: getEnvVariable('VITE_VIDEO_PATH', ''),
   },
   ollama: {
     apiUrl: getEnvVariable('VITE_OLLAMA_API_URL', 'http://localhost:11434/api/generate'),

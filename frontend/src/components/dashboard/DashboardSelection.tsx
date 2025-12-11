@@ -6,7 +6,7 @@ import { CompactStreakWidget } from '../../pages/dashboard/CompactStreakWidget';
 // Streak card uses a simple clickable card on the selection screen (compact variant) and links to statistics
 
 interface DashboardSelectionProps {
-  onSelect: (mode: 'video-translation' | 'learning' | 'statistics') => void;
+  onSelect: (mode: 'learning' | 'statistics') => void;
 }
 
 export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
@@ -40,20 +40,7 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
 
         {/* // Main selection buttons grid */}
         <div className="grid md:grid-cols-1 gap-8 mb-12">
-          {/* <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => onSelect('video-translation')}
-            className="bg-card p-8 rounded-2xl shadow-lg border border-border hover:border-blue-500 dark:hover:border-blue-500 transition-colors group text-left"
-          >
-            <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-200 dark:group-hover:bg-red-900/50 transition-colors">
-              <Youtube className="w-8 h-8 text-red-600 dark:text-red-400" />
-            </div>
-            <h2 className="text-2xl font-bold text-foreground mb-3">Studio AI</h2>
-            <p className="text-muted-foreground">
-              Transcribe and translate videos and integrate them into your learning path.
-            </p>
-          </motion.button> */}
+          {/* Studio AI selection removed */}
 
           <motion.button
             whileHover={{ scale: 1.02 }}
