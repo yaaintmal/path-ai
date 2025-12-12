@@ -99,7 +99,7 @@ export function Footer() {
 
         <div className="border-t border-gray-800 dark:border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400 dark:text-gray-500">
-            © 2025 Epiphany AI. Alle Rechte vorbehalten.
+            © 2025 {config.app.name}. Alle Rechte vorbehalten.
           </p>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-white transition-colors">

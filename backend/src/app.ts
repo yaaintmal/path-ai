@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { errorHandler, notFoundHandler } from '#middleware';
 import '#db';
-import { userRouter, videoRouter, storeRouter, llmRouter } from '#routers';
+import { userRouter, videoRouter, storeRouter, llmRouter, changelogRouter } from '#routers';
 import { User } from '#models';
 import { amberLog, success, info, loggerError, grayText, amberText, greenText } from '#utils';
 
@@ -27,6 +27,7 @@ app.use('/api/users', userRouter);
 app.use('/api/videos', videoRouter);
 app.use('/api/store', storeRouter);
 app.use('/api/llm', llmRouter);
+app.use('/api/changelog', changelogRouter);
 // Also expose a top-level discovery route that returns LLM provider/model info
 app.get('/api/llm-route', (_req, res) => {
   const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';

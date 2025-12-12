@@ -17,6 +17,7 @@ import { OnboardingWizard } from './components/landing/onboarding';
 import { OnboardingEditor } from './pages/OnboardingEditor';
 import { Registration } from './pages/Registration';
 import { Dashboard } from './pages/Dashboard';
+import { ChangelogPage } from './pages/Changelog';
 import { DashboardSelection } from './components/dashboard/DashboardSelection';
 
 // Global Elements
@@ -35,6 +36,7 @@ export default function App() {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showOnboardingEditor, setShowOnboardingEditor] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [showChangelog, setShowChangelog] = useState(false);
   const [dashboardMode, setDashboardMode] = useState<'learning' | 'statistics' | null>(null);
   const [hasOnboardingData, setHasOnboardingData] = useState(false);
 
@@ -134,6 +136,14 @@ export default function App() {
       </div>
     );
   }
+  if (showChangelog) {
+    return (
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <ChangelogPage onBack={() => setShowChangelog(false)} />
+      </div>
+    );
+  }
+
   if (showOnboardingEditor) {
     return (
       <div className="min-h-screen bg-background transition-colors duration-300">
@@ -150,7 +160,7 @@ export default function App() {
           setShowDashboard={setShowDashboard}
         />
         <Footer />
-        <VersionIndicator />
+        <VersionIndicator onClick={() => setShowChangelog(true)} />
       </div>
     );
   }
@@ -168,7 +178,7 @@ export default function App() {
           />
           <DashboardSelection onSelect={setDashboardMode} />
           <Footer />
-          <VersionIndicator />
+          <VersionIndicator onClick={() => setShowChangelog(true)} />
         </div>
       );
     }
@@ -185,7 +195,7 @@ export default function App() {
         />
         <Dashboard setShowOnboardingEditor={setShowOnboardingEditor} mode={dashboardMode} />
         <Footer />
-        <VersionIndicator />
+        <VersionIndicator onClick={() => setShowChangelog(true)} />
       </div>
     );
   }
@@ -215,7 +225,7 @@ export default function App() {
       {/* //TODO: CTA right now not displayed but should be implemented in next phase */}
       {/* <CTA /> */}
       <Footer />
-      <VersionIndicator />
+      <VersionIndicator onClick={() => setShowChangelog(true)} />
     </div>
   );
 }

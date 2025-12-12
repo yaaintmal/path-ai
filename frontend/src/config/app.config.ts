@@ -56,7 +56,7 @@ export const config: AppConfig = {
     proxyUrl: getEnvVariable('VITE_LLM_PROXY_URL', 'http://localhost:3000/api/llm/generate'),
   },
   app: {
-    name: getEnvVariable('VITE_APP_NAME', 'PathStudio AI'),
+    name: getEnvVariable('VITE_APP_NAME', 'Path AI'),
     logLevel: getEnvVariable('VITE_LOG_LEVEL', 'info') as 'debug' | 'info' | 'warn' | 'error',
   },
   features: {
