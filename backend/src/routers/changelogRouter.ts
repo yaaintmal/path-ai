@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { getChangelog, getLatestChangelog, getRecentChangelog } from '../controllers/changelogController.ts';
+import {
+  getChangelog,
+  getLatestChangelog,
+  getRecentChangelog,
+} from '../controllers/changelogController.ts';
 
 const changelogRouter = Router();
 
@@ -8,7 +12,6 @@ const changelogRouter = Router();
 // Returns all changelog entries
 //
 changelogRouter.get('/', getChangelog);
-
 
 // * GET /api/changelog/latest
 // Returns the latest changelog entry

@@ -1,8 +1,16 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { errorHandler, notFoundHandler } from '#middleware';
 import '#db';
-import { userRouter, videoRouter, storeRouter, llmRouter, changelogRouter } from '#routers';
+import {
+  userRouter,
+  videoRouter,
+  storeRouter,
+  llmRouter,
+  changelogRouter,
+  authRouter,
+} from '#routers';
 import { User } from '#models';
 import { amberLog, success, info, loggerError, grayText, amberText, greenText } from '#utils';
 
@@ -11,6 +19,8 @@ const PORT = Number(process.env.PORT ?? 3000);
 
 // Middleware
 app.use(express.json());
+// cookie parser (for refreshToken cookie)
+app.use(cookieParser());
 
 // Enable CORS with default settings
 // Configure for production use case if needed (e.g., whitelist specific origins)
@@ -28,6 +38,7 @@ app.use('/api/videos', videoRouter);
 app.use('/api/store', storeRouter);
 app.use('/api/llm', llmRouter);
 app.use('/api/changelog', changelogRouter);
+app.use('/api/auth', authRouter);
 // Also expose a top-level discovery route that returns LLM provider/model info
 app.get('/api/llm-route', (_req, res) => {
   const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';

@@ -49,6 +49,7 @@ export interface IUser extends Document {
   password: string;
   roles: string[];
   tokenVersion: number;
+  refreshToken?: string;
 
   // Learning/Gamification fields
   onboardingData?: IOnboardingData;
@@ -147,6 +148,10 @@ export const userSchema = new Schema<IUser>(
     tokenVersion: {
       type: Number,
       default: 0,
+      select: false,
+    },
+    refreshToken: {
+      type: String,
       select: false,
     },
     // Learning/Gamification fields

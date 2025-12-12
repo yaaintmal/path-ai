@@ -11,7 +11,9 @@ export function ChangelogStatsCard() {
           <p className="text-xs text-muted-foreground">Total Versions</p>
           <p className="text-lg font-bold">9+</p>
         </div>
-        <p className="text-xs text-muted-foreground line-clamp-2">Track all version updates and improvements</p>
+        <p className="text-xs text-muted-foreground line-clamp-2">
+          Track all version updates and improvements
+        </p>
       </CardContent>
     </Card>
   );

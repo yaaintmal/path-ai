@@ -1,7 +1,9 @@
 import { User, UserInventory } from '#models';
 import type { RequestHandler } from 'express';
 import bcrypt from 'bcrypt';
-import { generateToken } from '#middleware';
+import { generateAccessToken, generateRefreshToken, verifyToken } from '#middleware';
+import type { JwtPayload } from 'jsonwebtoken';
+import type { Request, Response } from 'express';
 
 // Points calculation constants (matching frontend QUICK_REFERENCE.md)
 const EXP_WEIGHTS = {
@@ -120,10 +122,22 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
 
     console.log('[Login] Password verified for user:', email);
 
-    const token = generateToken(user._id.toString());
-    console.log('[Login] Token generated, sending to client');
+    const accessToken = generateAccessToken(user._id.toString());
+    const refreshToken = generateRefreshToken(user._id.toString());
+    // Store refresh token on user (single-per-user)
+    user.refreshToken = refreshToken;
+    await user.save();
+    // Set refresh token cookie (HttpOnly)
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+    console.log('[Login] Tokens generated, sending to client');
     res.status(200).json({
-      token,
+      token: accessToken,
       user: {
         id: user._id.toString(),
         email: user.email,
@@ -165,9 +179,19 @@ export const register: RequestHandler<unknown, any, RegisterRequest> = async (re
       totalScore: 0,
     });
 
-    const token = generateToken(user._id.toString());
+    const accessToken = generateAccessToken(user._id.toString());
+    const refreshToken = generateRefreshToken(user._id.toString());
+    user.refreshToken = refreshToken;
+    await user.save();
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
     res.status(201).json({
-      token,
+      token: accessToken,
       user: {
         id: user._id.toString(),
         email: user.email,
@@ -308,6 +332,66 @@ export const updateOnboardingData: RequestHandler = async (req, res) => {
   } catch (err) {
     console.error('Update onboarding error:', err);
     res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// POST /api/auth/refresh
+export const refreshToken: RequestHandler = async (req: Request, res: Response) => {
+  try {
+    const cookieToken = req.cookies?.refreshToken;
+    if (!cookieToken) {
+      return res.status(401).json({ success: false, message: 'Refresh token missing' });
+    }
+    // verify token signature
+    const verified = verifyToken(cookieToken) as JwtPayload | null;
+    if (!verified || !verified.userId) {
+      return res.status(401).json({ success: false, message: 'Invalid refresh token' });
+    }
+    const userId = String(verified.userId);
+    const user = await User.findById(userId).select('+refreshToken');
+    if (!user || !user.refreshToken || user.refreshToken !== cookieToken) {
+      return res.status(401).json({ success: false, message: 'Refresh token revoked or invalid' });
+    }
+
+    // Rotate refresh token
+    const newRefreshToken = generateRefreshToken(userId);
+    user.refreshToken = newRefreshToken;
+    await user.save();
+    // Set cookie
+    res.cookie('refreshToken', newRefreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    const newAccessToken = generateAccessToken(userId);
+    res.json({ success: true, token: newAccessToken });
+  } catch (err) {
+    console.error('[Auth] Refresh token error:', err instanceof Error ? err.message : err);
+    res.status(401).json({ success: false, message: 'Invalid refresh token' });
+  }
+};
+
+// POST /api/auth/logout
+export const logout: RequestHandler = async (req: Request, res: Response) => {
+  try {
+    const cookieToken = req.cookies?.refreshToken;
+    if (cookieToken) {
+      // Try to find user with this refresh token
+      const maybeUser = await User.findOne({ refreshToken: cookieToken });
+      if (maybeUser) {
+        maybeUser.refreshToken = undefined as any;
+        await maybeUser.save();
+      }
+    }
+    // Clear cookie
+    res.clearCookie('refreshToken', { path: '/' });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('[Auth] Logout error:', err instanceof Error ? err.message : err);
+    res.status(500).json({ success: false, message: 'Logout failed' });
   }
 };
 

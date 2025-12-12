@@ -46,7 +46,9 @@ export function ChangelogPage({ onBack }: ChangelogPageProps) {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Changelog</h1>
-          <p className="text-muted-foreground mt-2">Track all updates, features, and improvements</p>
+          <p className="text-muted-foreground mt-2">
+            Track all updates, features, and improvements
+          </p>
         </div>
         {onBack && (
           <button
@@ -117,7 +119,9 @@ export function ChangelogPage({ onBack }: ChangelogPageProps) {
                     </div>
                     <div className="text-right flex-shrink-0">
                       {entry.date && (
-                        <p className="text-xs text-muted-foreground whitespace-nowrap">{entry.date}</p>
+                        <p className="text-xs text-muted-foreground whitespace-nowrap">
+                          {entry.date}
+                        </p>
                       )}
                     </div>
                   </div>

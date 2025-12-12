@@ -67,20 +67,14 @@ function parseChangelogEntries(): ChangelogEntry[] {
       date: '2025-12-07',
       title: 'Logging infrastructure refactor',
       description: 'Refactored console logs to use logger utility',
-      details: [
-        'Added color coding to logs',
-        'Implemented filter logic in frontend',
-      ],
+      details: ['Added color coding to logs', 'Implemented filter logic in frontend'],
     },
     {
       version: '0.5.0.1',
       date: '2025-12-06',
       title: 'LLM provider selection',
       description: 'New feature: Choose between Google Gemini or local Ollama',
-      details: [
-        'LLM provider can be configured via .env',
-        'Backend proxy handles both providers',
-      ],
+      details: ['LLM provider can be configured via .env', 'Backend proxy handles both providers'],
     },
     {
       version: '0.4.5.0',

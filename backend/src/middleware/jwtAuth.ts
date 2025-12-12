@@ -35,15 +35,3 @@ export const authMiddleware: RequestHandler = (req, res, next) => {
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
-
-export const generateToken = (userId: string): string => {
-  console.log(
-    '[Auth] Generating token for user:',
-    userId,
-    'with JWT_SECRET length:',
-    JWT_SECRET.length
-  );
-  const token = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '7d' });
-  console.log('[Auth] Token generated successfully');
-  return token;
-};
