@@ -1,4 +1,4 @@
-import { Brain, Youtube, Target, BarChart3, FileText, Zap } from 'lucide-react';
+import { Brain, Target, BarChart3, FileText, Zap } from 'lucide-react';
 import { Card } from '../../ui/card';
 
 const features = [

@@ -1,6 +1,5 @@
 import { Button } from '../../ui/button';
 import {
-  BookOpen,
   Moon,
   Sun,
   Edit,
@@ -12,7 +11,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
-import Hyperspeed from '../Hyperspeed.jsx';
+import Antigravity from '../Antigravity';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useAuth } from '../../contexts/useAuth';
@@ -58,88 +57,10 @@ export function Header({
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
-  const debugHyperspeed =
-    typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
+  // Debug flag not needed anymore
+  // const debugHyperspeed = typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
 
-  // Hyperspeed effect options for light/dark mode
-  const hyperspeedEffectOptions =
-    resolvedTheme === 'dark'
-      ? {
-          onSpeedUp: () => {},
-          onSlowDown: () => {},
-          distortion: 'turbulentDistortion',
-          length: 220,
-          roadWidth: 8,
-          islandWidth: 2,
-          lanesPerRoad: 3,
-          fov: 90,
-          fovSpeedUp: 130,
-          speedUp: 1.6,
-          carLightsFade: 0.35,
-          totalSideLightSticks: 12,
-          lightPairsPerRoadWay: 20,
-          shoulderLinesWidthPercentage: 0.03,
-          brokenLinesWidthPercentage: 0.1,
-          brokenLinesLengthPercentage: 0.5,
-          lightStickWidth: [0.06, 0.2],
-          lightStickHeight: [0.8, 1.2],
-          movingAwaySpeed: [40, 60],
-          movingCloserSpeed: [-80, -120],
-          carLightsLength: [220 * 0.03, 220 * 0.18],
-          carLightsRadius: [0.04, 0.1],
-          carWidthPercentage: [0.2, 0.45],
-          carShiftX: [-0.6, 0.6],
-          carFloorSeparation: [0, 3],
-          isHyper: true,
-          colors: {
-            roadColor: 0x000000,
-            islandColor: 0x0a0a0a,
-            background: 0x000000,
-            shoulderLines: 0x444444,
-            brokenLines: 0x666666,
-            leftCars: [0xff00ff, 0xff8800, 0xff1a75],
-            rightCars: [0x00ffff, 0x00d4ff, 0x00b3ff],
-            sticks: 0x00ffff,
-          },
-        }
-      : {
-          onSpeedUp: () => {},
-          onSlowDown: () => {},
-          distortion: 'turbulentDistortion',
-          length: 160,
-          roadWidth: 10,
-          islandWidth: 2,
-          lanesPerRoad: 4,
-          fov: 90,
-          fovSpeedUp: 110,
-          speedUp: 1.0,
-          carLightsFade: 0.25,
-          totalSideLightSticks: 10,
-          lightPairsPerRoadWay: 24,
-          shoulderLinesWidthPercentage: 0.03,
-          brokenLinesWidthPercentage: 0.08,
-          brokenLinesLengthPercentage: 0.45,
-          lightStickWidth: [0.05, 0.2],
-          lightStickHeight: [0.8, 1.2],
-          movingAwaySpeed: [20, 50],
-          movingCloserSpeed: [-60, -100],
-          carLightsLength: [160 * 0.03, 160 * 0.2],
-          carLightsRadius: [0.03, 0.08],
-          carWidthPercentage: [0.2, 0.4],
-          carShiftX: [-0.4, 0.4],
-          carFloorSeparation: [0, 2],
-          isHyper: true,
-          colors: {
-            roadColor: 0xf8fafc,
-            islandColor: 0xf8fafc,
-            background: 0xffffff,
-            shoulderLines: 0xe2e8f0,
-            brokenLines: 0xc7d2fe,
-            leftCars: [0x0ea5a0, 0x2563eb, 0xff7e1a],
-            rightCars: [0x06b6d4, 0x0ea5a0, 0x10b981],
-            sticks: 0x93c5fd,
-          },
-        };
+  // Removed Hyperspeed options (we now use Antigravity background)
 
   const handleDashboardClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -190,105 +111,94 @@ export function Header({
   };
 
   return (
-    <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo Section */}
-          <a
-            href="/"
-            onClick={handleLogoClick}
-            className="flex items-center gap-3 cursor-pointer group"
-          >
-            <div className="relative w-14 h-14 rounded-xl overflow-hidden">
-              {/* Background Hyperspeed effect - fill parent */}
-              <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-                <Hyperspeed containerId="lights-header" effectOptions={hyperspeedEffectOptions} />
-              </div>
-
-              {/* Icon overlay */}
-              <div
-                className={`relative z-10 flex items-center justify-center w-full h-full p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-200 ${
-                  debugHyperspeed
-                    ? 'bg-transparent'
-                    : 'bg-gradient-to-br from-blue-600/20 to-purple-600/20'
-                }`}
-                aria-hidden={debugHyperspeed}
-              >
-                <BookOpen
-                  className={`size-6 ${resolvedTheme === 'dark' ? 'text-white' : 'text-foreground'} drop-shadow-md`}
-                />
-              </div>
-            </div>
-            <div className="hidden sm:flex items-center gap-3">
-              {/* Placeholder for future general information */}
-              <div className="hidden md:block min-w-[180px] text-sm text-muted-foreground truncate" />
-            </div>
-            <div className="hidden sm:block">
-              <span className="text-xl font-bold text-foreground">{config.app.name}</span>
-              <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
-            </div>
-          </a>
-
-          {/* Navigation - Desktop */}
-          <nav className="hidden lg:flex items-center gap-6">
-            {!user && (
-              <>
-                <a
-                  href="#languages"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Languages
-                </a>
-                <a
-                  href="#gamification"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Gamification
-                </a>
-                <a
-                  href="#templates"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Templates
-                </a>
-                <a
-                  href="#features"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Features
-                </a>
-              </>
+    <header className="relative border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      {/* Antigravity background fills the entire header behind the content */}
+      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+        <Antigravity
+          count={160}
+          magnetRadius={6}
+          ringRadius={5}
+          waveSpeed={0.35}
+          waveAmplitude={0.8}
+          particleSize={1}
+          lerpSpeed={0.04}
+          color={
+            resolvedTheme === 'dark'
+              ? ['#FFEB99', '#FFD54F', '#FFC107', '#FFB300']
+              : ['#FFEE99', '#FFD54F', '#FFC107', '#FFB300']
+          }
+          autoAnimate={true}
+          particleVariance={0.6}
+        />
+      </div>
+      <div className="w-full px-4 py-6 relative z-10 min-h-[76px] flex items-center justify-center gap-4">
+        {/* Left - Logo on small/medium screens */}
+        <a
+          href="/"
+          onClick={handleLogoClick}
+          className="flex items-center gap-3 cursor-pointer group lg:hidden"
+        >
+          <div className="hidden sm:block">
+            <span className="text-xl font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
+            <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
+            {user && (
+              <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>
             )}
-          </nav>
+          </div>
+        </a>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="rounded-full hover:bg-accent/50"
-              aria-label="Toggle Dark Mode"
-            >
-              {resolvedTheme === 'dark' ? (
-                <Sun className="size-4 text-muted-foreground" />
-              ) : (
-                <Moon className="size-4 text-muted-foreground" />
-              )}
-            </Button>
+        {/* Navigation - Desktop */}
+        <nav className="hidden lg:flex items-center gap-6">
+          {!user && (
+            <>
+              <a
+                href="#languages"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Languages
+              </a>
+              <a
+                href="#gamification"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Gamification
+              </a>
+              <a
+                href="#templates"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Templates
+              </a>
+              <a
+                href="#features"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Features
+              </a>
+            </>
+          )}
+        </nav>
+
+        {/* Centered User Panel and Actions */}
+        <div className="flex items-center justify-center gap-3 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
 
             {user ? (
               <div className="flex items-center gap-3">
                 {/* Desktop User Panel */}
                 <div className="hidden md:flex items-center gap-4 bg-card border border-border rounded-2xl px-4 py-2 shadow-sm">
+                  {/* App Title & Greeting */}
+                  <div className="flex flex-col items-start pr-4 border-r border-border">
+                    <span className="text-lg font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
+                    <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
+                    <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>
+                  </div>
+
                   {/* User Avatar & Name */}
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                       <User className="size-4 text-primary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-foreground">Hey, {user.name}</p>
                       {userDetails && (
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Trophy className="size-3" />
@@ -374,6 +284,20 @@ export function Header({
                         {hasOnboardingData ? 'Anpassen' : 'Erstellen'}
                       </span>
                     </Button>
+                    {/* Add theme toggle adjacent to action buttons for quick access */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={toggleDarkMode}
+                      className="rounded-full"
+                      aria-label="Toggle Dark Mode"
+                    >
+                      {resolvedTheme === 'dark' ? (
+                        <Sun className="size-4 text-muted-foreground" />
+                      ) : (
+                        <Moon className="size-4 text-muted-foreground" />
+                      )}
+                    </Button>
                     <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Logout">
                       <LogOut className="size-4" />
                     </Button>
@@ -382,6 +306,12 @@ export function Header({
 
                 {/* Mobile User Controls */}
                 <div className="flex md:hidden items-center gap-2">
+                  {/* Mobile App Title */}
+                  <div className="flex flex-col items-start mr-2 pr-2 border-r border-border">
+                    <span className="text-sm font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
+                    <p className="text-xs text-muted-foreground -mt-1">Hey, {user.name}</p>
+                  </div>
+
                   <UserDashButton compact onClick={handleDashboardClick} />
                   <Button
                     variant="ghost"
@@ -390,6 +320,20 @@ export function Header({
                     aria-label={hasOnboardingData ? 'Anpassen' : 'Start'}
                   >
                     <Edit className="size-4" />
+                  </Button>
+                  {/* Theme toggle for mobile user controls */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleDarkMode}
+                    className="rounded-full"
+                    aria-label="Toggle Dark Mode"
+                  >
+                    {resolvedTheme === 'dark' ? (
+                      <Sun className="size-4 text-muted-foreground" />
+                    ) : (
+                      <Moon className="size-4 text-muted-foreground" />
+                    )}
                   </Button>
                 </div>
               </div>
@@ -411,7 +355,6 @@ export function Header({
               </div>
             )}
           </div>
-        </div>
       </div>
     </header>
   );

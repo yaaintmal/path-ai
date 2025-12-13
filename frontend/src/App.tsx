@@ -8,7 +8,7 @@ import { PromptTemplates } from './components/landing/PromptTemplates';
 import { HowItWorks } from './components/landing/HowItWorks';
 import { DashboardPreview } from './components/landing/DashboardPreview';
 // import { FAQ } from './components/landing/FAQ';
-import { CTA } from './components/landing/CTA';
+// CTA component import removed because it's currently unused
 
 // Onboarding Component(s) > it's more like THE component
 import { OnboardingWizard } from './components/landing/onboarding';

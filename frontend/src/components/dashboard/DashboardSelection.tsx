@@ -30,7 +30,7 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-red-300 via-red-500  to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-300 via-amber-500  to-yellow-600 bg-clip-text text-transparent mb-4">
             Continue your learning journey
           </h1>
           <p className="text-xl text-muted-foreground">

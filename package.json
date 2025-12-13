@@ -19,5 +19,9 @@
   "devDependencies": {
     "husky": "^9.1.6",
     "prettier": "^3.4.1"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.4.2",
+    "three": "^0.182.0"
   }
 }
