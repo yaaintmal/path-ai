@@ -1,15 +1,5 @@
 import { Button } from '../../ui/button';
-import {
-  Moon,
-  Sun,
-  Edit,
-  LogOut,
-  User,
-  Trophy,
-  Shield,
-  Sparkles,
-  Zap,
-} from 'lucide-react';
+import { Moon, Sun, Edit, LogOut, User, Trophy, Shield, Sparkles, Zap } from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
 import Antigravity from '../Antigravity';
 import { useState, useEffect } from 'react';
@@ -139,11 +129,11 @@ export function Header({
           className="flex items-center gap-3 cursor-pointer group lg:hidden"
         >
           <div className="hidden sm:block">
-            <span className="text-xl font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
+              {config.app.name}
+            </span>
             <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
-            {user && (
-              <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>
-            )}
+            {user && <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>}
           </div>
         </a>
 
@@ -181,147 +171,109 @@ export function Header({
 
         {/* Centered User Panel and Actions */}
         <div className="flex items-center justify-center gap-3 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+          {user ? (
+            <div className="flex items-center gap-3">
+              {/* Desktop User Panel */}
+              <div className="hidden md:flex items-center gap-4 bg-card border border-border rounded-2xl px-4 py-2 shadow-sm">
+                {/* App Title & Greeting */}
+                <div className="flex flex-col items-start pr-4 border-r border-border">
+                  <span className="text-lg font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
+                    {config.app.name}
+                  </span>
+                  <p className="text-xs text-muted-foreground -mt-1">
+                    Free Knowledge for Everybody
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>
+                </div>
 
-            {user ? (
-              <div className="flex items-center gap-3">
-                {/* Desktop User Panel */}
-                <div className="hidden md:flex items-center gap-4 bg-card border border-border rounded-2xl px-4 py-2 shadow-sm">
-                  {/* App Title & Greeting */}
-                  <div className="flex flex-col items-start pr-4 border-r border-border">
-                    <span className="text-lg font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
-                    <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
-                    <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>
+                {/* User Avatar & Name */}
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                    <User className="size-4 text-primary" />
                   </div>
-
-                  {/* User Avatar & Name */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <User className="size-4 text-primary" />
-                    </div>
-                    <div>
-                      {userDetails && (
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Trophy className="size-3" />
-                          <span>Level {calculateLevel(userDetails.totalScore || 0).level}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Experience Progress Bar */}
-                  {userDetails && (
-                    <div className="flex-1 min-w-24">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-muted-foreground">EXP</span>
-                        <span className="text-xs font-medium text-foreground">
-                          {calculateLevel(userDetails.totalScore || 0).currentLevelExp}/100
-                        </span>
-                      </div>
-                      <div className="w-20 h-1.5 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-300"
-                          style={{
-                            width: `${calculateLevel(userDetails.totalScore || 0).progressPercent}%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Inventory & Boosts */}
-                  <div className="flex items-center gap-2">
-                    {userDetails?.inventory && userDetails.inventory['6'] > 0 && (
-                      <div className="flex items-center gap-1 text-xs bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg px-2 py-1">
-                        <Shield className="size-3" />
-                        <span>{userDetails.inventory['6']}</span>
+                  <div>
+                    {userDetails && (
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Trophy className="size-3" />
+                        <span>Level {calculateLevel(userDetails.totalScore || 0).level}</span>
                       </div>
                     )}
-                    {userDetails?.inventory && userDetails.inventory['8'] > 0 && (
-                      <div className="flex items-center gap-1 text-xs bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg px-2 py-1">
-                        <Sparkles className="size-3" />
-                        <span>{userDetails.inventory['8']}</span>
-                      </div>
-                    )}
-                    {userDetails?.activeBoosts && userDetails.activeBoosts.length > 0 && (
-                      <div className="flex items-center gap-1">
-                        {userDetails.activeBoosts.map((b, i) => {
-                          const expires = new Date(b.expiresAt);
-                          const hours = Math.max(
-                            0,
-                            Math.ceil((expires.getTime() - now) / (1000 * 60 * 60))
-                          );
-                          return (
-                            <div
-                              key={i}
-                              className="flex items-center gap-1 text-xs bg-yellow-50 dark:bg-yellow-900/10 rounded-lg px-2 py-1"
-                            >
-                              <Zap className="size-3" />
-                              <span>
-                                {b.multiplier}x • {hours}h
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-2 ml-2 pl-2 border-l border-border">
-                    <UserDashButton
-                      compact
-                      className="!px-2 !py-1"
-                      onClick={handleDashboardClick}
-                    />
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
-                      className="gap-1.5"
-                    >
-                      <Edit className="size-3.5" />
-                      <span className="hidden xl:inline">
-                        {hasOnboardingData ? 'Anpassen' : 'Erstellen'}
-                      </span>
-                    </Button>
-                    {/* Add theme toggle adjacent to action buttons for quick access */}
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={toggleDarkMode}
-                      className="rounded-full"
-                      aria-label="Toggle Dark Mode"
-                    >
-                      {resolvedTheme === 'dark' ? (
-                        <Sun className="size-4 text-muted-foreground" />
-                      ) : (
-                        <Moon className="size-4 text-muted-foreground" />
-                      )}
-                    </Button>
-                    <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Logout">
-                      <LogOut className="size-4" />
-                    </Button>
                   </div>
                 </div>
 
-                {/* Mobile User Controls */}
-                <div className="flex md:hidden items-center gap-2">
-                  {/* Mobile App Title */}
-                  <div className="flex flex-col items-start mr-2 pr-2 border-r border-border">
-                    <span className="text-sm font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
-                    <p className="text-xs text-muted-foreground -mt-1">Hey, {user.name}</p>
+                {/* Experience Progress Bar */}
+                {userDetails && (
+                  <div className="flex-1 min-w-24">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs text-muted-foreground">EXP</span>
+                      <span className="text-xs font-medium text-foreground">
+                        {calculateLevel(userDetails.totalScore || 0).currentLevelExp}/100
+                      </span>
+                    </div>
+                    <div className="w-20 h-1.5 bg-muted rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-300"
+                        style={{
+                          width: `${calculateLevel(userDetails.totalScore || 0).progressPercent}%`,
+                        }}
+                      />
+                    </div>
                   </div>
+                )}
 
-                  <UserDashButton compact onClick={handleDashboardClick} />
+                {/* Inventory & Boosts */}
+                <div className="flex items-center gap-2">
+                  {userDetails?.inventory && userDetails.inventory['6'] > 0 && (
+                    <div className="flex items-center gap-1 text-xs bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg px-2 py-1">
+                      <Shield className="size-3" />
+                      <span>{userDetails.inventory['6']}</span>
+                    </div>
+                  )}
+                  {userDetails?.inventory && userDetails.inventory['8'] > 0 && (
+                    <div className="flex items-center gap-1 text-xs bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg px-2 py-1">
+                      <Sparkles className="size-3" />
+                      <span>{userDetails.inventory['8']}</span>
+                    </div>
+                  )}
+                  {userDetails?.activeBoosts && userDetails.activeBoosts.length > 0 && (
+                    <div className="flex items-center gap-1">
+                      {userDetails.activeBoosts.map((b, i) => {
+                        const expires = new Date(b.expiresAt);
+                        const hours = Math.max(
+                          0,
+                          Math.ceil((expires.getTime() - now) / (1000 * 60 * 60))
+                        );
+                        return (
+                          <div
+                            key={i}
+                            className="flex items-center gap-1 text-xs bg-yellow-50 dark:bg-yellow-900/10 rounded-lg px-2 py-1"
+                          >
+                            <Zap className="size-3" />
+                            <span>
+                              {b.multiplier}x • {hours}h
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-2 ml-2 pl-2 border-l border-border">
+                  <UserDashButton compact className="!px-2 !py-1" onClick={handleDashboardClick} />
                   <Button
                     variant="ghost"
-                    size="icon"
+                    size="sm"
                     onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
-                    aria-label={hasOnboardingData ? 'Anpassen' : 'Start'}
+                    className="gap-1.5"
                   >
-                    <Edit className="size-4" />
+                    <Edit className="size-3.5" />
+                    <span className="hidden xl:inline">
+                      {hasOnboardingData ? 'Anpassen' : 'Erstellen'}
+                    </span>
                   </Button>
-                  {/* Theme toggle for mobile user controls */}
+                  {/* Add theme toggle adjacent to action buttons for quick access */}
                   <Button
                     variant="ghost"
                     size="icon"
@@ -335,26 +287,65 @@ export function Header({
                       <Moon className="size-4 text-muted-foreground" />
                     )}
                   </Button>
+                  <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Logout">
+                    <LogOut className="size-4" />
+                  </Button>
                 </div>
               </div>
-            ) : (
-              <div className="flex items-center gap-2">
+
+              {/* Mobile User Controls */}
+              <div className="flex md:hidden items-center gap-2">
+                {/* Mobile App Title */}
+                <div className="flex flex-col items-start mr-2 pr-2 border-r border-border">
+                  <span className="text-sm font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
+                    {config.app.name}
+                  </span>
+                  <p className="text-xs text-muted-foreground -mt-1">Hey, {user.name}</p>
+                </div>
+
+                <UserDashButton compact onClick={handleDashboardClick} />
                 <Button
                   variant="ghost"
-                  className="text-muted-foreground hover:text-foreground"
-                  onClick={handleRegistrationClick}
+                  size="icon"
+                  onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
+                  aria-label={hasOnboardingData ? 'Anpassen' : 'Start'}
                 >
-                  Anmelden
+                  <Edit className="size-4" />
                 </Button>
-                <Button onClick={handleDashboardClick} className="hidden sm:flex">
-                  Dashboard erstellen
-                </Button>
-                <Button onClick={handleDashboardClick} className="sm:hidden">
-                  Start
+                {/* Theme toggle for mobile user controls */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleDarkMode}
+                  className="rounded-full"
+                  aria-label="Toggle Dark Mode"
+                >
+                  {resolvedTheme === 'dark' ? (
+                    <Sun className="size-4 text-muted-foreground" />
+                  ) : (
+                    <Moon className="size-4 text-muted-foreground" />
+                  )}
                 </Button>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                className="text-muted-foreground hover:text-foreground"
+                onClick={handleRegistrationClick}
+              >
+                Anmelden
+              </Button>
+              <Button onClick={handleDashboardClick} className="hidden sm:flex">
+                Dashboard erstellen
+              </Button>
+              <Button onClick={handleDashboardClick} className="sm:hidden">
+                Start
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

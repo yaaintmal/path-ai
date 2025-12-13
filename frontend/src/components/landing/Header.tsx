@@ -20,7 +20,6 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
 
   // debugHyperspeed not used anymore as Hyperspeed removed
   // const debugHyperspeed = typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
-  
 
   const handleDashboardClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -70,9 +69,15 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
       </div>
       <div className="w-full py-7 flex items-center justify-center gap-4 relative z-10 min-h-[84px]">
         {/* Left - Logo on small/medium screens */}
-        <a href="/" onClick={handleLogoClick} className="flex items-center gap-2 cursor-pointer lg:hidden">
+        <a
+          href="/"
+          onClick={handleLogoClick}
+          className="flex items-center gap-2 cursor-pointer lg:hidden"
+        >
           <div className="lg:hidden">
-            <span className="text-xl bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
+            <span className="text-xl bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
+              {config.app.name}
+            </span>
             {user && <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>}
           </div>
         </a>
@@ -80,19 +85,47 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
         {/* Centered Title and Navigation */}
         <div className="hidden lg:flex flex-col items-center text-center">
           <a href="/" onClick={handleLogoClick}>
-            <span className="text-xl font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">{config.app.name}</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
+              {config.app.name}
+            </span>
             <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
             {user && <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>}
           </a>
         </div>
-        
+
         {/* Navigation on md+ */}
         <nav className="hidden md:flex justify-center items-center gap-8">
-          <a href="#languages" className="text-muted-foreground hover:text-foreground transition-colors">Sprachen</a>
-          <a href="#gamification" className="text-muted-foreground hover:text-foreground transition-colors">Gamification</a>
-          <a href="#templates" className="text-muted-foreground hover:text-foreground transition-colors">Templates</a>
-          <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
-          <a href="#dashboard" onClick={handleDashboardClick} className="text-primary hover:text-primary-foreground transition-colors">Dein Dashboard</a>
+          <a
+            href="#languages"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Sprachen
+          </a>
+          <a
+            href="#gamification"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Gamification
+          </a>
+          <a
+            href="#templates"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Templates
+          </a>
+          <a
+            href="#features"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Features
+          </a>
+          <a
+            href="#dashboard"
+            onClick={handleDashboardClick}
+            className="text-primary hover:text-primary-foreground transition-colors"
+          >
+            Dein Dashboard
+          </a>
         </nav>
 
         {/* Centered Actions */}
@@ -123,7 +156,7 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
           <Button onClick={handleDashboardClick} className="md:hidden">
             Start
           </Button>
-          </div>
+        </div>
       </div>
     </header>
   );

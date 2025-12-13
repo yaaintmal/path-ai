@@ -55,7 +55,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
   depthFactor = 1,
   pulseSpeed = 3,
   particleShape = 'capsule',
-  fieldStrength = 10
+  fieldStrength = 10,
 }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const { viewport } = useThree();
@@ -68,10 +68,20 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 
   const particlesRef = useRef<Particle[]>([]);
 
-  const prefersReduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+  const prefersReduce =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(max-width: 640px)').matches;
   const effectiveCount = useMemo(() => {
-    return prefersReduce ? Math.max(20, Math.floor(count * 0.25)) : isMobile ? Math.max(30, Math.floor(count * 0.45)) : count;
+    return prefersReduce
+      ? Math.max(20, Math.floor(count * 0.25))
+      : isMobile
+        ? Math.max(30, Math.floor(count * 0.45))
+        : count;
   }, [count, prefersReduce, isMobile]);
 
   useEffect(() => {
@@ -123,7 +133,8 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
         dummy.position.set(p.cx, p.cy, p.cz);
         dummy.lookAt(0, 0, p.cz);
         dummy.rotateX(Math.PI / 2);
-        const currentScale = (0.8 + Math.sin(p.t * pulseSpeed) * 0.2 * particleVariance) * particleSize;
+        const currentScale =
+          (0.8 + Math.sin(p.t * pulseSpeed) * 0.2 * particleVariance) * particleSize;
         dummy.scale.set(currentScale, currentScale, currentScale);
         dummy.updateMatrix();
         mesh.setMatrixAt(i, dummy.matrix);
@@ -156,13 +167,15 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
     };
   }, [effectiveCount, viewport.width, viewport.height, color, count]);
 
-  useFrame(state => {
+  useFrame((state) => {
     const mesh = meshRef.current;
     if (!mesh) return;
 
     const { viewport: v, pointer: m } = state;
 
-    const mouseDist = Math.sqrt(Math.pow(m.x - lastMousePos.current.x, 2) + Math.pow(m.y - lastMousePos.current.y, 2));
+    const mouseDist = Math.sqrt(
+      Math.pow(m.x - lastMousePos.current.x, 2) + Math.pow(m.y - lastMousePos.current.y, 2)
+    );
 
     if (mouseDist > 0.001) {
       lastMouseMoveTime.current = Date.now();
@@ -193,7 +206,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
       let { t } = particle;
       const { speed, mx, my, mz, cz, randomRadiusOffset } = particle;
 
-      t = (particle.t += speed / 2);
+      t = particle.t += speed / 2;
 
       const projectionFactor = 1 - cz / 50;
       const projectedTargetX = targetX * projectionFactor;
@@ -236,7 +249,8 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 
       scaleFactor = Math.max(0, Math.min(1, scaleFactor));
 
-      const finalScale = scaleFactor * (0.8 + Math.sin(t * pulseSpeed) * 0.2 * particleVariance) * particleSize;
+      const finalScale =
+        scaleFactor * (0.8 + Math.sin(t * pulseSpeed) * 0.2 * particleVariance) * particleSize;
       dummy.scale.set(finalScale, finalScale, finalScale);
 
       dummy.updateMatrix();
@@ -269,8 +283,8 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore - suppress r3f generic overload type recursion
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <instancedMesh ref={meshRef} args={[undefined, undefined, effectiveCount] as any}>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <instancedMesh ref={meshRef} args={[undefined, undefined, effectiveCount] as any}>
       {particleShape === 'capsule' && <capsuleGeometry args={[0.1, 0.4, 4, 8]} />}
       {particleShape === 'sphere' && <sphereGeometry args={[0.2, 16, 16]} />}
       {particleShape === 'box' && <boxGeometry args={[0.3, 0.3, 0.3]} />}
@@ -291,9 +305,12 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
   );
 };
 
-const Antigravity: React.FC<AntigravityProps> = props => {
+const Antigravity: React.FC<AntigravityProps> = (props) => {
   return (
-    <Canvas camera={{ position: [0, 0, 50], fov: 35 }} className="w-full h-full pointer-events-none mix-blend-screen">
+    <Canvas
+      camera={{ position: [0, 0, 50], fov: 35 }}
+      className="w-full h-full pointer-events-none mix-blend-screen"
+    >
       <AntigravityInner {...props} />
     </Canvas>
   );
