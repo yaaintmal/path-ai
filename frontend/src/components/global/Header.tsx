@@ -12,7 +12,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
-import Hyperspeed from '../Hyperspeed';
+import Hyperspeed from '../Hyperspeed.jsx';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useAuth } from '../../contexts/useAuth';
