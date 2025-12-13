@@ -162,7 +162,11 @@ export function OnboardingWizard() {
                   </div>
                 ))}
               </div>
-              <Progress value={progress} className="h-2 w-full bg-muted" indicatorClassName="bg-gradient-to-r from-blue-600 to-purple-600" />
+              <Progress
+                value={progress}
+                className="h-2 w-full bg-muted"
+                indicatorClassName="bg-gradient-to-r from-blue-600 to-purple-600"
+              />
             </div>
 
             {/* Content Area */}
@@ -218,7 +222,10 @@ export function OnboardingWizard() {
               </div>
 
               {currentStep < steps.length ? (
-                <Button onClick={nextStep} className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button
+                  onClick={nextStep}
+                  className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                >
                   Weiter
                   <ArrowRight className="size-4" />
                 </Button>
@@ -233,7 +240,7 @@ export function OnboardingWizard() {
               )}
             </div>
           </div>
-          
+
           <SummaryDialog
             open={confirmOpen}
             onOpenChange={setConfirmOpen}
@@ -257,17 +264,33 @@ function Step1Role({ data, updateData }: any) {
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Welche Rolle hast du?</h2>
-        <p className="text-muted-foreground">
-          Wir passen das Dashboard sofort an deine Rolle an.
-        </p>
+        <p className="text-muted-foreground">Wir passen das Dashboard sofort an deine Rolle an.</p>
       </div>
 
       <RadioGroup value={data.role} onValueChange={(value) => updateData('role', value)}>
         <div className="grid md:grid-cols-3 gap-4">
           {[
-            { id: 'student', icon: GraduationCap, label: 'Student', sub: 'Uni & Co.', color: 'text-blue-600' },
-            { id: 'pupil', icon: BookOpen, label: 'Schüler', sub: 'Schule', color: 'text-orange-600' },
-            { id: 'teacher', icon: Users, label: 'Lehrkraft', sub: 'Dozent', color: 'text-green-600' },
+            {
+              id: 'student',
+              icon: GraduationCap,
+              label: 'Student',
+              sub: 'Uni & Co.',
+              color: 'text-blue-600',
+            },
+            {
+              id: 'pupil',
+              icon: BookOpen,
+              label: 'Schüler',
+              sub: 'Schule',
+              color: 'text-orange-600',
+            },
+            {
+              id: 'teacher',
+              icon: Users,
+              label: 'Lehrkraft',
+              sub: 'Dozent',
+              color: 'text-green-600',
+            },
           ].map((item) => (
             <div key={item.id}>
               <RadioGroupItem value={item.id} id={item.id} className="peer sr-only" />
@@ -345,9 +368,7 @@ function Step2Goals({ data, updateData, toggleArrayItem }: any) {
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Was sind deine Ziele?</h2>
-        <p className="text-muted-foreground">
-          Wähle alles aus, was auf dich zutrifft.
-        </p>
+        <p className="text-muted-foreground">Wähle alles aus, was auf dich zutrifft.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
@@ -361,7 +382,10 @@ function Step2Goals({ data, updateData, toggleArrayItem }: any) {
                 : 'border-muted hover:border-primary/50 hover:bg-accent/50'
             }`}
           >
-            <Checkbox checked={data.goals?.includes(goal)} className="data-[state=checked]:bg-primary data-[state=checked]:border-primary" />
+            <Checkbox
+              checked={data.goals?.includes(goal)}
+              className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+            />
             <span className="font-medium">{goal}</span>
           </div>
         ))}
@@ -393,15 +417,16 @@ function Step2Goals({ data, updateData, toggleArrayItem }: any) {
 }
 
 function Step3Skills({ data, updateData }: any) {
-  const subjects = data.subjects && data.subjects.length > 0 ? data.subjects : ['Mathematik', 'Englisch', 'Informatik'];
+  const subjects =
+    data.subjects && data.subjects.length > 0
+      ? data.subjects
+      : ['Mathematik', 'Englisch', 'Informatik'];
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Wie schätzt du deine Skills ein?</h2>
-        <p className="text-muted-foreground">
-          Hilf uns, das richtige Level für dich zu finden.
-        </p>
+        <p className="text-muted-foreground">Hilf uns, das richtige Level für dich zu finden.</p>
       </div>
 
       <div className="space-y-8">
@@ -409,7 +434,9 @@ function Step3Skills({ data, updateData }: any) {
           <div key={subject} className="space-y-4 p-6 rounded-2xl border border-border bg-card/50">
             <div className="flex items-center justify-between">
               <Label className="text-lg font-semibold">{subject}</Label>
-              <Badge variant="secondary" className="text-sm px-3 py-1">Level {data.skillLevels?.[subject] || 3}</Badge>
+              <Badge variant="secondary" className="text-sm px-3 py-1">
+                Level {data.skillLevels?.[subject] || 3}
+              </Badge>
             </div>
             <Slider
               value={[data.skillLevels?.[subject] || 3]}
@@ -456,9 +483,7 @@ function Step4LearningType({ data, toggleArrayItem }: any) {
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Wie lernst du am liebsten?</h2>
-        <p className="text-muted-foreground">
-          Wähle deine bevorzugten Lernmethoden.
-        </p>
+        <p className="text-muted-foreground">Wähle deine bevorzugten Lernmethoden.</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -495,15 +520,15 @@ function Step5Time({ data, updateData, toggleArrayItem }: any) {
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Wann kannst du lernen?</h2>
-        <p className="text-muted-foreground">
-          Hilf uns, deinen perfekten Lernplan zu erstellen.
-        </p>
+        <p className="text-muted-foreground">Hilf uns, deinen perfekten Lernplan zu erstellen.</p>
       </div>
 
       <div className="space-y-4 p-6 rounded-2xl border border-border bg-card/50">
         <div className="flex justify-between items-center mb-2">
           <Label className="text-base font-medium">Stunden pro Woche</Label>
-          <Badge className="bg-primary text-primary-foreground text-base px-3">{data.weeklyHours || 5}h</Badge>
+          <Badge className="bg-primary text-primary-foreground text-base px-3">
+            {data.weeklyHours || 5}h
+          </Badge>
         </div>
         <Slider
           value={[data.weeklyHours || 5]}
@@ -575,9 +600,7 @@ function Step6Gamification({ data, updateData, toggleArrayItem }: any) {
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Gamification</h2>
-        <p className="text-muted-foreground">
-          Wie motivierend soll dein Lernerlebnis sein?
-        </p>
+        <p className="text-muted-foreground">Wie motivierend soll dein Lernerlebnis sein?</p>
       </div>
 
       <RadioGroup
@@ -660,9 +683,7 @@ function Step7Communication({ data, updateData }: any) {
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
         <h2 className="text-2xl font-bold mb-2">Dein Assistent</h2>
-        <p className="text-muted-foreground">
-          Wie soll dein AI-Lernbegleiter mit dir sprechen?
-        </p>
+        <p className="text-muted-foreground">Wie soll dein AI-Lernbegleiter mit dir sprechen?</p>
       </div>
 
       <RadioGroup
@@ -693,8 +714,8 @@ function Step7Communication({ data, updateData }: any) {
         <div>
           <h4 className="font-semibold text-purple-900 dark:text-purple-100 mb-1">Fast fertig!</h4>
           <p className="text-sm text-purple-800 dark:text-purple-200 leading-relaxed">
-            Basierend auf deinen Antworten erstellen wir jetzt dein
-            perfekt personalisiertes Dashboard mit individuellen Lernplänen und Empfehlungen.
+            Basierend auf deinen Antworten erstellen wir jetzt dein perfekt personalisiertes
+            Dashboard mit individuellen Lernplänen und Empfehlungen.
           </p>
         </div>
       </div>
@@ -728,7 +749,10 @@ function SummaryDialog({
 
   return open ? (
     <>
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]" onClick={() => onOpenChange(false)} />
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+        onClick={() => onOpenChange(false)}
+      />
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card border border-border rounded-3xl shadow-2xl p-8 max-w-md w-full z-[101] max-h-[90vh] overflow-auto animate-in zoom-in-95 duration-200">
         <div className="text-center mb-6">
           <div className="size-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -737,12 +761,17 @@ function SummaryDialog({
           <h3 className="text-2xl font-bold">Alles korrekt?</h3>
           <p className="text-muted-foreground">Deine Einstellungen im Überblick</p>
         </div>
-        
+
         <div className="space-y-3 mb-8 bg-muted/30 p-4 rounded-2xl">
           {summaryItems.map((item) => (
-            <div key={item.label} className="flex justify-between text-sm border-b border-border/50 last:border-0 pb-2 last:pb-0">
+            <div
+              key={item.label}
+              className="flex justify-between text-sm border-b border-border/50 last:border-0 pb-2 last:pb-0"
+            >
               <span className="text-muted-foreground">{item.label}</span>
-              <span className="font-medium text-right truncate max-w-[200px]">{item.value || '-'}</span>
+              <span className="font-medium text-right truncate max-w-[200px]">
+                {item.value || '-'}
+              </span>
             </div>
           ))}
         </div>
