@@ -1,4 +1,4 @@
-import { Brain, Github, Twitter, Linkedin } from 'lucide-react';
+import { Brain, Github, Linkedin } from 'lucide-react';
 import config from '../../config/app.config';
 
 export function Footer() {
