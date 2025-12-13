@@ -26,49 +26,49 @@ import {
 
 const studentAchievements = [
   { icon: '🔥', name: '7-Tage-Streak', points: 100, unlocked: true },
-  { icon: '🎯', name: 'Perfekte Woche', points: 200, unlocked: true },
-  { icon: '📚', name: 'Bücherwurm', points: 150, unlocked: false },
-  { icon: '⚡', name: 'Speed Learner', points: 250, unlocked: true },
-  { icon: '🏆', name: 'Champion', points: 500, unlocked: false },
-  { icon: '💎', name: 'Diamant Status', points: 1000, unlocked: false },
+  { icon: '🎯', name: 'Erstes Thema', points: 50, unlocked: true },
+  { icon: '📚', name: 'Wissensdurst', points: 150, unlocked: false },
+  { icon: '⚡', name: 'Schnellstarter', points: 250, unlocked: true },
+  { icon: '🏆', name: 'Level Up', points: 500, unlocked: false },
+  { icon: '💎', name: 'Meister', points: 1000, unlocked: false },
 ];
 
 const avatarItems = [
-  { icon: '👨‍🎓', name: 'Student Avatar', price: 500, category: 'avatar' },
-  { icon: '🦸‍♂️', name: 'Superheld', price: 1000, category: 'avatar' },
-  { icon: '🧙‍♂️', name: 'Magier', price: 1500, category: 'avatar' },
-  { icon: '🌟', name: 'Gold Badge', price: 300, category: 'badge' },
-  { icon: '💫', name: 'Stern Badge', price: 400, category: 'badge' },
-  { icon: '🎨', name: 'Neon Theme', price: 800, category: 'theme' },
+  { icon: '🖼️', name: 'Custom Frame', price: 5000, category: 'cosmetic' },
+  { icon: '🌙', name: 'Blinking Border', price: 10000, category: 'theme' },
+  { icon: '⚡', name: 'Double XP (24h)', price: 2500, category: 'boost' },
+  { icon: '🏅', name: 'Golden Badge', price: 50000, category: 'badge' },
+  { icon: '🌈', name: 'Rainbow Trail', price: 30000, category: 'cosmetic' },
+  { icon: '🛡️', name: 'Streak Shield', price: 1500, category: 'boost' },
 ];
 
 const teacherRewards = [
   {
     icon: Users,
-    title: 'Kollaborations-Badge',
-    description: 'Für erfolgreiche Teamarbeit mit Kollegen',
+    title: 'Community-Held',
+    description: 'Teile deine Templates mit der Community',
     type: 'Badge',
     color: 'from-blue-600 to-cyan-600',
   },
   {
     icon: FileText,
-    title: 'Premium Templates',
-    description: 'Exklusive Vorlagen für Unterrichtseinheiten',
-    type: 'Template',
+    title: 'Template Creator',
+    description: 'Erstelle 5 eigene Lernpfad-Templates',
+    type: 'Achievement',
     color: 'from-purple-600 to-pink-600',
   },
   {
     icon: Layout,
-    title: 'Custom Klassenräume',
-    description: 'Individualisierbare digitale Lernumgebungen',
-    type: 'Feature',
+    title: 'Pfad-Architekt',
+    description: 'Strukturiere komplexe Themen für andere',
+    type: 'Status',
     color: 'from-green-600 to-emerald-600',
   },
   {
     icon: Sparkles,
-    title: 'KI-Boost',
-    description: 'Erweiterte KI-Funktionen für Unterrichtsvorbereitung',
-    type: 'Upgrade',
+    title: 'Top-Bewertet',
+    description: 'Deine Templates werden oft genutzt',
+    type: 'Bonus',
     color: 'from-orange-600 to-red-600',
   },
 ];

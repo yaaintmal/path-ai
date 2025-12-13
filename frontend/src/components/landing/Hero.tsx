@@ -4,7 +4,6 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
-  Globe,
   Gamepad2,
   GraduationCap,
   Users,
@@ -19,71 +18,59 @@ interface HeroProps {
 
 const featureSlides = [
   {
-    badge: 'KI-Powered',
+    badge: 'KI-Lernpfade',
     icon: Sparkles,
-    title: 'Personalisierte Lernpläne',
+    title: 'Dein persönlicher Lernweg',
     description:
-      'Unsere KI erstellt individuell auf dich zugeschnittene Lernpläne basierend auf deinen Zielen und deinem Lerntyp.',
+      'Unsere KI generiert individuelle Lernpfade für jedes Thema - basierend auf deinen Zielen und Vorkenntnissen.',
     color: 'from-blue-600 to-purple-600',
     preview: {
       question: 'Was möchtest du lernen?',
-      answer: 'React und TypeScript für Webentwicklung',
+      answer: 'React und TypeScript',
       response:
-        'Perfekt! Ich erstelle dir einen 8-wöchigen Lernplan mit den besten YouTube-Tutorials und interaktiven Übungen.',
+        'Ich habe einen Lernpfad mit 12 Modulen für dich erstellt. Wir starten mit den Grundlagen und bauen darauf auf.',
     },
   },
   {
-    badge: '100+ Sprachen',
-    icon: Globe,
-    title: 'Inhalte automatisch lokalisiert',
-    description:
-      'Lerne in jeder Sprache! Lernressourcen werden automatisch lokalisiert - mit Untertiteln und synchronisierter Übersetzung.',
-    color: 'from-green-600 to-emerald-600',
-    preview: {
-      question: 'Sprache wählen',
-      answer: '🇩🇪 Deutsch → 🇯🇵 Japanisch',
-      response: 'Inhalt wird übersetzt... Untertitel werden synchronisiert. Bereit zum Lernen!',
-    },
-  },
-  {
-    badge: 'Gamification',
+    badge: 'Store & Belohnungen',
     icon: Gamepad2,
-    title: 'Punkte & Achievements',
+    title: 'Lernen lohnt sich',
     description:
-      'Sammle Punkte, schalte Achievements frei und tausche Belohnungen ein. Lernen wird zum Abenteuer!',
+      'Sammle Punkte für jeden Fortschritt. Tausche sie im Store gegen XP-Boosts, Streak Shields und exklusive Profil-Frames.',
     color: 'from-yellow-600 to-orange-600',
     preview: {
-      question: 'Deine heutigen Erfolge',
-      answer: '🏆 250 Punkte gesammelt • 3 Achievements',
-      response: 'Fantastisch! Du kannst jetzt neue Avatare und Themes freischalten. Weiter so! 🎮',
+      question: 'Store',
+      answer: '💎 2500 Punkte verfügbar',
+      response:
+        'Du hast dir "Double XP Boost (24h)" gekauft! Deine nächsten Lektionen geben doppelte Punkte. 🚀',
     },
   },
   {
-    badge: 'LearnBuddy',
+    badge: 'Templates',
     icon: GraduationCap,
-    title: 'Für Schulkinder optimiert',
+    title: 'Bewährte Lernstrukturen',
     description:
-      'Kindgerechte Erklärungen, spielerisches Lernen und Entdeckung des eigenen Lerntyps - für bessere Noten!',
+      'Nutze vorgefertigte Templates für beliebte Themen wie "MERN Stack" oder "AWS Cloud Engineer" für den optimalen Start.',
+    color: 'from-green-600 to-emerald-600',
+    preview: {
+      question: 'Template wählen',
+      answer: 'MERN Full-Stack Developer',
+      response:
+        'Template geladen! Der Pfad umfasst 15 Themen von JavaScript Basics bis Deployment. Lass uns loslegen!',
+    },
+  },
+  {
+    badge: 'Fortschritt',
+    icon: Users,
+    title: 'Alles im Blick',
+    description:
+      'Verfolge deine Streaks, gesammelten Punkte und gemeisterten Themen in deinem persönlichen Dashboard.',
     color: 'from-pink-600 to-red-600',
     preview: {
-      question: 'Mathe-Hausaufgaben',
-      answer: 'Quadratische Gleichungen Klasse 9',
+      question: 'Statistik',
+      answer: '🔥 7-Tage Streak',
       response:
-        'Cool! Ich zeige dir das Schritt für Schritt mit anschaulichen Beispielen. Du schaffst das! 🎯',
-    },
-  },
-  {
-    badge: 'Für Lehrkräfte',
-    icon: Users,
-    title: 'Klassenverwaltung & KI-Tools',
-    description:
-      'Verwalte deine Klassen, bereite Unterricht mit KI vor und erhalte individuelle Schüler-Insights.',
-    color: 'from-indigo-600 to-purple-600',
-    preview: {
-      question: 'Klasse 8b - Status',
-      answer: '24 Schüler • 6 brauchen Hilfe',
-      response:
-        'Individuelle Lernpläne wurden für 3 Schüler erstellt. Unterrichtseinheit ist vorbereitet. ✓',
+        'Starke Leistung! Du hast diese Woche 5 Themen abgeschlossen und bist im Level aufgestiegen.',
     },
   },
 ];

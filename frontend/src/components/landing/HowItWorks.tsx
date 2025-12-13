@@ -3,27 +3,27 @@ import { ArrowRight } from 'lucide-react';
 const steps = [
   {
     number: '01',
-    title: 'Ziele definieren',
+    title: 'Template wählen',
     description:
-      'Gib an, was du lernen möchtest, welche Vorkenntnisse du hast und wie viel Zeit du investieren kannst.',
+      'Starte mit einem kuratierten Karriere-Pfad oder definiere deine ganz persönlichen Lernziele.',
   },
   {
     number: '02',
-    title: 'KI erstellt deinen Plan',
+    title: 'KI-Plan generieren',
     description:
-      'Unsere KI analysiert deine Angaben und erstellt einen personalisierten Lernplan mit den besten Ressourcen.',
+      'Unsere KI erstellt in Sekunden einen maßgeschneiderten Lehrplan mit Modulen, Quizzes und Meilensteinen.',
   },
   {
     number: '03',
-    title: 'Interaktiv lernen',
+    title: 'Lernen & Üben',
     description:
-      'Lerne mit hochwertigen Lernmaterialien, interaktiven Übungen und lass dir von der KI bei Fragen helfen.',
+      'Arbeite interaktive Lektionen durch, nutze den KI-Tutor und festige dein Wissen mit praktischen Übungen.',
   },
   {
     number: '04',
-    title: 'Fortschritt verfolgen',
+    title: 'Level Up',
     description:
-      'Sieh in deinem Dashboard, was du bereits erreicht hast und was als nächstes kommt.',
+      'Sammle XP für jeden Fortschritt, halte deinen Streak und schalte exklusive Belohnungen im Store frei.',
   },
 ];
 

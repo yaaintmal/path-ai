@@ -1,19 +1,6 @@
 import { Button } from '../../ui/button';
-import {
-  BookOpen,
-  Moon,
-  Sun,
-  Edit,
-  LogOut,
-  User,
-  Trophy,
-  Shield,
-  Sparkles,
-  Zap,
-} from 'lucide-react';
+import { Moon, Sun, Edit, LogOut, User, Shield, Sparkles, Zap } from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
-import Hyperspeed from '../Hyperspeed';
-import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useAuth } from '../../contexts/useAuth';
 import config from '../../config/app.config';
@@ -36,12 +23,7 @@ export function Header({
   hasOnboardingData,
 }: HeaderProps) {
   const { user, logout, userDetails } = useAuth();
-  const [now, setNow] = useState<number>(() => Date.now());
   const { setTheme, resolvedTheme } = useTheme();
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 60 * 1000);
-    return () => clearInterval(id);
-  }, []);
   // useTheme manages theme with next-themes; use `resolvedTheme` for UI
 
   // Helper function to calculate level and progress
@@ -58,88 +40,8 @@ export function Header({
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
-  const debugHyperspeed =
-    typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
-
-  // Hyperspeed effect options for light/dark mode
-  const hyperspeedEffectOptions =
-    resolvedTheme === 'dark'
-      ? {
-          onSpeedUp: () => {},
-          onSlowDown: () => {},
-          distortion: 'turbulentDistortion',
-          length: 220,
-          roadWidth: 8,
-          islandWidth: 2,
-          lanesPerRoad: 3,
-          fov: 90,
-          fovSpeedUp: 130,
-          speedUp: 1.6,
-          carLightsFade: 0.35,
-          totalSideLightSticks: 12,
-          lightPairsPerRoadWay: 20,
-          shoulderLinesWidthPercentage: 0.03,
-          brokenLinesWidthPercentage: 0.1,
-          brokenLinesLengthPercentage: 0.5,
-          lightStickWidth: [0.06, 0.2],
-          lightStickHeight: [0.8, 1.2],
-          movingAwaySpeed: [40, 60],
-          movingCloserSpeed: [-80, -120],
-          carLightsLength: [220 * 0.03, 220 * 0.18],
-          carLightsRadius: [0.04, 0.1],
-          carWidthPercentage: [0.2, 0.45],
-          carShiftX: [-0.6, 0.6],
-          carFloorSeparation: [0, 3],
-          isHyper: true,
-          colors: {
-            roadColor: 0x000000,
-            islandColor: 0x0a0a0a,
-            background: 0x000000,
-            shoulderLines: 0x444444,
-            brokenLines: 0x666666,
-            leftCars: [0xff00ff, 0xff8800, 0xff1a75],
-            rightCars: [0x00ffff, 0x00d4ff, 0x00b3ff],
-            sticks: 0x00ffff,
-          },
-        }
-      : {
-          onSpeedUp: () => {},
-          onSlowDown: () => {},
-          distortion: 'turbulentDistortion',
-          length: 160,
-          roadWidth: 10,
-          islandWidth: 2,
-          lanesPerRoad: 4,
-          fov: 90,
-          fovSpeedUp: 110,
-          speedUp: 1.0,
-          carLightsFade: 0.25,
-          totalSideLightSticks: 10,
-          lightPairsPerRoadWay: 24,
-          shoulderLinesWidthPercentage: 0.03,
-          brokenLinesWidthPercentage: 0.08,
-          brokenLinesLengthPercentage: 0.45,
-          lightStickWidth: [0.05, 0.2],
-          lightStickHeight: [0.8, 1.2],
-          movingAwaySpeed: [20, 50],
-          movingCloserSpeed: [-60, -100],
-          carLightsLength: [160 * 0.03, 160 * 0.2],
-          carLightsRadius: [0.03, 0.08],
-          carWidthPercentage: [0.2, 0.4],
-          carShiftX: [-0.4, 0.4],
-          carFloorSeparation: [0, 2],
-          isHyper: true,
-          colors: {
-            roadColor: 0xf8fafc,
-            islandColor: 0xf8fafc,
-            background: 0xffffff,
-            shoulderLines: 0xe2e8f0,
-            brokenLines: 0xc7d2fe,
-            leftCars: [0x0ea5a0, 0x2563eb, 0xff7e1a],
-            rightCars: [0x06b6d4, 0x0ea5a0, 0x10b981],
-            sticks: 0x93c5fd,
-          },
-        };
+  // Debug flag not needed anymore
+  // const debugHyperspeed = typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
 
   const handleDashboardClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -190,227 +92,154 @@ export function Header({
   };
 
   return (
-    <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo Section */}
-          <a
-            href="/"
-            onClick={handleLogoClick}
-            className="flex items-center gap-3 cursor-pointer group"
-          >
-            <div className="relative w-14 h-14 rounded-xl overflow-hidden">
-              {/* Background Hyperspeed effect - fill parent */}
-              <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-                <Hyperspeed containerId="lights-header" effectOptions={hyperspeedEffectOptions} />
-              </div>
-
-              {/* Icon overlay */}
-              <div
-                className={`relative z-10 flex items-center justify-center w-full h-full p-2 rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-200 ${
-                  debugHyperspeed
-                    ? 'bg-transparent'
-                    : 'bg-gradient-to-br from-blue-600/20 to-purple-600/20'
-                }`}
-                aria-hidden={debugHyperspeed}
-              >
-                <BookOpen
-                  className={`size-6 ${resolvedTheme === 'dark' ? 'text-white' : 'text-foreground'} drop-shadow-md`}
-                />
-              </div>
-            </div>
-            <div className="hidden sm:flex items-center gap-3">
-              {/* Placeholder for future general information */}
-              <div className="hidden md:block min-w-[180px] text-sm text-muted-foreground truncate" />
-            </div>
-            <div className="hidden sm:block">
-              <span className="text-xl font-bold text-foreground">{config.app.name}</span>
-              <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
-            </div>
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
+        {/* Left Section: Logo & Branding */}
+        <div className="flex items-center gap-4">
+          <a href="/" onClick={handleLogoClick} className="flex flex-col group">
+            <span className="text-2xl font-bold bg-gradient-to-r from-red-400 via-red-500 to-purple-600 bg-clip-text text-transparent tracking-tight group-hover:opacity-80 transition-opacity">
+              {config.app.name}
+            </span>
+            <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium group-hover:text-foreground transition-colors">
+              Free Knowledge for Everybody
+            </span>
           </a>
+        </div>
 
-          {/* Navigation - Desktop */}
-          <nav className="hidden lg:flex items-center gap-6">
-            {!user && (
-              <>
-                <a
-                  href="#languages"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Languages
-                </a>
-                <a
-                  href="#gamification"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Gamification
-                </a>
-                <a
-                  href="#templates"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Templates
-                </a>
-                <a
-                  href="#features"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                >
-                  Features
-                </a>
-              </>
-            )}
+        {/* Center Section: Navigation (Desktop) */}
+        {!user && (
+          <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
+            {['Languages', 'Gamification', 'Templates', 'Features'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </a>
+            ))}
           </nav>
+        )}
 
-          {/* Right Section */}
-          <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="rounded-full hover:bg-accent/50"
-              aria-label="Toggle Dark Mode"
-            >
-              {resolvedTheme === 'dark' ? (
-                <Sun className="size-4 text-muted-foreground" />
-              ) : (
-                <Moon className="size-4 text-muted-foreground" />
-              )}
-            </Button>
+        {/* Right Section: User Controls */}
+        <div className="flex items-center gap-4">
+          {user ? (
+            <div className="flex items-center gap-3">
+              {/* Desktop Stats Pill */}
+              <div className="hidden md:flex items-center gap-3 bg-secondary/30 hover:bg-secondary/50 transition-colors border border-border/50 rounded-full pl-1 pr-4 py-1">
+                <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                  <User className="size-4 text-primary" />
+                </div>
 
-            {user ? (
-              <div className="flex items-center gap-3">
-                {/* Desktop User Panel */}
-                <div className="hidden md:flex items-center gap-4 bg-card border border-border rounded-2xl px-4 py-2 shadow-sm">
-                  {/* User Avatar & Name */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <User className="size-4 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Hey, {user.name}</p>
-                      {userDetails && (
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Trophy className="size-3" />
-                          <span>Level {calculateLevel(userDetails.totalScore || 0).level}</span>
-                        </div>
-                      )}
-                    </div>
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold">{user.name}</span>
+                    {userDetails && (
+                      <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded-md font-medium">
+                        Lvl {calculateLevel(userDetails.totalScore || 0).level}
+                      </span>
+                    )}
                   </div>
-
-                  {/* Experience Progress Bar */}
+                  {/* Mini Progress Bar */}
                   {userDetails && (
-                    <div className="flex-1 min-w-24">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-muted-foreground">EXP</span>
-                        <span className="text-xs font-medium text-foreground">
-                          {calculateLevel(userDetails.totalScore || 0).currentLevelExp}/100
-                        </span>
-                      </div>
-                      <div className="w-20 h-1.5 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-300"
-                          style={{
-                            width: `${calculateLevel(userDetails.totalScore || 0).progressPercent}%`,
-                          }}
-                        />
-                      </div>
+                    <div className="w-24 h-1 bg-muted rounded-full mt-1 overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                        style={{
+                          width: `${calculateLevel(userDetails.totalScore || 0).progressPercent}%`,
+                        }}
+                      />
                     </div>
                   )}
-
-                  {/* Inventory & Boosts */}
-                  <div className="flex items-center gap-2">
-                    {userDetails?.inventory && userDetails.inventory['6'] > 0 && (
-                      <div className="flex items-center gap-1 text-xs bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg px-2 py-1">
-                        <Shield className="size-3" />
-                        <span>{userDetails.inventory['6']}</span>
-                      </div>
-                    )}
-                    {userDetails?.inventory && userDetails.inventory['8'] > 0 && (
-                      <div className="flex items-center gap-1 text-xs bg-card-foreground/5 dark:bg-card-foreground/30 rounded-lg px-2 py-1">
-                        <Sparkles className="size-3" />
-                        <span>{userDetails.inventory['8']}</span>
-                      </div>
-                    )}
-                    {userDetails?.activeBoosts && userDetails.activeBoosts.length > 0 && (
-                      <div className="flex items-center gap-1">
-                        {userDetails.activeBoosts.map((b, i) => {
-                          const expires = new Date(b.expiresAt);
-                          const hours = Math.max(
-                            0,
-                            Math.ceil((expires.getTime() - now) / (1000 * 60 * 60))
-                          );
-                          return (
-                            <div
-                              key={i}
-                              className="flex items-center gap-1 text-xs bg-yellow-50 dark:bg-yellow-900/10 rounded-lg px-2 py-1"
-                            >
-                              <Zap className="size-3" />
-                              <span>
-                                {b.multiplier}x • {hours}h
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-2 ml-2 pl-2 border-l border-border">
-                    <UserDashButton
-                      compact
-                      className="!px-2 !py-1"
-                      onClick={handleDashboardClick}
-                    />
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
-                      className="gap-1.5"
-                    >
-                      <Edit className="size-3.5" />
-                      <span className="hidden xl:inline">
-                        {hasOnboardingData ? 'Anpassen' : 'Erstellen'}
-                      </span>
-                    </Button>
-                    <Button variant="ghost" size="icon" onClick={handleLogout} aria-label="Logout">
-                      <LogOut className="size-4" />
-                    </Button>
-                  </div>
                 </div>
 
-                {/* Mobile User Controls */}
-                <div className="flex md:hidden items-center gap-2">
-                  <UserDashButton compact onClick={handleDashboardClick} />
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
-                    aria-label={hasOnboardingData ? 'Anpassen' : 'Start'}
-                  >
-                    <Edit className="size-4" />
-                  </Button>
+                {/* Badges (Hidden on smaller desktop, visible on large) */}
+                <div className="hidden xl:flex items-center gap-2 ml-2 border-l border-border/50 pl-2">
+                  {/* Inventory Icons */}
+                  {userDetails?.inventory && userDetails.inventory['6'] > 0 && (
+                    <div
+                      className="text-xs flex items-center gap-1 text-muted-foreground"
+                      title="Shields"
+                    >
+                      <Shield className="size-3" /> {userDetails.inventory['6']}
+                    </div>
+                  )}
+                  {userDetails?.inventory && userDetails.inventory['8'] > 0 && (
+                    <div
+                      className="text-xs flex items-center gap-1 text-muted-foreground"
+                      title="Sparkles"
+                    >
+                      <Sparkles className="size-3" /> {userDetails.inventory['8']}
+                    </div>
+                  )}
+                  {userDetails?.activeBoosts && userDetails.activeBoosts.length > 0 && (
+                    <div
+                      className="text-xs flex items-center gap-1 text-amber-500"
+                      title="Active Boosts"
+                    >
+                      <Zap className="size-3" /> {userDetails.activeBoosts.length}
+                    </div>
+                  )}
                 </div>
               </div>
-            ) : (
-              <div className="flex items-center gap-2">
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-1">
                 <Button
                   variant="ghost"
-                  className="text-muted-foreground hover:text-foreground"
-                  onClick={handleRegistrationClick}
+                  size="icon"
+                  onClick={toggleDarkMode}
+                  className="rounded-full hover:bg-secondary/80"
                 >
-                  Anmelden
+                  {resolvedTheme === 'dark' ? (
+                    <Sun className="size-5" />
+                  ) : (
+                    <Moon className="size-5" />
+                  )}
                 </Button>
-                <Button onClick={handleDashboardClick} className="hidden sm:flex">
-                  Dashboard erstellen
+
+                <UserDashButton compact onClick={handleDashboardClick} className="rounded-full" />
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
+                  className="rounded-full hover:bg-secondary/80 hidden sm:flex"
+                >
+                  <Edit className="size-5" />
                 </Button>
-                <Button onClick={handleDashboardClick} className="sm:hidden">
-                  Start
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  className="rounded-full hover:bg-destructive/10 hover:text-destructive"
+                >
+                  <LogOut className="size-5" />
                 </Button>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" onClick={toggleDarkMode} size="icon" className="rounded-full">
+                {resolvedTheme === 'dark' ? (
+                  <Sun className="size-5" />
+                ) : (
+                  <Moon className="size-5" />
+                )}
+              </Button>
+              <Button variant="ghost" onClick={handleRegistrationClick} className="font-medium">
+                Anmelden
+              </Button>
+              <Button
+                onClick={handleDashboardClick}
+                className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+              >
+                Start Now
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </header>

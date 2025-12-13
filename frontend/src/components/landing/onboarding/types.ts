@@ -3,7 +3,7 @@ export interface OnboardingData {
   level: string;
   goals: string[];
   subjects: string[];
-  skillLevels: Record<string, number>;
+  skillLevels: Array<{ subject: string; level: number }>;
   learningType: string[];
   weeklyHours: number;
   schedule: string;

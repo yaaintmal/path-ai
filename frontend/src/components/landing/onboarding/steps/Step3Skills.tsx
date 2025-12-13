@@ -12,6 +12,23 @@ interface Step3SkillsProps {
 export function Step3Skills({ data, updateData }: Step3SkillsProps) {
   const subjects = data.subjects || ['Mathematik', 'Englisch', 'Informatik'];
 
+  const getLevel = (subject: string) => {
+    return data.skillLevels?.find((s) => s.subject === subject)?.level || 3;
+  };
+
+  const updateLevel = (subject: string, level: number) => {
+    const currentLevels = data.skillLevels || [];
+    const existingIndex = currentLevels.findIndex((s) => s.subject === subject);
+    let newLevels;
+    if (existingIndex >= 0) {
+      newLevels = [...currentLevels];
+      newLevels[existingIndex] = { subject, level };
+    } else {
+      newLevels = [...currentLevels, { subject, level }];
+    }
+    updateData('skillLevels', newLevels);
+  };
+
   return (
     <div className="space-y-6">
       <StepHeader
@@ -24,14 +41,11 @@ export function Step3Skills({ data, updateData }: Step3SkillsProps) {
           <div key={subject} className="space-y-3">
             <div className="flex items-center justify-between">
               <Label className="dark:text-white">{subject}</Label>
-              <Badge variant="outline">Level {data.skillLevels?.[subject] || 3}</Badge>
+              <Badge variant="outline">Level {getLevel(subject)}</Badge>
             </div>
             <Slider
-              value={[data.skillLevels?.[subject] || 3]}
-              onValueChange={(value) => {
-                const newLevels = { ...data.skillLevels, [subject]: value[0] };
-                updateData('skillLevels', newLevels);
-              }}
+              value={[getLevel(subject)]}
+              onValueChange={(value) => updateLevel(subject, value[0])}
               max={5}
               min={1}
               step={1}

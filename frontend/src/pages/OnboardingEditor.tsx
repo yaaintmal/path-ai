@@ -58,7 +58,14 @@ export function OnboardingEditor({
       try {
         const user = JSON.parse(userStr);
         if (user.onboardingData) {
-          setData(user.onboardingData);
+          const loadedData = user.onboardingData;
+          // Migration for skillLevels if it's an object (old format)
+          if (loadedData.skillLevels && !Array.isArray(loadedData.skillLevels)) {
+            loadedData.skillLevels = Object.entries(loadedData.skillLevels).map(
+              ([subject, level]) => ({ subject, level: Number(level) })
+            );
+          }
+          setData(loadedData);
         }
       } catch (error) {
         console.error('Failed to parse user data:', error);
@@ -102,7 +109,7 @@ export function OnboardingEditor({
   const handleSave = async () => {
     localStorage.setItem('onboarddata', JSON.stringify(data));
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
     if (token) {
       try {
         const response = await fetch(getApiUrl('/api/users/onboarding'), {
@@ -119,10 +126,16 @@ export function OnboardingEditor({
           localStorage.setItem('user', JSON.stringify(responseData.user));
           setHasOnboardingData(true);
         } else {
-          console.error('Failed to save to backend');
+          const errorText = await response.text();
+          console.error(
+            `Failed to save to backend: ${response.status} ${response.statusText}`,
+            errorText
+          );
+          toast.error(`Failed to save: ${response.status} ${response.statusText}`);
         }
       } catch (error) {
         console.error('Error saving to backend', error);
+        toast.error('Error saving to backend');
       }
     }
 

@@ -64,6 +64,34 @@ export const translations = {
       ],
       ctaButton: 'Jetzt direkt loslegen',
     },
+    cta: {
+      badge: 'Starte deine Reise',
+      title: 'Bereit, deine Lernziele zu erreichen?',
+      description:
+        'Erstelle jetzt dein kostenloses Konto und erhalte sofort Zugriff auf alle Templates und den KI-Tutor.',
+      button: 'Kostenlos starten',
+    },
+    languageFeature: {
+      badge: 'Global Lernen',
+      title: 'Lerne in deiner Sprache',
+      titleSub: 'Verstehe jedes Detail',
+      description:
+        'Unsere KI übersetzt Lerninhalte, Videos und Erklärungen automatisch in deine bevorzugte Sprache.',
+      cards: {
+        translation: {
+          title: 'Echtzeit-Übersetzung',
+          description: 'Lernmaterialien werden sofort übersetzt, damit du keine Zeit verlierst.',
+        },
+        subtitles: {
+          title: 'Smarte Untertitel',
+          description: 'Videos erhalten automatisch generierte Untertitel in deiner Sprache.',
+        },
+        content: {
+          title: 'Lokalisierte Inhalte',
+          description: 'Beispiele und Kontexte werden an deine Kultur und Sprache angepasst.',
+        },
+      },
+    },
   },
   en: {
     // Navigation
@@ -129,6 +157,34 @@ export const translations = {
         'Plan, organize and improve your teaching with Learnbuddy.',
       ],
       ctaButton: 'Get started now',
+    },
+    cta: {
+      badge: 'Start your journey',
+      title: 'Ready to achieve your learning goals?',
+      description:
+        'Create your free account now and get instant access to all templates and the AI tutor.',
+      button: 'Get started for free',
+    },
+    languageFeature: {
+      badge: 'Global Learning',
+      title: 'Learn in your language',
+      titleSub: 'Understand every detail',
+      description:
+        'Our AI automatically translates learning content, videos, and explanations into your preferred language.',
+      cards: {
+        translation: {
+          title: 'Real-time Translation',
+          description: "Learning materials are translated instantly so you don't lose any time.",
+        },
+        subtitles: {
+          title: 'Smart Subtitles',
+          description: 'Videos get automatically generated subtitles in your language.',
+        },
+        content: {
+          title: 'Localized Content',
+          description: 'Examples and contexts are adapted to your culture and language.',
+        },
+      },
     },
   },
 };
