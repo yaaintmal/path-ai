@@ -57,7 +57,7 @@ export const config: AppConfig = {
   },
   app: {
     name: getEnvVariable('VITE_APP_NAME', 'Path AI'),
-    logLevel: getEnvVariable('VITE_LOG_LEVEL', 'info') as 'debug' | 'info' | 'warn' | 'error',
+    logLevel: getEnvVariable('VITE_LOG_LEVEL', 'debug') as 'debug' | 'info' | 'warn' | 'error',
   },
   features: {
     debugMode: getEnvBoolean('VITE_ENABLE_DEBUG_MODE', false),

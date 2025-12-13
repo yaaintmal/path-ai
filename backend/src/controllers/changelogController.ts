@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { info, loggerError } from '#utils';
+import changelogData from '../data/changelog.json' with { type: 'json' };
 
 interface ChangelogEntry {
   version: string;
@@ -16,111 +17,10 @@ interface ChangelogResponse {
 }
 
 /**
- * Parse changelog entries from version.ts format
- * Expects format: // version X.X.X.X: title >> details
+ * Parse changelog entries from external source
  */
 function parseChangelogEntries(): ChangelogEntry[] {
-  // Hardcoded changelog entries extracted from version.ts
-  // In a real scenario, this would be parsed from CHANGELOG.md or git history
-  const entries: ChangelogEntry[] = [
-    {
-      version: '0.5.1.7',
-      date: '2025-12-13',
-      title: 'Fix: onboarding data save issue',
-      description: 'Resolved problem with onboarding data not saving correctly',
-      details: [
-        'Fixed bug in onboarding wizard data persistence',
-        'Ensured user preferences are stored after onboarding completion',
-      ],
-    },
-    {
-      version: '0.5.1.6',
-      date: '2025-12-13',
-      title: 'Feature: header UI update',
-      description: 'updated header elements to match new branding',
-      details: [
-        'Refactored header layout to use a unified, centered design',
-        'Integrated app title and user greeting into the user panel widget',
-        'Removed legacy background effects and optimized responsive behavior',
-      ],
-    },
-    {
-      version: '0.5.1.5',
-      date: '2025-12-11',
-      title: 'Feature cleanup / move',
-      description: 'Removed active Video Studio / Video Translation feature',
-      details: [
-        'Future of video features to be re-evaluated after MVP launch',
-        'Fork now represents enhanced refactor of originally next.js-built LearnBuddy AI app',
-        'Original video features archived in src/experimental folder',
-        'Removed video-player and translation widgets, replaced with lightweight wrappers',
-        'Removed video env keys and config from references',
-      ],
-    },
-    {
-      version: '0.5.1.4',
-      date: '2025-12-10',
-      title: 'UI & translations update',
-      description: 'Removed explicit video copy, replaced with neutral terms',
-      details: [
-        'Updated hero, features, language features, prompt templates',
-        'Replaced video references with content/resources/media terms',
-        'Updated landing copy and dashboard preview',
-        'Updated onboarding item IDs',
-      ],
-    },
-    {
-      version: '0.5.1.3',
-      date: '2025-12-09',
-      title: 'FormattedText component enhancement',
-      description: 'Applied FormattedText to SavedThemesWidget',
-      details: ['Consistent markdown rendering across components'],
-    },
-    {
-      version: '0.5.1.2',
-      date: '2025-12-08',
-      title: 'Learn widget improvements',
-      description: 'Added FormattedText component for bold markdown',
-      details: ['Enhanced learn widget results rendering'],
-    },
-    {
-      version: '0.5.1.1',
-      date: '2025-12-07',
-      title: 'Logging infrastructure refactor',
-      description: 'Refactored console logs to use logger utility',
-      details: ['Added color coding to logs', 'Implemented filter logic in frontend'],
-    },
-    {
-      version: '0.5.0.1',
-      date: '2025-12-06',
-      title: 'LLM provider selection',
-      description: 'New feature: Choose between Google Gemini or local Ollama',
-      details: ['LLM provider can be configured via .env', 'Backend proxy handles both providers'],
-    },
-    {
-      version: '0.4.5.0',
-      date: '2025-12-01',
-      title: 'Video & Store modules added',
-      description: 'Added video player and store functionality',
-      details: ['Video player component', 'Store module with inventory system'],
-    },
-    {
-      version: '0.3.4.1',
-      date: '2025-11-25',
-      title: 'Environment configuration',
-      description: 'Outsourced sensitive data to .env files',
-      details: ['Frontend configuration via .env', 'Better security practices'],
-    },
-    {
-      version: '0.3.3.2',
-      date: '2025-11-20',
-      title: 'Version indicator added',
-      description: 'Added version indicator to UI',
-      details: ['Version badge in footer', 'Hover tooltip with details'],
-    },
-  ];
-
-  return entries;
+  return changelogData as ChangelogEntry[];
 }
 
 /**

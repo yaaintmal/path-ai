@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getVersionString, getVersionInfo } from '../../version';
+import { getVersionInfo } from '../../version';
+import { getApiUrl } from '../../config/app.config';
 
 interface VersionIndicatorProps {
   onClick?: () => void;
@@ -7,11 +8,33 @@ interface VersionIndicatorProps {
 
 export function VersionIndicator({ onClick }: VersionIndicatorProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const versionInfo = getVersionInfo();
+  const [versionInfo, setVersionInfo] = useState(getVersionInfo());
 
   useEffect(() => {
     // Show version indicator for 3 seconds on mount
     const timer = setTimeout(() => setIsVisible(false), 3000);
+
+    // Fetch latest version from backend
+    const fetchVersion = async () => {
+      try {
+        const response = await fetch(getApiUrl('/api/changelog/latest'));
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success && data.entry) {
+            setVersionInfo({
+              version: data.entry.version,
+              date: data.entry.date || '',
+              timestamp: new Date(data.entry.date || '').getTime(),
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch version info:', error);
+      }
+    };
+
+    fetchVersion();
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,7 +56,7 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       >
         <div className="flex items-center gap-2">
           <span className="opacity-60 group-hover:opacity-100 transition-opacity">
-            {getVersionString()}
+            v{versionInfo.version}
           </span>
           <div className="w-2 h-2 bg-muted-foreground group-hover:bg-green-500 dark:bg-muted-foreground rounded-full opacity-60 group-hover:opacity-100 transition-opacity"></div>
         </div>

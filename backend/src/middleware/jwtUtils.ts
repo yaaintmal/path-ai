@@ -6,12 +6,12 @@ export const ACCESS_TOKEN_EXP = (process.env.ACCESS_TOKEN_EXP || '15m') as strin
 export const REFRESH_TOKEN_EXP = (process.env.REFRESH_TOKEN_EXP || '7d') as string;
 
 export function generateAccessToken(userId: string): string {
-  const options: SignOptions = { expiresIn: ACCESS_TOKEN_EXP as string | number };
+  const options: SignOptions = { expiresIn: ACCESS_TOKEN_EXP as any };
   return jwt.sign({ userId }, JWT_SECRET, options);
 }
 
 export function generateRefreshToken(userId: string): string {
-  const options: SignOptions = { expiresIn: REFRESH_TOKEN_EXP as string | number };
+  const options: SignOptions = { expiresIn: REFRESH_TOKEN_EXP as any };
   return jwt.sign({ userId }, JWT_SECRET, options);
 }
 

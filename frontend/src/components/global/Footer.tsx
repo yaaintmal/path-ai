@@ -102,13 +102,13 @@ export function Footer() {
             © 2025 {config.app.name}. Alle Rechte vorbehalten.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-white transition-colors">
-              <Twitter className="size-5" />
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a
+              href="https://www.linkedin.com/in/pierre-s-263850213"
+              className="hover:text-white transition-colors"
+            >
               <Linkedin className="size-5" />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="https://github.com/yaaintmal" className="hover:text-white transition-colors">
               <Github className="size-5" />
             </a>
           </div>

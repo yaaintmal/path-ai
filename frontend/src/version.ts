@@ -17,7 +17,7 @@
 // version 0.3.4.1: outsourcing sensitive data to .env files for frontend configuration
 // version 0.3.3.2: added version indicator
 
-export const APP_VERSION = '0.5.1.7';
+export const APP_VERSION = '0.5.1.8.2';
 export const LAST_UPDATED = '2025-12-13';
 
 export function getVersionString(): string {
