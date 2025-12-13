@@ -1,4 +1,4 @@
-import { Archive, ChevronLeft } from 'lucide-react';
+import { Archive, ChevronLeft, Target, Sparkles } from 'lucide-react';
 import { useBookmarks } from '../../contexts/useBookmarks';
 import { useLearning } from '../../contexts/useLearning';
 
@@ -9,7 +9,7 @@ interface CompletedTopicsPageProps {
 
 export function CompletedTopicsPage({ onBack, onStartTopic }: CompletedTopicsPageProps) {
   const { learnedTopics } = useBookmarks();
-  const { setCurrentLearningPath, triggerSubtopicGeneration } = useLearning();
+  const { currentLearningPath, setCurrentLearningPath, triggerSubtopicGeneration } = useLearning();
 
   const completedTopics = (learnedTopics || []).filter((t) => t.type === 'topic');
 
@@ -35,7 +35,7 @@ export function CompletedTopicsPage({ onBack, onStartTopic }: CompletedTopicsPag
           completedTopics.map((ct, idx) => (
             <div
               key={`${ct.type}-${ct.title}-${idx}`}
-              className="flex items-center justify-between p-2 rounded-lg bg-card-foreground/5 dark:bg-card-foreground/30 border border-border"
+              className="flex items-center justify-between p-2 rounded-lg bg-card-foreground/5 dark:bg-card-foreground/30 border border-border group"
             >
               <div className="flex items-center gap-3 flex-1 min-w-0">
                 <div className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
@@ -46,16 +46,29 @@ export function CompletedTopicsPage({ onBack, onStartTopic }: CompletedTopicsPag
                   <p className="text-xs text-muted-foreground">Learned</p>
                 </div>
               </div>
-              <div className="flex gap-2 flex-shrink-0">
+              <div className="flex gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button
+                  onClick={() =>
+                    triggerSubtopicGeneration({ title: ct.title, type: 'topic' })
+                  }
+                  className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500 transition-colors"
+                  title="generate subtopics"
+                >
+                  <Sparkles className="w-4 h-4" />
+                </button>
                 <button
                   onClick={() => {
                     setCurrentLearningPath({ title: ct.title, type: 'topic' });
                     if (onStartTopic) onStartTopic(ct.title);
-                    triggerSubtopicGeneration({ title: ct.title, type: 'topic' });
                   }}
-                  className="px-3 py-1 rounded bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors"
+                  className={`p-1 rounded transition-colors ${
+                    currentLearningPath?.title === ct.title
+                      ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
+                      : 'text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30'
+                  }`}
+                  title="revisit topic"
                 >
-                  Revisit
+                  <Target className="w-4 h-4" />
                 </button>
               </div>
             </div>
