@@ -2,320 +2,126 @@ import { useState } from 'react';
 import { Card } from '../../ui/card';
 import { Badge } from '../../ui/badge';
 import { Button } from '../../ui/button';
-import { Eye, Headphones, Hand, BookOpen, Zap, ArrowRight, Check } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../ui/tabs';
-
-const learningTypes = [
-  {
-    id: 'visual',
-    icon: Eye,
-    name: 'Visueller Lerntyp',
-    description: 'Lerne am besten durch Bilder, Diagramme und interaktive Beispiele',
-    color: 'from-blue-600 to-cyan-600',
-    templates: [
-      {
-        title: 'Webentwicklung für visuelle Lerner',
-        keywords: ['React', 'UI/UX Design', 'CSS Animationen', 'Responsive Design'],
-        prompt:
-          'Erstelle einen Lernplan mit vielen visuellen Tutorials, Code-Beispielen und Design-Patterns',
-        duration: '8 Wochen',
-        level: 'Anfänger',
-      },
-      {
-        title: 'Data Science mit Visualisierungen',
-        keywords: ['Python', 'Matplotlib', 'Datenvisualisierung', 'Pandas'],
-        prompt: 'Fokus auf grafische Darstellungen, Diagramme und visuelle Datenanalyse',
-        duration: '10 Wochen',
-        level: 'Mittel',
-      },
-      {
-        title: 'Grafikdesign & Illustration',
-        keywords: ['Figma', 'Adobe', 'Design Principles', 'Farbtheorie'],
-        prompt: 'Lerne durch Design-Tutorials, visuelle Beispiele und praktische Projekte',
-        duration: '6 Wochen',
-        level: 'Anfänger',
-      },
-    ],
-  },
-  {
-    id: 'auditory',
-    icon: Headphones,
-    name: 'Auditiver Lerntyp',
-    description: 'Lerne am besten durch Zuhören und Diskussionen',
-    color: 'from-purple-600 to-pink-600',
-    templates: [
-      {
-        title: 'Programmierung durch Podcasts & Talks',
-        keywords: ['JavaScript', 'Tech Talks', 'Code Reviews', 'Pair Programming'],
-        prompt: 'Erstelle einen Lernplan mit Podcasts, Audio-Tutorials und erklärenden Materialien',
-        duration: '8 Wochen',
-        level: 'Anfänger',
-      },
-      {
-        title: 'Sprachen lernen mit Audio',
-        keywords: ['Englisch', 'Aussprache', 'Konversation', 'Listening'],
-        prompt: 'Fokus auf Hörverstehen, Podcasts und gesprochene Dialoge',
-        duration: '12 Wochen',
-        level: 'Alle Level',
-      },
-      {
-        title: 'Marketing & Kommunikation',
-        keywords: ['Content Marketing', 'Storytelling', 'Präsentation', 'Rhetorik'],
-        prompt: 'Lerne durch Vorträge, Diskussionen und Audio-Beispiele',
-        duration: '6 Wochen',
-        level: 'Mittel',
-      },
-    ],
-  },
-  {
-    id: 'kinesthetic',
-    icon: Hand,
-    name: 'Kinästhetischer Lerntyp',
-    description: 'Lerne am besten durch praktisches Tun und Experimentieren',
-    color: 'from-orange-600 to-red-600',
-    templates: [
-      {
-        title: 'Hands-on Programmierung',
-        keywords: ['Coding Challenges', 'Live Coding', 'Projekte', 'Debugging'],
-        prompt: 'Erstelle einen praxisorientierten Plan mit vielen Übungen und Mini-Projekten',
-        duration: '10 Wochen',
-        level: 'Anfänger',
-      },
-      {
-        title: 'IoT & Hardware',
-        keywords: ['Arduino', 'Raspberry Pi', 'Sensoren', 'Prototyping'],
-        prompt: 'Fokus auf praktische Experimente und Hardware-Projekte',
-        duration: '8 Wochen',
-        level: 'Mittel',
-      },
-      {
-        title: 'Gamedev mit Unity',
-        keywords: ['Unity', 'C#', '3D Modeling', 'Game Mechanics'],
-        prompt: 'Lerne durch eigene Spiele-Prototypen und interaktive Projekte',
-        duration: '12 Wochen',
-        level: 'Mittel',
-      },
-    ],
-  },
-  {
-    id: 'reading',
-    icon: BookOpen,
-    name: 'Lese-/Schreib-Lerntyp',
-    description: 'Lerne am besten durch Lesen und schriftliche Zusammenfassungen',
-    color: 'from-green-600 to-emerald-600',
-    templates: [
-      {
-        title: 'Dokumentations-basiertes Lernen',
-        keywords: ['Technische Docs', 'Tutorials', 'Coding Guides', 'Best Practices'],
-        prompt: 'Erstelle einen Lernplan mit ausführlichen Texten, Dokumentationen und Notizen',
-        duration: '8 Wochen',
-        level: 'Alle Level',
-      },
-      {
-        title: 'Wissenschaftliches Arbeiten',
-        keywords: ['Research', 'Literaturrecherche', 'Wissenschaft', 'Methodik'],
-        prompt: 'Fokus auf Fachliteratur, Papers und schriftliche Ausarbeitungen',
-        duration: '10 Wochen',
-        level: 'Fortgeschritten',
-      },
-      {
-        title: 'Content Writing & Blogging',
-        keywords: ['SEO', 'Copywriting', 'Storytelling', 'Redaktion'],
-        prompt: 'Lerne durch Lesen von Beispielen und eigenes Schreiben',
-        duration: '6 Wochen',
-        level: 'Anfänger',
-      },
-    ],
-  },
-];
-
-const quickStartTemplates = [
-  {
-    title: 'KI & Machine Learning Schnellstart',
-    keywords: ['Python', 'TensorFlow', 'Neural Networks', 'AI Basics'],
-    description: 'Perfekt für den Einstieg in künstliche Intelligenz',
-    difficulty: 'Mittel',
-    time: '12 Wochen',
-  },
-  {
-    title: 'Full-Stack Web Developer',
-    keywords: ['React', 'Node.js', 'MongoDB', 'API Design'],
-    description: 'Vom Frontend bis zum Backend - alles was du brauchst',
-    difficulty: 'Anfänger',
-    time: '16 Wochen',
-  },
-  {
-    title: 'Mobile App Development',
-    keywords: ['React Native', 'iOS', 'Android', 'UX Design'],
-    description: 'Erstelle native Apps für iOS und Android',
-    difficulty: 'Mittel',
-    time: '10 Wochen',
-  },
-  {
-    title: 'Cloud & DevOps Engineer',
-    keywords: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
-    description: 'Werde zum Cloud-Experten',
-    difficulty: 'Fortgeschritten',
-    time: '14 Wochen',
-  },
-];
+import { BookOpen, Clock, BarChart, ArrowRight, Code, Cloud, Database } from 'lucide-react';
+import { LEARNING_TEMPLATES } from '../../data/learningTemplates';
 
 export function PromptTemplates() {
-  const [selectedType, setSelectedType] = useState('visual');
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(LEARNING_TEMPLATES[0]);
 
   return (
     <section className="container mx-auto px-4 py-20 md:py-32 bg-background">
       <div className="text-center max-w-3xl mx-auto mb-16">
+        <Badge className="bg-gradient-to-r from-green-600 to-emerald-600 text-white border-0 mb-4">
+          <BookOpen className="size-4 mr-2" />
+          Templates
+        </Badge>
         <h2 className="text-4xl md:text-5xl mb-4">
-          Vorgefertigte{' '}
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Lernplan-Templates
+          Starte sofort mit{' '}
+          <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            Experten-Pfaden
           </span>
         </h2>
         <p className="text-xl text-muted-foreground">
-          Wähle deinen Lerntyp und starte mit einem optimierten Lernplan, der perfekt auf deine
-          Bedürfnisse zugeschnitten ist
+          Nutze kuratierte Lernpfade für beliebte Karriereziele - von Experten erstellt, von KI
+          personalisiert.
         </p>
       </div>
 
-      {/* Quick Start Templates */}
-      <div className="mb-20">
-        <h3 className="text-2xl mb-6 text-center">Beliebte Karrierepfade</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {quickStartTemplates.map((template, index) => (
+      <div className="grid lg:grid-cols-12 gap-8 items-start">
+        {/* Template List */}
+        <div className="lg:col-span-4 space-y-4">
+          {LEARNING_TEMPLATES.slice(0, 4).map((template) => (
             <Card
-              key={index}
-              className="p-6 hover:shadow-lg transition-all cursor-pointer border-2 hover:border-blue-600"
+              key={template.id}
+              className={`p-4 cursor-pointer transition-all hover:shadow-md ${
+                selectedTemplate.id === template.id
+                  ? 'border-green-500 bg-green-50/50 dark:bg-green-900/10 ring-1 ring-green-500'
+                  : 'hover:border-green-200 dark:hover:border-green-800'
+              }`}
+              onClick={() => setSelectedTemplate(template)}
             >
-              <div className="mb-3">
-                <Badge variant="secondary" className="mb-2">
-                  {template.difficulty}
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="outline" className="bg-background">
+                  {template.category}
                 </Badge>
-                <h4 className="text-lg mb-2">{template.title}</h4>
-                <p className="text-sm text-muted-foreground mb-3">{template.description}</p>
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Clock className="size-3" /> {template.duration}
+                </span>
               </div>
-              <div className="flex flex-wrap gap-1 mb-3">
-                {template.keywords.slice(0, 3).map((keyword, i) => (
-                  <Badge key={i} variant="outline" className="text-xs">
-                    {keyword}
-                  </Badge>
-                ))}
-              </div>
-              <div className="text-sm text-muted-foreground mb-3">⏱️ {template.time}</div>
-              <Button size="sm" className="w-full gap-2">
-                Plan erstellen <ArrowRight className="size-3" />
-              </Button>
+              <h3 className="font-semibold mb-1">{template.name}</h3>
+              <p className="text-sm text-muted-foreground line-clamp-2">{template.description}</p>
             </Card>
           ))}
         </div>
-      </div>
 
-      {/* Learning Type Templates */}
-      <div>
-        <h3 className="text-2xl mb-6 text-center">Nach Lerntyp</h3>
-
-        <Tabs value={selectedType} onValueChange={setSelectedType} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto gap-2 mb-8 bg-transparent">
-            {learningTypes.map((type) => (
-              <TabsTrigger
-                key={type.id}
-                value={type.id}
-                className="flex-col h-auto py-4 data-[state=active]:bg-card data-[state=active]:shadow-md"
-              >
-                <div className={`bg-gradient-to-br ${type.color} p-3 rounded-lg mb-2`}>
-                  <type.icon className="size-6 text-white" />
-                </div>
-                <div className="text-sm">{type.name}</div>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {learningTypes.map((type) => (
-            <TabsContent key={type.id} value={type.id} className="mt-0">
-              <div className="bg-gradient-to-br from-card-foreground/5 to-card rounded-2xl p-8 mb-8 border border-border">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className={`bg-gradient-to-br ${type.color} p-4 rounded-xl`}>
-                    <type.icon className="size-8 text-white" />
+        {/* Template Preview */}
+        <div className="lg:col-span-8">
+          <Card className="p-8 h-full border-2 border-muted/50 bg-card/50 backdrop-blur-sm">
+            <div className="flex flex-col h-full">
+              <div className="mb-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 rounded-xl bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+                    <Code className="size-8" />
                   </div>
                   <div>
-                    <h3 className="text-2xl mb-2">{type.name}</h3>
-                    <p className="text-muted-foreground">{type.description}</p>
+                    <h3 className="text-2xl font-bold">{selectedTemplate.name}</h3>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
+                      <span className="flex items-center gap-1">
+                        <BarChart className="size-4" /> {selectedTemplate.level}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="size-4" /> {selectedTemplate.duration}
+                      </span>
+                    </div>
                   </div>
                 </div>
+                <p className="text-lg text-muted-foreground">{selectedTemplate.description}</p>
+              </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                  {type.templates.map((template, index) => (
-                    <Card
-                      key={index}
-                      className={`p-6 cursor-pointer transition-all ${
-                        selectedTemplate === `${type.id}-${index}`
-                          ? 'border-2 border-blue-600 shadow-lg'
-                          : 'border-2 border-transparent hover:border-border'
-                      }`}
-                      onClick={() => setSelectedTemplate(`${type.id}-${index}`)}
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <Badge className={`bg-gradient-to-r ${type.color} text-white border-0`}>
-                          {template.level}
-                        </Badge>
-                        {selectedTemplate === `${type.id}-${index}` && (
-                          <div className="bg-blue-600 rounded-full p-1">
-                            <Check className="size-3 text-white" />
-                          </div>
-                        )}
-                      </div>
-
-                      <h4 className="text-lg mb-3">{template.title}</h4>
-
-                      <div className="flex flex-wrap gap-1 mb-4">
-                        {template.keywords.map((keyword, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs">
-                            {keyword}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <p className="text-sm text-gray-600 mb-4 italic">"{template.prompt}"</p>
-
-                      <div className="flex items-center justify-between text-sm text-gray-500">
-                        <span>⏱️ {template.duration}</span>
-                        <Zap className="size-4 text-yellow-600" />
-                      </div>
-                    </Card>
-                  ))}
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <Database className="size-4 text-green-500" />
+                    Themen im Überblick
+                  </h4>
+                  <ul className="space-y-3">
+                    {selectedTemplate.topics.slice(0, 6).map((topic, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <div className="mt-1 min-w-4 size-4 rounded-full border border-green-500 flex items-center justify-center">
+                          <div className="size-2 rounded-full bg-green-500" />
+                        </div>
+                        {topic}
+                      </li>
+                    ))}
+                    {selectedTemplate.topics.length > 6 && (
+                      <li className="text-sm text-muted-foreground pl-6">
+                        + {selectedTemplate.topics.length - 6} weitere Themen
+                      </li>
+                    )}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <Cloud className="size-4 text-blue-500" />
+                    Skills die du lernst
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedTemplate.skills.map((skill, i) => (
+                      <Badge key={i} variant="secondary" className="bg-secondary/50">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div className="text-center">
-                <Button
-                  size="lg"
-                  className={`bg-gradient-to-r ${type.color} text-white border-0 gap-2`}
-                >
-                  Mit diesem Template starten <ArrowRight className="size-4" />
+              <div className="mt-auto pt-8 border-t border-border flex justify-end">
+                <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
+                  Diesen Pfad starten <ArrowRight className="size-4" />
                 </Button>
               </div>
-            </TabsContent>
-          ))}
-        </Tabs>
-      </div>
-
-      {/* Custom Prompt Builder Preview */}
-      <div className="mt-20 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-200">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="size-12 text-blue-600" />
-            <span className="text-4xl">🎮</span>
-          </div>
-          <h3 className="text-2xl mb-3">Eigenen Lernplan erstellen</h3>
-          <p className="text-gray-600 mb-6">
-            Oder erstelle deinen komplett individuellen Lernplan mit unserem KI-Assistenten.
-            Kombiniere verschiedene Lernstile und Themen nach deinen Wünschen - inklusive
-            Gamification mit Achievements und Belohnungen!
-          </p>
-          <Button size="lg" variant="outline" className="gap-2">
-            Custom Lernplan erstellen <ArrowRight className="size-4" />
-          </Button>
+            </div>
+          </Card>
         </div>
       </div>
     </section>

@@ -4,39 +4,39 @@ import { Card } from '../../ui/card';
 const features = [
   {
     icon: Brain,
-    title: 'KI-generierte Lernpläne',
+    title: 'KI-Lernpfade',
     description:
-      'Unsere KI erstellt einen personalisierten Lernplan basierend auf deinen Zielen, Vorkenntnissen und verfügbarer Zeit.',
+      'Gib ein Thema ein und unsere KI generiert sofort einen strukturierten Lernpfad mit relevanten Unterthemen.',
   },
   {
     icon: FileText,
-    title: 'Integration von Lerninhalten & Lokalisierung',
+    title: 'Templates & Vorlagen',
     description:
-      'Zugriff auf die besten Lernressourcen - automatisch in über 100 Sprachen lokalisiert mit Untertiteln.',
+      'Starte sofort durch mit kuratierten Templates für Karrierepfade wie "Full-Stack Developer" oder "Cloud Engineer".',
   },
   {
     icon: Target,
-    title: 'Für alle Altersgruppen',
+    title: 'Zielgerichtetes Lernen',
     description:
-      'Von Grundschülern bis zu Studenten - LearnAI und LearnBuddy passen sich an jedes Niveau an.',
+      'Definiere deine Ziele im Onboarding und erhalte Inhalte, die genau auf dein Niveau und deine Zeitpläne abgestimmt sind.',
   },
   {
     icon: BarChart3,
-    title: 'Fortschritts-Tracking',
+    title: 'Detaillierte Statistiken',
     description:
-      'Verfolge deinen Lernfortschritt in Echtzeit und sehe welche Skills du bereits beherrschst.',
-  },
-  {
-    icon: FileText,
-    title: 'Lernmaterial-Management',
-    description:
-      'Lade Lernmaterialien herunter, bearbeite sie und organisiere alles an einem Ort - in jeder Sprache.',
+      'Behalte den Überblick über deine Lernzeit, abgeschlossene Themen und deine aktuelle Streak.',
   },
   {
     icon: Zap,
-    title: 'Interaktives Lernen',
+    title: 'Gamification & Store',
     description:
-      'Die KI geht gemeinsam mit dir durch das Material und beantwortet deine Fragen in Echtzeit.',
+      'Sammle Punkte für jeden Erfolg und löse sie im Store gegen Boosts, Badges und Profil-Upgrades ein.',
+  },
+  {
+    icon: FileText,
+    title: 'Interaktive Inhalte',
+    description:
+      'Lerne aktiv mit KI-generierten Erklärungen, Zusammenfassungen und Quiz-Fragen zu jedem Thema.',
   },
 ];
 

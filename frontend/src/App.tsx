@@ -1,6 +1,6 @@
 // Landing Page Components
 import { Hero } from './components/landing/Hero';
-// import { LanguageFeature } from './components/landing/LanguageFeature';
+
 import { TargetAudiences } from './components/landing/TargetAudiences';
 import { Gamification } from './components/landing/Gamification';
 import { Features } from './components/landing/Features';
@@ -8,7 +8,7 @@ import { PromptTemplates } from './components/landing/PromptTemplates';
 import { HowItWorks } from './components/landing/HowItWorks';
 import { DashboardPreview } from './components/landing/DashboardPreview';
 // import { FAQ } from './components/landing/FAQ';
-// CTA component import removed because it's currently unused
+import { CTA } from './components/landing/CTA';
 
 // Onboarding Component(s) > it's more like THE component
 import { OnboardingWizard } from './components/landing/onboarding';
@@ -213,8 +213,7 @@ export default function App() {
       <Hero setShowOnboarding={setShowOnboarding} />
       {/* 2. Features */}
       <Features />
-      {/* 3. Mehrsprachig / Sprachen */}
-      {/* <LanguageFeature /> */}
+      {/* 3. Mehrsprachig / Sprachen // Placeholder as video is fully removed in beta 5.2 */}
       {/* 4. Weitere Sections */}
       <TargetAudiences />
       <Gamification />
@@ -222,8 +221,7 @@ export default function App() {
       <HowItWorks />
       <DashboardPreview />
       {/* <FAQ /> */}
-      {/* //TODO: CTA right now not displayed but should be implemented in next phase */}
-      {/* <CTA /> */}
+      <CTA />
       <Footer />
       <VersionIndicator onClick={() => setShowChangelog(true)} />
     </div>
