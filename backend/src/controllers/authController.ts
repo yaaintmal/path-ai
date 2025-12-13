@@ -309,18 +309,27 @@ export const awardPoints: RequestHandler = async (req, res) => {
 
 export const updateOnboardingData: RequestHandler = async (req, res) => {
   const userId = req.userId;
+  console.log(`[updateOnboardingData] Request received for user: ${userId}`);
+
   if (!userId) {
+    console.error('[updateOnboardingData] Unauthorized: No userId');
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
   try {
     const { onboardingData } = req.body;
+    console.log(
+      `[updateOnboardingData] Payload size: ${JSON.stringify(onboardingData).length} chars`
+    );
+
     const user = await User.findByIdAndUpdate(userId, { onboardingData }, { new: true });
 
     if (!user) {
+      console.error(`[updateOnboardingData] User not found: ${userId}`);
       return res.status(404).json({ message: 'User not found' });
     }
 
+    console.log(`[updateOnboardingData] Successfully updated user: ${userId}`);
     res.status(200).json({
       user: {
         id: user._id.toString(),

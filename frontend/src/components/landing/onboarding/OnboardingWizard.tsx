@@ -40,7 +40,7 @@ const defaultData: Partial<OnboardingData> = {
   level: '',
   goals: [],
   subjects: [],
-  skillLevels: {},
+  skillLevels: [],
   learningType: [],
   weeklyHours: 5,
   schedule: '',

@@ -5,7 +5,7 @@ export interface IOnboardingData {
   level?: string;
   goals?: string[];
   subjects?: string[];
-  skillLevels?: Record<string, number>;
+  skillLevels?: Array<{ subject: string; level: number }>;
   learningType?: string[];
   weeklyHours?: number;
   schedule?: string;
@@ -70,7 +70,13 @@ const OnboardingSchema = new Schema<IOnboardingData>(
     level: { type: String },
     goals: [{ type: String }],
     subjects: [{ type: String }],
-    skillLevels: { type: Map, of: Number },
+    skillLevels: [
+      {
+        subject: { type: String },
+        level: { type: Number },
+        _id: false,
+      },
+    ],
     learningType: [{ type: String }],
     weeklyHours: { type: Number },
     schedule: { type: String },

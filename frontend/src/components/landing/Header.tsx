@@ -1,9 +1,7 @@
 import { Button } from '../../ui/button';
 import { Moon, Sun } from 'lucide-react';
-import Antigravity from '../Antigravity';
 import config from '../../config/app.config';
 import { useTheme } from 'next-themes';
-import { useAuth } from '../../contexts/useAuth';
 
 interface HeaderProps {
   setShowOnboarding?: (show: boolean) => void;
@@ -12,7 +10,6 @@ interface HeaderProps {
 
 export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) {
   const { setTheme, resolvedTheme } = useTheme();
-  const { user } = useAuth();
 
   const toggleDarkMode = () => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
@@ -47,113 +44,62 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
   };
 
   return (
-    <header className="relative border-b bg-background/80 dark:bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-      {/* Full header background */}
-      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-        <Antigravity
-          count={400}
-          magnetRadius={6}
-          ringRadius={7}
-          waveSpeed={0.4}
-          waveAmplitude={1}
-          particleSize={1.5}
-          lerpSpeed={0.05}
-          color={
-            resolvedTheme === 'dark'
-              ? ['#FFEB99', '#FFD54F', '#FFC107', '#FFB300']
-              : ['#FFEE99', '#FFD54F', '#FFC107', '#FFB300']
-          }
-          autoAnimate={true}
-          particleVariance={0.8}
-        />
-      </div>
-      <div className="w-full py-7 flex items-center justify-center gap-4 relative z-10 min-h-[84px]">
-        {/* Left - Logo on small/medium screens */}
-        <a
-          href="/"
-          onClick={handleLogoClick}
-          className="flex items-center gap-2 cursor-pointer lg:hidden"
-        >
-          <div className="lg:hidden">
-            <span className="text-xl bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
+        {/* Left Section: Logo & Branding */}
+        <div className="flex items-center gap-4">
+          <a href="/" onClick={handleLogoClick} className="flex flex-col group">
+            <span className="text-2xl font-bold bg-gradient-to-r from-red-400 via-red-500 to-purple-600 bg-clip-text text-transparent tracking-tight group-hover:opacity-80 transition-opacity">
               {config.app.name}
             </span>
-            {user && <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>}
-          </div>
-        </a>
-
-        {/* Centered Title and Navigation */}
-        <div className="hidden lg:flex flex-col items-center text-center">
-          <a href="/" onClick={handleLogoClick}>
-            <span className="text-xl font-bold bg-gradient-to-r from-red-300 via-red-500 to-purple-600 bg-clip-text text-transparent">
-              {config.app.name}
+            <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium group-hover:text-foreground transition-colors">
+              Free Knowledge for Everybody
             </span>
-            <p className="text-xs text-muted-foreground -mt-1">Free Knowledge for Everybody</p>
-            {user && <p className="text-sm text-muted-foreground mt-1">Hey, {user.name}</p>}
           </a>
         </div>
 
-        {/* Navigation on md+ */}
-        <nav className="hidden md:flex justify-center items-center gap-8">
-          <a
-            href="#languages"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Sprachen
-          </a>
-          <a
-            href="#gamification"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Gamification
-          </a>
-          <a
-            href="#templates"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Templates
-          </a>
-          <a
-            href="#features"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Features
-          </a>
+        {/* Center Section: Navigation (Desktop) */}
+        <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
+          {['Languages', 'Gamification', 'Templates', 'Features'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+            >
+              {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </a>
+          ))}
           <a
             href="#dashboard"
             onClick={handleDashboardClick}
-            className="text-primary hover:text-primary-foreground transition-colors"
+            className="text-sm font-medium text-primary hover:text-primary/80 transition-colors relative group"
           >
             Dein Dashboard
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
           </a>
         </nav>
 
-        {/* Centered Actions */}
-        <div className="flex items-center justify-center gap-3 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+        {/* Right Section: Actions */}
+        <div className="flex items-center gap-3">
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="rounded-full"
-            aria-label="Toggle Dark Mode"
+            className="rounded-full hover:bg-secondary/80"
           >
-            {resolvedTheme === 'dark' ? (
-              <Sun className="size-5 text-muted-foreground" />
-            ) : (
-              <Moon className="size-5 text-muted-foreground" />
-            )}
+            {resolvedTheme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </Button>
-          <Button
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
-            onClick={handleRegistrationClick}
-          >
+          <Button variant="ghost" className="font-medium" onClick={handleRegistrationClick}>
             Anmelden
           </Button>
-          <Button onClick={handleDashboardClick} className="hidden md:flex">
+          <Button
+            onClick={handleDashboardClick}
+            className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hidden md:flex"
+          >
             Dashboard erstellen
           </Button>
-          <Button onClick={handleDashboardClick} className="md:hidden">
+          <Button onClick={handleDashboardClick} className="rounded-full px-4 md:hidden">
             Start
           </Button>
         </div>

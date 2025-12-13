@@ -24,6 +24,27 @@ function parseChangelogEntries(): ChangelogEntry[] {
   // In a real scenario, this would be parsed from CHANGELOG.md or git history
   const entries: ChangelogEntry[] = [
     {
+      version: '0.5.1.7',
+      date: '2025-12-13',
+      title: 'Fix: onboarding data save issue',
+      description: 'Resolved problem with onboarding data not saving correctly',
+      details: [
+        'Fixed bug in onboarding wizard data persistence',
+        'Ensured user preferences are stored after onboarding completion',
+      ],
+    },
+    {
+      version: '0.5.1.6',
+      date: '2025-12-13',
+      title: 'Feature: header UI update',
+      description: 'updated header elements to match new branding',
+      details: [
+        'Refactored header layout to use a unified, centered design',
+        'Integrated app title and user greeting into the user panel widget',
+        'Removed legacy background effects and optimized responsive behavior',
+      ],
+    },
+    {
       version: '0.5.1.5',
       date: '2025-12-11',
       title: 'Feature cleanup / move',
