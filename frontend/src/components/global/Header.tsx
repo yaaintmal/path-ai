@@ -97,7 +97,7 @@ export function Header({
         {/* Left Section: Logo & Branding */}
         <div className="flex items-center gap-4">
           <a href="/" onClick={handleLogoClick} className="flex flex-col group">
-            <span className="text-2xl font-bold bg-gradient-to-r from-red-400 via-red-500 to-purple-600 bg-clip-text text-transparent tracking-tight group-hover:opacity-80 transition-opacity">
+            <span className="text-2xl font-bold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent tracking-tight group-hover:opacity-80 transition-opacity">
               {config.app.name}
             </span>
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium group-hover:text-foreground transition-colors">
