@@ -10,6 +10,7 @@ import {
   llmRouter,
   changelogRouter,
   authRouter,
+  timerRouter,
 } from '#routers';
 import path from 'path';
 import { User } from '#models';
@@ -43,6 +44,7 @@ app.use('/api/store', storeRouter);
 app.use('/api/llm', llmRouter);
 app.use('/api/changelog', changelogRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/timer', timerRouter);
 // Also expose a top-level discovery route that returns LLM provider/model info
 app.get('/api/llm-route', (_req, res) => {
   const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';

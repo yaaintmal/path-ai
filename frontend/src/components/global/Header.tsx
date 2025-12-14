@@ -1,15 +1,30 @@
 import { Button } from '../../ui/button';
-import { Moon, Sun, Edit, LogOut, User, Shield, Sparkles, Zap } from 'lucide-react';
+import {
+  Moon,
+  Sun,
+  Edit,
+  LogOut,
+  User,
+  Shield,
+  Sparkles,
+  Zap,
+  Play,
+  Square,
+  Timer,
+} from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
 import { useTheme } from 'next-themes';
 import { useAuth } from '../../contexts/useAuth';
+import { useTimer } from '../../contexts/useTimer';
 import config from '../../config/app.config';
+import { cn } from '../../lib/utils';
 
 interface HeaderProps {
   setShowOnboarding?: (show: boolean) => void;
   setShowRegistration?: (show: boolean) => void;
   setShowOnboardingEditor?: (show: boolean) => void;
   setShowDashboard?: (show: boolean) => void;
+  setShowTimer?: (show: boolean) => void;
   setDashboardMode?: (mode: 'learning' | 'statistics' | null) => void;
   hasOnboardingData?: boolean;
 }
@@ -19,11 +34,13 @@ export function Header({
   setShowRegistration,
   setShowOnboardingEditor,
   setShowDashboard,
+  setShowTimer,
   setDashboardMode,
   hasOnboardingData,
 }: HeaderProps) {
   const { user, logout, userDetails } = useAuth();
   const { setTheme, resolvedTheme } = useTheme();
+  const { isActive, startTimer, stopTimer, isLoading } = useTimer();
   // useTheme manages theme with next-themes; use `resolvedTheme` for UI
 
   // Helper function to calculate level and progress
@@ -186,11 +203,69 @@ export function Header({
 
               {/* Action Buttons */}
               <div className="flex items-center gap-1">
+                {/* Timer Page Link */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (setShowTimer) {
+                      setShowTimer(true);
+                      if (setShowDashboard) setShowDashboard(false);
+                      if (setShowOnboarding) setShowOnboarding(false);
+                      if (setShowRegistration) setShowRegistration(false);
+                      if (setShowOnboardingEditor) setShowOnboardingEditor(false);
+                    }
+                  }}
+                  className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors"
+                  title="Open Timer Page"
+                  aria-label="Open timer page"
+                >
+                  <Timer className="size-5" />
+                </Button>
+
+                {/* Timer Toggle */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    if (isActive) {
+                      stopTimer();
+                    } else {
+                      const mainGoal = userDetails?.onboardingData?.goals?.[0];
+                      if (mainGoal) {
+                        startTimer(mainGoal);
+                      }
+                    }
+                  }}
+                  className={cn(
+                    'rounded-full transition-all duration-300',
+                    isActive
+                      ? 'text-red-500 hover:bg-red-100 dark:hover:bg-red-900/20'
+                      : 'hover:text-amber-500 hover:bg-amber-500/10'
+                  )}
+                  disabled={isLoading || (!isActive && !userDetails?.onboardingData?.goals?.[0])}
+                  title={isActive ? 'Stop Session' : 'Start Learning Session'}
+                  aria-label={isActive ? 'Stop learning session' : 'Start learning session'}
+                >
+                  {isActive ? (
+                    <div className="relative flex items-center justify-center">
+                      <Square className="size-5 fill-current" />
+                      <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                      </span>
+                    </div>
+                  ) : (
+                    <Play className="size-5" />
+                  )}
+                </Button>
+
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={toggleDarkMode}
-                  className="rounded-full hover:bg-secondary/80"
+                  className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors"
                   aria-label="Toggle theme"
                 >
                   {resolvedTheme === 'dark' ? (
@@ -206,7 +281,7 @@ export function Header({
                   variant="ghost"
                   size="icon"
                   onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
-                  className="rounded-full hover:bg-secondary/80 hidden sm:flex"
+                  className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 hidden sm:flex transition-colors"
                   aria-label="Edit dashboard"
                 >
                   <Edit className="size-5" />

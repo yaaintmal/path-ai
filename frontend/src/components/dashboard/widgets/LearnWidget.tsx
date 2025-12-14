@@ -155,7 +155,24 @@ export function LearnWidget() {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">learn with Path AI</h2>
+        <div className="flex items-center gap-4">
+          <span className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-semibold">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z"
+                fill="currentColor"
+              />
+            </svg>
+            PATH AI
+          </span>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">learn</h2>
+        </div>
         <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
           <BookOpen className="w-6 h-6 text-white" />
         </div>

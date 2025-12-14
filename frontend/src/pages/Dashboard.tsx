@@ -1,6 +1,7 @@
 interface DashboardProps {
   setShowOnboardingEditor: (show: boolean) => void;
-  mode: 'learning' | 'statistics' | 'store' | 'completed-topics';
+  mode: 'learning' | 'statistics' | 'store' | 'completed-topics' | null;
+  onBackToSelection?: () => void;
 }
 
 import { useState } from 'react';
@@ -21,7 +22,7 @@ import type { LearningPath, LearningPathItem } from '../types/learning';
 // import { FullWidthWidget } from './dashboard/FullWidthWidget';
 // import { StreakWidget } from './dashboard/StreakWidget';
 
-export function Dashboard({ mode: initialMode }: DashboardProps) {
+export function Dashboard({ mode: initialMode, onBackToSelection }: DashboardProps) {
   const [mode, setMode] = useState<
     | 'learning'
     | 'statistics'
@@ -169,6 +170,15 @@ export function Dashboard({ mode: initialMode }: DashboardProps) {
             onOpenTopicsClick={handleOpenTopicsClick}
             onCompletedTopicsClick={handleCompletedTopicsClick}
             onTemplatesClick={handleTemplatesClick}
+            onBack={() => {
+              // If an app-level handler is provided, prefer it so we return to the dashboard selection
+              if (onBackToSelection) {
+                onBackToSelection();
+              } else {
+                // fall back to returning to the default learning view
+                setMode('learning');
+              }
+            }}
           />
         )}
 
