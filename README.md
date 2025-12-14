@@ -6,6 +6,10 @@ Welcome to PathAI! We're here to transform the way you learn—whether you're a 
 
 ---
 
+https://github.com/user-attachments/assets/e26af7c8-078e-4d8c-a090-47adc21c008b
+
+---
+
 ## What Can You Do?
 
 ### 🎯 Personalized Learning Paths
