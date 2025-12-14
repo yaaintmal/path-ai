@@ -37,6 +37,7 @@ export function TemplatesPageClean({ onBack, onSelectTemplate }: TemplatesPagePr
           onClick={onBack}
           className="p-2 rounded hover:bg-card-foreground/5 transition-colors"
           title="Back to learning"
+          aria-label="Back to learning"
         >
           <ChevronLeft className="w-5 h-5 text-muted-foreground" />
         </button>

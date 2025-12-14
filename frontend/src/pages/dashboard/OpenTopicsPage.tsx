@@ -22,6 +22,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
             onClick={onBack}
             className="p-2 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 transition-colors"
             title="Back to learning"
+            aria-label="Back to learning"
           >
             <ChevronLeft className="w-5 h-5 text-muted-foreground" />
           </button>
@@ -63,6 +64,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
                       onClick={() => triggerSubtopicGeneration({ title: tb.title, type: 'topic' })}
                       className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500 transition-colors"
                       title="generate subtopics"
+                      aria-label={`Generate subtopics for ${tb.title}`}
                     >
                       <Sparkles className="w-4 h-4" />
                     </button>
@@ -77,6 +79,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
                           : 'text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30'
                       }`}
                       title="start topic"
+                      aria-label={`Start ${tb.title}`}
                     >
                       <Target className="w-4 h-4" />
                     </button>
@@ -84,6 +87,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
                       onClick={() => removeBookmark(tb.title)}
                       className="p-1 rounded hover:bg-red-100 dark:hover:bg-red-900/30 text-gray-400 hover:text-red-500 transition-colors"
                       title="remove bookmark"
+                      aria-label={`Remove ${tb.title} from bookmarks`}
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -129,6 +133,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
                       }
                       className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500 transition-colors"
                       title="generate subtopics"
+                      aria-label={`Generate subtopics for ${tb.title}`}
                     >
                       <Sparkles className="w-4 h-4" />
                     </button>
@@ -143,6 +148,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
                           : 'text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30'
                       }`}
                       title="start subtopic"
+                      aria-label={`Start ${tb.title}`}
                     >
                       <Target className="w-4 h-4" />
                     </button>
@@ -150,6 +156,7 @@ export function OpenTopicsPage({ onBack, onStartTopic }: OpenTopicsPageProps) {
                       onClick={() => removeBookmark(tb.title)}
                       className="p-1 rounded hover:bg-red-100 dark:hover:bg-red-900/30 text-gray-400 hover:text-red-500 transition-colors"
                       title="remove bookmark"
+                      aria-label={`Remove ${tb.title} from bookmarks`}
                     >
                       <X className="w-4 h-4" />
                     </button>

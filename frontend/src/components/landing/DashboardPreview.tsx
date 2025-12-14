@@ -179,10 +179,16 @@ export function DashboardPreview() {
                       </span>
                     </div>
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                      <button className="p-1.5 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500">
+                      <button
+                        className="p-1.5 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500"
+                        aria-label="Generate subtopics"
+                      >
                         <Sparkles className="size-4" />
                       </button>
-                      <button className="p-1.5 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 text-gray-400 hover:text-purple-500">
+                      <button
+                        className="p-1.5 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 text-gray-400 hover:text-purple-500"
+                        aria-label="Open in learning mode"
+                      >
                         <PlayCircle className="size-4" />
                       </button>
                     </div>

@@ -1,6 +1,7 @@
 import { Archive, Sparkles, Target } from 'lucide-react';
 import { useLearning } from '../../contexts/useLearning';
 import { useBookmarks } from '../../contexts/useBookmarks';
+import { dispatchCustomEvent } from '../../utils/events';
 
 export function CompletedPathsWidget({
   onSelect,
@@ -53,6 +54,7 @@ export function CompletedPathsWidget({
                   onClick={() => triggerSubtopicGeneration({ title: topic.title, type: 'topic' })}
                   className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500 transition-colors"
                   title="generate subtopics"
+                  aria-label={`Generate subtopics for ${topic.title}`}
                 >
                   <Sparkles className="w-4 h-4" />
                 </button>
@@ -69,20 +71,15 @@ export function CompletedPathsWidget({
                       : 'text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30'
                   }`}
                   title="revisit topic"
+                  aria-label={`Revisit ${topic.title}`}
                 >
                   <Target className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => {
-                    try {
-                      const ev = new CustomEvent('showCompletedTopics');
-                      window.dispatchEvent(ev);
-                    } catch {
-                      window.dispatchEvent(new Event('showCompletedTopics'));
-                    }
-                  }}
+                  onClick={() => dispatchCustomEvent('showCompletedTopics')}
                   className="p-1 rounded hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 text-gray-400 hover:text-gray-600 transition-colors"
                   title="View all completed topics"
+                  aria-label="View all completed topics"
                 >
                   <Archive className="w-4 h-4" />
                 </button>

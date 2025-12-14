@@ -22,6 +22,7 @@ export function BookmarkActions({
           onClick={() => triggerSubtopicGeneration({ title: bookmark.title, type: bType })}
           className="p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-500 transition-colors"
           title="generate subtopics"
+          aria-label={`Generate subtopics for ${bookmark.title}`}
         >
           <Sparkles className="w-4 h-4" />
         </button>
@@ -33,6 +34,7 @@ export function BookmarkActions({
               : 'text-gray-400 hover:text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/30'
           }`}
           title="mark as current learning path"
+          aria-label={`Set ${bookmark.title} as current learning path`}
         >
           <Target className="w-4 h-4" />
         </button>
@@ -40,6 +42,7 @@ export function BookmarkActions({
           onClick={() => markAsLearned(bookmark.title, bType, bType === 'topic' ? 100 : 30)}
           className="p-1 rounded hover:bg-green-100 dark:hover:bg-green-900/30 text-gray-400 hover:text-green-500 transition-colors"
           title="mark as learned"
+          aria-label={`Mark ${bookmark.title} as learned`}
         >
           <CheckCircle className="w-4 h-4" />
         </button>
@@ -47,6 +50,7 @@ export function BookmarkActions({
           onClick={() => removeBookmark(bookmark.title)}
           className="p-1 rounded hover:bg-red-100 dark:hover:bg-red-900/30 text-gray-400 hover:text-red-500 transition-colors"
           title="remove bookmark"
+          aria-label={`Remove ${bookmark.title} from bookmarks`}
         >
           <X className="w-4 h-4" />
         </button>

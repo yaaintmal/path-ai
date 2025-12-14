@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.5.2.1",
+    "date": "2025-12-14",
+    "title": "Refactor: Code quality improvements & accessibility enhancements",
+    "description": "Extracted duplicate event dispatch logic and added WCAG 2.1 Level AA aria-labels to all icon-only buttons across the codebase",
+    "details": [
+      "Created `frontend/src/utils/events.ts` with `dispatchCustomEvent()` helper to centralize CustomEvent dispatch logic and replace 4 instances of duplicated try-catch patterns",
+      "Eliminated duplicate CustomEvent dispatch code in WhatsNewWidget, CompletedPathsWidget, and their event listeners >> cause copilot blamed me",
+      "THEREFORE: Added aria-label attributes to 24 icon-only buttons across dashboard components and pages for full WCAG 2.1 Level AA compliance",
+      "Updated components: WhatsNewWidget, CompletedPathsWidget, BookmarksWidget, SavedThemesWidget, DashboardPreview, TemplatesPage, TemplatesPage.clean, OpenTopicsPage, and ProgressWidget",
+      "Improved code maintainability and reduced duplication (DRY principle) — event dispatch now has a single source of truth",
+      "All accessibility labels follow semantic patterns: action + context (e.g., 'Generate subtopics for {title}', 'Remove {title} from bookmarks')"
+    ]
+  },
+  {
     "version": "0.5.2",
     "date": "2025-12-14",
     "title": "Release: Onboarding language, LLM prefs, and onboarding UX improvements",

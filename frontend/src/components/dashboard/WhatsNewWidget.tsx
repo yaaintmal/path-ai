@@ -3,6 +3,7 @@ import { fetchRecentChangelog, type ChangelogEntry } from '../../api/changelog';
 import { useAuth } from '../../contexts/useAuth';
 import IconButton from '../ui/IconButton';
 import { BookOpen } from 'lucide-react';
+import { dispatchCustomEvent } from '../../utils/events';
 
 export function WhatsNewWidget() {
   const { isAuthenticated } = useAuth();
@@ -34,28 +35,14 @@ export function WhatsNewWidget() {
         <h2 className="text-lg font-bold text-foreground">what's new</h2>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => {
-              try {
-                const ev = new CustomEvent('showChangelog');
-                window.dispatchEvent(ev);
-              } catch {
-                window.dispatchEvent(new Event('showChangelog'));
-              }
-            }}
+            onClick={() => dispatchCustomEvent('showChangelog')}
             className="text-xs text-muted-foreground hover:underline"
             title="View full changelog"
           >
             View all
           </button>
           <IconButton
-            onClick={() => {
-              try {
-                const ev = new CustomEvent('showChangelog');
-                window.dispatchEvent(ev);
-              } catch {
-                window.dispatchEvent(new Event('showChangelog'));
-              }
-            }}
+            onClick={() => dispatchCustomEvent('showChangelog')}
             ariaLabel="View full changelog"
             title="View full changelog"
             className="w-8 h-8 p-0 bg-gradient-to-br from-amber-400 to-amber-600 hover:shadow-lg"
@@ -71,14 +58,7 @@ export function WhatsNewWidget() {
           {entries.map((e) => (
             <li key={e.version} className="text-sm">
               <button
-                onClick={() => {
-                  try {
-                    const ev = new CustomEvent('showChangelog', { detail: { version: e.version } });
-                    window.dispatchEvent(ev);
-                  } catch {
-                    window.dispatchEvent(new Event('showChangelog'));
-                  }
-                }}
+                onClick={() => dispatchCustomEvent('showChangelog', { version: e.version })}
                 className="text-left w-full hover:underline text-foreground"
               >
                 <div className="flex items-center justify-between">
