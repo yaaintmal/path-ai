@@ -1,14 +1,24 @@
 [
   {
-    "version": "0.5.1.8.2",
-    "date": "2025-12-13",
-    "title": "Version Indicator Refactor",
-    "description": "Synced frontend version indicator with backend data source",
+    "version": "0.5.1.8.4",
+    "date": "2025-12-14",
+    "title": "refactored console logs",
+    "description": "Improved logging consistency and clarity across backend",
     "details": [
-      "Refactored VersionIndicator component to fetch version info from API",
-      "Updated backend to serve changelog from external JSON file",
-      "Fixed TypeScript build errors in JWT middleware",
-      "Ensured single source of truth for versioning"
+      "Replaced console.log with logger utility",
+      "Added color coding to log levels",
+      "Implemented log filtering logic"
+    ]
+  },
+  {
+    "version": "0.5.1.8.3",
+    "date": "2025-12-14",
+    "title": "local file storage options",
+    "description": "added local file storage option alongside cloudinary",
+    "details": [
+      "added STORAGE_DRIVER env variable to switch between 'cloudinary' and 'local'",
+      "implemented local file storage logic in storage utility",
+      "updated file upload and deletion middleware to support both storage methods"
     ]
   },
   {

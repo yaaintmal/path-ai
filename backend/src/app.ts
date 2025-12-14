@@ -11,6 +11,7 @@ import {
   changelogRouter,
   authRouter,
 } from '#routers';
+import path from 'path';
 import { User } from '#models';
 import { amberLog, success, info, loggerError, grayText, amberText, greenText } from '#utils';
 
@@ -33,6 +34,9 @@ app.use(
 
 // Routes
 console.log(grayText('[App] Registering routes...'));
+// Serve uploaded files (used when STORAGE_DRIVER=local)
+const uploadsDir = process.env.UPLOADS_DIR || path.join(process.cwd(), 'uploads');
+app.use('/uploads', express.static(uploadsDir));
 app.use('/api/users', userRouter);
 app.use('/api/videos', videoRouter);
 app.use('/api/store', storeRouter);
@@ -80,6 +84,71 @@ app.listen(PORT, () => {
     const ollamaModel = process.env.OLLAMA_MODEL || 'llama3-chatqa:latest';
     console.log(grayText('[LLM] Ollama URL: ') + amberText(ollamaUrl));
     console.log(grayText('[LLM] Ollama Model: ') + amberText(ollamaModel));
+  }
+
+  // Storage driver info
+  const storageDriver = process.env.STORAGE_DRIVER || 'cloudinary';
+  console.log(grayText('[Storage] Driver: ') + amberText(storageDriver));
+  if (storageDriver === 'local') {
+    const uploadsDir = process.env.UPLOADS_DIR || path.join(process.cwd(), 'uploads');
+    console.log(grayText('[Storage] Uploads Dir: ') + amberText(uploadsDir));
+  } else {
+    console.log(
+      grayText('[Storage] Cloudinary: ') + amberText(process.env.CLOUD_NAME || 'not-configured')
+    );
+  }
+
+  // Helper to extract route methods and paths from an Express router
+  const getRouterRoutes = (router: any, base = '') => {
+    const list: string[] = [];
+    const stack = router?.stack ?? [];
+    for (const layer of stack) {
+      if (layer.route && layer.route.path) {
+        const methods = Object.keys(layer.route.methods ?? {})
+          .map((m) => m.toUpperCase())
+          .join(',');
+        list.push(`${methods} ${base}${layer.route.path}`);
+      }
+    }
+    return list;
+  };
+
+  // List video routes for convenience
+  try {
+    const videoRoutes = getRouterRoutes(videoRouter, '/api/videos');
+    console.log(grayText('[Video Routes] Available:'));
+    videoRoutes.forEach((r) => console.log('  ' + amberText(r)));
+  } catch (err) {
+    console.warn('Failed to enumerate video routes', err);
+  }
+
+  // At the end, list all known router routes for easy discovery
+  try {
+    const routers: Array<{ base: string; router: any }> = [
+      { base: '/api/users', router: userRouter },
+      { base: '/api/videos', router: videoRouter },
+      { base: '/api/store', router: storeRouter },
+      { base: '/api/llm', router: llmRouter },
+      { base: '/api/changelog', router: changelogRouter },
+      { base: '/api/auth', router: authRouter },
+    ];
+
+    console.log(grayText('[Routes] All available:'));
+    for (const r of routers) {
+      const list = ((): string[] => {
+        try {
+          return getRouterRoutes(r.router, r.base);
+        } catch {
+          return [];
+        }
+      })();
+      if (list.length) {
+        console.log('  ' + amberText(r.base + ':'));
+        list.forEach((line) => console.log('    ' + line));
+      }
+    }
+  } catch (err) {
+    console.warn('Failed to enumerate all routes', err);
   }
 
   // cleanup expired boosts once on startup and then daily

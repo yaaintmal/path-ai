@@ -1,4 +1,5 @@
 export { default as deleteFromCloudinary } from './cloudinary.ts';
+export { deleteFromStorage, computeEtagForFile, buildPublicUrl } from './storage.ts';
 export {
   default as transcribeVideoFromUrl,
   normalizeTranscription,

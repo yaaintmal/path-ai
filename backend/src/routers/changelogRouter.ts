@@ -13,6 +13,7 @@ const changelogRouter = Router();
 //
 changelogRouter.get('/', getChangelog);
 
+//
 // * GET /api/changelog/latest
 // Returns the latest changelog entry
 //

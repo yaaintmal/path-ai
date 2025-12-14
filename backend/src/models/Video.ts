@@ -18,6 +18,10 @@ export const videoSchema = new Schema(
     videoPublicId: {
       type: String,
     },
+    storagePath: {
+      type: String,
+      required: false,
+    },
     etag: {
       type: String,
       index: true,

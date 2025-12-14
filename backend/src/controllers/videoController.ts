@@ -3,7 +3,9 @@ import { Video } from '#models';
 import type { VideoInputDTO, VideoDTO, VideoUpdateInputDTO } from '#schemas';
 import type { MessageResponse } from '#types';
 import {
-  deleteFromCloudinary,
+  deleteFromStorage,
+  computeEtagForFile,
+  buildPublicUrl,
   normalizeTranscription,
   transcribeVideoFromUrl,
   translateTextWithGemini,
@@ -15,35 +17,9 @@ import {
   findExistingVideoWithOptionalTranslation,
   translateCuesPreserveTimings,
 } from '#utils';
-import { cloudinaryClient } from '#middleware';
 
-const fetchEtagForUpload = async (publicId?: string, videoUrl?: string | null) => {
-  if (!publicId) return undefined;
-
-  // Prefer Cloudinary Admin API (authoritative).
-  try {
-    const resource = (await cloudinaryClient.api.resource(publicId, {
-      resource_type: 'video',
-      type: 'upload',
-    })) as { etag?: string } | undefined;
-    if (resource?.etag) return resource.etag;
-  } catch (err) {
-    console.warn('Unable to fetch Cloudinary etag via admin API', err);
-  }
-
-  // Fallback: HEAD request to the asset URL (public Cloudinary URLs include an ETag header).
-  if (videoUrl) {
-    try {
-      const response = await fetch(videoUrl, { method: 'HEAD' });
-      const headerEtag = response.headers.get('etag');
-      if (headerEtag) return headerEtag.replace(/"/g, '');
-    } catch (err) {
-      console.warn('Unable to fetch Cloudinary etag via HEAD request', err);
-    }
-  }
-
-  return undefined;
-};
+// For local storage we compute an etag (sha256) for the uploaded file; for cloudinary the existing flow remains
+// (compute via admin API/HEAD). We compute etag inline in `createVideo` depending on the configured storage driver.
 
 export const createVideo: RequestHandler<
   unknown,
@@ -52,13 +28,30 @@ export const createVideo: RequestHandler<
 > = async (req, res) => {
   const { videoUrl: bodyVideoUrl, targetLanguage } = req.body;
   const uploadedFile = req.file as Express.Multer.File | undefined;
-  const uploadedVideoUrl = uploadedFile?.path;
-  const uploadedPublicId = uploadedFile?.filename;
-  const videoUrl = uploadedVideoUrl ?? bodyVideoUrl;
+  const uploadedVideoPath = uploadedFile?.path;
+  const uploadedFilename = uploadedFile?.filename;
+  const isLocal = process.env.STORAGE_DRIVER === 'local';
+  let videoUrl = bodyVideoUrl;
   const targetLanguageBcp47 = targetLanguage ? mapLanguageToBcp47(targetLanguage) : undefined;
-  const uploadedEtag = uploadedPublicId
-    ? await fetchEtagForUpload(uploadedPublicId, videoUrl)
-    : undefined;
+  let uploadedEtag: string | undefined = undefined;
+  if (uploadedFile) {
+    if (isLocal && uploadedFile.path) {
+      // compute etag from file contents
+      uploadedEtag = await computeEtagForFile(uploadedFile.path as string);
+      // use server public URL for processing (transcription)
+      videoUrl = buildPublicUrl(uploadedFile.filename as string);
+    } else if (!isLocal) {
+      // For cloudinary, try to get etag via HEAD request as a fallback
+      try {
+        const headResp = await fetch(uploadedFile.path as string, { method: 'HEAD' });
+        const headerEtag = headResp.headers.get('etag');
+        if (headerEtag) uploadedEtag = headerEtag.replace(/"/g, '');
+      } catch {
+        // ignore
+      }
+      videoUrl = uploadedFile.path || bodyVideoUrl;
+    }
+  }
 
   if (!videoUrl) {
     return res.status(400).json({ message: 'Video URL or file is required' });
@@ -71,8 +64,8 @@ export const createVideo: RequestHandler<
       uploadedEtag
     );
     if (existingVideo) {
-      if (uploadedPublicId && existingVideo.videoPublicId !== uploadedPublicId) {
-        await deleteFromCloudinary(uploadedPublicId);
+      if (uploadedFilename && existingVideo.videoPublicId !== uploadedFilename) {
+        await deleteFromStorage(uploadedFilename);
       }
       return res.status(200).json(serializeVideo(existingVideo));
     }
@@ -102,7 +95,7 @@ export const createVideo: RequestHandler<
       }
     }
   } catch (err) {
-    await deleteFromCloudinary(uploadedPublicId);
+    await deleteFromStorage(uploadedFilename);
     console.error('Failed to transcribe video', err);
     return res.status(502).json({ message: 'Failed to transcribe video' });
   }
@@ -123,7 +116,7 @@ export const createVideo: RequestHandler<
         translations.push({ name: targetLanguageBcp47, closedCaptionVtt: '' });
       }
     } catch (err) {
-      await deleteFromCloudinary(uploadedPublicId);
+      await deleteFromStorage(uploadedFilename);
       console.error('Failed to translate video', err);
       return res.status(502).json({ message: 'Failed to translate video' });
     }
@@ -131,7 +124,8 @@ export const createVideo: RequestHandler<
 
   const video = await Video.create({
     videoUrl,
-    videoPublicId: uploadedPublicId,
+    videoPublicId: isLocal ? undefined : uploadedFilename,
+    storagePath: isLocal ? uploadedFilename : undefined,
     etag: uploadedEtag ?? undefined,
     originalLanguage: {
       name: detectedLanguageBcp47,
@@ -204,7 +198,9 @@ export const deleteVideo: RequestHandler<{ id: string }, MessageResponse, unknow
     return res.status(404).json({ message: `No video with id: ${id} found!` });
   }
 
-  await deleteFromCloudinary(video.videoPublicId);
+  await deleteFromStorage(
+    (video as any).videoPublicId || (video as any).storagePath || video.videoUrl
+  );
   await video.deleteOne();
 
   res.status(200).json({ message: 'Video deleted successfully' });
@@ -216,7 +212,13 @@ export const deleteAllVideos: RequestHandler<unknown, MessageResponse, unknown> 
 ) => {
   const videos = await Video.find();
 
-  await Promise.all(videos.map((video) => deleteFromCloudinary(video.videoPublicId)));
+  await Promise.all(
+    videos.map((video) =>
+      deleteFromStorage(
+        (video as any).videoPublicId || (video as any).storagePath || video.videoUrl
+      )
+    )
+  );
   await Video.deleteMany({});
 
   res.status(200).json({ message: 'All videos deleted successfully' });

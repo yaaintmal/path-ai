@@ -1,14 +1,15 @@
 import type { RequestHandler } from 'express';
 import type { ZodObject } from 'zod/v4';
 import { cloudinaryClient } from './upload.ts';
+import { deleteFromStorage } from '#utils';
 
 const cleanupCloudinaryUploads = async (files: Express.Multer.File[] | undefined) => {
   if (!files?.length) return;
 
   const deletions = files
     .map((file) => file.filename)
-    .filter((publicId): publicId is string => Boolean(publicId))
-    .map((publicId) => cloudinaryClient.uploader.destroy(publicId));
+    .filter((id): id is string => Boolean(id))
+    .map((id) => deleteFromStorage(id));
 
   await Promise.allSettled(deletions);
 };
