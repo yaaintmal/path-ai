@@ -1,4 +1,7 @@
 # PathAI - Free Knowledge for Everybody
+---
+Welcome to PathAI! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
+---
 
 > ⚠️ **IMPORTANT: LICENSE NOTICE**
 >
@@ -9,8 +12,7 @@
 >
 > Please refer to the `LICENSE` file in this repository for the specific legal terms governing this software.
 
----
-Welcome to PathAI! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
+
 
 ## Ascend Your Knowledge The Gaming Way
 
