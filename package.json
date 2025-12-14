@@ -1,6 +1,6 @@
 {
   "name": "path-ai-by-mal",
-  "version": "1.0.0",
+  "version": "0.5.1.9.2",
   "private": true,
   "workspaces": [
     "backend",

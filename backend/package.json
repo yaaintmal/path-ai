@@ -1,6 +1,6 @@
 {
   "name": "path-ai-by-mal-backend",
-  "version": "1.0.0",
+  "version": "3.0.2",
   "description": "",
   "main": "dist/app.js",
   "type": "module",
