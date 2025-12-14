@@ -147,6 +147,7 @@ function AppContent() {
           setShowRegistration={setShowRegistration}
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
           setDashboardMode={setDashboardMode}
           hasOnboardingData={hasOnboardingData}
         />

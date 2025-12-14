@@ -212,6 +212,7 @@ export function Header({
                     if (setShowTimer) {
                       setShowTimer(true);
                       if (setShowDashboard) setShowDashboard(false);
+                      if (setDashboardMode) setDashboardMode(null);
                       if (setShowOnboarding) setShowOnboarding(false);
                       if (setShowRegistration) setShowRegistration(false);
                       if (setShowOnboardingEditor) setShowOnboardingEditor(false);

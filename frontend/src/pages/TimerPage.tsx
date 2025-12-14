@@ -69,7 +69,7 @@ export function TimerPage({ onBack }: TimerPageProps) {
           onClick={onBack}
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Dashboard
+          Back to Overview
         </Button>
       )}
       <PageHeader
