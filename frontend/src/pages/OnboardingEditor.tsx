@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/useAuth';
 import { Card } from '../ui/card';
 import { toast } from 'sonner';
 import { getApiUrl } from '../config/app.config';
@@ -50,9 +51,24 @@ export function OnboardingEditor({
   const [data, setData] = useState<Partial<OnboardingData>>({});
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const { userDetails } = useAuth();
 
   // Load existing data from user in localStorage
   useEffect(() => {
+    // Prefer onboarding data from userDetails (reactive); fallback to localStorage
+    if (userDetails?.onboardingData) {
+      const loadedData = userDetails.onboardingData;
+      if (loadedData.skillLevels && !Array.isArray(loadedData.skillLevels)) {
+        loadedData.skillLevels = Object.entries(loadedData.skillLevels).map(([subject, level]) => ({
+          subject,
+          level: Number(level),
+        }));
+      }
+      setData(loadedData);
+      setIsLoading(false);
+      return;
+    }
+
     const userStr = localStorage.getItem('user');
     if (userStr) {
       try {
@@ -72,7 +88,7 @@ export function OnboardingEditor({
       }
     }
     setIsLoading(false);
-  }, []);
+  }, [userDetails]);
 
   const nextStep = () => {
     if (currentStep < stepsConfig.length) {
