@@ -88,12 +88,16 @@ const callGemini = async (prompt: string): Promise<string> => {
 
 const callOllama = async (prompt: string, model: string): Promise<string> => {
   // Prefer backend env vars, but fall back to VITE_* variables if set (useful for local dev)
-  const ollamaUrl =
-    process.env.VITE_OLLAMA_API_URL || 'http://192.168.178.6:11434/api/generate';
+  const ollamaUrl = process.env.VITE_OLLAMA_API_URL || 'http://192.168.178.6:11434/api/generate';
   const modelId = process.env.VITE_OLLAMA_MODEL;
 
   const truncatedPrompt = prompt.length > 200 ? `${prompt.slice(0, 200)}...` : prompt;
-  amberLog('[LLM] Ollama request -> URL: %s | model: %s | prompt: "%s"', ollamaUrl, modelId, truncatedPrompt);
+  amberLog(
+    '[LLM] Ollama request -> URL: %s | model: %s | prompt: "%s"',
+    ollamaUrl,
+    modelId,
+    truncatedPrompt
+  );
 
   const response = await fetch(ollamaUrl, {
     method: 'POST',
@@ -105,7 +109,12 @@ const callOllama = async (prompt: string, model: string): Promise<string> => {
 
   if (!response.ok) {
     const bodyText = await response.text().catch(() => '<unreadable>');
-    loggerError('[LLM] Ollama API failed: %s %s - %s', String(response.status), String(response.statusText), bodyText);
+    loggerError(
+      '[LLM] Ollama API failed: %s %s - %s',
+      String(response.status),
+      String(response.statusText),
+      bodyText
+    );
     throw new Error(`Ollama API failed: ${response.status} ${response.statusText} - ${bodyText}`);
   }
 
@@ -119,8 +128,14 @@ const callOllama = async (prompt: string, model: string): Promise<string> => {
   try {
     data = JSON.parse(raw) as { response?: string };
   } catch (err) {
-    loggerError('[LLM] Invalid JSON from Ollama: %s | body=%s', err instanceof Error ? err.message : String(err), raw);
-    throw new Error(`Invalid JSON from Ollama API: ${err instanceof Error ? err.message : String(err)}`);
+    loggerError(
+      '[LLM] Invalid JSON from Ollama: %s | body=%s',
+      err instanceof Error ? err.message : String(err),
+      raw
+    );
+    throw new Error(
+      `Invalid JSON from Ollama API: ${err instanceof Error ? err.message : String(err)}`
+    );
   }
 
   if (!data?.response) {

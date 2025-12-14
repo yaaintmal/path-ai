@@ -36,7 +36,7 @@ const rawCors =
     'http://localhost:4173',
     'http://127.0.0.1:4173',
     'http://192.168.178.89:5173',
-    'http://192.168.178.89:4173'
+    'http://192.168.178.89:4173',
   ].join(',');
 const allowedOrigins = Array.from(
   new Set(
@@ -132,7 +132,9 @@ app.listen(PORT, '0.0.0.0', () => {
     }
   } else {
     const effectiveOllamaUrl =
-      process.env.OLLAMA_API_URL || process.env.VITE_OLLAMA_API_URL || 'http://localhost:11434/api/generate';
+      process.env.OLLAMA_API_URL ||
+      process.env.VITE_OLLAMA_API_URL ||
+      'http://localhost:11434/api/generate';
     const effectiveOllamaModel =
       process.env.OLLAMA_MODEL || process.env.VITE_OLLAMA_MODEL || 'llama3-chatqa:latest';
     console.log(grayText('[LLM] Ollama URL: ') + amberText(effectiveOllamaUrl));
@@ -140,7 +142,9 @@ app.listen(PORT, '0.0.0.0', () => {
 
     if (!process.env.OLLAMA_API_URL && process.env.VITE_OLLAMA_API_URL) {
       console.log(
-        grayText('[LLM] NOTE: Using frontend `VITE_OLLAMA_API_URL` as fallback. To make the backend authoritative, set `OLLAMA_API_URL` in your backend env.')
+        grayText(
+          '[LLM] NOTE: Using frontend `VITE_OLLAMA_API_URL` as fallback. To make the backend authoritative, set `OLLAMA_API_URL` in your backend env.'
+        )
       );
     }
   }
