@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { trackTopicClick } from '../../../../utils/analytics';
 import { useBookmarks } from '../../../../contexts/useBookmarks';
 import { useLearning } from '../../../../contexts/useLearning';
 import { LLM_MODEL, PROMPTS, getPreferredLanguage } from './learn.constants';
@@ -21,6 +22,8 @@ export function useLearnWidget() {
 
   // Generate subtopics directly for a given topic (used when clicking from SavedThemesWidget)
   const generateSubtopicsForTopic = useCallback(async (topicTitle: string) => {
+    // Track that user opened this topic from saved themes
+    trackTopicClick(topicTitle);
     setLearntopic(topicTitle);
     setSelectedStartingPoint(topicTitle);
     setIsLoadingSubtopics(true);
@@ -73,6 +76,8 @@ export function useLearnWidget() {
   };
 
   const fetchSubtopics = async (startingPoint: string) => {
+    // Track user clicked a starting point
+    trackTopicClick(startingPoint);
     setSelectedStartingPoint(startingPoint);
     setIsLoadingSubtopics(true);
     setError(null);

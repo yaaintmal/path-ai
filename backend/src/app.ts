@@ -11,6 +11,8 @@ import {
   changelogRouter,
   authRouter,
   timerRouter,
+  interactionRouter,
+  adminRouter,
 } from '#routers';
 import path from 'path';
 import { User } from '#models';
@@ -45,6 +47,8 @@ app.use('/api/llm', llmRouter);
 app.use('/api/changelog', changelogRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/timer', timerRouter);
+app.use('/api/interactions', interactionRouter);
+app.use('/api/admin', adminRouter);
 // Also expose a top-level discovery route that returns LLM provider/model info
 app.get('/api/llm-route', (_req, res) => {
   const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';
@@ -133,6 +137,9 @@ app.listen(PORT, () => {
       { base: '/api/llm', router: llmRouter },
       { base: '/api/changelog', router: changelogRouter },
       { base: '/api/auth', router: authRouter },
+      { base: '/api/timer', router: timerRouter },
+      { base: '/api/interactions', router: interactionRouter },
+      { base: '/api/admin', router: adminRouter },
     ];
 
     console.log(grayText('[Routes] All available:'));
@@ -149,6 +156,45 @@ app.listen(PORT, () => {
         list.forEach((line) => console.log('    ' + line));
       }
     }
+
+    // Startup banner
+    try {
+      const pkg = JSON.parse(
+        require('fs').readFileSync(require('path').join(process.cwd(), 'package.json'), 'utf8')
+      );
+      const version = pkg?.version || 'unknown';
+      console.log('='.repeat(60));
+      console.log(
+        ' ' + greenText(`Path AI Backend v${version}`) + ' - ' + grayText(new Date().toISOString())
+      );
+      console.log('='.repeat(60));
+    } catch (e) {
+      // ignore
+    }
+
+    // Show special notes for interaction routes
+    console.log(
+      grayText('[Info] Interaction tracking endpoints:') +
+        ' ' +
+        amberText(
+          '/api/interactions [POST /track, GET /stats, GET /risk-assessment, GET /user/:id, GET /report/suspicious (admin only)]'
+        )
+    );
+
+    // Log where logs are stored
+    const logDir = process.env.LOG_DIR || path.join(process.cwd(), 'logs');
+    console.log(
+      grayText('[Logs] General logs:') +
+        ' ' +
+        amberText(path.join(logDir, `path-ai-${new Date().toISOString().slice(0, 10)}.log`))
+    );
+    console.log(
+      grayText('[Logs] Critical logs:') +
+        ' ' +
+        amberText(
+          path.join(logDir, `path-ai-critical-${new Date().toISOString().slice(0, 10)}.log`)
+        )
+    );
   } catch (err) {
     console.warn('Failed to enumerate all routes', err);
   }

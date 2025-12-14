@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { useAuth } from './useAuth';
+import { trackTimerAction } from '../utils/analytics';
 import { getApiUrl } from '../config/app.config';
 import { toast } from 'sonner';
 
@@ -102,6 +103,8 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
         if (timeGoal) {
           setTimeGoal(timeGoal);
         }
+        // Track timer start
+        trackTimerAction('timer_start', goal);
         toast.success('Learning session started!');
       } else {
         const error = await response.json();
@@ -133,6 +136,8 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
         setCurrentGoal(null);
         setElapsedTime(0);
         setTimeGoal(null);
+        // Track timer stop - duration in seconds
+        trackTimerAction('timer_stop', undefined, elapsedTime, undefined);
         toast.success('Learning session stopped!');
       } else {
         const error = await response.json();

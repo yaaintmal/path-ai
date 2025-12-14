@@ -1,0 +1,96 @@
+{
+  "info": {
+    "name": "Interaction Tracking",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Track Interaction",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{authToken}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/interactions/track",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interactions", "track"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"actionType\": \"topic_click\",\n  \"context\": { \"topicTitle\": \"Binary Search\", \"timestamp\": {{timestamp}} }\n}"
+        }
+      }
+    },
+    {
+      "name": "Get User Stats",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/interactions/stats?days=7",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interactions", "stats"],
+          "query": [{ "key": "days", "value": "7" }]
+        }
+      }
+    },
+    {
+      "name": "Get Risk Assessment",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/interactions/risk-assessment",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interactions", "risk-assessment"]
+        }
+      }
+    },
+    {
+      "name": "Get User History",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{authToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/interactions/user/{{userId}}?limit=50&skip=0",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interactions", "user", "{{userId}}"],
+          "query": [
+            { "key": "limit", "value": "50" },
+            { "key": "skip", "value": "0" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Suspicious Report (admin)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/interactions/report/suspicious?days=7",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interactions", "report", "suspicious"],
+          "query": [{ "key": "days", "value": "7" }]
+        }
+      }
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": ["// Set current timestamp in ms", "pm.variables.set('timestamp', Date.now());"]
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "authToken", "value": "" },
+    { "key": "adminToken", "value": "" },
+    { "key": "userId", "value": "" },
+    { "key": "timestamp", "value": "" }
+  ]
+}

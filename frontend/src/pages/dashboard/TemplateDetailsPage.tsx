@@ -1,4 +1,5 @@
 import { ChevronLeft, CheckCircle2, Circle, Sparkles, Target } from 'lucide-react';
+import { trackTopicCompletion } from '../../utils/analytics';
 import { useLearning } from '../../contexts/useLearning';
 import type { LearningTemplate } from '../../types/templates';
 import { useState } from 'react';
@@ -19,6 +20,8 @@ export function TemplateDetailsPage({ template, onBack, onUseTemplate }: Templat
       newCompleted.delete(topic);
     } else {
       newCompleted.add(topic);
+      // Track completion of topic
+      trackTopicCompletion(topic);
     }
     setCompletedTopics(newCompleted);
   };

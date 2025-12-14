@@ -11,6 +11,7 @@ import {
   Play,
   Square,
   Timer,
+  LayoutGrid,
 } from 'lucide-react';
 import { UserDashButton } from './UserDashButton';
 import { useTheme } from 'next-themes';
@@ -65,6 +66,7 @@ export function Header({
     if (setShowOnboarding) setShowOnboarding(false);
     if (setShowRegistration) setShowRegistration(false);
     if (setShowOnboardingEditor) setShowOnboardingEditor(false);
+    if (setShowTimer) setShowTimer(false);
     if (setShowDashboard) setShowDashboard(true);
     if (setDashboardMode) setDashboardMode(null);
     window.scrollTo(0, 0);
@@ -274,6 +276,18 @@ export function Header({
                   ) : (
                     <Moon className="size-5" />
                   )}
+                </Button>
+
+                {/* Dashboard Selection Overview */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleDashboardClick}
+                  className="rounded-full hover:text-blue-500 hover:bg-blue-500/10 transition-colors"
+                  title="Dashboard Overview"
+                  aria-label="Go to dashboard overview"
+                >
+                  <LayoutGrid className="size-5" />
                 </Button>
 
                 <UserDashButton compact onClick={handleDashboardClick} className="rounded-full" />
