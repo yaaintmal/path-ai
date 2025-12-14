@@ -142,10 +142,10 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => onSelect('learning')}
-            className="bg-card p-8 rounded-2xl shadow-lg border border-border hover:border-purple-500 transition-colors group text-left"
+            className="bg-card p-8 rounded-2xl shadow-lg border border-border hover:border-amber-500 transition-colors group text-left"
           >
-            <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
-              <BookOpen className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+            <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-amber-200 dark:group-hover:bg-amber-900/50 transition-colors">
+              <BookOpen className="w-8 h-8 text-amber-600 dark:text-amber-400" />
             </div>
             <h2 className="text-2xl font-bold text-foreground mb-3">Continue Learning</h2>
             <p className="text-muted-foreground">
