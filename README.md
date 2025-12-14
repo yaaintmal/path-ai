@@ -1,5 +1,4 @@
-# PathAI - Learn Smarter, Not Harder
-
+# PathAI - Free Knowledge for Everybody
 ## Your AI-Powered Learning Companion
 
 
