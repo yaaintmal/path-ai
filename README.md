@@ -2,11 +2,9 @@
 
 ## Your AI-Powered Learning Companion
 
-Welcome to PathAI! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
-
----
-
 https://github.com/user-attachments/assets/e26af7c8-078e-4d8c-a090-47adc21c008b
+
+Welcome to PathAI! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
 
 ---
 
