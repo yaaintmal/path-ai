@@ -1,10 +1,8 @@
 # PathAI - Free Knowledge for Everybody
+
 ## Ascend Your Knowledge The Gaming Way
 
-
 https://github.com/user-attachments/assets/9601a5a8-16f5-4283-8adb-6b8308d66d4a
-
-
 
 Welcome to PathAI! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
 

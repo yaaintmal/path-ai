@@ -51,6 +51,16 @@ export const createVideo: RequestHandler<
       }
       videoUrl = uploadedFile.path || bodyVideoUrl;
     }
+    // Log upload info for debugging/observability
+    try {
+      const displayName = uploadedFilename || uploadedFile.originalname || 'unknown-file';
+      const link = videoUrl || uploadedFile.path || displayName;
+      console.log(
+        `[Videos] Upload received (${process.env.STORAGE_DRIVER || 'cloudinary'}): ${displayName} -> ${link}`
+      );
+    } catch (err) {
+      console.warn('Failed to log uploaded file info', err);
+    }
   }
 
   if (!videoUrl) {
