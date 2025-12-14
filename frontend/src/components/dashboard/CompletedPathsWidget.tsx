@@ -1,4 +1,4 @@
-import { Archive, Sparkles, Target } from 'lucide-react';
+import { Archive, CheckCircle, Sparkles, Target } from 'lucide-react';
 import { useLearning } from '../../contexts/useLearning';
 import { useBookmarks } from '../../contexts/useBookmarks';
 
@@ -20,7 +20,7 @@ export function CompletedPathsWidget({
     <div className="md:col-span-2 bg-card p-4 rounded-2xl shadow-lg border border-border">
       <div className="flex items-center gap-2 mb-3">
         <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-          <Archive className="w-6 h-6 text-green-600 dark:text-green-400" />
+          <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
         </div>
         <h2 className="text-lg font-bold text-foreground">Lastly completed learning paths</h2>
       </div>
