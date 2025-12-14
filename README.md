@@ -1,5 +1,14 @@
 # PathAI - Free Knowledge for Everybody
 
+> ⚠️ **IMPORTANT: LICENSE NOTICE**
+>
+> This software is **Source Available** but **NOT Open Source**.
+>
+> It is free for personal, educational, and internal usage.
+> **Commercial use, redistribution for profit, or bundling in commercial products is STRICTLY PROHIBITED.**
+>
+> Please refer to the `LICENSE` file in this repository for the specific legal terms governing this software.
+
 ## Ascend Your Knowledge The Gaming Way
 
 https://github.com/user-attachments/assets/9601a5a8-16f5-4283-8adb-6b8308d66d4a
