@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.5.3.3",
+    "date": "2025-12-14",
+    "title": "Fix: Timer Navigation from Learning Mode",
+    "description": "Fixed timer button accessibility issue when navigating from learning mode or PATH AI sections.",
+    "details": [
+      "Fixed bug where timer button (⏱️ icon) in header was non-functional when in learning mode.",
+      "Root cause: Header component was not receiving `setShowTimer` prop when dashboard mode was set.",
+      "Updated App.tsx to pass `setShowTimer` to Header in all dashboard mode branches, ensuring timer button works everywhere.",
+      "Enhanced timer button handler to also clear `dashboardMode` state, ensuring clean navigation from learning/statistics modes.",
+      "Renamed back button text from 'Back to Dashboard' to 'Back to Overview' for clearer UX language.",
+      "Timer page is now accessible from any mode: dashboard selection, learning (PATH AI), statistics, and completed topics."
+    ]
+  },
+  {
     "version": "0.5.3.2",
     "date": "2025-12-14",
     "title": "Security: Timer Input Validation & Sanitization",
