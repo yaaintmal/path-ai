@@ -1,5 +1,5 @@
 # PathAI - Free Knowledge for Everybody
-## Your AI-Powered Learning Companion
+## Ascend Your Knowledge With Your AI-Powered Learning Companion
 
 
 https://github.com/user-attachments/assets/9601a5a8-16f5-4283-8adb-6b8308d66d4a
