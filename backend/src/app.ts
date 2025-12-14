@@ -185,7 +185,9 @@ app.listen(PORT, () => {
     console.log(
       grayText('[Info] Timer endpoints:') +
         ' ' +
-        amberText('/api/timer [POST /start, POST /stop, GET /active, GET /history, GET /statistics]')
+        amberText(
+          '/api/timer [POST /start, POST /stop, GET /active, GET /history, GET /statistics]'
+        )
     );
 
     // Admin endpoints
