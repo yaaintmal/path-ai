@@ -1,5 +1,33 @@
 [
   {
+    "version": "0.5.1.9.2",
+    "date": "2025-12-14",
+    "title": "Fix: widget polish & stats card",
+    "description": "Polished dashboard widgets (fixed duplicated actions, alignment) and added dynamic changelog statistics",
+    "details": [
+      "Fixed duplicated action buttons in 'last 3 bookmarks' — now icon-only actions are shown and the badge appears before the title",
+      "Restored compact single-row layout: badge + title + icon-only actions aligned in the same div",
+      "Added icon-only quick actions to 'Lastly completed learning paths' (generate subtopics, revisit/set current, and 'view all completed topics')",
+      "Wired 'view all completed topics' to dispatch a global event so the app opens the Completed Topics page from widgets",
+      "Ensured hover visibility for action icons by adding Tailwind `group` semantics and subtle hover affordances",
+      "Added `ChangelogStatsCard` that computes fun, live stats from backend `changelog.json` (total versions, avg cadence, top title word, Fix/Feature counts)"
+    ]
+  },
+  {
+    "version": "0.5.1.9",
+    "date": "2025-12-14",
+    "title": "UI: dashboard widgets & quick actions",
+    "description": "Improved dashboard widgets for faster access: 'What's New' view, bookmark actions, and completed topics shortcuts",
+    "details": [
+      "Added 'View all' link to 'What's New' widget that opens the full changelog",
+      "Updated 'last 3 bookmarks' widget: moved badge before title, restored compact layout, and added icon-only quick actions (subtopics, set current, mark learned, remove)",
+      "Made bookmark action buttons consistent with `SavedThemesWidget` and visible on hover (uses tailwind `group`/`group-hover` semantics)",
+      "Updated 'Lastly completed learning paths' widget: badge-before-title layout and icon-only actions (generate subtopics, revisit/set current and 'view all completed topics')",
+      "Wired 'view all completed topics' to dispatch a global event so the app opens the Completed Topics view from widget actions",
+      "Minor UX polish: hover affordances, alignment fixes, and subtle hover shadow for interactive rows"
+    ]
+  },
+  {
     "version": "0.5.1.8.5",
     "date": "2025-12-14",
     "title": "Fix: storage & auth sync improvements",

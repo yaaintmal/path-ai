@@ -37,7 +37,9 @@ export default function App() {
   const [showOnboardingEditor, setShowOnboardingEditor] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
-  const [dashboardMode, setDashboardMode] = useState<'learning' | 'statistics' | null>(null);
+  const [dashboardMode, setDashboardMode] = useState<
+    'learning' | 'statistics' | 'completed-topics' | null
+  >(null);
   const [hasOnboardingData, setHasOnboardingData] = useState(false);
 
   useEffect(() => {
@@ -71,6 +73,23 @@ export default function App() {
       };
       checkOnboardingStatus();
     }
+    // Listen for global requests to show the changelog (dispatched from widgets)
+    const onShowChangelog = () => setShowChangelog(true);
+    // Listen for requests to open completed topics page
+    const onShowCompletedTopics = () => {
+      setShowDashboard(true);
+      setDashboardMode('completed-topics');
+    };
+    if (typeof window !== 'undefined') {
+      window.addEventListener('showChangelog', onShowChangelog as EventListener);
+      window.addEventListener('showCompletedTopics', onShowCompletedTopics as EventListener);
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('showChangelog', onShowChangelog as EventListener);
+        window.removeEventListener('showCompletedTopics', onShowCompletedTopics as EventListener);
+      }
+    };
   }, [isAuthenticated]);
 
   if (showDashboard) {

@@ -1,6 +1,6 @@
 interface DashboardProps {
   setShowOnboardingEditor: (show: boolean) => void;
-  mode: 'learning' | 'statistics' | 'store';
+  mode: 'learning' | 'statistics' | 'store' | 'completed-topics';
 }
 
 import { useState } from 'react';
