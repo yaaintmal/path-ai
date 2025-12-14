@@ -25,6 +25,19 @@ export function UserDashButton({ onClick, compact = false, className = '' }: Pro
   const title = computedBadge.title ?? 'Learner';
   const badgeIcon = computedBadge.icon ?? '📚';
 
+  const role = userDetails?.onboardingData?.role;
+  let roleColorClass = '';
+  if (role === 'student') {
+    roleColorClass =
+      'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-blue-200 dark:border-blue-800';
+  } else if (role === 'pupil') {
+    roleColorClass =
+      'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 border-orange-200 dark:border-orange-800';
+  } else if (role === 'teacher') {
+    roleColorClass =
+      'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border-green-200 dark:border-green-800';
+  }
+
   return (
     <button
       type="button"
@@ -43,6 +56,15 @@ export function UserDashButton({ onClick, compact = false, className = '' }: Pro
         <span className="text-sm">{badgeIcon}</span>
         <span>{title}</span>
       </span>
+
+      {role && roleColorClass && (
+        <span
+          className={`ml-1 text-xs border rounded-full w-6 h-6 flex items-center justify-center font-bold ${roleColorClass}`}
+          title={role}
+        >
+          S
+        </span>
+      )}
     </button>
   );
 }

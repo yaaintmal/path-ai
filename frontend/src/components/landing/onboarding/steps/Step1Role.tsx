@@ -13,8 +13,8 @@ export function Step1Role({ data, updateData }: Step1RoleProps) {
   return (
     <div className="space-y-6">
       <StepHeader
-        title="Welche Rolle hast du?"
-        description="Wir passen das Dashboard sofort an deine Rolle an"
+        title="Apply your role?"
+        description="We will immediately customize the dashboard to your role"
       />
 
       <RadioGroup value={data.role || ''} onValueChange={(value) => updateData('role', value)}>

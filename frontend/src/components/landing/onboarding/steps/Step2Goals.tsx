@@ -21,8 +21,8 @@ export function Step2Goals({ data, updateData, toggleArrayItem }: Step2GoalsProp
   return (
     <div className="space-y-6">
       <StepHeader
-        title="Was sind deine Ziele?"
-        description="Wähle alles aus, was auf dich zutrifft (mehrere möglich)"
+        title="What are your goals?"
+        description="Select all that apply to you (multiple possible)"
       />
 
       <div className="grid md:grid-cols-2 gap-3">

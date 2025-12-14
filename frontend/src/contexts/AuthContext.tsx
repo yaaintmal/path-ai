@@ -28,6 +28,7 @@ interface UserDetails {
   };
   activeBoosts?: ActiveBoostDTO[];
   inventory?: Record<string, number>;
+  onboardingData?: any;
 }
 
 interface AuthContextType {
@@ -170,6 +171,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               pointsBreakdown: data.user?.pointsBreakdown,
               activeBoosts: data.user?.activeBoosts || [],
               inventory: inventoryData.inventory || {},
+              onboardingData: data.user?.onboardingData,
             });
             return;
           }
@@ -183,6 +185,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         pointsBreakdown: data.user?.pointsBreakdown,
         activeBoosts: data.user?.activeBoosts || [],
         inventory: inventory || {},
+        onboardingData: data.user?.onboardingData,
       });
     } catch (err) {
       console.error('refreshUserDetails error:', err);
