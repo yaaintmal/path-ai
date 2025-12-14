@@ -111,6 +111,20 @@ grep "SUSPICIOUS" logs/path-ai-critical-$(date +%F).log
 grep "RISK:HIGH" logs/path-ai-critical-$(date +%F).log
 ```
 
+### Admin Log Download
+
+Admins can download logs via the admin endpoint (`GET /api/admin/logs`). Prefer using an `Authorization: Bearer <ACCESS_TOKEN>` header. A cookie fallback is supported (`refreshToken` cookie) when an Authorization header is not available.
+
+Examples:
+
+```bash
+# Download critical log using Authorization header
+curl -H "Authorization: Bearer <ACCESS_TOKEN>" "http://localhost:3000/api/admin/logs?type=critical&date=$(date +%F)" -o path-ai-critical-$(date +%F).log
+
+# Download critical log using refreshToken cookie fallback
+curl --cookie "refreshToken=<REFRESH_TOKEN>" "http://localhost:3000/api/admin/logs?type=critical&date=$(date +%F)" -o path-ai-critical-$(date +%F).log
+```
+
 ### 5. `bookmark_add` / `bookmark_remove`
 
 - When user bookmarks or removes a bookmark

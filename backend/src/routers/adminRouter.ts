@@ -26,4 +26,9 @@ router.get('/logs', adminOnly, (req, res) => {
   stream.pipe(res);
 });
 
+// Simple admin-only ping for quick auth verification
+router.get('/ping', adminOnly, (req, res) => {
+  res.json({ ok: true, userId: req.userId });
+});
+
 export default router;
