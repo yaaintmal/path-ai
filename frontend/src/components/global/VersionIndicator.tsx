@@ -48,7 +48,6 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       }
     };
 
-
     fetchVersion();
 
     return () => clearTimeout(timer);
@@ -82,8 +81,8 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
               backendStatus === 'up'
                 ? 'bg-green-500'
                 : backendStatus === 'down'
-                ? 'bg-red-500'
-                : 'bg-muted-foreground'
+                  ? 'bg-red-500'
+                  : 'bg-muted-foreground'
             } rounded-full opacity-60 group-hover:opacity-100 transition-opacity`}
           ></div>
         </div>
@@ -94,7 +93,18 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
             <div>Version: {versionInfo.version}</div>
             <div className="text-muted-foreground">Updated: {versionInfo.date}</div>
             <div className="text-muted-foreground">
-              Backend: <span className={backendStatus === 'up' ? 'text-green-400' : backendStatus === 'down' ? 'text-red-400' : 'text-yellow-300'}>{backendStatus}</span>
+              Backend:{' '}
+              <span
+                className={
+                  backendStatus === 'up'
+                    ? 'text-green-400'
+                    : backendStatus === 'down'
+                      ? 'text-red-400'
+                      : 'text-yellow-300'
+                }
+              >
+                {backendStatus}
+              </span>
             </div>
             {onClick && <div className="text-primary text-xs mt-1">Click to view changelog</div>}
           </div>

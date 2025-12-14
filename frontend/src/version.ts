@@ -17,8 +17,8 @@
 // version 0.3.4.1: outsourcing sensitive data to .env files for frontend configuration
 // version 0.3.3.2: added version indicator
 
-// fallback values for version and last updated date 
-// Fallback declared to >> 0.5.1.8.2 (Offline Version) / 2025-12-13 
+// fallback values for version and last updated date
+// Fallback declared to >> 0.5.1.8.2 (Offline Version) / 2025-12-13
 //* since v.0.5.1.9.5 introduced backend version fetching and health check
 export const APP_VERSION = '0.5.1.8.2 (OV)';
 export const LAST_UPDATED = '2025-12-13';
