@@ -19,6 +19,7 @@ import { Registration } from './pages/Registration';
 import { Dashboard } from './pages/Dashboard';
 import { ChangelogPage } from './pages/Changelog';
 import { DashboardSelection } from './components/dashboard/DashboardSelection';
+import { TimerPage } from './pages/TimerPage';
 
 // Global Elements
 import { Header } from './components/global/Header';
@@ -27,15 +28,17 @@ import { VersionIndicator } from './components/global/VersionIndicator';
 
 // Contexts
 import { useAuth } from './contexts/useAuth';
+import { TimerProvider } from './contexts/TimerContext';
 import { useState, useEffect } from 'react';
 
-export default function App() {
+function AppContent() {
   const { isAuthenticated } = useAuth();
 
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showRegistration, setShowRegistration] = useState(false);
   const [showOnboardingEditor, setShowOnboardingEditor] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
   const [dashboardMode, setDashboardMode] = useState<
     'learning' | 'statistics' | 'completed-topics' | null
@@ -92,6 +95,25 @@ export default function App() {
     };
   }, [isAuthenticated]);
 
+  if (showTimer) {
+    return (
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <Header
+          setShowOnboarding={setShowOnboarding}
+          setShowRegistration={setShowRegistration}
+          setShowOnboardingEditor={setShowOnboardingEditor}
+          setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
+          setDashboardMode={setDashboardMode}
+          hasOnboardingData={hasOnboardingData}
+        />
+        <TimerPage onBack={() => setShowTimer(false)} />
+        <Footer />
+        <VersionIndicator onClick={() => setShowChangelog(true)} />
+      </div>
+    );
+  }
+
   if (showDashboard) {
     if (!dashboardMode) {
       return (
@@ -101,10 +123,18 @@ export default function App() {
             setShowRegistration={setShowRegistration}
             setShowOnboardingEditor={setShowOnboardingEditor}
             setShowDashboard={setShowDashboard}
+            setShowTimer={setShowTimer}
             setDashboardMode={setDashboardMode}
             hasOnboardingData={hasOnboardingData}
           />
-          <DashboardSelection onSelect={setDashboardMode} />
+          <DashboardSelection
+            onSelect={(mode) => {
+              // ensure the dashboard container is visible and set the selected mode
+              setShowDashboard(true);
+              setDashboardMode(mode);
+            }}
+            onTimerClick={() => setShowTimer(true)}
+          />
           <Footer />
         </div>
       );
@@ -120,7 +150,11 @@ export default function App() {
           setDashboardMode={setDashboardMode}
           hasOnboardingData={hasOnboardingData}
         />
-        <Dashboard setShowOnboardingEditor={setShowOnboardingEditor} mode={dashboardMode} />
+        <Dashboard
+          setShowOnboardingEditor={setShowOnboardingEditor}
+          mode={dashboardMode}
+          onBackToSelection={() => setDashboardMode(null)}
+        />
         <Footer />
       </div>
     );
@@ -133,6 +167,7 @@ export default function App() {
           setShowRegistration={setShowRegistration}
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
           hasOnboardingData={hasOnboardingData}
         />
         <Registration onAuthSuccess={() => setShowRegistration(false)} />
@@ -148,6 +183,7 @@ export default function App() {
           setShowRegistration={setShowRegistration}
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
           hasOnboardingData={hasOnboardingData}
         />
         <OnboardingWizard setHasOnboardingData={setHasOnboardingData} />
@@ -171,6 +207,7 @@ export default function App() {
           setShowRegistration={setShowRegistration}
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
           hasOnboardingData={hasOnboardingData}
         />
         <OnboardingEditor
@@ -192,32 +229,25 @@ export default function App() {
             setShowRegistration={setShowRegistration}
             setShowOnboardingEditor={setShowOnboardingEditor}
             setShowDashboard={setShowDashboard}
+            setShowTimer={setShowTimer}
             setDashboardMode={setDashboardMode}
             hasOnboardingData={hasOnboardingData}
           />
-          <DashboardSelection onSelect={setDashboardMode} />
+          <DashboardSelection
+            onSelect={(mode) => {
+              // ensure the dashboard container is visible and set the selected mode
+              setShowDashboard(true);
+              setDashboardMode(mode);
+            }}
+            onTimerClick={() => setShowTimer(true)}
+          />
           <Footer />
           <VersionIndicator onClick={() => setShowChangelog(true)} />
         </div>
       );
     }
-
-    return (
-      <div className="min-h-screen bg-background transition-colors duration-300">
-        <Header
-          setShowOnboarding={setShowOnboarding}
-          setShowRegistration={setShowRegistration}
-          setShowOnboardingEditor={setShowOnboardingEditor}
-          setShowDashboard={setShowDashboard}
-          setDashboardMode={setDashboardMode}
-          hasOnboardingData={hasOnboardingData}
-        />
-        <Dashboard setShowOnboardingEditor={setShowOnboardingEditor} mode={dashboardMode} />
-        <Footer />
-        <VersionIndicator onClick={() => setShowChangelog(true)} />
-      </div>
-    );
   }
+
   return (
     <div className="min-h-screen bg-background transition-colors duration-700 ease-in-out">
       {' '}
@@ -226,6 +256,7 @@ export default function App() {
         setShowRegistration={setShowRegistration}
         setShowOnboardingEditor={setShowOnboardingEditor}
         setShowDashboard={setShowDashboard}
+        setShowTimer={setShowTimer}
         hasOnboardingData={hasOnboardingData}
       />
       {/* 1. Hero: Was ist PathStudio? */}
@@ -244,5 +275,13 @@ export default function App() {
       <Footer />
       <VersionIndicator onClick={() => setShowChangelog(true)} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <TimerProvider>
+      <AppContent />
+    </TimerProvider>
   );
 }

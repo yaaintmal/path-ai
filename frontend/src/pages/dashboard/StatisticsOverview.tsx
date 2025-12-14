@@ -15,6 +15,14 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
+interface TimerStatistics {
+  totalSessions: number;
+  totalMinutes: number;
+  averageMinutes: number;
+  goalStats: Record<string, { count: number; totalMinutes: number }>;
+  pathStats: Record<string, { count: number; totalMinutes: number }>;
+}
+
 interface StatisticsData {
   currentStreak: number;
   bestStreak: number;
@@ -29,6 +37,10 @@ interface StatisticsData {
   avgTimePerBookmark: number;
   avgCompletionTime: number;
   totalDaysActive: number;
+  // Timer stats
+  totalMinutesLearned: number;
+  averageSessionMinutes: number;
+  totalSessions: number;
 }
 
 interface StatisticsOverviewProps {
@@ -42,6 +54,20 @@ interface StatCardProps {
   color: string;
   bgColor: string;
   subtitle?: string;
+}
+
+interface StreakResponse {
+  currentStreak?: number;
+  bestStreak?: number;
+  totalScore?: number;
+  topicsSearched?: number;
+  topicsLearned?: number;
+  weeklyLearningRate?: number;
+  totalLessonsCompleted?: number;
+  averageDailyEngagement?: number;
+  avgTimePerBookmark?: number;
+  avgCompletionTime?: number;
+  totalDaysActive?: number;
 }
 
 export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
@@ -61,37 +87,65 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
       return;
     }
     try {
-      const statsRes = await fetch(getApiUrl(`/api/users/streaks?userId=${user.id}`), {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const [streakRes, timerRes] = await Promise.all([
+        fetch(getApiUrl(`/api/users/streaks?userId=${user.id}`), {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        fetch(getApiUrl(`/api/timer/statistics`), {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
 
-      if (statsRes.ok) {
-        const data = await statsRes.json();
+      let streakData: StreakResponse = {};
+      let timerData: TimerStatistics = {
+        totalSessions: 0,
+        totalMinutes: 0,
+        averageMinutes: 0,
+        goalStats: {},
+        pathStats: {},
+      };
 
-        // Calculate real stats from backend data
-        const totalDaysActive = data.totalDaysActive || Math.max(data.currentStreak || 0, 1);
-        const topicsLearned = data.topicsLearned || 0;
-        const learnedTopicsPerDay =
-          totalDaysActive > 0 ? Math.round((topicsLearned / totalDaysActive) * 100) / 100 : 0;
-        const learnedTopicsPerWeek = data.weeklyLearningRate || 0;
-
-        const enhancedStats: StatisticsData = {
-          currentStreak: data.currentStreak || 0,
-          bestStreak: data.bestStreak || 0,
-          totalScore: data.totalScore || 0,
-          topicsSearched: data.topicsSearched || 0,
-          topicsLearned: topicsLearned,
-          weeklyLearningRate: data.weeklyLearningRate || 0,
-          totalLessonsCompleted: data.totalLessonsCompleted || topicsLearned,
-          averageDailyEngagement: data.averageDailyEngagement || 0,
-          learnedTopicsPerDay,
-          learnedTopicsPerWeek,
-          avgTimePerBookmark: data.avgTimePerBookmark || 0,
-          avgCompletionTime: data.avgCompletionTime || 0,
-          totalDaysActive,
-        };
-        setStats(enhancedStats);
+      if (streakRes.ok) {
+        streakData = await streakRes.json();
       }
+
+      if (timerRes.ok) {
+        timerData = await timerRes.json();
+      }
+
+      // Calculate real stats from backend data
+      const totalDaysActive =
+        streakData.totalDaysActive || Math.max(streakData.currentStreak || 0, 1);
+      const topicsLearned = streakData.topicsLearned || 0;
+      const learnedTopicsPerDay =
+        totalDaysActive > 0 ? Math.round((topicsLearned / totalDaysActive) * 100) / 100 : 0;
+      const learnedTopicsPerWeek = streakData.weeklyLearningRate || 0;
+
+      // Calculate average daily engagement based on total minutes and active days
+      const averageDailyEngagement =
+        totalDaysActive > 0
+          ? Math.round((timerData.totalMinutes / totalDaysActive) * 100) / 100
+          : 0;
+
+      const enhancedStats: StatisticsData = {
+        currentStreak: streakData.currentStreak || 0,
+        bestStreak: streakData.bestStreak || 0,
+        totalScore: streakData.totalScore || 0,
+        topicsSearched: streakData.topicsSearched || 0,
+        topicsLearned: topicsLearned,
+        weeklyLearningRate: streakData.weeklyLearningRate || 0,
+        totalLessonsCompleted: streakData.totalLessonsCompleted || topicsLearned,
+        averageDailyEngagement,
+        learnedTopicsPerDay,
+        learnedTopicsPerWeek,
+        avgTimePerBookmark: streakData.avgTimePerBookmark || 0,
+        avgCompletionTime: streakData.avgCompletionTime || 0,
+        totalDaysActive,
+        totalMinutesLearned: timerData.totalMinutes,
+        averageSessionMinutes: timerData.averageMinutes,
+        totalSessions: timerData.totalSessions,
+      };
+      setStats(enhancedStats);
     } catch (e) {
       console.error('Error fetching statistics:', e);
     } finally {
@@ -213,17 +267,15 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                 />
                 <StatCard
                   icon={TrendingUp}
-                  label="minutes per week"
-                  value="917"
-                  // value={stats.weeklyLearningRate}
+                  label="total minutes learned"
+                  value={Math.round(stats.totalMinutesLearned)}
                   color="text-purple-600 dark:text-purple-400"
                   bgColor="bg-purple-50 dark:bg-purple-900/20"
                 />
                 <StatCard
                   icon={Clock}
                   label="avg. minutes per day"
-                  value="131"
-                  // value={stats.averageDailyEngagement}
+                  value={stats.averageDailyEngagement}
                   color="text-pink-600 dark:text-pink-400"
                   bgColor="bg-pink-50 dark:bg-pink-900/20"
                 />
@@ -279,21 +331,19 @@ export function StatisticsOverview({ onBack }: StatisticsOverviewProps) {
                 />
                 <StatCard
                   icon={Clock}
-                  label="time per bookmark"
-                  value={`127 min.`}
-                  // value={`${stats.avgTimePerBookmark} Min.`}
+                  label="avg. session length"
+                  value={`${Math.round(stats.averageSessionMinutes)} min.`}
                   color="text-violet-600 dark:text-violet-400"
                   bgColor="bg-violet-50 dark:bg-violet-900/20"
                   subtitle="average time spent"
                 />
                 <StatCard
                   icon={Zap}
-                  label="average completion time"
-                  value={`289 min.`}
-                  // value={`${stats.avgCompletionTime} Min.`}
+                  label="total sessions"
+                  value={stats.totalSessions}
                   color="text-orange-600 dark:text-orange-400"
                   bgColor="bg-orange-50 dark:bg-orange-900/20"
-                  subtitle="Zeit pro Lektion"
+                  subtitle="completed learning sessions"
                 />
               </div>
             </div>

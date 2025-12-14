@@ -159,3 +159,24 @@ export const VideoUpdateInputSchema = z
   .strict();
 
 export type VideoUpdateInputDTO = z.infer<typeof VideoUpdateInputSchema>;
+
+// Timer/Learning Session Schemas
+export const TimerStartSessionSchema = z
+  .object({
+    goal: z
+      .string({ error: 'goal must be a string' })
+      .min(1, { message: 'goal is required' })
+      .max(200, { message: 'goal must not exceed 200 characters' })
+      .trim()
+      .regex(/^[^<>]*$/, { message: 'goal must not contain HTML tags' }),
+    learningPath: z
+      .string()
+      .min(1, { message: 'learningPath must not be empty if provided' })
+      .max(200, { message: 'learningPath must not exceed 200 characters' })
+      .trim()
+      .regex(/^[^<>]*$/, { message: 'learningPath must not contain HTML tags' })
+      .optional(),
+  })
+  .strict();
+
+export type TimerStartSessionDTO = z.infer<typeof TimerStartSessionSchema>;

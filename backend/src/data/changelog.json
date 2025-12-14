@@ -1,5 +1,69 @@
 [
   {
+    "version": "0.5.3.2",
+    "date": "2025-12-14",
+    "title": "Security: Timer Input Validation & Sanitization",
+    "description": "Hardened the timer controller against injection attacks and malformed input.",
+    "details": [
+      "Added comprehensive Zod schema validation for timer session start endpoint: `TimerStartSessionSchema`.",
+      "Implemented strict type checking for 'goal' parameter: string type, max 200 characters, no HTML tags.",
+      "Added automatic whitespace trimming for goal and learningPath inputs to prevent log pollution.",
+      "Validates learningPath parameter with same constraints: max 200 characters, no HTML tags, optional but validated if provided.",
+      "Rejects any attempt to inject HTML, SQL, or other malicious patterns via regex validation.",
+      "Moved validation to middleware layer for consistent enforcement across all requests.",
+      "Prevents extremely long strings, special character injection, and potential XSS attacks in session data."
+    ]
+  },
+  {
+    "version": "0.5.3.1",
+    "date": "2025-12-14",
+    "title": "Feature: Pomodoro Templates for Quick Session Setup",
+    "description": "Added pre-configured Pomodoro session templates to help users instantly choose their focus intensity.",
+    "details": [
+      "Introduced 'Quick Focus' (1×25m), 'Deep Work' (3×25m), and 'Marathon Session' (5×25m) templates.",
+      "Templates automatically set learning time goals when selected, eliminating manual configuration.",
+      "Disabled Pomodoro template selection while a timer is actively running to prevent mid-session confusion.",
+      "Added a helpful 💡 tip explaining how to use the templates effectively.",
+      "Integrated widget into the left sidebar of the Timer Page for maximum visibility."
+    ]
+  },
+  {
+    "version": "0.5.3",
+    "date": "2025-12-14",
+    "title": "UX: Seamless Navigation & Focus Mode Integration",
+    "description": "Integrated Focus Mode into the main dashboard selection and improved navigation flow.",
+    "details": [
+      "Added a dedicated 'Focus Mode' widget to the Dashboard Selection screen for quick access to the timer.",
+      "Implemented a 'Back to Dashboard' button in the Timer Page to prevent users from getting stuck in the focus dimension.",
+      "Refactored `App.tsx` to manage timer visibility state more effectively and fixed some syntax gremlins."
+    ]
+  },
+  {
+    "version": "0.5.2.5",
+    "date": "2025-12-14",
+    "title": "Refactor: Timer Dashboard & Session History",
+    "description": "Deconstructed the Timer Page into reusable widgets and added comprehensive session history tracking.",
+    "details": [
+      "Refactored `TimerPage` into modular components: `TimerWidget`, `CurrentPathWidget`, `RecentSessionsWidget`, and `SessionHistoryWidget`.",
+      "Added a 'Recent Sessions' widget to show the last 3 learning bouts at a glance.",
+      "Implemented a full 'Session History' table to audit every second of your learning journey.",
+      "Improved code maintainability by decoupling timer logic from the page layout."
+    ]
+  },
+  {
+    "version": "0.5.2.4",
+    "date": "2025-12-14",
+    "title": "Feature: Rip and Tea--- I mean: Timer... Until It Is Learned!",
+    "description": "The Timer Slayer has entered the facility. Time goals are locked and loaded, and your learning sessions are eternally recorded in the database of doom.",
+    "details": [
+      "Fixed the broken timer navigation. The portal to the Timer Dimension now opens correctly. No more stuck doors.",
+      "Implemented Time Goals. Set your target, lock in, and destroy your ignorance.",
+      "Added Learning Path context. The system now knows exactly which demon... er, topic you are slaying.",
+      "Backend Persistence: Your battle history is now etched into the MongoDB monolith. Statistics endpoints are online and waiting to judge your performance.",
+      "Statistics Dashboard Integration: The 'Your Journey to Success' page now summons real data from the void. Total minutes, session counts, and average engagement are no longer illusions."
+    ]
+  },
+  {
     "version": "0.5.2.3",
     "date": "2025-12-14",
     "title": "UX: Enhanced Language Selection",
