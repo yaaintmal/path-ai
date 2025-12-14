@@ -1,5 +1,39 @@
 [
   {
+    "version": "0.6.1",
+    "date": "2025-12-14",
+    "title": "Patch: Instrumentation, Postman Collection & Critical Logging",
+    "description": "Added operational tooling and instrumentation: Postman collection, admin guards, frontend tracking hooks, and separate critical logs for fast triage.",
+    "details": [
+      "🧭 Postman Collection: Added `postman/InteractionTracking.postman_collection.json` with requests and Runner-ready setups to simulate interactions and suspicious behaviors.",
+      "🔐 Admin Guard: Restricted `/api/interactions/report/suspicious` to admins via `adminOnly` middleware to prevent data leakage.",
+      "📡 Frontend Instrumentation: Wired tracking calls into key components (topic click, topic complete, bookmark add/remove, timer start/stop) to emit interactions automatically.",
+      "🛠️ Console & File Logging: Added daily rotating log files (general and `-critical` files) and `critical()` helper for urgent entries; login failures and suspicious/high-risk events now write to the critical log for quick lookup.",
+      "✅ Documentation: Updated `INTERACTION_TRACKING_GUIDE.md` with testing instructions and examples for Postman and critical log checks.",
+      "🧪 Testing: Added Postman collection and initial instrumentation so QA can reproduce scenarios (rapid clicks, batch completes, timestamp drift) via Runner.",
+      "💡 Operation: Critical events are stored under `./logs/path-ai-critical-YYYY-MM-DD.log` and general logs under `./logs/path-ai-YYYY-MM-DD.log` for forensic analysis."
+    ]
+  },
+  {
+    "version": "0.6.0",
+    "date": "2025-12-14",
+    "title": "Major: Comprehensive User Interaction Tracking & Behavior Analytics System",
+    "description": "Major architectural upgrade introducing complete interaction tracking, real-time behavioral analysis, and multi-layer cheating detection to monitor learning habits and prevent system gaming.",
+    "details": [
+      "🎯 Core Tracking Architecture: Created persistent `UserInteraction` MongoDB model capturing all essential user actions with full context, timestamps, metadata (IP, user agent), and suspicious flags.",
+      "📊 Backend Analytics Engine: Built sophisticated analytics utility analyzing user behavior patterns across 7+ action types with temporal analysis and statistical correlation.",
+      "🔍 Multi-Layer Cheating Detection: Implemented 5-tier detection system identifying: rapid topic clicks (>15/min), impossible durations (>12h sessions), timestamp drift (±5min), batch completions (<2s apart), and missing learning sessions.",
+      "⚖️ Risk Assessment System: Evaluates holistic user behavior returning risk levels (low/medium/high) with evidence scores and actionable recommendations for manual review.",
+      "📡 Complete REST API: New `/api/interactions` endpoint family: POST /track (log interaction), GET /stats (user analytics), GET /risk-assessment (cheat detection), GET /user/:id (history), GET /report/suspicious (admin report).",
+      "✅ Full Input Validation: Added Zod schema validation for all tracking payloads with strict typing and sanitization via middleware.",
+      "🎨 Frontend Analytics Service: Built high-performance singleton tracker with automatic batching (30s interval or 50-item threshold) for minimal API overhead.",
+      "🔗 Semantic Event Helpers: 8+ convenience functions for tracking specific actions (topicCompletion, bookmarkAction, timerEvents, themeGeneration, etc.) with pre-filled context.",
+      "💾 Audit Trail: Complete interaction history stored with rich context (topic, duration, learning path, goal) enabling forensic analysis of user behavior.",
+      "⚡ Performance Optimized: Batched sending, async processing, graceful degradation without auth token prevents tracking from impacting user experience.",
+      "🔐 Privacy Conscious: Tracking disabled without auth, can be toggled via tracker.disable(), stored locally before batch send, proper error handling prevents data loss."
+    ]
+  },
+  {
     "version": "0.5.3.3",
     "date": "2025-12-14",
     "title": "Fix: Timer Navigation from Learning Mode",

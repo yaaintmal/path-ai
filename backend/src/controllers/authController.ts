@@ -2,6 +2,7 @@ import { User, UserInventory } from '#models';
 import type { RequestHandler } from 'express';
 import bcrypt from 'bcrypt';
 import { generateAccessToken, generateRefreshToken, verifyToken } from '#middleware';
+import { success, amberLog, loggerError, critical } from '#utils';
 import type { JwtPayload } from 'jsonwebtoken';
 import type { Request, Response } from 'express';
 
@@ -106,21 +107,28 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
   const { email, password } = req.body;
 
   if (!email || !password) {
+    loggerError(`[Login] Missing credentials from IP: ${req.ip}`);
     return res.status(400).json({ message: 'Email and password are required' });
   }
 
   try {
     const user = await User.findOne({ email }).select('+password');
     if (!user || !user.password) {
+      loggerError(`[LOGIN:FAIL] Failed login attempt for email: ${email} (user not found)`);
+      critical(`[LOGIN:FAIL] user=${email} reason=user_not_found ip=${req.ip}`);
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
+      loggerError(
+        `[LOGIN:FAIL] Failed login attempt for email: ${email} (invalid password) from IP: ${req.ip}`
+      );
+      critical(`[LOGIN:FAIL] user=${email} reason=invalid_password ip=${req.ip}`);
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    console.log('[Login] Password verified for user:', email);
+    success(`[LOGIN:SUCCESS] User ${email} authenticated successfully`);
 
     const accessToken = generateAccessToken(user._id.toString());
     const refreshToken = generateRefreshToken(user._id.toString());
@@ -135,7 +143,7 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
       path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
-    console.log('[Login] Tokens generated, sending to client');
+    amberLog(`[Login] Tokens generated for user: ${email}`);
     res.status(200).json({
       token: accessToken,
       user: {
@@ -145,7 +153,9 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
       },
     });
   } catch (err) {
-    console.error('Login error:', err);
+    loggerError(
+      `[Login] Error for email: ${email} - ${err instanceof Error ? err.message : String(err)}`
+    );
     res.status(500).json({ message: 'Internal server error' });
   }
 };

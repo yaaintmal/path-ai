@@ -5,3 +5,5 @@ export { default as llmRouter } from './llmRouter.ts';
 export { changelogRouter } from './changelogRouter.ts';
 export { default as authRouter } from './authRouter.ts';
 export { default as timerRouter } from './timerRouter.ts';
+export { default as interactionRouter } from './interactionRouter.ts';
+export { default as adminRouter } from './adminRouter.ts';

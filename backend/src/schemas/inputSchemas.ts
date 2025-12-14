@@ -160,6 +160,35 @@ export const VideoUpdateInputSchema = z
 
 export type VideoUpdateInputDTO = z.infer<typeof VideoUpdateInputSchema>;
 
+// Interaction Tracking Schemas
+export const TrackInteractionSchema = z
+  .object({
+    actionType: z.enum([
+      'learning_start',
+      'learning_complete',
+      'bookmark_add',
+      'bookmark_remove',
+      'topic_complete',
+      'theme_generate',
+      'timer_start',
+      'timer_stop',
+      'topic_click',
+    ]),
+    context: z
+      .object({
+        topicTitle: z.string().max(255).optional(),
+        subtopicTitle: z.string().max(255).optional(),
+        learningPath: z.string().max(255).optional(),
+        goal: z.string().max(255).optional(),
+        duration: z.number().min(0).max(86400).optional(), // max 24 hours in seconds
+        sessionId: z.string().optional(),
+        timestamp: z.number().optional(), // client timestamp in ms
+      })
+      .optional(),
+  })
+  .strict();
+
+export type TrackInteractionDTO = z.infer<typeof TrackInteractionSchema>;
 // Timer/Learning Session Schemas
 export const TimerStartSessionSchema = z
   .object({

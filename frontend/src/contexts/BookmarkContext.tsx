@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { trackBookmarkAction, trackTopicCompletion } from '../utils/analytics';
 import { useAuth } from './useAuth';
 import type { ReactNode } from 'react';
 import { getApiUrl } from '../config/app.config';
@@ -64,6 +65,8 @@ export function BookmarkProvider({ children }: BookmarkProviderProps) {
       if (res.ok) {
         const data = await res.json();
         setBookmarks(data.bookmarks || []);
+        // Track bookmark addition
+        trackBookmarkAction('bookmark_add', topicName);
       } else {
         const errorData = await res.json();
         console.error('Error adding bookmark:', res.status, errorData);
@@ -85,6 +88,8 @@ export function BookmarkProvider({ children }: BookmarkProviderProps) {
       if (res.ok) {
         const data = await res.json();
         setBookmarks(data.bookmarks || []);
+        // Track bookmark removal
+        trackBookmarkAction('bookmark_remove', topicName);
       } else {
         const errorData = await res.json();
         console.error('Error removing bookmark:', res.status, errorData);
@@ -107,6 +112,8 @@ export function BookmarkProvider({ children }: BookmarkProviderProps) {
         const data = await res.json();
         setLearnedTopics(data.learnedTopics || []);
         setBookmarks(data.bookmarks || []);
+        // Track topic completion
+        trackTopicCompletion(topicName, undefined, undefined);
       } else {
         const errorData = await res.json();
         console.error('Error marking as learned:', res.status, errorData);
