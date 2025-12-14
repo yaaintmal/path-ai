@@ -1,9 +1,9 @@
-# Backend - Storage configuration
+# Backend - Storage configuration (updated on 2025-12-14)
 
-This backend supports two storage drivers for uploaded videos:
+This backend now supports two storage drivers for uploaded videos:
 
-- `cloudinary` (default): uses Cloudinary and the existing setup.
-- `local`: stores uploaded files in the server filesystem under `UPLOADS_DIR` and serves them from `/uploads`.
+- `cloudinary` (might be deprecated): uses Cloudinary and the existing setup.
+- `local` (default in future releases): stores uploaded files in the server filesystem under `UPLOADS_DIR` and serves them from `/uploads`.
 
 Environment variables (add these to your `.env` or use `.env.example`):
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from './useAuth';
 import type { ReactNode } from 'react';
 import { getApiUrl } from '../config/app.config';
 import { BookmarkContext } from './bookmarkContextValue';
@@ -17,6 +18,7 @@ export function BookmarkProvider({ children }: BookmarkProviderProps) {
   const [bookmarks, setBookmarks] = useState<BookmarkItem[]>([]);
   const [learnedTopics, setLearnedTopics] = useState<LearnedItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +50,7 @@ export function BookmarkProvider({ children }: BookmarkProviderProps) {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const addBookmark = async (topicName: string, type: 'topic' | 'subtopic' = 'topic') => {
     const token = localStorage.getItem('authToken');

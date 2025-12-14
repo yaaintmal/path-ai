@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.5.1.8.5",
+    "date": "2025-12-14",
+    "title": "Fix: storage & auth sync improvements",
+    "description": "Added local storage option, improved auth cross-tab sync and token refresh, and enhanced startup logging",
+    "details": [
+      "Added STORAGE_DRIVER local option and `deleteFromStorage` + storage util",
+      "Implemented local disk uploads (multer.diskStorage) and static `/uploads` serving",
+      "Added migration script to rehost Cloudinary videos to local storage",
+      "Improved auth state handling: cross-tab sync (storage events), same-tab authChanged event, and refresh-token retry on 401",
+      "Added startup logs showing active storage driver and enumerated available routes",
+      "FINALLY fixed widgets that required ANNOYING manual page refresh after login by making auth-driven data fetching reactive"
+    ]
+  },
+  {
     "version": "0.5.1.8.4",
     "date": "2025-12-14",
     "title": "refactored console logs",
@@ -7,7 +21,8 @@
     "details": [
       "Replaced console.log with logger utility",
       "Added color coding to log levels",
-      "Implemented log filtering logic"
+      "Implemented log filtering logic",
+      "Enhanced logging for better user experience"
     ]
   },
   {
