@@ -18,6 +18,10 @@ info(
     amberText(_useGeminiEnv ? _geminiModel : _ollamaModel)
 );
 
+// Log effective environment variables for Ollama so it's easy to verify at startup
+info('[LLM] env VITE_OLLAMA_API_URL: %s', process.env.VITE_OLLAMA_API_URL ?? '<unset>');
+info('[LLM] env VITE_OLLAMA_MODEL: %s', process.env.VITE_OLLAMA_MODEL ?? '<unset>');
+
 interface LLMRequest {
   model?: string;
   prompt: string;
@@ -83,28 +87,44 @@ const callGemini = async (prompt: string): Promise<string> => {
 //  * Calls local Ollama API to generate content
 
 const callOllama = async (prompt: string, model: string): Promise<string> => {
-  const ollamaUrl = process.env.OLLAMA_API_URL || 'http://localhost:11434/api/generate';
-  const modelId = model || process.env.OLLAMA_MODEL || 'llama3-chatqa:latest';
+  // Prefer backend env vars, but fall back to VITE_* variables if set (useful for local dev)
+  const ollamaUrl =
+    process.env.VITE_OLLAMA_API_URL || 'http://192.168.178.6:11434/api/generate';
+  const modelId = process.env.VITE_OLLAMA_MODEL;
+
+  const truncatedPrompt = prompt.length > 200 ? `${prompt.slice(0, 200)}...` : prompt;
+  amberLog('[LLM] Ollama request -> URL: %s | model: %s | prompt: "%s"', ollamaUrl, modelId, truncatedPrompt);
 
   const response = await fetch(ollamaUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      model: modelId,
-      prompt,
-      stream: false,
-    }),
+    body: JSON.stringify({ model: modelId, prompt, stream: false }),
   });
 
   if (!response.ok) {
-    throw new Error(`Ollama API failed: ${response.status}`);
+    const bodyText = await response.text().catch(() => '<unreadable>');
+    loggerError('[LLM] Ollama API failed: %s %s - %s', String(response.status), String(response.statusText), bodyText);
+    throw new Error(`Ollama API failed: ${response.status} ${response.statusText} - ${bodyText}`);
   }
 
-  const data = (await response.json()) as { response?: string };
+  const raw = await response.text().catch(() => '');
+  if (!raw) {
+    loggerError('[LLM] Ollama returned empty body');
+    throw new Error('Empty body from Ollama API');
+  }
 
-  if (!data.response) {
+  let data: { response?: string } | null = null;
+  try {
+    data = JSON.parse(raw) as { response?: string };
+  } catch (err) {
+    loggerError('[LLM] Invalid JSON from Ollama: %s | body=%s', err instanceof Error ? err.message : String(err), raw);
+    throw new Error(`Invalid JSON from Ollama API: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  if (!data?.response) {
+    loggerError('[LLM] Ollama response missing `response` field: %s', JSON.stringify(data));
     throw new Error('Empty response from Ollama API');
   }
 
