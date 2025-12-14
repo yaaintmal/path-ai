@@ -1,5 +1,29 @@
 [
   {
+    "version": "0.5.2.3",
+    "date": "2025-12-14",
+    "title": "UX: Enhanced Language Selection",
+    "description": "Improved onboarding language selection with a visual grid of flags and expanded language options",
+    "details": [
+      "Replaced native select dropdowns in onboarding with a responsive grid of selectable buttons for better UX",
+      "Expanded language options to 28+ languages including Asian, European, and Middle Eastern variants",
+      "Added flag emojis to each language option for quick visual recognition",
+      "Improved visual feedback for selected states with primary color highlighting and checkmarks"
+    ]
+  },
+  {
+    "version": "0.5.2.2",
+    "date": "2025-12-14",
+    "title": "SEO & Accessibility Polish",
+    "description": "Added SEO meta tags, Open Graph support for GitHub/Discord, and fixed missing accessible names for icon buttons",
+    "details": [
+      "Added comprehensive SEO meta tags (description, keywords, author) to index.html for better crawler visibility",
+      "Implemented Open Graph (og:*) tags to support rich link previews on GitHub, Discord, and other platforms",
+      "Fixed accessibility issues by adding descriptive `aria-label` attributes to icon-only buttons in Header, LearnWidget, and subtopic lists",
+      "Ensured screen readers announce meaningful actions (e.g., 'Toggle theme', 'Mark as learned') instead of generic 'button'"
+    ]
+  },
+  {
     "version": "0.5.2.1",
     "date": "2025-12-14",
     "title": "Refactor: Code quality improvements & accessibility enhancements",
@@ -7,7 +31,7 @@
     "details": [
       "Created `frontend/src/utils/events.ts` with `dispatchCustomEvent()` helper to centralize CustomEvent dispatch logic and replace 4 instances of duplicated try-catch patterns",
       "Eliminated duplicate CustomEvent dispatch code in WhatsNewWidget, CompletedPathsWidget, and their event listeners >> cause copilot blamed me",
-      "THEREFORE: Added aria-label attributes to 24 icon-only buttons across dashboard components and pages for full WCAG 2.1 Level AA compliance",
+      "THEREFORE: Added aria-label attributes to 24 (!!!) icon-only buttons across dashboard components and pages for full WCAG 2.1 Level AA compliance (uhh that just sounds fancy)",
       "Updated components: WhatsNewWidget, CompletedPathsWidget, BookmarksWidget, SavedThemesWidget, DashboardPreview, TemplatesPage, TemplatesPage.clean, OpenTopicsPage, and ProgressWidget",
       "Improved code maintainability and reduced duplication (DRY principle) — event dispatch now has a single source of truth",
       "All accessibility labels follow semantic patterns: action + context (e.g., 'Generate subtopics for {title}', 'Remove {title} from bookmarks')"

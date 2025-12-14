@@ -87,6 +87,7 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
             size="icon"
             onClick={toggleDarkMode}
             className="rounded-full hover:bg-secondary/80"
+            aria-label="Toggle theme"
           >
             {resolvedTheme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </Button>

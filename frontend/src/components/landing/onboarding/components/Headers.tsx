@@ -30,7 +30,7 @@ export function PageHeader({ subtitle, title, highlight, description }: PageHead
       </div>
       <h1 className="text-4xl md:text-5xl mb-3 dark:text-white">
         Let's{' '}
-        <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
           {highlight}
         </span>{' '}
         your dashboard {title}

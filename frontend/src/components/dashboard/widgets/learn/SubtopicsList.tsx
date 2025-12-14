@@ -61,6 +61,11 @@ export function SubtopicsList({
                     : 'hover:bg-green-100 dark:hover:bg-green-900/30 text-gray-400 hover:text-green-500'
                 }`}
                 title={isLearned(subtopic.title) ? 'Bereits gelernt' : 'Als gelernt markieren'}
+                aria-label={
+                  isLearned(subtopic.title)
+                    ? `Subtopic ${subtopic.title} already learned`
+                    : `Mark subtopic ${subtopic.title} as learned`
+                }
               >
                 <CheckCircle
                   className={`w-5 h-5 ${isLearned(subtopic.title) ? 'fill-current' : ''}`}
@@ -80,6 +85,13 @@ export function SubtopicsList({
                     : isBookmarked(subtopic.title)
                       ? 'Aus Lesezeichen entfernen'
                       : 'Zu Lesezeichen hinzufügen'
+                }
+                aria-label={
+                  isLearned(subtopic.title)
+                    ? `Subtopic ${subtopic.title} already learned`
+                    : isBookmarked(subtopic.title)
+                      ? `Remove subtopic ${subtopic.title} from bookmarks`
+                      : `Add subtopic ${subtopic.title} to bookmarks`
                 }
               >
                 {isBookmarked(subtopic.title) ? (

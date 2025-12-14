@@ -56,6 +56,11 @@ export function StartingPointsList({
                     : 'hover:bg-green-100 dark:hover:bg-green-900/30 text-muted-foreground hover:text-green-500'
                 }`}
                 title={isLearned(point.title) ? 'Bereits gelernt' : 'Als gelernt markieren'}
+                aria-label={
+                  isLearned(point.title)
+                    ? `Topic ${point.title} already learned`
+                    : `Mark topic ${point.title} as learned`
+                }
               >
                 <CheckCircle
                   className={`w-5 h-5 ${isLearned(point.title) ? 'fill-current' : ''}`}
@@ -75,6 +80,13 @@ export function StartingPointsList({
                     : isBookmarked(point.title)
                       ? 'Aus Lesezeichen entfernen'
                       : 'Zu Lesezeichen hinzufügen'
+                }
+                aria-label={
+                  isLearned(point.title)
+                    ? `Topic ${point.title} already learned`
+                    : isBookmarked(point.title)
+                      ? `Remove topic ${point.title} from bookmarks`
+                      : `Add topic ${point.title} to bookmarks`
                 }
               >
                 {isBookmarked(point.title) ? (

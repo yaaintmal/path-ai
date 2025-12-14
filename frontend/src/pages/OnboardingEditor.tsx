@@ -183,7 +183,7 @@ export function OnboardingEditor({
   }
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12">
+    <section className="min-h-screen  py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <PageHeader
@@ -204,7 +204,7 @@ export function OnboardingEditor({
 
         {/* Content */}
         <div className="max-w-3xl mx-auto">
-          <Card className="p-8 dark:bg-gray-800 dark:border-gray-700">
+          <Card className="p-8 dark:bg-amber-500/33 dark:border-amber-300/87">
             {/* Step Components */}
             {currentStep === 1 && <StepLanguage data={data} updateData={updateData} />}
             {currentStep === 2 && <Step1Role data={data} updateData={updateData} />}

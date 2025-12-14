@@ -191,6 +191,7 @@ export function Header({
                   size="icon"
                   onClick={toggleDarkMode}
                   className="rounded-full hover:bg-secondary/80"
+                  aria-label="Toggle theme"
                 >
                   {resolvedTheme === 'dark' ? (
                     <Sun className="size-5" />
@@ -206,6 +207,7 @@ export function Header({
                   size="icon"
                   onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
                   className="rounded-full hover:bg-secondary/80 hidden sm:flex"
+                  aria-label="Edit dashboard"
                 >
                   <Edit className="size-5" />
                 </Button>
@@ -215,6 +217,7 @@ export function Header({
                   size="icon"
                   onClick={handleLogout}
                   className="rounded-full hover:bg-destructive/10 hover:text-destructive"
+                  aria-label="Log out"
                 >
                   <LogOut className="size-5" />
                 </Button>
@@ -222,7 +225,13 @@ export function Header({
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <Button variant="ghost" onClick={toggleDarkMode} size="icon" className="rounded-full">
+              <Button
+                variant="ghost"
+                onClick={toggleDarkMode}
+                size="icon"
+                className="rounded-full"
+                aria-label="Toggle theme"
+              >
                 {resolvedTheme === 'dark' ? (
                   <Sun className="size-5" />
                 ) : (
