@@ -26,20 +26,71 @@ app.use(express.json());
 // cookie parser (for refreshToken cookie)
 app.use(cookieParser());
 
-// Enable CORS with default settings
-// Configure for production use case if needed (e.g., whitelist specific origins)
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN || '*',
-    credentials: true,
-  })
+// Enable CORS with explicit whitelist
+// CORS_ORIGIN can be a comma-separated list; defaults include localhost and common preview ports
+const rawCors =
+  process.env.CORS_ORIGIN ||
+  [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:4173',
+    'http://127.0.0.1:4173',
+    'http://192.168.178.22:5173',
+    'http://192.168.178.22:4173',
+    'https://localhost:5173',
+    'https://127.0.0.1:5173',
+    'https://localhost:4173',
+    'https://127.0.0.1:4173',
+    'https://192.168.178.22:5173',
+    'https://192.168.178.22:4173',
+  ].join(',');
+const allowedOrigins = Array.from(
+  new Set(
+    rawCors
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+  )
 );
+
+// Configure CORS with explicit preflight handling
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    const originLabel = origin ?? '<no-origin>';
+    // Allow non-browser requests (no origin) such as curl or server-to-server
+    if (!origin) {
+      info('[CORS] Allowing request with no origin (likely curl/server)');
+      return callback(null, true);
+    }
+    if (allowedOrigins.includes(origin)) {
+      amberLog('[CORS] Allowed origin %s', originLabel);
+      return callback(null, true);
+    }
+    loggerError('[CORS] Blocked origin %s (allowed: %s)', originLabel, allowedOrigins.join(', '));
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 200, // some legacy browsers choke on 204
+};
+
+// Enable CORS for all routes. Express 5/path-to-regexp no longer supports '*' as a route,
+// so we use a regex to ensure all preflight OPTIONS requests are handled.
+app.options(/.*/, cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Routes
 console.log(grayText('[App] Registering routes...'));
 // Serve uploaded files (used when STORAGE_DRIVER=local)
 const uploadsDir = process.env.UPLOADS_DIR || path.join(process.cwd(), 'uploads');
 app.use('/uploads', express.static(uploadsDir));
+
+// Simple health check (useful for LAN debugging)
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true, ts: new Date().toISOString() });
+});
+
 app.use('/api/users', userRouter);
 app.use('/api/videos', videoRouter);
 app.use('/api/store', storeRouter);
@@ -70,8 +121,8 @@ console.log(grayText('[App] Routes registered ') + greenText('successfully'));
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
+// Start server; bind to 0.0.0.0 so it's reachable from other devices on the LAN
+app.listen(PORT, '0.0.0.0', () => {
   console.log(grayText('Server is running on port ') + amberText(String(PORT)));
   console.log(grayText(`Environment: ${process.env.NODE_ENV || 'development'}`));
 
@@ -180,6 +231,13 @@ app.listen(PORT, () => {
           '/api/interactions [POST /track, GET /stats, GET /risk-assessment, GET /user/:id, GET /report/suspicious (admin only)]'
         )
     );
+
+    // Print configured CORS origins so it's easy to debug cross-device testing
+    try {
+      console.log(grayText('[CORS] Allowed origins: ') + amberText(allowedOrigins.join(', ')));
+    } catch (e) {
+      // ignore
+    }
 
     // Timer endpoints
     console.log(

@@ -125,6 +125,45 @@ curl -H "Authorization: Bearer <ACCESS_TOKEN>" "http://localhost:3000/api/admin/
 curl --cookie "refreshToken=<REFRESH_TOKEN>" "http://localhost:3000/api/admin/logs?type=critical&date=$(date +%F)" -o path-ai-critical-$(date +%F).log
 ```
 
+## Local LAN Testing (Accessing from other devices)
+
+To test the frontend from another device on your LAN (for example, visiting http://192.168.178.22:5173):
+
+- **Start the backend** bound to all interfaces, with CORS configured to allow your frontend:
+
+```bash
+# from the backend/ folder
+# Backend automatically allows private LAN IPs (10.x, 192.168.x, 172.16-31.x)
+# Explicit CORS_ORIGIN is optional but useful for debugging
+CORS_ORIGIN="http://192.168.178.22:5173,http://localhost:5173" npm run dev
+```
+
+- **Start the frontend** bound to all interfaces (dev server listens on 0.0.0.0). API calls go directly from the browser to the backend (no proxy):
+
+```bash
+# from the frontend/ folder
+# Frontend defaults to http(s)://<browser-hostname>:3000 for backend
+npm run dev
+```
+
+Then from another device, visit: **http://192.168.178.22:5173**
+
+- The browser will make API calls directly to **http://192.168.178.22:3000** (inferred from hostname).
+
+- **Optional**: If backend runs on a different host/port, set `VITE_API_URL`:
+
+```bash
+VITE_API_URL=http://other-ip:3000 npm run dev
+```
+
+**Key:** Vite dev server no longer uses a proxy — API calls go directly from the browser to the backend over CORS. This ensures consistent behavior across localhost and LAN IPs.
+
+Startup logs will show:
+
+- `[CORS] Allowed origins: ...` (backend allowed origins)
+- Backend listening on port 3000
+- Frontend dev server on 0.0.0.0:5173
+
 ### 5. `bookmark_add` / `bookmark_remove`
 
 - When user bookmarks or removes a bookmark

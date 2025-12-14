@@ -132,6 +132,7 @@ export function OnboardingWizard({
     const token = localStorage.getItem('token');
     if (token) {
       try {
+        console.log('[OnboardingWizard] Saving onboardingData payload:', JSON.stringify(data));
         const response = await fetch(getApiUrl('/api/users/onboarding'), {
           method: 'PUT',
           headers: {

@@ -13,9 +13,12 @@ import { TemplatesPage } from './dashboard/TemplatesPage.clean';
 import { TemplateDetailsPage } from './dashboard/TemplateDetailsPage';
 import { useLearning } from '../contexts/useLearning';
 import { StatisticsOverview } from './dashboard/StatisticsOverview';
+import { useAuth } from '../contexts/useAuth';
+import config from '../config/app.config';
 import { StorePage } from './StorePage';
 import type { LearningTemplate } from '../types/templates';
 import type { LearningPath, LearningPathItem } from '../types/learning';
+import { getApiUrl } from '../config/app.config';
 
 //* refactored out widgets below
 // import { CommonWidgetsRow } from './dashboard/CommonWidgetsRow';
@@ -34,6 +37,61 @@ export function Dashboard({ mode: initialMode, onBackToSelection }: DashboardPro
   >(initialMode ?? 'learning');
   const [selectedTemplate, setSelectedTemplate] = useState<LearningTemplate | null>(null);
   const { setCurrentLearningPath, setCurrentPath, triggerSubtopicGeneration } = useLearning();
+
+  // Debug (admin only): Test API connection
+  const { user, isAuthenticated, userDetails } = useAuth();
+
+  const isAdmin = (() => {
+    try {
+      if (!isAuthenticated) return false;
+      // Accept a few shapes for admin information to be robust across environments
+      const u = user as { role?: string; isAdmin?: boolean; email?: string } | null;
+      const ud = userDetails as { roles?: string[] } | null;
+      if (u?.role === 'admin' || u?.isAdmin === true) return true;
+      if (ud?.roles && Array.isArray(ud.roles) && ud.roles.includes('admin')) return true;
+      // fallback to email whitelist (development convenience)
+      if (u?.email && u.email === 'mal@dot.com') return true;
+      return false;
+    } catch {
+      return false;
+    }
+  })();
+
+  const [apiTestResult, setApiTestResult] = useState<string>('');
+
+  const testApiConnection = async () => {
+    try {
+      const url = getApiUrl('/api/health');
+      console.log('[Debug] Testing API connection to:', url);
+      const response = await fetch(url);
+      const data = await response.json();
+      setApiTestResult(`✅ Success: ${JSON.stringify(data)}`);
+      console.log('[Debug] API test successful:', data);
+    } catch (error) {
+      setApiTestResult(`❌ Error: ${error}`);
+      console.error('[Debug] API test failed:', error);
+    }
+  };
+
+  const testLoginEndpoint = async () => {
+    try {
+      const url = getApiUrl('/api/users/login');
+      console.log('[Debug] Testing login endpoint to:', url);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: 'test@example.com', password: 'test' }),
+        credentials: 'include',
+        mode: 'cors',
+      });
+      const data = await response.json();
+      setApiTestResult(`🔐 Login test: ${response.status} - ${JSON.stringify(data)}`);
+      console.log('[Debug] Login test result:', response.status, data);
+    } catch (error) {
+      setApiTestResult(`❌ Login test error: ${error}`);
+      console.error('[Debug] Login test failed:', error);
+    }
+  };
 
   // const handleEditDashboard = (e: React.MouseEvent) => {
   //   e.preventDefault();
@@ -149,6 +207,8 @@ export function Dashboard({ mode: initialMode, onBackToSelection }: DashboardPro
     <div className="min-h-screen bg-background transition-colors duration-300 py-8 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
+
+        {/* Header */}
         {/* <DashboardHeader
           mode={mode as 'learning'}
           onEdit={handleEditDashboard}
@@ -185,6 +245,39 @@ export function Dashboard({ mode: initialMode, onBackToSelection }: DashboardPro
         {/*  Full width widget */}
         {/* //*will be shown in both modes at this point */}
         {/* <FullWidthWidget /> */}
+        {/* Debug: API Connection Test (admin only) - moved to the end of the dashboard */}
+        {isAdmin && (
+          <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">🔧 Debug: API Connection Test</h3>
+            <div className="flex gap-2 mb-2">
+              <button
+                onClick={testApiConnection}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Test Health Endpoint
+              </button>
+              <button
+                onClick={testLoginEndpoint}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              >
+                Test Login Endpoint
+              </button>
+            </div>
+            <div className="text-sm text-muted mt-2">
+              <div>
+                Computed API baseUrl: <code>{config.api.baseUrl}</code>
+              </div>
+              <div>
+                VITE_API_URL: <code>{import.meta.env.VITE_API_URL ?? '<unset>'}</code>
+              </div>
+            </div>
+            {apiTestResult && (
+              <div className="mt-2 p-2 bg-white dark:bg-gray-700 rounded text-sm font-mono">
+                {apiTestResult}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

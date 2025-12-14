@@ -117,10 +117,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     try {
       console.log('[AuthContext] Attempting login for:', email);
+      console.log('[AuthContext] Login URL:', getApiUrl('/api/users/login'));
       const response = await fetch(getApiUrl('/api/users/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
+        credentials: 'include',
+        mode: 'cors',
       });
 
       console.log('[AuthContext] Response status:', response.status);
@@ -147,8 +150,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // notify other tabs
       dispatchAuthChanged();
     } catch (err) {
-      console.error('[AuthContext] Login error:', err instanceof Error ? err.message : String(err));
-      throw err;
+      const message = err instanceof Error ? err.message : String(err);
+      console.error('[AuthContext] Login error:', message);
+      throw new Error(
+        message.includes('Failed to fetch')
+          ? 'Network/CORS error while logging in. Ensure the backend is reachable and the origin is whitelisted.'
+          : message
+      );
     } finally {
       setIsLoading(false);
     }
@@ -161,6 +169,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, name }),
+        credentials: 'include',
+        mode: 'cors',
       });
 
       if (!response.ok) {

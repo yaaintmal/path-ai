@@ -134,6 +134,7 @@ export function OnboardingEditor({
     const token = localStorage.getItem('authToken');
     if (token) {
       try {
+        console.log('[OnboardingEditor] Saving onboardingData payload:', JSON.stringify(data));
         const response = await fetch(getApiUrl('/api/users/onboarding'), {
           method: 'PUT',
           headers: {
@@ -204,6 +205,14 @@ export function OnboardingEditor({
 
         {/* Content */}
         <div className="max-w-3xl mx-auto">
+          {/* Debug: show current onboarding data for verification */}
+          <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-800 rounded">
+            <h4 className="text-sm font-medium mb-2">Debug: current onboarding data</h4>
+            <pre className="text-xs font-mono max-h-48 overflow-auto">
+              {JSON.stringify(data, null, 2)}
+            </pre>
+          </div>
+
           <Card className="p-8 dark:bg-amber-500/33 dark:border-amber-300/87">
             {/* Step Components */}
             {currentStep === 1 && <StepLanguage data={data} updateData={updateData} />}

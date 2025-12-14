@@ -1,5 +1,22 @@
 [
   {
+    "version": "0.6.3",
+    "date": "2025-12-14",
+    "title": "Hotfix: Defused Preflight, CORS Headshots & LAN Ops",
+    "description": "Counter-Strike style ops: we defused the CORS bomb, cleared the smoke, and planted a health endpoint for quick LAN checks (gg).",
+    "details": [
+      "💥 HEADSHOT: Fixed CORS preflight handling (explicit methods/allowedHeaders + optionsSuccessStatus) so credentialed cross-origin logins don't get vaporized.",
+      "🛡️ DEFUSE KIT: Replaced brittle app.options('*') wildcard with an Express5-safe regex handler to avoid path-to-regexp crashes ('Missing parameter name at index 1').",
+      "🚦 SMOKE CLEARED: Expanded and de-duplicated allowed origin list (http/https + common dev ports), and added clearer allow/deny logging for debugging cross-device testing.",
+      "❤️ HEALTH PLANTED: Added lightweight `/api/health` endpoint for quick LAN reachability checks — perfect for 'pinging' from other devices before the round starts.",
+      "🔐 COOKIE TWEAK: Set `refreshToken` cookie SameSite='None' (Secure in prod) so browsers accept it with `fetch(..., credentials: 'include')` during cross-origin flows.",
+      "🧪 DEBUG GEAR: Added admin-only API test widget to the Dashboard (moved to the end of the page) and frontend logs to show the computed API URL while debugging.",
+      "🕵️ ONBOARDING FORensics: Logged onboarding payloads and stored user fields server-side and added a debug view in the Onboarding Editor to track native/preferred language swaps.",
+      "🔁 REBUILT & QA: Rebuilt backend after fixes; fixed various dev-server env issues (VITE_API_URL switched to LAN IP for easier multi-device testing).",
+      "🏁 STATUS: Bomb defused — Preflight secured (Counter-Terrorists: 1, CORS: 0). gg 👍"
+    ]
+  },
+  {
     "version": "0.6.2",
     "date": "2025-12-14",
     "title": "Ops: Admin Logs Endpoint, Startup Banner & Auth Fallback",

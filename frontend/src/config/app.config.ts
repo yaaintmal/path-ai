@@ -44,7 +44,13 @@ function getEnvBoolean(key: string, defaultValue: boolean = false): boolean {
 
 export const config: AppConfig = {
   api: {
-    baseUrl: getEnvVariable('VITE_API_URL', 'http://localhost:3000'),
+    // If VITE_API_URL is set, use it. Otherwise, default to the same host as the
+    // frontend (useful when opening the frontend via 192.168.x.x from another device).
+    baseUrl:
+      getEnvVariable('VITE_API_URL') ||
+      (typeof window !== 'undefined'
+        ? `${window.location.protocol}//${window.location.hostname}:3000`
+        : 'http://localhost:3000'),
   },
   ollama: {
     apiUrl: getEnvVariable('VITE_OLLAMA_API_URL', 'http://localhost:11434/api/generate'),
@@ -109,6 +115,13 @@ function validateConfig(): void {
   if (config.features.debugMode) {
     log('debug', 'Debug mode enabled');
     log('debug', 'Configuration loaded', config);
+  }
+
+  // Debug LAN access
+  if (typeof window !== 'undefined') {
+    console.log('[Config] Window location:', window.location.href);
+    console.log('[Config] Computed API baseUrl:', config.api.baseUrl);
+    console.log('[Config] VITE_API_URL env:', import.meta.env.VITE_API_URL);
   }
 }
 

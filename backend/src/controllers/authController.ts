@@ -135,11 +135,14 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
     // Store refresh token on user (single-per-user)
     user.refreshToken = refreshToken;
     await user.save();
-    // Set refresh token cookie (HttpOnly)
+    // Set refresh token cookie (HttpOnly).
+    // For cross-origin (different port/host) requests we need SameSite=None so the browser
+    // will accept the cookie when making credentialed requests (fetch with credentials: 'include').
+    // In production this cookie should be Secure (sent over HTTPS).
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
@@ -196,7 +199,7 @@ export const register: RequestHandler<unknown, any, RegisterRequest> = async (re
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'none',
       path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
@@ -331,6 +334,9 @@ export const updateOnboardingData: RequestHandler = async (req, res) => {
     console.log(
       `[updateOnboardingData] Payload size: ${JSON.stringify(onboardingData).length} chars`
     );
+    console.log(
+      `[updateOnboardingData] Incoming fields: native=${onboardingData?.nativeLanguage} preferred=${onboardingData?.preferredLanguage}`
+    );
 
     const user = await User.findByIdAndUpdate(userId, { onboardingData }, { new: true });
 
@@ -340,6 +346,9 @@ export const updateOnboardingData: RequestHandler = async (req, res) => {
     }
 
     console.log(`[updateOnboardingData] Successfully updated user: ${userId}`);
+    console.log(
+      `[updateOnboardingData] Stored fields: native=${user.onboardingData?.nativeLanguage} preferred=${user.onboardingData?.preferredLanguage}`
+    );
     res.status(200).json({
       user: {
         id: user._id.toString(),
@@ -382,7 +391,7 @@ export const refreshToken: RequestHandler = async (req: Request, res: Response) 
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     const newAccessToken = generateAccessToken(userId);
