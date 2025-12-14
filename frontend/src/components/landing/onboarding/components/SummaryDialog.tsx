@@ -20,6 +20,8 @@ export function SummaryDialog({ open, onOpenChange, data, onSave }: SummaryDialo
     `Gamification: ${data.gamification ?? '-'}`,
     `Belohnungen: ${data.rewards?.join(', ') ?? '-'}`,
     `Kommunikation: ${data.communicationStyle ?? '-'}`,
+    `Muttersprache: ${data.nativeLanguage ?? '-'}`,
+    `Bevorzugte Sprache für Path AI: ${data.preferredLanguage ?? '-'}`,
   ].join('\n');
 
   return open ? (

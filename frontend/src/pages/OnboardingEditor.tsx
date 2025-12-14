@@ -7,6 +7,7 @@ import { PageHeader } from '../components/landing/onboarding/components/Headers'
 import { ProgressBar } from '../components/landing/onboarding/components/ProgressBar';
 import { NavigationButtons } from '../components/landing/onboarding/components/NavigationButtons';
 import { SummaryDialog } from '../components/landing/onboarding/components/SummaryDialog';
+import { StepLanguage } from '../components/landing/onboarding/steps/StepLanguage';
 import { Step1Role } from '../components/landing/onboarding/steps/Step1Role';
 import { Step2Goals } from '../components/landing/onboarding/steps/Step2Goals';
 import { Step3Skills } from '../components/landing/onboarding/steps/Step3Skills';
@@ -24,6 +25,7 @@ import {
   Clock,
   Gamepad2,
   MessageSquare,
+  Globe,
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ComponentType> = {
@@ -34,6 +36,7 @@ const iconMap: Record<string, React.ComponentType> = {
   Clock,
   Gamepad2,
   MessageSquare,
+  Globe,
 };
 
 interface OnboardingEditorProps {
@@ -57,15 +60,18 @@ export function OnboardingEditor({
   useEffect(() => {
     // Prefer onboarding data from userDetails (reactive); fallback to localStorage
     if (userDetails?.onboardingData) {
-      const loadedData = userDetails.onboardingData;
+      let loadedData = userDetails.onboardingData;
       if (loadedData.skillLevels && !Array.isArray(loadedData.skillLevels)) {
-        loadedData.skillLevels = Object.entries(loadedData.skillLevels).map(([subject, level]) => ({
+        const converted = Object.entries(loadedData.skillLevels).map(([subject, level]) => ({
           subject,
           level: Number(level),
         }));
+        loadedData = { ...loadedData, skillLevels: converted };
       }
-      setData(loadedData);
-      setIsLoading(false);
+      setTimeout(() => {
+        setData(loadedData);
+        setIsLoading(false);
+      }, 0);
       return;
     }
 
@@ -81,13 +87,13 @@ export function OnboardingEditor({
               ([subject, level]) => ({ subject, level: Number(level) })
             );
           }
-          setData(loadedData);
+          setTimeout(() => setData(loadedData), 0);
         }
       } catch (error) {
         console.error('Failed to parse user data:', error);
       }
     }
-    setIsLoading(false);
+    setTimeout(() => setIsLoading(false), 0);
   }, [userDetails]);
 
   const nextStep = () => {
@@ -193,31 +199,33 @@ export function OnboardingEditor({
           totalSteps={stepsConfig.length}
           steps={stepsConfig}
           iconMap={iconMap}
+          onStepClick={(stepId) => setCurrentStep(stepId)}
         />
 
         {/* Content */}
         <div className="max-w-3xl mx-auto">
           <Card className="p-8 dark:bg-gray-800 dark:border-gray-700">
             {/* Step Components */}
-            {currentStep === 1 && <Step1Role data={data} updateData={updateData} />}
-            {currentStep === 2 && (
+            {currentStep === 1 && <StepLanguage data={data} updateData={updateData} />}
+            {currentStep === 2 && <Step1Role data={data} updateData={updateData} />}
+            {currentStep === 3 && (
               <Step2Goals data={data} updateData={updateData} toggleArrayItem={toggleArrayItem} />
             )}
-            {currentStep === 3 && <Step3Skills data={data} updateData={updateData} />}
-            {currentStep === 4 && (
+            {currentStep === 4 && <Step3Skills data={data} updateData={updateData} />}
+            {currentStep === 5 && (
               <Step4LearningType data={data} toggleArrayItem={toggleArrayItem} />
             )}
-            {currentStep === 5 && (
+            {currentStep === 6 && (
               <Step5Time data={data} updateData={updateData} toggleArrayItem={toggleArrayItem} />
             )}
-            {currentStep === 6 && (
+            {currentStep === 7 && (
               <Step6Gamification
                 data={data}
                 updateData={updateData}
                 toggleArrayItem={toggleArrayItem}
               />
             )}
-            {currentStep === 7 && <Step7Communication data={data} updateData={updateData} />}
+            {currentStep === 8 && <Step7Communication data={data} updateData={updateData} />}
 
             {/* Navigation */}
             <NavigationButtons
@@ -226,6 +234,7 @@ export function OnboardingEditor({
               onPrev={prevStep}
               onNext={nextStep}
               onComplete={handleComplete}
+              onSave={handleSave}
             />
           </Card>
           <SummaryDialog

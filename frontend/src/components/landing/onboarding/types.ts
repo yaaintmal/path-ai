@@ -8,6 +8,8 @@ export interface OnboardingData {
   weeklyHours: number;
   schedule: string;
   bestTime: string[];
+  nativeLanguage?: string;
+  preferredLanguage?: string;
   gamification: string;
   rewards: string[];
   communicationStyle: string;

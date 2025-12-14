@@ -1,5 +1,5 @@
 import { Button } from '../../../../ui/button';
-import { ArrowRight, ArrowLeft, Check } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, Save } from 'lucide-react';
 
 interface NavigationButtonsProps {
   currentStep: number;
@@ -7,6 +7,7 @@ interface NavigationButtonsProps {
   onPrev: () => void;
   onNext: () => void;
   onComplete: () => void;
+  onSave?: () => void;
 }
 
 export function NavigationButtons({
@@ -15,13 +16,22 @@ export function NavigationButtons({
   onPrev,
   onNext,
   onComplete,
+  onSave,
 }: NavigationButtonsProps) {
   return (
     <div className="flex items-center justify-between mt-8 pt-6 border-t dark:border-gray-700">
-      <Button variant="outline" onClick={onPrev} disabled={currentStep === 1} className="gap-2">
-        <ArrowLeft className="size-4" />
-        back
-      </Button>
+      <div className="flex items-center gap-3">
+        <Button variant="outline" onClick={onPrev} disabled={currentStep === 1} className="gap-2">
+          <ArrowLeft className="size-4" />
+          back
+        </Button>
+        {onSave && (
+          <Button variant="outline" onClick={onSave} className="gap-2" title="Save preferences">
+            <Save className="size-4" />
+            save
+          </Button>
+        )}
+      </div>
 
       <div className="text-sm text-muted-foreground">
         step {currentStep} of {totalSteps}

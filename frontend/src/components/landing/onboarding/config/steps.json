@@ -1,36 +1,41 @@
 [
   {
     "id": 1,
+    "title": "Language",
+    "icon": "Globe"
+  },
+  {
+    "id": 2,
     "title": "Rolle & Kontext",
     "icon": "GraduationCap"
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "Ziele",
     "icon": "Target"
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "Skills & Kenntnisstand",
     "icon": "Brain"
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "Lerntyp",
     "icon": "BookOpen"
   },
   {
-    "id": 5,
+    "id": 6,
     "title": "Zeit & Routine",
     "icon": "Clock"
   },
   {
-    "id": 6,
+    "id": 7,
     "title": "Gamification",
     "icon": "Gamepad2"
   },
   {
-    "id": 7,
+    "id": 8,
     "title": "Kommunikationsstil",
     "icon": "MessageSquare"
   }

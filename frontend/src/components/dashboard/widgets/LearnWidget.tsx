@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BookOpen, ChevronRight, Bookmark, BookmarkCheck, CheckCircle } from 'lucide-react';
 import { ThinkingSpinner } from '../../ui/ThinkingSpinner';
 import { config } from '../../../config/app.config';
+import { getPreferredLanguage } from './learn/learn.constants';
 import { useBookmarks } from '../../../contexts/useBookmarks';
 
 interface SubTopic {
@@ -17,7 +18,7 @@ interface StartingPoint {
 
 const OLLAMA_API_URL = import.meta.env.VITE_OLLAMA_API_URL || config.ollama.apiUrl;
 const LLM_MODEL = import.meta.env.VITE_OLLAMA_MODEL || config.ollama.model;
-const LANGUAGE = import.meta.env.VITE_OLLAMA_LANGUAGE || config.ollama.language;
+// Resolve language at request time via getPreferredLanguage()
 
 export function LearnWidget() {
   const [learntopic, setLearntopic] = useState('');
@@ -46,7 +47,7 @@ export function LearnWidget() {
       1. Starting point 1
       2. Starting point 2
       3. Starting point 3
-      Answer on ${LANGUAGE}`;
+      Answer on ${getPreferredLanguage()}`;
 
       const response = await fetch(OLLAMA_API_URL, {
         method: 'POST',
@@ -99,7 +100,7 @@ export function LearnWidget() {
       4. [INTERMEDIATE] Subtopic 4
       5. [ADVANCED] Subtopic 5
       
-      Make them progressively more complex. Answer on ${LANGUAGE}`;
+      Make them progressively more complex. Answer on ${getPreferredLanguage()}`;
 
       const response = await fetch(OLLAMA_API_URL, {
         method: 'POST',

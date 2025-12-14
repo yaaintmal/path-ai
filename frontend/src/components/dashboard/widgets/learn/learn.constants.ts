@@ -2,7 +2,33 @@ import { config } from '../../../../config/app.config';
 
 export const OLLAMA_API_URL = import.meta.env.VITE_OLLAMA_API_URL || config.ollama.apiUrl;
 export const LLM_MODEL = import.meta.env.VITE_OLLAMA_MODEL || config.ollama.model;
-export const LANGUAGE = import.meta.env.VITE_OLLAMA_LANGUAGE || config.ollama.language;
+
+/**
+ * Resolve the preferred language for LLM prompts.
+ * Priority: user onboarding preference (localStorage 'user'.onboardingData.preferredLanguage) -> env/config fallback
+ */
+export function getPreferredLanguage(): string {
+  try {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      const u = JSON.parse(userStr);
+      const pref = u?.onboardingData?.preferredLanguage;
+      if (pref) return pref;
+    }
+  } catch {
+    // ignore parsing errors
+  }
+  try {
+    const onboardStr = localStorage.getItem('onboarddata');
+    if (onboardStr) {
+      const onboard = JSON.parse(onboardStr);
+      if (onboard?.preferredLanguage) return onboard.preferredLanguage;
+    }
+  } catch {
+    // ignore
+  }
+  return import.meta.env.VITE_OLLAMA_LANGUAGE || config.ollama.language;
+}
 
 export const STARTING_POINTS_COUNT = 3;
 export const SUBTOPICS_COUNT = 5;

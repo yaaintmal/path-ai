@@ -6,9 +6,16 @@ interface ProgressBarProps {
   totalSteps: number;
   steps: Array<{ id: number; title: string; icon: string }>;
   iconMap: Record<string, React.ComponentType>;
+  onStepClick?: (stepId: number) => void;
 }
 
-export function ProgressBar({ currentStep, totalSteps, steps, iconMap }: ProgressBarProps) {
+export function ProgressBar({
+  currentStep,
+  totalSteps,
+  steps,
+  iconMap,
+  onStepClick,
+}: ProgressBarProps) {
   const progress = (currentStep / totalSteps) * 100;
 
   return (
@@ -22,7 +29,18 @@ export function ProgressBar({ currentStep, totalSteps, steps, iconMap }: Progres
                 className={`flex flex-col items-center ${index < steps.length - 1 ? 'flex-1' : ''}`}
               >
                 <div
-                  className={`size-10 rounded-full flex items-center justify-center mb-2 transition-all ${
+                  role={onStepClick ? 'button' : undefined}
+                  tabIndex={onStepClick ? 0 : undefined}
+                  onClick={onStepClick ? () => onStepClick(step.id) : undefined}
+                  onKeyDown={
+                    onStepClick
+                      ? (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') onStepClick(step.id);
+                        }
+                      : undefined
+                  }
+                  aria-label={onStepClick ? `Go to step ${step.id}: ${step.title}` : undefined}
+                  className={`size-10 rounded-full flex items-center justify-center mb-2 transition-all ${onStepClick ? 'cursor-pointer' : ''} ${
                     currentStep === step.id
                       ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white scale-110'
                       : currentStep > step.id
