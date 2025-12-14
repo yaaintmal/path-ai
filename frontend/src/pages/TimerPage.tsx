@@ -7,6 +7,7 @@ import { TimerWidget } from '../components/timer/TimerWidget';
 import { CurrentPathWidget } from '../components/timer/CurrentPathWidget';
 import { RecentSessionsWidget } from '../components/timer/RecentSessionsWidget';
 import { SessionHistoryWidget } from '../components/timer/SessionHistoryWidget';
+import { PomodoroTemplatesWidget } from '../components/timer/PomodoroTemplatesWidget';
 import { getApiUrl } from '../config/app.config';
 import { Button } from '../ui/button';
 import { ArrowLeft } from 'lucide-react';
@@ -25,11 +26,15 @@ interface TimerPageProps {
 }
 
 export function TimerPage({ onBack }: TimerPageProps) {
-  const { isActive } = useTimer();
+  const { isActive, setTimeGoal } = useTimer();
   const { userDetails } = useAuth();
   const { currentLearningPath } = useLearning();
   const [history, setHistory] = useState<Session[]>([]);
   const [historyLoading, setHistoryLoading] = useState(true);
+
+  const handlePomodoroTemplate = (totalMinutes: number) => {
+    setTimeGoal(totalMinutes * 60); // Convert minutes to seconds
+  };
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -51,10 +56,8 @@ export function TimerPage({ onBack }: TimerPageProps) {
       }
     };
 
-    // Fetch initially and when timer stops (isActive becomes false)
-    if (!isActive) {
-      fetchHistory();
-    }
+    // Fetch on mount and when timer stops (isActive becomes false)
+    fetchHistory();
   }, [isActive]);
 
   return (
@@ -82,6 +85,10 @@ export function TimerPage({ onBack }: TimerPageProps) {
           {currentLearningPath && (
             <CurrentPathWidget title={currentLearningPath.title} type={currentLearningPath.type} />
           )}
+          <PomodoroTemplatesWidget 
+            onSelectTemplate={handlePomodoroTemplate}
+            isDisabled={isActive}
+          />
           <RecentSessionsWidget sessions={history.slice(0, 3)} isLoading={historyLoading} />
         </div>
 

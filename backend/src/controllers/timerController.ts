@@ -12,9 +12,9 @@ export const startSession = async (req: Request, res: Response, next: NextFuncti
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    if (!goal) {
-      return res.status(400).json({ message: 'Goal is required' });
-    }
+    // Input validation is handled by TimerStartSessionSchema middleware
+    // Schema ensures: goal is string, max 200 chars, no HTML tags
+    // Schema trims whitespace and validates learningPath if provided
 
     // Check if there is already an active session for this user
     const activeSession = await (LearningSession as any).findOne({
