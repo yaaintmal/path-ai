@@ -85,7 +85,7 @@ export function TimerPage({ onBack }: TimerPageProps) {
           {currentLearningPath && (
             <CurrentPathWidget title={currentLearningPath.title} type={currentLearningPath.type} />
           )}
-          <PomodoroTemplatesWidget 
+          <PomodoroTemplatesWidget
             onSelectTemplate={handlePomodoroTemplate}
             isDisabled={isActive}
           />

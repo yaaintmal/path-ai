@@ -16,7 +16,10 @@ interface PomodoroTemplatesWidgetProps {
   isDisabled?: boolean;
 }
 
-export function PomodoroTemplatesWidget({ onSelectTemplate, isDisabled }: PomodoroTemplatesWidgetProps) {
+export function PomodoroTemplatesWidget({
+  onSelectTemplate,
+  isDisabled,
+}: PomodoroTemplatesWidgetProps) {
   const templates: PomodoroTemplate[] = [
     {
       name: 'Quick Focus',
@@ -66,11 +69,10 @@ export function PomodoroTemplatesWidget({ onSelectTemplate, isDisabled }: Pomodo
                 {template.totalMinutes}m
               </div>
             </div>
-            <div className="text-xs text-muted-foreground text-left">
-              {template.description}
-            </div>
+            <div className="text-xs text-muted-foreground text-left">{template.description}</div>
             <div className="text-xs text-muted-foreground/70 text-left">
-              {template.sessions}× {template.sessionDuration}m sessions + {template.breakDuration}m breaks
+              {template.sessions}× {template.sessionDuration}m sessions + {template.breakDuration}m
+              breaks
             </div>
           </Button>
         ))}

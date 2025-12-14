@@ -180,4 +180,3 @@ export const TimerStartSessionSchema = z
   .strict();
 
 export type TimerStartSessionDTO = z.infer<typeof TimerStartSessionSchema>;
-
