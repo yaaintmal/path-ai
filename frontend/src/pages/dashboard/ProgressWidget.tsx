@@ -1,4 +1,5 @@
 import { useBookmarks } from '../../contexts/useBookmarks';
+import IconButton from '../../components/ui/IconButton';
 import { TrendingUp, ShoppingCart } from 'lucide-react';
 import {
   getCurrentBadge,
@@ -50,14 +51,14 @@ export function ProgressWidget({ onStoreClick }: ProgressWidgetProps) {
         <h2 className="text-lg font-semibold text-card-foreground">your progress</h2>
         <div className="flex items-center gap-2">
           {/* Store Button */}
-          <button
+          <IconButton
             onClick={onStoreClick}
-            className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
-            aria-label="Store öffnen"
+            ariaLabel="Open store"
             title="Store öffnen"
+            className="bg-gradient-to-br from-purple-500 to-pink-500 hover:shadow-lg"
           >
-            <ShoppingCart className="w-5 h-5 text-white" />
-          </button>
+            <ShoppingCart className="w-6 h-6 text-white" />
+          </IconButton>
           <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
             <TrendingUp className="w-6 h-6 text-white" />
           </div>

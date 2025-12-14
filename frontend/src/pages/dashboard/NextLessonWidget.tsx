@@ -1,4 +1,5 @@
 import { useLearning } from '../../contexts/useLearning';
+import IconButton from '../../components/ui/IconButton';
 import { Target as Darts } from 'lucide-react';
 
 interface NextLessonWidgetProps {
@@ -30,13 +31,14 @@ export function NextLessonWidget({ onOpenTopicsClick }: NextLessonWidgetProps) {
     <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow overflow-visible h-full flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-foreground">next lesson</h2>
-        <div
+        <IconButton
           onClick={() => onOpenTopicsClick && onOpenTopicsClick()}
-          className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center cursor-pointer"
+          ariaLabel="Open topics"
           title="Open topics"
+          className="bg-gradient-to-br from-purple-500 to-pink-500 hover:shadow-lg"
         >
           <Darts className="w-6 h-6 text-white" />
-        </div>
+        </IconButton>
       </div>
       <div className="flex-1 flex flex-col justify-between">
         <div className="mb-4">

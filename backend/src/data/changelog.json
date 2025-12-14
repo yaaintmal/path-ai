@@ -1,5 +1,27 @@
 [
   {
+    "version": "0.5.1.9.4",
+    "date": "2025-12-14",
+    "title": "Tweak: icon-button desaturation & streak integration",
+    "description": "Fine-tuned `IconButton` behavior and applied it to streak widgets for consistent UX",
+    "details": [
+      "Reduced default desaturation to 30% for `IconButton` so idle icons are subtly muted (not fully grayscale)",
+      "Applied `IconButton` to Compact and Enhanced Streak widgets so their header icons follow the same hover/focus logic",
+      "Fixed import paths and ensured consistent w-12/w-6 sizing across widget headers",
+      "Small bug fixes and style polish across dashboard widgets"
+    ]
+  },
+  {
+    "version": "0.5.1.9.3",
+    "date": "2025-12-14",
+    "title": "Refactor: more widget polish",
+    "description": "Further improved dashboard widgets for better UX and added dynamic changelog statistics",
+    "details": [
+      "Refactored icon styling in dashboard widgets to use consistent sizes and colors, improving visual harmony",
+      "Enhanced hover effects on widget action buttons for better interactivity feedback"
+    ]
+  },
+  {
     "version": "0.5.1.9.2",
     "date": "2025-12-14",
     "title": "Fix: widget polish & stats card",

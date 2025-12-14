@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../../contexts/useAuth';
 import { getApiUrl } from '../../config/app.config';
 import { Flame, BookOpen, TrendingUp, Star } from 'lucide-react';
+import IconButton from '../../components/ui/IconButton';
 
 interface StreakStatistics {
   currentStreak: number;
@@ -99,13 +100,14 @@ export function EnhancedStreakWidget({ onStatisticsClick }: EnhancedStreakWidget
     <div className="bg-card rounded-lg shadow-md p-6 border border-border hover:shadow-lg transition-shadow h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-lg font-semibold text-card-foreground">Deine Erfolgsstatistiken</h2>
-        <button
+        <IconButton
           onClick={onStatisticsClick}
-          className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
-          aria-label="Statistiken anzeigen"
+          ariaLabel="Statistiken anzeigen"
+          title="Statistiken anzeigen"
+          className="bg-gradient-to-br from-orange-500 to-red-500 hover:shadow-lg"
         >
           <Flame className="w-6 h-6 text-white" />
-        </button>
+        </IconButton>
       </div>
 
       {loading ? (

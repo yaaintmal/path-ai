@@ -1,4 +1,5 @@
 import { Bookmark, X, CheckCircle, Target, Sparkles, Archive } from 'lucide-react';
+import IconButton from '../../ui/IconButton';
 import { useBookmarks } from '../../../contexts/useBookmarks';
 import { useLearning } from '../../../contexts/useLearning';
 import { FormattedText } from './learn/FormattedText';
@@ -25,14 +26,14 @@ export function SavedThemesWidget({ onCompletedTopicsClick }: SavedThemesWidgetP
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-foreground">saved topics</h2>
         <div className="flex items-center gap-3">
-          <button
+          <IconButton
             onClick={() => onCompletedTopicsClick && onCompletedTopicsClick()}
-            className="px-3 py-2 rounded-md hover:bg-card-foreground/5 dark:hover:bg-card-foreground/30 transition-colors"
+            ariaLabel="Completed topics"
             title="Completed topics"
-            aria-label="Completed topics"
+            className="bg-gradient-to-br from-yellow-500 to-orange-500 hover:shadow-lg"
           >
-            <Archive className="w-5 h-5 text-yellow-500" />
-          </button>
+            <Archive className="w-6 h-6 text-white" />
+          </IconButton>
           <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
             <Bookmark className="w-6 h-6 text-white" />
           </div>

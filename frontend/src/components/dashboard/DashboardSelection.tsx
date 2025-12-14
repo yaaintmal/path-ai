@@ -209,8 +209,8 @@ export function DashboardSelection({ onSelect }: DashboardSelectionProps) {
           {lastTwoLearnedTopics.length > 0 && (
             <div className="md:col-span-2 bg-card p-4 rounded-2xl shadow-lg border border-border">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
                 <h2 className="text-lg font-bold text-foreground">
                   Lastly completed learning paths
