@@ -181,6 +181,20 @@ app.listen(PORT, () => {
         )
     );
 
+    // Timer endpoints
+    console.log(
+      grayText('[Info] Timer endpoints:') +
+        ' ' +
+        amberText('/api/timer [POST /start, POST /stop, GET /active, GET /history, GET /statistics]')
+    );
+
+    // Admin endpoints
+    console.log(
+      grayText('[Info] Admin endpoints:') +
+        ' ' +
+        amberText('/api/admin [GET /logs (admin only), GET /ping (admin only)]')
+    );
+
     // Log where logs are stored
     const logDir = process.env.LOG_DIR || path.join(process.cwd(), 'logs');
     console.log(
