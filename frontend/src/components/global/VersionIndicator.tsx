@@ -9,6 +9,21 @@ interface VersionIndicatorProps {
 export function VersionIndicator({ onClick }: VersionIndicatorProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [versionInfo, setVersionInfo] = useState(getVersionInfo());
+  const [backendStatus, setBackendStatus] = useState<'unknown' | 'up' | 'down'>('unknown');
+  const [lastChecked, setLastChecked] = useState<number | null>(null);
+
+  // Perform a lightweight backend health check. Throttled by `lastChecked`.
+  const checkBackend = async () => {
+    try {
+      const now = Date.now();
+      if (lastChecked && now - lastChecked < 10000) return;
+      setLastChecked(now);
+      const res = await fetch(getApiUrl('/api/changelog/latest'));
+      setBackendStatus(res.ok ? 'up' : 'down');
+    } catch {
+      setBackendStatus('down');
+    }
+  };
 
   useEffect(() => {
     // Show version indicator for 3 seconds on mount
@@ -33,6 +48,7 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       }
     };
 
+
     fetchVersion();
 
     return () => clearTimeout(timer);
@@ -43,7 +59,10 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       {/* Subtle Version Badge in Footer */}
       <div
         className="fixed bottom-4 right-4 z-50 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer group"
-        onMouseEnter={() => setIsVisible(true)}
+        onMouseEnter={() => {
+          setIsVisible(true);
+          void checkBackend();
+        }}
         onMouseLeave={() => setIsVisible(false)}
         onClick={onClick}
         role="button"
@@ -58,7 +77,15 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
           <span className="opacity-60 group-hover:opacity-100 transition-opacity">
             v{versionInfo.version}
           </span>
-          <div className="w-2 h-2 bg-muted-foreground group-hover:bg-green-500 dark:bg-muted-foreground rounded-full opacity-60 group-hover:opacity-100 transition-opacity"></div>
+          <div
+            className={`w-2 h-2 ${
+              backendStatus === 'up'
+                ? 'bg-green-500'
+                : backendStatus === 'down'
+                ? 'bg-red-500'
+                : 'bg-muted-foreground'
+            } rounded-full opacity-60 group-hover:opacity-100 transition-opacity`}
+          ></div>
         </div>
 
         {/* Tooltip on Hover */}
@@ -66,6 +93,9 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
           <div className="absolute bottom-full right-0 mb-2 bg-gray-800 dark:bg-gray-900 text-gray-100 dark:text-gray-200 px-3 py-2 rounded-lg whitespace-nowrap text-xs shadow-lg pointer-events-none border border-gray-700 dark:border-gray-600">
             <div>Version: {versionInfo.version}</div>
             <div className="text-muted-foreground">Updated: {versionInfo.date}</div>
+            <div className="text-muted-foreground">
+              Backend: <span className={backendStatus === 'up' ? 'text-green-400' : backendStatus === 'down' ? 'text-red-400' : 'text-yellow-300'}>{backendStatus}</span>
+            </div>
             {onClick && <div className="text-primary text-xs mt-1">Click to view changelog</div>}
           </div>
         )}

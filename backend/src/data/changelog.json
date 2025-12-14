@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.5.1.9.5",
+    "date": "2025-12-14",
+    "title": "Feature: VersionIndicator hover backend health check",
+    "description": "Runs a lightweight backend health check when hovering the VersionIndicator and surfaces status in the tooltip",
+    "details": [
+      "Performs an inexpensive GET to /api/changelog/latest on hover and throttles checks to once every 10s",
+      "Updates the small status dot (green=up, red=down, muted=unknown) based on the result",
+      "Shows backend status text in the hover tooltip and handles failures gracefully",
+      "Recommendation: add a dedicated /api/health endpoint in the future for an even lighter check"
+    ]
+  },
+  {
     "version": "0.5.1.9.4",
     "date": "2025-12-14",
     "title": "Tweak: icon-button desaturation & streak integration",
