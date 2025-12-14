@@ -5,6 +5,8 @@ export interface IOnboardingData {
   level?: string;
   goals?: string[];
   subjects?: string[];
+  nativeLanguage?: string;
+  preferredLanguage?: string; // language preferred for Path AI (used for LLM prompts)
   skillLevels?: Array<{ subject: string; level: number }>;
   learningType?: string[];
   weeklyHours?: number;
@@ -81,6 +83,8 @@ const OnboardingSchema = new Schema<IOnboardingData>(
     weeklyHours: { type: Number },
     schedule: { type: String },
     bestTime: [{ type: String }],
+    nativeLanguage: { type: String },
+    preferredLanguage: { type: String },
     gamification: { type: String },
     rewards: [{ type: String }],
     communicationStyle: { type: String },

@@ -6,6 +6,7 @@ import { PageHeader } from './components/Headers';
 import { ProgressBar } from './components/ProgressBar';
 import { NavigationButtons } from './components/NavigationButtons';
 import { SummaryDialog } from './components/SummaryDialog';
+import { StepLanguage } from './steps/StepLanguage';
 import { Step1Role } from './steps/Step1Role';
 import { Step2Goals } from './steps/Step2Goals';
 import { Step3Skills } from './steps/Step3Skills';
@@ -23,6 +24,7 @@ import {
   Clock,
   Gamepad2,
   MessageSquare,
+  Globe,
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ComponentType> = {
@@ -33,6 +35,7 @@ const iconMap: Record<string, React.ComponentType> = {
   Clock,
   Gamepad2,
   MessageSquare,
+  Globe,
 };
 
 const defaultData: Partial<OnboardingData> = {
@@ -40,6 +43,8 @@ const defaultData: Partial<OnboardingData> = {
   level: '',
   goals: [],
   subjects: [],
+  nativeLanguage: '',
+  preferredLanguage: '',
   skillLevels: [],
   learningType: [],
   weeklyHours: 5,
@@ -174,31 +179,33 @@ export function OnboardingWizard({
           totalSteps={stepsConfig.length}
           steps={stepsConfig}
           iconMap={iconMap}
+          onStepClick={(stepId) => setCurrentStep(stepId)}
         />
 
         {/* Content */}
         <div className="max-w-3xl mx-auto">
           <Card className="p-8 dark:bg-gray-800 dark:border-gray-700">
             {/* Step Components */}
-            {currentStep === 1 && <Step1Role data={data} updateData={updateData} />}
-            {currentStep === 2 && (
+            {currentStep === 1 && <StepLanguage data={data} updateData={updateData} />}
+            {currentStep === 2 && <Step1Role data={data} updateData={updateData} />}
+            {currentStep === 3 && (
               <Step2Goals data={data} updateData={updateData} toggleArrayItem={toggleArrayItem} />
             )}
-            {currentStep === 3 && <Step3Skills data={data} updateData={updateData} />}
-            {currentStep === 4 && (
+            {currentStep === 4 && <Step3Skills data={data} updateData={updateData} />}
+            {currentStep === 5 && (
               <Step4LearningType data={data} toggleArrayItem={toggleArrayItem} />
             )}
-            {currentStep === 5 && (
+            {currentStep === 6 && (
               <Step5Time data={data} updateData={updateData} toggleArrayItem={toggleArrayItem} />
             )}
-            {currentStep === 6 && (
+            {currentStep === 7 && (
               <Step6Gamification
                 data={data}
                 updateData={updateData}
                 toggleArrayItem={toggleArrayItem}
               />
             )}
-            {currentStep === 7 && <Step7Communication data={data} updateData={updateData} />}
+            {currentStep === 8 && <Step7Communication data={data} updateData={updateData} />}
 
             {/* Navigation */}
             <NavigationButtons
@@ -207,6 +214,7 @@ export function OnboardingWizard({
               onPrev={prevStep}
               onNext={nextStep}
               onComplete={handleComplete}
+              onSave={handleSave}
             />
           </Card>
           <SummaryDialog

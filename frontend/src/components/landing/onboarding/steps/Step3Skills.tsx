@@ -60,6 +60,8 @@ export function Step3Skills({ data, updateData }: Step3SkillsProps) {
         ))}
       </div>
 
+      {/* Language preferences moved to the first step (pre-selection) */}
+
       <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
         <p className="text-sm text-blue-900 dark:text-blue-200">
           💡 Basierend auf deinen Angaben empfehlen wir passende Lernmaterialien und passen die

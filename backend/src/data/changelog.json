@@ -1,5 +1,20 @@
 [
   {
+    "version": "0.5.2",
+    "date": "2025-12-14",
+    "title": "Release: Onboarding language, LLM prefs, and onboarding UX improvements",
+    "description": "Added language pre-selection, made onboarding easier to navigate and save, and wired LLM prompts to user preferences",
+    "details": [
+      "Added a 'Language' pre-selection step (step 1) so users can choose native and preferred Path AI language up-front",
+      "Made onboarding progress icons clickable and keyboard accessible so users can jump to any step",
+      "Added a global 'Save' button in the onboarding navigation so preferences can be persisted from any step",
+      "Learn widget now resolves the LLM language at runtime from user onboarding settings (preferredLanguage) via `getPreferredLanguage()`",
+      "Fixed onboarding editor issues (no mutation of reactive data, avoided synchronous setState in effects)",
+      "Added a small `frontend/scripts/validate-steps.cjs` check and `npm run check:steps` script to ensure onboarding step ids remain unique",
+      "Small UI polish & component extractions: `WhatsNew` uses an `IconButton` for 'View all', bookmarks/completed paths widgets extracted for clarity"
+    ]
+  },
+  {
     "version": "0.5.1.9.5",
     "date": "2025-12-14",
     "title": "Feature: VersionIndicator hover backend health check",

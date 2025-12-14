@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useBookmarks } from '../../../../contexts/useBookmarks';
 import { useLearning } from '../../../../contexts/useLearning';
-import { LLM_MODEL, PROMPTS, LANGUAGE } from './learn.constants';
+import { LLM_MODEL, PROMPTS, getPreferredLanguage } from './learn.constants';
 import { parseStartingPointsResponse, parseSubtopicsResponse } from './learn.utils';
 import { config } from '../../../../config/app.config';
 import { generate as generateWithLLM } from './llmAdapter';
@@ -29,7 +29,7 @@ export function useLearnWidget() {
     setStartingPoints([]); // Clear starting points since we're going directly to subtopics
 
     try {
-      const prompt = PROMPTS.subtopics(topicTitle, topicTitle, LANGUAGE);
+      const prompt = PROMPTS.subtopics(topicTitle, topicTitle, getPreferredLanguage());
       const data = await generateWithLLM(prompt, LLM_MODEL);
       setSubtopics(parseSubtopicsResponse(data.response, config.llm.useGoogleGemini));
     } catch (err) {
@@ -60,7 +60,7 @@ export function useLearnWidget() {
     setSubtopics([]);
 
     try {
-      const prompt = PROMPTS.startingPoints(learntopic, LANGUAGE);
+      const prompt = PROMPTS.startingPoints(learntopic, getPreferredLanguage());
       const data = await generateWithLLM(prompt, LLM_MODEL);
       setStartingPoints(parseStartingPointsResponse(data.response, config.llm.useGoogleGemini));
     } catch (err) {
@@ -79,7 +79,7 @@ export function useLearnWidget() {
     setSubtopics([]);
 
     try {
-      const prompt = PROMPTS.subtopics(startingPoint, learntopic, LANGUAGE);
+      const prompt = PROMPTS.subtopics(startingPoint, learntopic, getPreferredLanguage());
       const data = await generateWithLLM(prompt, LLM_MODEL);
       setSubtopics(parseSubtopicsResponse(data.response, config.llm.useGoogleGemini));
     } catch (err) {
