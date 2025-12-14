@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.6.2",
+    "date": "2025-12-14",
+    "title": "Ops: Admin Logs Endpoint, Startup Banner & Auth Fallback",
+    "description": "Operational improvements: admin log download, startup discovery banner, and more robust admin authentication.",
+    "details": [
+      "🗄️ Admin Logs Endpoint: Added `GET /api/admin/logs?type=critical|general&date=YYYY-MM-DD` for admins to download logs (streams file as attachment).",
+      "📣 Startup Banner: Server startup prints a concise banner with version, timestamp, routes and log file paths for easier discovery during debugging and ops.",
+      "🔁 Auth Fallback: `authMiddleware` now accepts a `refreshToken` cookie as a fallback when the Authorization header is missing (useful for Postman or cookie-based flows).",
+      "🔐 Admin Guard Improvements: `adminOnly` now logs denied requests and successful grants to aid debugging of access issues.",
+      "🧪 QA: Added testability notes in `INTERACTION_TRACKING_GUIDE.md` and included Postman examples for admin log downloads."
+    ]
+  },
+  {
     "version": "0.6.1",
     "date": "2025-12-14",
     "title": "Patch: Instrumentation, Postman Collection & Critical Logging",

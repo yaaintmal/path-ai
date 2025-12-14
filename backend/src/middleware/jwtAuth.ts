@@ -13,15 +13,21 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 export const authMiddleware: RequestHandler = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader) {
+  let token: string | undefined;
+
+  if (authHeader) {
+    token = authHeader.split(' ')[1];
+    if (!token) {
+      console.error('[Auth] Token is missing from header:', authHeader);
+      return res.status(401).json({ message: 'Token is missing' });
+    }
+  } else if ((req as any).cookies && (req as any).cookies.refreshToken) {
+    // Support cookie-based refreshToken as a fallback for server-to-server or Postman calls
+    token = (req as any).cookies.refreshToken as string;
+    console.warn('[Auth] No Authorization header; using refreshToken from cookie as fallback');
+  } else {
     console.error('[Auth] Authorization header is missing');
     return res.status(401).json({ message: 'Authorization header is missing' });
-  }
-
-  const token = authHeader.split(' ')[1];
-  if (!token) {
-    console.error('[Auth] Token is missing from header:', authHeader);
-    return res.status(401).json({ message: 'Token is missing' });
   }
 
   try {
