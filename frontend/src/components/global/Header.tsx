@@ -61,6 +61,10 @@ export function Header({
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
+  // Standard icon button hover style (keeps hover text/background consistent)
+  const ICON_BTN_CLASS =
+    'rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors';
+
   // Debug flag not needed anymore
   // const debugHyperspeed = typeof window !== 'undefined' && window.location.search.includes('debugHyperspeed=1');
 
@@ -237,7 +241,7 @@ export function Header({
                       if (setShowOnboardingEditor) setShowOnboardingEditor(false);
                     }
                   }}
-                  className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors"
+                  className={ICON_BTN_CLASS}
                   title="Open Timer Page"
                   aria-label="Open timer page"
                 >
@@ -262,7 +266,7 @@ export function Header({
                     'rounded-full transition-all duration-300',
                     isActive
                       ? 'text-red-500 hover:bg-red-100 dark:hover:bg-red-900/20'
-                      : 'hover:text-amber-500 hover:bg-amber-500/10'
+                      : ICON_BTN_CLASS
                   )}
                   disabled={isLoading || (!isActive && !userDetails?.onboardingData?.goals?.[0])}
                   title={isActive ? 'Stop Session' : 'Start Learning Session'}
@@ -285,7 +289,7 @@ export function Header({
                   variant="ghost"
                   size="icon"
                   onClick={toggleDarkMode}
-                  className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors"
+                  className={ICON_BTN_CLASS}
                   aria-label="Toggle theme"
                 >
                   {resolvedTheme === 'dark' ? (
@@ -300,20 +304,20 @@ export function Header({
                   variant="ghost"
                   size="icon"
                   onClick={handleDashboardClick}
-                  className="rounded-full hover:text-blue-500 hover:bg-blue-500/10 transition-colors"
+                  className={ICON_BTN_CLASS}
                   title="Dashboard Overview"
                   aria-label="Go to dashboard overview"
                 >
                   <LayoutGrid className="size-5" />
                 </Button>
 
-                <UserDashButton compact onClick={handleDashboardClick} className="rounded-full" />
+                <UserDashButton compact onClick={handleDashboardClick} className={ICON_BTN_CLASS} />
 
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={hasOnboardingData ? handleEditDashboardClick : handleDashboardClick}
-                  className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 hidden sm:flex transition-colors"
+                  className={`${ICON_BTN_CLASS} hidden sm:flex`}
                   aria-label="Edit dashboard"
                 >
                   <Edit className="size-5" />
@@ -353,7 +357,7 @@ export function Header({
                   variant="ghost"
                   size="icon"
                   onClick={handleLogout}
-                  className="rounded-full hover:bg-destructive/10 hover:text-destructive"
+                  className={ICON_BTN_CLASS}
                   aria-label="Log out"
                 >
                   <LogOut className="size-5" />
