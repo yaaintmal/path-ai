@@ -27,6 +27,7 @@ export {
   info,
   success,
   error as loggerError,
+  adminLog,
   critical,
   debug,
   grayText,

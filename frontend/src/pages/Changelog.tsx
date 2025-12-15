@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PageHeader from '../components/ui/PageHeader';
 import { fetchChangelog } from '../api/changelog';
 import { LastChangelogEntryCard } from '../components/changelog/LastChangelogEntryCard';
 import { VersionChangeCard } from '../components/changelog/VersionChangeCard';
@@ -43,22 +44,11 @@ export function ChangelogPage({ onBack }: ChangelogPageProps) {
   return (
     <div className="min-h-screen bg-background px-4 py-8 md:px-8">
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Changelog</h1>
-          <p className="text-muted-foreground mt-2">
-            Track all updates, features, and improvements
-          </p>
-        </div>
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="px-4 py-2 rounded-md border border-input bg-background hover:bg-accent text-sm font-medium transition-colors"
-          >
-            Back to Dashboard
-          </button>
-        )}
-      </div>
+      <PageHeader
+        title="Changelog"
+        subtitle="Track all updates, features, and improvements"
+        onBack={onBack}
+      />
 
       {/* Error State */}
       {error && (

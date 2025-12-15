@@ -1,7 +1,10 @@
-import { Button } from '../ui/button';
 import { ApiTestWidget } from '../components/admin/ApiTestWidget';
 import CreateUserWidget from '../components/admin/CreateUserWidget';
-import { ArrowLeft } from 'lucide-react';
+import PageHeader from '../components/ui/PageHeader';
+import AdminStatsWidget from '../components/admin/AdminStatsWidget';
+import AdminUsersWidget from '../components/admin/AdminUsersWidget';
+import AdminLogsWidget from '../components/admin/AdminLogsWidget';
+import { ErrorPollerWidget } from '../components/admin/ErrorPollerWidget';
 import { useAuth } from '../contexts/useAuth';
 
 interface AdminPageProps {
@@ -27,34 +30,64 @@ export function AdminPage({ onBack }: AdminPageProps) {
 
   if (!isAdmin) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <p className="text-muted-foreground">Unauthorized — this page is for admin users only.</p>
-        <div className="mt-4">
-          <Button variant="ghost" onClick={onBack}>
-            <ArrowLeft className="w-4 h-4" /> Back
-          </Button>
+      <div className="min-h-screen bg-background px-4 py-8 md:px-8">
+        <PageHeader title="Admin" subtitle="Admin-only tools and diagnostics" onBack={onBack} />
+
+        <div className="mb-6 p-4 rounded-md bg-destructive/10 border border-destructive/20 text-destructive">
+          <p className="text-sm font-medium">Unauthorized — this page is for admin users only.</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Admin Tools</h1>
-        {onBack && (
-          <Button variant="ghost" onClick={onBack} className="gap-2">
-            <ArrowLeft className="w-4 h-4" /> Back
-          </Button>
-        )}
-      </div>
+    <div className="min-h-screen bg-background px-4 py-8 md:px-8">
+      <PageHeader title="Admin" subtitle="Admin-only tools and diagnostics" onBack={onBack} />
 
+      {/* Main Content */}
       <div className="grid gap-6">
+        {/* Error Monitor — 2 columns wide */}
+        <ErrorPollerWidget />
+
         <ApiTestWidget />
 
-        <div className="mt-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">🛠️ Admin: Create User</h3>
-          <CreateUserWidget />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-2">
+            <div className="p-4 rounded-lg border border-input bg-card">
+              <h3 className="text-lg font-semibold mb-2">🛠️ Admin: Create User</h3>
+              <CreateUserWidget />
+            </div>
+            <div className="mt-6">
+              <AdminUsersWidget />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <AdminStatsWidget />
+
+            <div className="mt-4">
+              <AdminLogsWidget />
+            </div>
+
+            <div className="p-4 rounded-lg border border-input bg-card">
+              <h3 className="text-lg font-semibold mb-2">Info</h3>
+              <div className="text-sm text-muted-foreground">
+                <p>
+                  Computed API baseUrl: <code className="font-mono">{location.origin}</code>
+                </p>
+                <p className="mt-2">
+                  VITE_API_URL:{' '}
+                  <code className="font-mono">
+                    {((globalThis as Record<string, unknown>).__VITE_API_URL__ as string) ??
+                      '<unset>'}
+                  </code>
+                </p>
+                <p className="mt-2">
+                  You are signed in as: <span className="font-medium">{user?.email}</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -43,6 +43,12 @@ export default defineConfig(({ mode }) => {
           .filter(Boolean);
         return Array.from(new Set([...defaultAllowed, ...envAllowed]));
       })(),
+      proxy: {
+        '/api': {
+          target: env.VITE_DEV_BACKEND_URL || 'http://localhost:3015',
+          changeOrigin: true,
+        },
+      },
     },
   };
 });
