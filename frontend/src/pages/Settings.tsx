@@ -11,15 +11,24 @@ export function Settings() {
     setSaving(true);
     try {
       const token = window.localStorage.getItem('authToken');
-      const od = { ...(userDetails?.onboardingData || {}), themePrefs: { ...(userDetails?.onboardingData?.themePrefs || {}), showClassicBackground: !current } };
-      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:3000') + '/api/users/onboarding', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      const od = {
+        ...(userDetails?.onboardingData || {}),
+        themePrefs: {
+          ...(userDetails?.onboardingData?.themePrefs || {}),
+          showClassicBackground: !current,
         },
-        body: JSON.stringify({ onboardingData: od }),
-      });
+      };
+      const res = await fetch(
+        (import.meta.env.VITE_API_URL || 'http://localhost:3000') + '/api/users/onboarding',
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          body: JSON.stringify({ onboardingData: od }),
+        }
+      );
       if (res.ok) {
         // update global shorthand for immediate reflection in ThemeContext
         (window as any).__themePrefShowClassic = !current;
@@ -47,7 +56,9 @@ export function Settings() {
                 disabled={saving}
                 className="rounded"
               />
-              <span className="text-sm">Use classic backgrounds (improves light/dark contrast)</span>
+              <span className="text-sm">
+                Use classic backgrounds (improves light/dark contrast)
+              </span>
             </label>
           </div>
         </div>
