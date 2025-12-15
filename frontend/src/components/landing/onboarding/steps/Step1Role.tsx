@@ -1,4 +1,5 @@
 import { GraduationCap, BookOpen, Users, Check } from 'lucide-react';
+import type React from 'react';
 import { RadioGroup, RadioGroupItem } from '../../../../ui/radio-group';
 import { Label } from '../../../../ui/label';
 import { StepHeader } from '../components/Headers';
@@ -11,7 +12,7 @@ interface Step1RoleProps {
   updateData: (field: keyof OnboardingData, value: unknown) => void;
 }
 
-const ROLE_ICONS: Record<string, React.ElementType> = {
+const ROLE_ICONS: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   student: GraduationCap,
   pupil: BookOpen,
   teacher: Users,
@@ -33,7 +34,9 @@ export function Step1Role({ data, updateData }: Step1RoleProps) {
         className="grid grid-cols-1 md:grid-cols-3 gap-4"
       >
         {rolesData.roles.map((role) => {
-          const Icon = ROLE_ICONS[role.id] || Users;
+          const Icon = (ROLE_ICONS[role.id] || Users) as React.ComponentType<
+            React.SVGProps<SVGSVGElement>
+          >;
           const isSelected = data.role === role.id;
 
           return (

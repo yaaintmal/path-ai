@@ -11,7 +11,6 @@ import {
 /* import { ImageWithFallback } from "./figma/ImageWithFallback";*/
 import { useState, useEffect } from 'react';
 import { Badge } from '../../ui/badge';
-import Antigravity from '../Antigravity';
 
 interface HeroProps {
   setShowOnboarding?: (show: boolean) => void;
@@ -117,21 +116,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
 
   return (
     <section className="relative overflow-hidden py-20 md:py-32 min-h-screen bg-background">
-      {/* Antigravity Background */}
-      <div className="absolute inset-0 w-full h-full" style={{ zIndex: -10 }}>
-        <Antigravity
-          count={4200}
-          magnetRadius={16}
-          ringRadius={12}
-          waveSpeed={4.2}
-          waveAmplitude={1}
-          particleSize={0.3}
-          lerpSpeed={0.05}
-          color={'#FF9FFC'}
-          autoAnimate={true}
-          particleVariance={1}
-        />
-      </div>
+      {/* Decorative antigravity background has been removed per request. Gradient retained for readability. */}
 
       {/* Gradient Overlay for readability */}
       <div
