@@ -1,10 +1,9 @@
-
 import LogoLoop from '../LogoLoop';
 import { Github, Linkedin } from 'lucide-react';
 
 const socialLogos = [
-  { node: <Github />, title: "GitHub", href: "https://github.com" },
-  { node: <Linkedin />, title: "LinkedIn", href: "https://linkedin.com" },
+  { node: <Github />, title: 'GitHub', href: 'https://github.com' },
+  { node: <Linkedin />, title: 'LinkedIn', href: 'https://linkedin.com' },
 ];
 
 export function Footer() {
@@ -13,10 +12,14 @@ export function Footer() {
       {/* Logo Loop Section */}
       <div className="py-8 sm:py-12 md:py-16 bg-white dark:bg-gray-950">
         <div className="text-center mb-8 sm:mb-12 px-4">
-          <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Folge uns auf sozialen Medien</h2>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Bleibe in Kontakt und erhalte die neuesten Updates</p>
+          <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">
+            Folge uns auf sozialen Medien
+          </h2>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            Bleibe in Kontakt und erhalte die neuesten Updates
+          </p>
         </div>
-        
+
         <div style={{ height: '80px', position: 'relative' }}>
           <LogoLoop
             logos={socialLogos}
@@ -48,10 +51,38 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Produkt</h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-              <li><a href="#features" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Features</a></li>
-              <li><a href="#how-it-works" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Wie es funktioniert</a></li>
-              <li><a href="#gamification" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Gamification</a></li>
-              <li><a href="#templates" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Templates</a></li>
+              <li>
+                <a
+                  href="#features"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Features
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#how-it-works"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Wie es funktioniert
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#gamification"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Gamification
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#templates"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Templates
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -59,10 +90,38 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Unternehmen</h4>
             <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
-              <li><a href="/changelog" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Changelog</a></li>
-              <li><a href="#" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Über uns</a></li>
-              <li><a href="#" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors">Kontakt</a></li>
+              <li>
+                <a
+                  href="/changelog"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Changelog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Über uns
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                >
+                  Kontakt
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -70,10 +129,18 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Direkte Links</h4>
             <div className="flex gap-4">
-              <a href="https://github.com" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors" aria-label="GitHub">
+              <a
+                href="https://github.com"
+                className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                aria-label="GitHub"
+              >
                 <Github className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
-              <a href="https://linkedin.com" className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors" aria-label="LinkedIn">
+              <a
+                href="https://linkedin.com"
+                className="text-gray-600 dark:text-gray-400 hover:text-amber-600 transition-colors"
+                aria-label="LinkedIn"
+              >
                 <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
             </div>
@@ -85,9 +152,15 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
             <p>&copy; 2025 PathAI. Alle Rechte vorbehalten.</p>
             <div className="flex gap-4 sm:gap-6">
-              <a href="#" className="hover:text-amber-600 transition-colors">Datenschutz</a>
-              <a href="#" className="hover:text-amber-600 transition-colors">Nutzungsbedingungen</a>
-              <a href="#" className="hover:text-amber-600 transition-colors">Impressum</a>
+              <a href="#" className="hover:text-amber-600 transition-colors">
+                Datenschutz
+              </a>
+              <a href="#" className="hover:text-amber-600 transition-colors">
+                Nutzungsbedingungen
+              </a>
+              <a href="#" className="hover:text-amber-600 transition-colors">
+                Impressum
+              </a>
             </div>
           </div>
         </div>
