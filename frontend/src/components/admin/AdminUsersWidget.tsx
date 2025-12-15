@@ -116,65 +116,65 @@ export function AdminUsersWidget() {
             </tr>
           </thead>
           <tbody>
-              {users.map((u) => (
-                <tr key={u.id} className="border-t">
-                  <td className="py-2">{u.name}</td>
-                  <td className="py-2">{u.email}</td>
-                  <td className="py-2">
-                    {editing[u.id] ? (
-                      <div className="flex gap-2 items-center">
-                        <input
-                          value={rolesDraft[u.id] ?? u.roles.join(',')}
-                          onChange={(e) => setRolesDraft((s) => ({ ...s, [u.id]: e.target.value }))}
-                          className="p-1 rounded border text-sm"
-                        />
-                        <button
-                          onClick={() => saveRoles(u.id)}
-                          className="px-2 py-1 bg-primary text-white rounded text-xs"
-                        >
-                          Save
-                        </button>
-                        <button
-                          onClick={() => setEditing((s) => ({ ...s, [u.id]: false }))}
-                          className="px-2 py-1 bg-muted rounded text-xs"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex gap-2 items-center">
-                        <span className="font-medium">{u.roles.join(', ')}</span>
-                        <button
-                          onClick={() => {
-                            setEditing((s) => ({ ...s, [u.id]: true }));
-                            setRolesDraft((s) => ({ ...s, [u.id]: u.roles.join(',') }));
-                          }}
-                          className={ICON_BTN_CLASS}
-                          aria-label={`Edit roles for ${u.name}`}
-                          title={`Edit roles for ${u.name}`}
-                        >
-                          <Edit className="size-4" />
-                        </button>
-                      </div>
-                    )}
-                  </td>
-                  <td className="py-2">
-                    {u.lastActivity ? new Date(u.lastActivity).toLocaleString() : '—'}
-                  </td>
-                  <td className="py-2">
-                    <button
-                      onClick={() => deleteUser(u.id)}
-                      className={`${ICON_BTN_CLASS} bg-red-500 text-white hover:bg-red-600`}
-                      aria-label={`Delete ${u.name}`}
-                      title={`Delete ${u.name}`}
-                    >
-                      <Trash2 className="size-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            {users.map((u) => (
+              <tr key={u.id} className="border-t">
+                <td className="py-2">{u.name}</td>
+                <td className="py-2">{u.email}</td>
+                <td className="py-2">
+                  {editing[u.id] ? (
+                    <div className="flex gap-2 items-center">
+                      <input
+                        value={rolesDraft[u.id] ?? u.roles.join(',')}
+                        onChange={(e) => setRolesDraft((s) => ({ ...s, [u.id]: e.target.value }))}
+                        className="p-1 rounded border text-sm"
+                      />
+                      <button
+                        onClick={() => saveRoles(u.id)}
+                        className="px-2 py-1 bg-primary text-white rounded text-xs"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={() => setEditing((s) => ({ ...s, [u.id]: false }))}
+                        className="px-2 py-1 bg-muted rounded text-xs"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2 items-center">
+                      <span className="font-medium">{u.roles.join(', ')}</span>
+                      <button
+                        onClick={() => {
+                          setEditing((s) => ({ ...s, [u.id]: true }));
+                          setRolesDraft((s) => ({ ...s, [u.id]: u.roles.join(',') }));
+                        }}
+                        className={ICON_BTN_CLASS}
+                        aria-label={`Edit roles for ${u.name}`}
+                        title={`Edit roles for ${u.name}`}
+                      >
+                        <Edit className="size-4" />
+                      </button>
+                    </div>
+                  )}
+                </td>
+                <td className="py-2">
+                  {u.lastActivity ? new Date(u.lastActivity).toLocaleString() : '—'}
+                </td>
+                <td className="py-2">
+                  <button
+                    onClick={() => deleteUser(u.id)}
+                    className={`${ICON_BTN_CLASS} bg-red-500 text-white hover:bg-red-600`}
+                    aria-label={`Delete ${u.name}`}
+                    title={`Delete ${u.name}`}
+                  >
+                    <Trash2 className="size-4" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <Dialog open={!!confirmUser} onOpenChange={(open) => !open && setConfirmUser(null)}>
         <DialogContent>
