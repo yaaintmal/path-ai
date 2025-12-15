@@ -23,7 +23,9 @@ router.get('/stats', adminOnly, async (req, res) => {
       // Count lines with LOGIN:FAIL, ERROR, or other critical issues
       recentErrors = contents
         .split(/\r?\n/)
-        .filter((line) => /\[LOGIN:FAIL\]|\[ERROR\]|error|failed|exception/i.test(line.trim())).length;
+        .filter((line) =>
+          /\[LOGIN:FAIL\]|\[ERROR\]|error|failed|exception/i.test(line.trim())
+        ).length;
     }
   } catch (err) {
     loggerError('[AdminStats] Failed to read critical log:', err as unknown);
