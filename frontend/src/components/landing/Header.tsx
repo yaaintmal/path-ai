@@ -57,13 +57,13 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
         {/* Left Section: Logo & Branding */}
-        <div className="flex items-center gap-4">
-          <a href="/" onClick={handleLogoClick} className="flex flex-col group">
-            <span className="text-2xl font-bold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent tracking-tight group-hover:opacity-60 transition-opacity">
+        <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+          <a href="/" onClick={handleLogoClick} className="flex flex-col group min-w-0">
+            <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent tracking-tight group-hover:opacity-60 transition-opacity whitespace-nowrap sm:whitespace-normal">
               {config.app.name}
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium group-hover:text-foreground transition-colors">
-              Free Knowledge for Everybody
+            <span className="text-[8px] sm:text-[10px] uppercase tracking-wider text-muted-foreground font-medium group-hover:text-foreground transition-colors whitespace-nowrap">
+              Free Knowledge
             </span>
           </a>
         </div>
