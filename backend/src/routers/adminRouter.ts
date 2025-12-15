@@ -20,7 +20,10 @@ router.get('/stats', adminOnly, async (req, res) => {
   try {
     if (fs.existsSync(criticalLog)) {
       const contents = await fs.promises.readFile(criticalLog, 'utf8');
-      recentErrors = contents.split(/\r?\n/).filter((line) => /error/i.test(line.trim())).length;
+      // Count lines with LOGIN:FAIL, ERROR, or other critical issues
+      recentErrors = contents
+        .split(/\r?\n/)
+        .filter((line) => /\[LOGIN:FAIL\]|\[ERROR\]|error|failed|exception/i.test(line.trim())).length;
     }
   } catch (err) {
     loggerError('[AdminStats] Failed to read critical log:', err as unknown);

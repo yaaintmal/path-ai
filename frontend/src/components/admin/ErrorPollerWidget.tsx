@@ -32,13 +32,24 @@ export function ErrorPollerWidget() {
         let type: 'login_failure' | 'error' | 'other' = 'other';
         let message = line;
 
-        if (/login.*failed|failed.*login|401|unauthorized/i.test(line)) {
+        // Check for LOGIN:FAIL pattern (new format)
+        if (/\[LOGIN:FAIL\]/.test(line)) {
+          type = 'login_failure';
+          // Extract user and reason from pattern like: [LOGIN:FAIL] user=xxx reason=yyy
+          const userMatch = line.match(/user=([^\s]+)/);
+          const reasonMatch = line.match(/reason=([^\s]+)/);
+          const user = userMatch ? userMatch[1] : 'unknown';
+          const reason = reasonMatch ? reasonMatch[1] : 'unknown';
+          message = `${user} (${reason})`;
+        }
+        // Check for legacy patterns or other errors
+        else if (/login.*failed|failed.*login|401|unauthorized/i.test(line)) {
           type = 'login_failure';
           message = 'Login failed';
-        } else if (/error|failed|exception/i.test(line)) {
+        } else if (/\[ERROR\]|error|exception/i.test(line)) {
           type = 'error';
           // Extract brief error message
-          const match = line.match(/\[(\w+)\](.*?)(?:\[|$)/);
+          const match = line.match(/\[(\w+)\]\s+(.*?)(?:\s+\[|$)/);
           message = match ? match[2].trim() : 'Unknown error';
         }
 

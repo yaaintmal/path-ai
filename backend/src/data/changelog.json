@@ -2,13 +2,21 @@
   {
     "version": "0.7.1",
     "date": "2025-12-15",
-    "title": "Major: Admin ops polish & UX sync",
-    "description": "Final admin UX polish that centralizes audit trails, modernizes buttons, and adds safer delete flows.",
+    "title": "Major: Admin Page & Error Monitoring — Come Get SOOOOOOOOME...-yeah, da feat list is really dat long! =)",
+    "description": "It's time to kick ass and take admin names. Mal Dukem style ops: real-time error monitoring, user management widgets, log downloads, and forensic audit trails.",
     "details": [
-      "🗂️ Admin audit log coverage: create/update/delete user actions now write to `./logs/path-ai-admin-YYYY-MM-DD.log` and are downloadable via `GET /api/admin/logs?type=admin` for forensic review.",
-      "🧭 Admin widgets now share lucid button affordances: every control (api tests, log download, user creation) pairs a lucide-react icon with descriptive text and aria labels for clarity.",
-      "🛡️ User management now uses a Radix dialog modal before deleting a user, keeping the inline list focused and consistent with the rest of the dashboard.",
-      "📈 Admin stats/logs/widgets stay in sync with new user data, exposing inline role switches, last-activity timestamps, and actions guarded by admin middleware."
+      "💣 ADMIN PAGE ARSENAL: Built a comprehensive admin control center with real-time error monitoring, user management, log downloads, and system statistics. Time to clean house.",
+      "👾 ERROR MONITOR WIDGET: Real-time error poller that watches the critical log, detects `[LOGIN:FAIL]` patterns and exceptions, groups errors by type, and auto-refreshes every 30s. No error gets past this sentinel.",
+      "🔐 USER MANAGEMENT WIDGET: Full user CRUD with inline role switching, last-activity timestamps, and a sweet Radix dialog modal for safe user deletion (no accidental nuke buttons here).",
+      "📊 ADMIN STATS WIDGET: System dashboard showing user count, recent error count (parsed from critical logs), and status indicators. Stats powered by `/api/admin/stats` endpoint.",
+      "📥 DUAL LOG DOWNLOAD BUTTONS: Download critical OR admin audit logs for any date via `/api/admin/logs?type=critical|admin&date=YYYY-MM-DD`. Frontend proxy routes `/api/*` to backend.",
+      "🧪 API TEST WIDGET: Health check & login endpoint tester for debugging cross-device connectivity issues. Lucide icons + descriptive text on every button.",
+      "🛠️ CREATE USER WIDGET: Admin form to spin up new users on-the-fly with role assignment. No bloat, just results.",
+      "📋 AUDIT LOG COVERAGE: Admin create/update/delete actions logged to `./logs/path-ai-admin-YYYY-MM-DD.log` with actor, target, roles, IP for full forensic replay.",
+      "🎯 ERROR PARSING SMARTS: Both ErrorPollerWidget and `/api/admin/stats` endpoint detect `[LOGIN:FAIL]`, `[ERROR]`, and exception patterns. Extractors pull user/reason combos for clarity.",
+      "🚀 DEV SERVER PROXY: Vite dev server proxies `/api/*` requests to backend (configurable via `VITE_DEV_BACKEND_URL`), killing the 'received HTML instead of logs' nightmare.",
+      "🔗 CONCURRENT DEV SCRIPT: New `npm run dev` starts backend + frontend in parallel. Game on.",
+      "🏁 STATUS: Admin page is LIVE. Error tracking is LIVE. Audit trails are LOCKED AND LOADED. Come get some! 🙌🏽"
     ]
   },
   {
