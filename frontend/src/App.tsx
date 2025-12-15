@@ -30,6 +30,7 @@ import { VersionIndicator } from './components/global/VersionIndicator';
 import { useAuth } from './contexts/useAuth';
 import { TimerProvider } from './contexts/TimerContext';
 import { useState, useEffect } from 'react';
+import config from './config/app.config';
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
@@ -94,6 +95,17 @@ function AppContent() {
       }
     };
   }, [isAuthenticated]);
+
+  // Prevent non-authenticated users from opening the dashboard via programmatic calls
+  useEffect(() => {
+    if (showDashboard && !isAuthenticated) {
+      // schedule state updates to avoid synchronous setState calls inside an effect
+      setTimeout(() => {
+        setShowRegistration(true);
+        setShowDashboard(false);
+      }, 0);
+    }
+  }, [showDashboard, isAuthenticated]);
 
   if (showTimer) {
     return (
@@ -161,6 +173,7 @@ function AppContent() {
     );
   }
   if (showRegistration) {
+    // Render the unified AuthWizard; if signup is disabled, allow only login mode
     return (
       <div className="min-h-screen bg-background transition-colors duration-300">
         <Header
@@ -171,7 +184,12 @@ function AppContent() {
           setShowTimer={setShowTimer}
           hasOnboardingData={hasOnboardingData}
         />
-        <Registration onAuthSuccess={() => setShowRegistration(false)} />
+        <div className="container mx-auto px-4 py-12">
+          <Registration
+            onAuthSuccess={() => setShowRegistration(false)}
+            allowRegister={config.features.enableSignup}
+          />
+        </div>
         <Footer />
       </div>
     );

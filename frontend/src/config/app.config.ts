@@ -24,6 +24,7 @@ interface AppConfig {
     debugMode: boolean;
     mockApi: boolean;
     useStoreApi: boolean;
+    enableSignup: boolean;
   };
 }
 
@@ -67,6 +68,7 @@ export const config: AppConfig = {
   },
   features: {
     debugMode: getEnvBoolean('VITE_ENABLE_DEBUG_MODE', false),
+    enableSignup: getEnvBoolean('VITE_ENABLE_SIGNUP', true),
     mockApi: getEnvBoolean('VITE_ENABLE_MOCK_API', false),
     useStoreApi: getEnvBoolean('VITE_USE_STORE_API', false),
   },

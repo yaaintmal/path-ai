@@ -2,6 +2,7 @@ import { Button } from '../../ui/button';
 import { Moon, Sun } from 'lucide-react';
 import config from '../../config/app.config';
 import { useTheme } from 'next-themes';
+import { useAuth } from '../../contexts/useAuth';
 
 interface HeaderProps {
   setShowOnboarding?: (show: boolean) => void;
@@ -10,6 +11,7 @@ interface HeaderProps {
 
 export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) {
   const { setTheme, resolvedTheme } = useTheme();
+  const { isAuthenticated } = useAuth();
 
   const toggleDarkMode = () => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
@@ -43,6 +45,14 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
     }
   };
 
+  const handleLoginClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (setShowRegistration) {
+      setShowRegistration(true);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
@@ -59,7 +69,8 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
         </div>
 
         {/* Center Section: Navigation (Desktop) */}
-        <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
+        {isAuthenticated && (
+          <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
           {['Languages', 'Gamification', 'Templates', 'Features'].map((item) => (
             <a
               key={item}
@@ -78,7 +89,8 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
             Dein Dashboard
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
           </a>
-        </nav>
+          </nav>
+        )}
 
         {/* Right Section: Actions */}
         <div className="flex items-center gap-3">
@@ -91,18 +103,27 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
           >
             {resolvedTheme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </Button>
-          <Button variant="ghost" className="font-medium" onClick={handleRegistrationClick}>
+          <Button variant="ghost" className="font-medium" onClick={handleLoginClick}>
             Anmelden
           </Button>
-          <Button
-            onClick={handleDashboardClick}
-            className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hidden md:flex"
-          >
-            Dashboard erstellen
-          </Button>
-          <Button onClick={handleDashboardClick} className="rounded-full px-4 md:hidden">
-            Start
-          </Button>
+          {config.features.enableSignup && (
+            <Button variant="ghost" className="font-medium" onClick={handleRegistrationClick}>
+              Registrieren
+            </Button>
+          )}
+          {isAuthenticated && (
+            <>
+              <Button
+                onClick={handleDashboardClick}
+                className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hidden md:flex"
+              >
+                Dashboard erstellen
+              </Button>
+              <Button onClick={handleDashboardClick} className="rounded-full px-4 md:hidden">
+                Start
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

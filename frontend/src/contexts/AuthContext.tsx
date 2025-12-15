@@ -28,7 +28,16 @@ interface UserDetails {
   };
   activeBoosts?: ActiveBoostDTO[];
   inventory?: Record<string, number>;
-  onboardingData?: any;
+  onboardingData?: OnboardingData | null;
+}
+
+interface OnboardingData {
+  role?: string;
+  goals?: string[];
+  subjects?: string[];
+  skillLevels?: Record<string, number> | Array<{ subject: string; level: number }>;
+  nativeLanguage?: string;
+  preferredLanguage?: string;
 }
 
 interface AuthContextType {
@@ -54,24 +63,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Dispatch an auth change marker so other tabs can pick up the change via 'storage' event
   const dispatchAuthChanged = useCallback(() => {
     if (typeof window === 'undefined' || !window.localStorage) return;
-    try {
-      // store a changing timestamp so the storage event fires even if same value was previously set
-      window.localStorage.setItem('auth_event', JSON.stringify({ ts: Date.now() }));
       try {
-        // notify same-tab listeners as well
-        window.dispatchEvent(new Event('authChanged'));
-      } catch {}
-    } catch {
-      // ignore failures (e.g., storage disabled)
-    }
+        // store a changing timestamp so the storage event fires even if same value was previously set
+        window.localStorage.setItem('auth_event', JSON.stringify({ ts: Date.now() }));
+        try {
+          // notify same-tab listeners as well
+          window.dispatchEvent(new Event('authChanged'));
+        } catch (err) {
+          console.debug('[AuthContext] dispatch authChanged event failed', err);
+        }
+      } catch (err) {
+        // ignore failures (e.g., storage disabled)
+        console.debug('[AuthContext] failed to write auth_event to localStorage', err);
+      }
   }, []);
 
   // Listen for auth events from other tabs/windows
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    let lastAuthEventTs = 0;
+
     const onStorage = (e: StorageEvent) => {
       if (e.key !== 'auth_event') return;
       try {
+        // Prevent reacting to duplicate events (sometimes emitted repeatedly by some browsers)
+        const parsed = e.newValue ? JSON.parse(e.newValue) : undefined;
+        const ts = parsed?.ts || 0;
+        if (ts && ts <= lastAuthEventTs) return;
+        lastAuthEventTs = ts;
+
         const stored = window.localStorage.getItem('authUser');
         const token = window.localStorage.getItem('authToken');
         if (stored) {
@@ -116,8 +136,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      console.log('[AuthContext] Attempting login for:', email);
-      console.log('[AuthContext] Login URL:', getApiUrl('/api/users/login'));
+      console.debug('[AuthContext] Attempting login for:', email);
+      console.debug('[AuthContext] Login URL:', getApiUrl('/api/users/login'));
       const response = await fetch(getApiUrl('/api/users/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -126,15 +146,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         mode: 'cors',
       });
 
-      console.log('[AuthContext] Response status:', response.status);
+      console.debug('[AuthContext] Response status:', response.status);
       const data = await response.json();
-      console.log('[AuthContext] Response data:', data);
+      console.debug('[AuthContext] Response data:', data);
 
       if (!response.ok) {
+        // Surface validation issues when provided by backend
+        if (data?.issues && Array.isArray(data.issues)) {
+          const details = (data.issues as Array<{ path?: string; message?: string }>)
+            .map((i) => `${i.path || '<unknown>'}: ${i.message || '<no message>'}`)
+            .join('; ');
+          throw new Error(`${data.message || `Login failed (${response.status})`} — ${details}`);
+        }
         throw new Error(data.message || `Login failed (${response.status})`);
       }
 
-      console.log('[AuthContext] Login successful:', { id: data.user.id, email: data.user.email });
+      console.debug('[AuthContext] Login successful:', { id: data.user.id, email: data.user.email });
 
       const userData: User = {
         id: data.user.id,
@@ -212,8 +239,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       console.debug('[AuthContext] refreshUserDetails: using token length', token.length);
       // Helper to process /me response data and populate userDetails
-      const applyUserData = async (data: any) => {
-        const inventory = data.user?.inventory || {};
+      interface MeResponse {
+        user?: {
+          inventory?: Record<string, number>;
+          totalScore?: number;
+          wallet?: number;
+          pointsBreakdown?: unknown;
+          activeBoosts?: unknown[];
+          onboardingData?: unknown;
+        };
+      }
+
+      const applyUserData = async (data: unknown) => {
+        const d = data as MeResponse;
+        const inventory = d.user?.inventory || {};
         if (!inventory || Object.keys(inventory).length === 0) {
           try {
             const inventoryRes = await fetch(getApiUrl('/api/store/inventory'), {
@@ -222,26 +261,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (inventoryRes.ok) {
               const inventoryData = await inventoryRes.json();
               setUserDetails({
-                totalScore: data.user?.totalScore ?? 0,
-                wallet: data.user?.wallet ?? 0,
-                pointsBreakdown: data.user?.pointsBreakdown,
-                activeBoosts: data.user?.activeBoosts || [],
+                totalScore: d.user?.totalScore ?? 0,
+                wallet: d.user?.wallet ?? 0,
+                pointsBreakdown: (d.user?.pointsBreakdown as unknown) as
+                  | {
+                      exp: number;
+                      basePoints: number;
+                      streakBonus: number;
+                      multiplier: number;
+                      currentStreak: number;
+                    }
+                  | undefined,
+                activeBoosts: (d.user?.activeBoosts as unknown) as ActiveBoostDTO[] | [],
                 inventory: inventoryData.inventory || {},
-                onboardingData: data.user?.onboardingData,
+                onboardingData: (d.user?.onboardingData as unknown) as OnboardingData | null,
               });
               return;
             }
-          } catch {
-            // ignore and fallback to empty inventory
+          } catch (err) {
+            console.debug('[AuthContext] Failed to fetch inventory, falling back to empty', err);
           }
         }
         setUserDetails({
-          totalScore: data.user?.totalScore ?? 0,
-          wallet: data.user?.wallet ?? 0,
-          pointsBreakdown: data.user?.pointsBreakdown,
-          activeBoosts: data.user?.activeBoosts || [],
+          totalScore: d.user?.totalScore ?? 0,
+          wallet: d.user?.wallet ?? 0,
+          pointsBreakdown: (d.user?.pointsBreakdown as unknown) as
+            | {
+                exp: number;
+                basePoints: number;
+                streakBonus: number;
+                multiplier: number;
+                currentStreak: number;
+              }
+            | undefined,
+          activeBoosts: (d.user?.activeBoosts as unknown) as ActiveBoostDTO[] | [],
           inventory: inventory || {},
-          onboardingData: data.user?.onboardingData,
+          onboardingData: (d.user?.onboardingData as unknown) as OnboardingData | null,
         });
       };
 
@@ -279,8 +334,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (!res.ok) return;
       const data = await res.json();
       await applyUserData(data);
-      // Inform other tabs that user details changed
-      dispatchAuthChanged();
     } catch (err) {
       console.error('refreshUserDetails error:', err);
     }

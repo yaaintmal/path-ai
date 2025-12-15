@@ -16,7 +16,8 @@ import {
 } from '#routers';
 import path from 'path';
 import { User } from '#models';
-import { amberLog, success, info, loggerError, grayText, amberText, greenText } from '#utils';
+import { amberLog, success, info, loggerError, grayText, amberText, greenText, critical } from '#utils';
+import type { Request, Response } from 'express';
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3000);
@@ -32,11 +33,9 @@ const rawCors =
   process.env.CORS_ORIGIN ||
   [
     'http://localhost:5173',
-    'http://127.0.0.1:5173',
     'http://localhost:4173',
-    'http://127.0.0.1:4173',
-    'http://192.168.178.89:5173',
-    'http://192.168.178.89:4173',
+    'https://pathai.malick.wtf',
+    'http://192.168.178.9:5173',
   ].join(',');
 const allowedOrigins = Array.from(
   new Set(
@@ -49,7 +48,7 @@ const allowedOrigins = Array.from(
 
 // Configure CORS with explicit preflight handling
 const corsOptions: cors.CorsOptions = {
-  origin: (origin, callback) => {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
     const originLabel = origin ?? '<no-origin>';
     // Allow non-browser requests (no origin) such as curl or server-to-server
     if (!origin) {
@@ -60,7 +59,8 @@ const corsOptions: cors.CorsOptions = {
       amberLog('[CORS] Allowed origin %s', originLabel);
       return callback(null, true);
     }
-    loggerError('[CORS] Blocked origin %s (allowed: %s)', originLabel, allowedOrigins.join(', '));
+    // Log blocked/ non-allowed origin attempts to the critical log for quick lookup
+    critical('[CORS] Blocked origin %s (allowed: %s)', originLabel, allowedOrigins.join(', '));
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
@@ -81,7 +81,7 @@ const uploadsDir = process.env.UPLOADS_DIR || path.join(process.cwd(), 'uploads'
 app.use('/uploads', express.static(uploadsDir));
 
 // Simple health check (useful for LAN debugging)
-app.get('/api/health', (_req, res) => {
+app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ ok: true, ts: new Date().toISOString() });
 });
 
@@ -95,7 +95,7 @@ app.use('/api/timer', timerRouter);
 app.use('/api/interactions', interactionRouter);
 app.use('/api/admin', adminRouter);
 // Also expose a top-level discovery route that returns LLM provider/model info
-app.get('/api/llm-route', (_req, res) => {
+app.get('/api/llm-route', (_req: Request, res: Response) => {
   const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';
   const model = useGemini
     ? process.env.GEMINI_MODEL_ID || 'gemini-2.5-flash'

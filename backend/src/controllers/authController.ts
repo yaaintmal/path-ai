@@ -112,6 +112,7 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
   }
 
   try {
+    amberLog(`[Login] Attempt from IP: ${req.ip} email=${email}`);
     const user = await User.findOne({ email }).select('+password');
     if (!user || !user.password) {
       loggerError(`[LOGIN:FAIL] Failed login attempt for email: ${email} (user not found)`);
@@ -165,6 +166,12 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
 
 export const register: RequestHandler<unknown, any, RegisterRequest> = async (req, res) => {
   const { email, password, name } = req.body;
+
+  // Allow disabling public registration via env var (useful for admin-managed deployments)
+  if (process.env.ENABLE_SIGNUP === 'false') {
+    console.warn('[Register] Attempt to register while signup is disabled');
+    return res.status(403).json({ message: 'Registration is disabled' });
+  }
 
   if (!email || !password || !name) {
     return res.status(400).json({

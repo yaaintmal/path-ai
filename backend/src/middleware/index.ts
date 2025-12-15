@@ -5,3 +5,4 @@ export { default as upload, cloudinaryClient } from './upload.ts';
 export { authMiddleware } from './jwtAuth.ts';
 export { generateAccessToken, generateRefreshToken, verifyToken, decodeToken } from './jwtUtils.ts';
 export { adminOnly } from './adminOnly.ts';
+export { adminMiddleware } from './adminMiddleware.ts';

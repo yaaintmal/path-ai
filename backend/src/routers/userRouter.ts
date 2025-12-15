@@ -20,6 +20,7 @@ import {
   recordActivity,
 } from '#controllers';
 import { validateBodyZod, validateParamsZod, authMiddleware } from '#middleware';
+import { adminMiddleware } from '#middleware';
 import {
   UserInputSchema,
   UserUpdateInputSchema,
@@ -62,21 +63,25 @@ userRouter.post('/award-points', authMiddleware, awardPoints);
 
 // for refactoring
 // User Management Endpoints (CRUD)
-userRouter.get('/admin/all', getAllUsers);
-userRouter.get('/admin/:id', validateParamsZod(IdParamSchema), getUserById);
-userRouter.post('/admin/create', validateBodyZod(UserInputSchema), createUser);
+userRouter.get('/admin/all', authMiddleware, adminMiddleware, getAllUsers);
+userRouter.get('/admin/:id', authMiddleware, adminMiddleware, validateParamsZod(IdParamSchema), getUserById);
+userRouter.post('/admin/create', authMiddleware, adminMiddleware, validateBodyZod(UserInputSchema), createUser);
 userRouter.put(
   '/admin/:id',
+  authMiddleware,
+  adminMiddleware,
   validateParamsZod(IdParamSchema),
   validateBodyZod(UserUpdateInputSchema),
   updateUser
 );
 userRouter.patch(
   '/admin/:id/password',
+  authMiddleware,
+  adminMiddleware,
   validateParamsZod(IdParamSchema),
   validateBodyZod(ChangeUserPasswordSchema),
   changeUserPassword
 );
-userRouter.delete('/admin/:id', validateParamsZod(IdParamSchema), deleteUser);
+userRouter.delete('/admin/:id', authMiddleware, adminMiddleware, validateParamsZod(IdParamSchema), deleteUser);
 
 export default userRouter;

@@ -69,7 +69,7 @@ export function OnboardingEditor({
         loadedData = { ...loadedData, skillLevels: converted };
       }
       setTimeout(() => {
-        setData(loadedData);
+        setData(loadedData as Partial<OnboardingData>);
         setIsLoading(false);
       }, 0);
       return;
@@ -87,7 +87,7 @@ export function OnboardingEditor({
               ([subject, level]) => ({ subject, level: Number(level) })
             );
           }
-          setTimeout(() => setData(loadedData), 0);
+          setTimeout(() => setData(loadedData as Partial<OnboardingData>), 0);
         }
       } catch (error) {
         console.error('Failed to parse user data:', error);

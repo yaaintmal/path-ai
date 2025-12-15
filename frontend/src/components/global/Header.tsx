@@ -40,6 +40,7 @@ export function Header({
   hasOnboardingData,
 }: HeaderProps) {
   const { user, logout, userDetails } = useAuth();
+  const enableSignup = config.features.enableSignup;
   const { setTheme, resolvedTheme } = useTheme();
   const { isActive, startTimer, stopTimer, isLoading } = useTimer();
   // useTheme manages theme with next-themes; use `resolvedTheme` for UI
@@ -95,6 +96,15 @@ export function Header({
   const handleRegistrationClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (setShowRegistration) {
+      setShowRegistration(true);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handleLoginClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (setShowRegistration) {
+      // Re-use the registration modal which also supports login; open in login mode
       setShowRegistration(true);
       window.scrollTo(0, 0);
     }
@@ -328,15 +338,23 @@ export function Header({
                   <Moon className="size-5" />
                 )}
               </Button>
-              <Button variant="ghost" onClick={handleRegistrationClick} className="font-medium">
+              <Button variant="ghost" onClick={handleLoginClick} className="font-medium">
                 Anmelden
               </Button>
-              <Button
-                onClick={handleDashboardClick}
-                className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
-              >
-                Start Now
-              </Button>
+              {enableSignup && (
+                <Button variant="ghost" onClick={handleRegistrationClick} className="font-medium">
+                  Registrieren
+                </Button>
+              )}
+                {/* Only allow dashboard entry for authenticated users */}
+                {user && (
+                  <Button
+                    onClick={handleDashboardClick}
+                    className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+                  >
+                    Start Now
+                  </Button>
+                )}
             </div>
           )}
         </div>

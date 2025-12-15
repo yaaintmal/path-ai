@@ -7,10 +7,12 @@ type AuthMode = 'login' | 'register';
 
 interface AuthWizardProps {
   onAuthSuccess?: () => void;
+  initialMode?: AuthMode;
+  allowRegister?: boolean;
 }
 
-export function AuthWizard({ onAuthSuccess }: AuthWizardProps) {
-  const [mode, setMode] = useState<AuthMode>('login');
+export function AuthWizard({ onAuthSuccess, initialMode, allowRegister = true }: AuthWizardProps) {
+  const [mode, setMode] = useState<AuthMode>(initialMode || 'login');
 
   return (
     <div className="min-h-[600px] w-full flex items-center justify-center p-4">
@@ -25,14 +27,16 @@ export function AuthWizard({ onAuthSuccess }: AuthWizardProps) {
           >
             {mode === 'login' ? (
               <LoginForm
-                onSwitch={() => setMode('register')}
+                onSwitch={allowRegister ? () => setMode('register') : undefined}
                 onLoginSuccess={onAuthSuccess || (() => {})}
               />
-            ) : (
+            ) : allowRegister ? (
               <RegisterForm
                 onSwitch={() => setMode('login')}
                 onRegisterSuccess={onAuthSuccess || (() => {})}
               />
+            ) : (
+              <LoginForm onLoginSuccess={onAuthSuccess || (() => {})} />
             )}
           </motion.div>
         </AnimatePresence>

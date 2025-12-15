@@ -9,7 +9,7 @@ import { ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface RegisterFormProps {
-  onSwitch: () => void;
+  onSwitch?: () => void;
   onRegisterSuccess: () => void;
 }
 
@@ -110,12 +110,16 @@ export function RegisterForm({ onSwitch, onRegisterSuccess }: RegisterFormProps)
 
       <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
         {config.footerText}{' '}
-        <button
-          onClick={onSwitch}
-          className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
-        >
-          {config.footerLinkText}
-        </button>
+        {onSwitch ? (
+          <button
+            onClick={onSwitch}
+            className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
+          >
+            {config.footerLinkText}
+          </button>
+        ) : (
+          <span className="text-muted">{config.footerLinkText}</span>
+        )}
       </div>
     </div>
   );
