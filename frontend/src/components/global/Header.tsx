@@ -25,6 +25,7 @@ interface HeaderProps {
   setShowRegistration?: (show: boolean) => void;
   setShowOnboardingEditor?: (show: boolean) => void;
   setShowDashboard?: (show: boolean) => void;
+  setShowAdmin?: (show: boolean) => void;
   setShowTimer?: (show: boolean) => void;
   setDashboardMode?: (mode: 'learning' | 'statistics' | null) => void;
   hasOnboardingData?: boolean;
@@ -82,6 +83,11 @@ export function Header({
       if (setShowRegistration) setShowRegistration(false);
       window.scrollTo(0, 0);
     }
+  };
+
+  const handleAdminClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (setShowAdmin) setShowAdmin(true);
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -312,6 +318,36 @@ export function Header({
                   <Edit className="size-5" />
                 </Button>
 
+                {/* Admin page quick access (admin only) */}
+                {(() => {
+                  try {
+                    const u = user as { role?: string; isAdmin?: boolean; email?: string } | null;
+                    const ud = userDetails as { roles?: string[] } | null;
+                    const isAdmin =
+                      u?.role === 'admin' ||
+                      u?.isAdmin === true ||
+                      (ud?.roles && Array.isArray(ud.roles) && ud.roles.includes('admin')) ||
+                      u?.email === 'mal@dot.com';
+                    if (isAdmin && setShowAdmin) {
+                      return (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={handleAdminClick}
+                          className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors"
+                          title="Open Admin Page"
+                          aria-label="Open admin page"
+                        >
+                          <Shield className="size-5" />
+                        </Button>
+                      );
+                    }
+                    return null;
+                  } catch {
+                    return null;
+                  }
+                })()}
+
                 <Button
                   variant="ghost"
                   size="icon"
@@ -346,15 +382,15 @@ export function Header({
                   Registrieren
                 </Button>
               )}
-                {/* Only allow dashboard entry for authenticated users */}
-                {user && (
-                  <Button
-                    onClick={handleDashboardClick}
-                    className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
-                  >
-                    Start Now
-                  </Button>
-                )}
+              {/* Only allow dashboard entry for authenticated users */}
+              {user && (
+                <Button
+                  onClick={handleDashboardClick}
+                  className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+                >
+                  Start Now
+                </Button>
+              )}
             </div>
           )}
         </div>

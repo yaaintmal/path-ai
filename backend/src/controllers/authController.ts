@@ -137,13 +137,21 @@ export const login: RequestHandler<unknown, any, LoginRequest> = async (req, res
     user.refreshToken = refreshToken;
     await user.save();
     // Set refresh token cookie (HttpOnly).
-    // For cross-origin (different port/host) requests we need SameSite=None so the browser
-    // will accept the cookie when making credentialed requests (fetch with credentials: 'include').
-    // In production this cookie should be Secure (sent over HTTPS).
+    // If running in a secure context (production/HTTPS), we can set SameSite=None and Secure
+    // so cross-origin credentialed requests work. In non-secure contexts (dev over HTTP) we
+    // fall back to SameSite='lax' to avoid browsers rejecting the cookie when Secure is missing.
+    const secureFlag = process.env.NODE_ENV === 'production';
+    const sameSiteValue: 'none' | 'lax' = secureFlag ? 'none' : 'lax';
+    if (!secureFlag && sameSiteValue === 'none') {
+      // Defensive: never set SameSite=None without Secure in non-production
+      console.warn(
+        '[Auth] Not setting SameSite=None without Secure; falling back to SameSite=lax for dev'
+      );
+    }
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
+      secure: secureFlag,
+      sameSite: sameSiteValue,
       path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
@@ -203,10 +211,12 @@ export const register: RequestHandler<unknown, any, RegisterRequest> = async (re
     const refreshToken = generateRefreshToken(user._id.toString());
     user.refreshToken = refreshToken;
     await user.save();
+    const secureFlagReg = process.env.NODE_ENV === 'production';
+    const sameSiteValueReg: 'none' | 'lax' = secureFlagReg ? 'none' : 'lax';
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
+      secure: secureFlagReg,
+      sameSite: sameSiteValueReg,
       path: '/',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });

@@ -245,45 +245,7 @@ export function Dashboard({ mode: initialMode, onBackToSelection }: DashboardPro
         {/*  Full width widget */}
         {/* //*will be shown in both modes at this point */}
         {/* <FullWidthWidget /> */}
-        {/* Debug: API Connection Test (admin only) - moved to the end of the dashboard */}
-        {isAdmin && (
-          <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">🔧 Debug: API Connection Test</h3>
-            <div className="flex gap-2 mb-2">
-              <button
-                onClick={testApiConnection}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              >
-                Test Health Endpoint
-              </button>
-              <button
-                onClick={testLoginEndpoint}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-              >
-                Test Login Endpoint
-              </button>
-            </div>
-            <div className="text-sm text-muted mt-2">
-              <div>
-                Computed API baseUrl: <code>{config.api.baseUrl}</code>
-              </div>
-              <div>
-                VITE_API_URL: <code>{import.meta.env.VITE_API_URL ?? '<unset>'}</code>
-              </div>
-            </div>
-            {apiTestResult && (
-              <div className="mt-2 p-2 bg-white dark:bg-gray-700 rounded text-sm font-mono">
-                {apiTestResult}
-              </div>
-            )}
-          </div>
-        )}
-        {isAdmin && (
-          <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">🛠️ Admin: Create User</h3>
-            <CreateUserWidget />
-          </div>
-        )}
+        {/* Admin widgets have moved to a dedicated Admin page */}
       </div>
     </div>
   );
@@ -311,7 +273,12 @@ function CreateUserWidget() {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        body: JSON.stringify({ name, email, password, roles: roles.split(',').map((r) => r.trim()) }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          roles: roles.split(',').map((r) => r.trim()),
+        }),
       });
       const data = await res.json();
       if (!res.ok) {

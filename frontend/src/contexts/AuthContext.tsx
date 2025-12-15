@@ -63,19 +63,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Dispatch an auth change marker so other tabs can pick up the change via 'storage' event
   const dispatchAuthChanged = useCallback(() => {
     if (typeof window === 'undefined' || !window.localStorage) return;
+    try {
+      // store a changing timestamp so the storage event fires even if same value was previously set
+      window.localStorage.setItem('auth_event', JSON.stringify({ ts: Date.now() }));
       try {
-        // store a changing timestamp so the storage event fires even if same value was previously set
-        window.localStorage.setItem('auth_event', JSON.stringify({ ts: Date.now() }));
-        try {
-          // notify same-tab listeners as well
-          window.dispatchEvent(new Event('authChanged'));
-        } catch (err) {
-          console.debug('[AuthContext] dispatch authChanged event failed', err);
-        }
+        // notify same-tab listeners as well
+        window.dispatchEvent(new Event('authChanged'));
       } catch (err) {
-        // ignore failures (e.g., storage disabled)
-        console.debug('[AuthContext] failed to write auth_event to localStorage', err);
+        console.debug('[AuthContext] dispatch authChanged event failed', err);
       }
+    } catch (err) {
+      // ignore failures (e.g., storage disabled)
+      console.debug('[AuthContext] failed to write auth_event to localStorage', err);
+    }
   }, []);
 
   // Listen for auth events from other tabs/windows
@@ -161,7 +161,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         throw new Error(data.message || `Login failed (${response.status})`);
       }
 
-      console.debug('[AuthContext] Login successful:', { id: data.user.id, email: data.user.email });
+      console.debug('[AuthContext] Login successful:', {
+        id: data.user.id,
+        email: data.user.email,
+      });
 
       const userData: User = {
         id: data.user.id,
@@ -263,7 +266,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
               setUserDetails({
                 totalScore: d.user?.totalScore ?? 0,
                 wallet: d.user?.wallet ?? 0,
-                pointsBreakdown: (d.user?.pointsBreakdown as unknown) as
+                pointsBreakdown: d.user?.pointsBreakdown as unknown as
                   | {
                       exp: number;
                       basePoints: number;
@@ -272,9 +275,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                       currentStreak: number;
                     }
                   | undefined,
-                activeBoosts: (d.user?.activeBoosts as unknown) as ActiveBoostDTO[] | [],
+                activeBoosts: d.user?.activeBoosts as unknown as ActiveBoostDTO[] | [],
                 inventory: inventoryData.inventory || {},
-                onboardingData: (d.user?.onboardingData as unknown) as OnboardingData | null,
+                onboardingData: d.user?.onboardingData as unknown as OnboardingData | null,
               });
               return;
             }
@@ -285,7 +288,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUserDetails({
           totalScore: d.user?.totalScore ?? 0,
           wallet: d.user?.wallet ?? 0,
-          pointsBreakdown: (d.user?.pointsBreakdown as unknown) as
+          pointsBreakdown: d.user?.pointsBreakdown as unknown as
             | {
                 exp: number;
                 basePoints: number;
@@ -294,9 +297,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 currentStreak: number;
               }
             | undefined,
-          activeBoosts: (d.user?.activeBoosts as unknown) as ActiveBoostDTO[] | [],
+          activeBoosts: d.user?.activeBoosts as unknown as ActiveBoostDTO[] | [],
           inventory: inventory || {},
-          onboardingData: (d.user?.onboardingData as unknown) as OnboardingData | null,
+          onboardingData: d.user?.onboardingData as unknown as OnboardingData | null,
         });
       };
 
