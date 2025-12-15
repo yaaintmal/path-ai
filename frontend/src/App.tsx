@@ -109,6 +109,26 @@ function AppContent() {
     }
   }, [showDashboard, isAuthenticated]);
 
+  // Admin overlay should take precedence over other views (timer, dashboard, etc.)
+  if (showAdmin) {
+    return (
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <Header
+          setShowOnboarding={setShowOnboarding}
+          setShowRegistration={setShowRegistration}
+          setShowOnboardingEditor={setShowOnboardingEditor}
+          setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
+          hasOnboardingData={hasOnboardingData}
+        />
+        <AdminPage onBack={() => setShowAdmin(false)} />
+        <Footer />
+        <VersionIndicator onClick={() => setShowChangelog(true)} />
+      </div>
+    );
+  }
+
   if (showTimer) {
     return (
       <div className="min-h-screen bg-background transition-colors duration-300">
@@ -139,6 +159,7 @@ function AppContent() {
             setShowOnboardingEditor={setShowOnboardingEditor}
             setShowDashboard={setShowDashboard}
             setShowTimer={setShowTimer}
+            setShowAdmin={setShowAdmin}
             setDashboardMode={setDashboardMode}
             hasOnboardingData={hasOnboardingData}
           />
@@ -252,6 +273,7 @@ function AppContent() {
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
           hasOnboardingData={hasOnboardingData}
         />
         <OnboardingEditor

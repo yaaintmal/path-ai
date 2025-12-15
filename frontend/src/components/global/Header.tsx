@@ -91,6 +91,9 @@ export function Header({
   };
 
   const handleAdminClick = (e: React.MouseEvent) => {
+    // Debug: verify clicks are received
+    // eslint-disable-next-line no-console
+    console.log('[Header] Admin clicked', { hasSetter: !!setShowAdmin });
     e.preventDefault();
     if (setShowAdmin) setShowAdmin(true);
   };
@@ -132,7 +135,7 @@ export function Header({
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-[9999] w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 lg:px-8">
         {/* Left Section: Logo & Branding */}
         <div className="flex items-center gap-4">
@@ -334,12 +337,17 @@ export function Header({
                       (ud?.roles && Array.isArray(ud.roles) && ud.roles.includes('admin')) ||
                       u?.email === 'mal@dot.com';
                     if (isAdmin && setShowAdmin) {
+                      // eslint-disable-next-line no-console
+                      console.log('[Header] Rendering admin button', {
+                        isAdmin,
+                        hasSetter: !!setShowAdmin,
+                      });
                       return (
                         <Button
                           variant="ghost"
                           size="icon"
                           onClick={handleAdminClick}
-                          className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors"
+                          className="rounded-full hover:text-amber-500 hover:bg-amber-500/10 transition-colors pointer-events-auto"
                           title="Open Admin Page"
                           aria-label="Open admin page"
                         >
