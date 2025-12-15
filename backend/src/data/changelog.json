@@ -1,5 +1,22 @@
 [
   {
+    "version": "0.7.2",
+    "date": "2025-12-15",
+    "title": "Major: Admin Dashboard Layouts & UI Polish — Hail to the King, Baby! 👑",
+    "description": "After kicking ass, time to polish the throne. Admin dashboard redesigned with surgical precision: error monitor (2/3) + stats (1/3), debug + logs (50/50), create user (1/3) + registered users (2/3). Create user now sports icon-based role toggles. Admin page loads over active dashboards. Single-frame widget perfection.",
+    "details": [
+      "🎨 SURGICAL GRID LAYOUT: Redesigned admin dashboard grid—Error Monitor dominates 2/3 of row 1 paired with System Stats (1/3). Debug/API Test (50%) + Admin Logs (50%) on row 2. Create User (1/3) + Registered Users (2/3) on row 3. Clean. Brutal. Efficient.",
+      "🛡️ ROLE TOGGLE ICONS: Create User widget now features icon-based single-select role buttons (User/Admin/Moderator with lucide-react icons). No text input bloat—just click and confirm.",
+      "📍 ADMIN PRIORITY: Fixed admin page rendering—now displays immediately over active Focus Mode or Learning dashboards (moved `showAdmin` check before timer/dashboard early returns in App.tsx).",
+      "🔗 HEADER Z-INDEX BOOST: Bumped header z-index to `z-[9999]` and added `pointer-events-auto` to Shield button for bulletproof clickability during mode transitions.",
+      "🧹 SINGLE-FRAME WIDGETS: Stripped redundant borders from ErrorPollerWidget, AdminLogsWidget, and ApiTestWidget—they render cleanly without duplicate card wrappers. Registered Users Widget simplified to single frame.",
+      "🧪 CONSOLE DEBUG LOGS: Added `[Header] Admin clicked` and `[Header] Rendering admin button` logs for easier troubleshooting of button responsiveness.",
+      "🚀 REFACTORED PROP CHAINS: Ensured `setShowAdmin` is passed to Header in ALL AppContent branches (9 total) to guarantee admin button availability in every view.",
+      "🎯 UI/UX WINS: Cleaner admin dashboard = faster ops, fewer clicks, more headshots.",
+      "🏁 STATUS: Admin dashboard is POLISHED. Role selection is GORGEOUS. Admin access is INSTANT. The king is back on the throne. 👑"
+    ]
+  },
+  {
     "version": "0.7.1",
     "date": "2025-12-15",
     "title": "Major: Admin Page & Error Monitoring — Come Get SOOOOOOOOME...-yeah, da feat list is really dat long! =)",

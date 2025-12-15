@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { getApiUrl } from '../../config/app.config';
-import { UserPlus } from 'lucide-react';
+import { UserPlus, Shield, Lock, Users } from 'lucide-react';
 
 export function CreateUserWidget() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [roles, setRoles] = useState('user');
+  const [selectedRole, setSelectedRole] = useState<string>('user');
   const [result, setResult] = useState<string>('');
+
+  const ROLE_OPTIONS = [
+    { id: 'user', label: 'User', icon: Users },
+    { id: 'admin', label: 'Admin', icon: Shield },
+    { id: 'moderator', label: 'Moderator', icon: Lock },
+  ];
 
   const createUser = async () => {
     setResult('');
@@ -27,7 +33,7 @@ export function CreateUserWidget() {
           name,
           email,
           password,
-          roles: roles.split(',').map((r) => r.trim()),
+          roles: [selectedRole],
         }),
       });
       const data = await res.json();
@@ -46,7 +52,7 @@ export function CreateUserWidget() {
       setName('');
       setEmail('');
       setPassword('');
-      setRoles('user');
+      setSelectedRole('user');
     } catch (err) {
       setResult(`Exception: ${String(err)}`);
     }
@@ -73,12 +79,31 @@ export function CreateUserWidget() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <input
-        className="p-2 rounded border"
-        placeholder="Roles (comma separated)"
-        value={roles}
-        onChange={(e) => setRoles(e.target.value)}
-      />
+      <div className="col-span-full">
+        <label className="block text-xs text-muted-foreground mb-2 font-medium">Role:</label>
+        <div className="flex gap-2 flex-wrap">
+          {ROLE_OPTIONS.map((role) => {
+            const Icon = role.icon;
+            const isSelected = selectedRole === role.id;
+            return (
+              <button
+                key={role.id}
+                onClick={() => setSelectedRole(role.id)}
+                className={`flex items-center gap-1 px-3 py-1 rounded border transition-all ${
+                  isSelected
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-muted text-muted-foreground border-input hover:border-primary/50'
+                }`}
+                title={`Select ${role.label} role`}
+                aria-label={`Select ${role.label} role`}
+              >
+                <Icon className="size-4" />
+                <span className="text-sm font-medium">{role.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
       <div className="col-span-full flex items-center gap-2">
         <button
           onClick={createUser}

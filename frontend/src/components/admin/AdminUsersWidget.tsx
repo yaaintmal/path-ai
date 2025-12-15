@@ -104,20 +104,18 @@ export function AdminUsersWidget() {
 
   return (
     <>
-      <div className="p-4 rounded-lg border border-input bg-card">
-        <h3 className="text-lg font-semibold mb-4">Registered Users</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left text-muted-foreground">
-                <th className="pb-2">Name</th>
-                <th className="pb-2">Email</th>
-                <th className="pb-2">Roles</th>
-                <th className="pb-2">Last action</th>
-                <th className="pb-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="text-left text-muted-foreground">
+              <th className="pb-2">Name</th>
+              <th className="pb-2">Email</th>
+              <th className="pb-2">Roles</th>
+              <th className="pb-2">Last action</th>
+              <th className="pb-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
               {users.map((u) => (
                 <tr key={u.id} className="border-t">
                   <td className="py-2">{u.name}</td>
@@ -177,7 +175,6 @@ export function AdminUsersWidget() {
               ))}
             </tbody>
           </table>
-        </div>
       </div>
       <Dialog open={!!confirmUser} onOpenChange={(open) => !open && setConfirmUser(null)}>
         <DialogContent>

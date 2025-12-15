@@ -46,46 +46,38 @@ export function AdminPage({ onBack }: AdminPageProps) {
 
       {/* Main Content */}
       <div className="grid gap-6">
-        {/* Error Monitor — 2 columns wide */}
-        <ErrorPollerWidget />
-
-        <ApiTestWidget />
-
+        {/* Row 1: Error monitor (2/3) + System stats (1/3) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
+            <ErrorPollerWidget />
+          </div>
+          <div>
+            <AdminStatsWidget />
+          </div>
+        </div>
+
+        {/* Row 2: Debug widget (ApiTest) and Admin Logs (50/50) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <ApiTestWidget />
+          </div>
+          <div>
+            <AdminLogsWidget />
+          </div>
+        </div>
+
+        {/* Row 3: Create User (1/3) + Registered Users (2/3) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-1">
             <div className="p-4 rounded-lg border border-input bg-card">
               <h3 className="text-lg font-semibold mb-2">🛠️ Admin: Create User</h3>
               <CreateUserWidget />
             </div>
-            <div className="mt-6">
-              <AdminUsersWidget />
-            </div>
           </div>
-
-          <div className="space-y-4">
-            <AdminStatsWidget />
-
-            <div className="mt-4">
-              <AdminLogsWidget />
-            </div>
-
+          <div className="md:col-span-2">
             <div className="p-4 rounded-lg border border-input bg-card">
-              <h3 className="text-lg font-semibold mb-2">Info</h3>
-              <div className="text-sm text-muted-foreground">
-                <p>
-                  Computed API baseUrl: <code className="font-mono">{location.origin}</code>
-                </p>
-                <p className="mt-2">
-                  VITE_API_URL:{' '}
-                  <code className="font-mono">
-                    {((globalThis as Record<string, unknown>).__VITE_API_URL__ as string) ??
-                      '<unset>'}
-                  </code>
-                </p>
-                <p className="mt-2">
-                  You are signed in as: <span className="font-medium">{user?.email}</span>
-                </p>
-              </div>
+              <h3 className="text-lg font-semibold mb-4">Registered Users</h3>
+              <AdminUsersWidget />
             </div>
           </div>
         </div>
