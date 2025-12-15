@@ -16,6 +16,14 @@ export interface Theme {
     muted?: string;
     border?: string;
     inputBackground?: string;
+    // optional supplementary tokens
+    primaryForeground?: string;
+    secondaryForeground?: string;
+    mutedForeground?: string;
+    switchBackground?: string;
+    ring?: string;
+    sidebar?: string;
+    sidebarForeground?: string;
   };
   icons: {
     brand: string; // emoji or icon id for now

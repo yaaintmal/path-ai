@@ -35,6 +35,9 @@ interface OnboardingData {
   role?: string;
   goals?: string[];
   subjects?: string[];
+  gamification?: string;
+  themeId?: string;
+  themePrefs?: { showClassicBackground?: boolean };
   skillLevels?: Record<string, number> | Array<{ subject: string; level: number }>;
   nativeLanguage?: string;
   preferredLanguage?: string;

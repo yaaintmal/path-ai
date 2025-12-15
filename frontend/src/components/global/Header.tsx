@@ -36,6 +36,7 @@ export function Header({
   setShowRegistration,
   setShowOnboardingEditor,
   setShowDashboard,
+  setShowAdmin,
   setShowTimer,
   setDashboardMode,
   hasOnboardingData,

@@ -29,7 +29,6 @@ export function Settings() {
     setSaving(false);
   };
 
-export function Settings() {
   return (
     <div className="min-h-screen bg-background transition-colors duration-300 py-8 px-4">
       <div className="container mx-auto max-w-3xl">
