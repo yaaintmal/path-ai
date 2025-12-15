@@ -131,13 +131,13 @@ export function Hero({ setShowOnboarding }: HeroProps) {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400">
               <Sparkles className="size-4" />
               <span className="text-sm">KI-gestütztes Lernen</span>
             </div>
             <h1 className="text-5xl md:text-6xl text-foreground">
               Dein persönlicher{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                 KI-Lernplan
               </span>{' '}
               in jeder Sprache
@@ -180,7 +180,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
 
           {/* Feature Slider */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-3xl opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-20" />
             <div className="relative bg-card rounded-3xl shadow-2xl p-8 space-y-4 border border-border">
               {/* Slide Content */}
               <div className="min-h-[400px]">
@@ -212,7 +212,7 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                     </div>
                   </div>
                   <div
-                    className={`bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-xl p-4 border border-blue-200 dark:border-blue-800`}
+                    className={`bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800`}
                   >
                     <div className="flex items-start gap-2">
                       <div

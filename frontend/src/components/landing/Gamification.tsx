@@ -78,7 +78,7 @@ export function Gamification() {
   const [studentPoints] = useState(2450);
 
   return (
-    <section className="container mx-auto px-4 py-20 md:py-32 bg-background">
+    <section id="gamification" className="container mx-auto px-4 py-20 md:py-32 bg-background">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <Badge className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white border-0 mb-4">
           <Gamepad2 className="size-4 mr-2" />

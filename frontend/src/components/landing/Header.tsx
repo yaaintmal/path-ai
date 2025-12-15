@@ -69,28 +69,50 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
         </div>
 
         {/* Center Section: Navigation (Desktop) */}
-        {isAuthenticated && (
-          <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            {['Languages', 'Gamification', 'Templates', 'Features'].map((item) => (
+        <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
+          {isAuthenticated ? (
+            <>
+              {['Languages', 'Gamification', 'Templates', 'Features'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+                >
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                </a>
+              ))}
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+                href="#dashboard"
+                onClick={handleDashboardClick}
+                className="text-sm font-medium text-primary hover:text-primary/80 transition-colors relative group"
               >
-                {item}
+                Dein Dashboard
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
               </a>
-            ))}
-            <a
-              href="#dashboard"
-              onClick={handleDashboardClick}
-              className="text-sm font-medium text-primary hover:text-primary/80 transition-colors relative group"
-            >
-              Dein Dashboard
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-            </a>
-          </nav>
-        )}
+            </>
+          ) : (
+            <>
+              {['Features', 'Gamification', 'Templates'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+                >
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                </a>
+              ))}
+              <a
+                href="#how-it-works"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+              >
+                Dashboard
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </a>
+            </>
+          )}
+        </nav>
 
         {/* Right Section: Actions */}
         <div className="flex items-center gap-3">

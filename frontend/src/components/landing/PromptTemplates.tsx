@@ -9,7 +9,7 @@ export function PromptTemplates() {
   const [selectedTemplate, setSelectedTemplate] = useState(LEARNING_TEMPLATES[0]);
 
   return (
-    <section className="container mx-auto px-4 py-20 md:py-32 bg-background">
+    <section id="templates" className="container mx-auto px-4 py-20 md:py-32 bg-background">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <Badge className="bg-gradient-to-r from-green-600 to-emerald-600 text-white border-0 mb-4">
           <BookOpen className="size-4 mr-2" />

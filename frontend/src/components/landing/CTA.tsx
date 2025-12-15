@@ -16,7 +16,7 @@ export function CTA() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl"
+          className="bg-gradient-to-br from-amber-600 to-orange-600 rounded-3xl p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl"
         >
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 size-32 border-4 border-white rounded-full" />

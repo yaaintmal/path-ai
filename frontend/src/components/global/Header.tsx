@@ -152,10 +152,10 @@ export function Header({
         {/* Center Section: Navigation (Desktop) */}
         {!user && (
           <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            {['Languages', 'Gamification', 'Templates', 'Features'].map((item) => (
+            {['Features', 'Gamification', 'Templates', 'Dashboard'].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={item === 'Dashboard' ? '#how-it-works' : `#${item.toLowerCase()}`}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
               >
                 {item}

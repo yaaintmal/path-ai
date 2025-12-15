@@ -72,7 +72,7 @@ export function TargetAudiences() {
       <div className="text-center max-w-3xl mx-auto mb-16">
         <h2 className="text-4xl md:text-5xl mb-4">
           Für{' '}
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
             jeden Lernenden
           </span>
         </h2>
@@ -88,7 +88,7 @@ export function TargetAudiences() {
             key={audience.id}
             className={`p-6 cursor-pointer transition-all ${
               selectedAudience === audience.id
-                ? 'border-2 border-blue-600 shadow-xl scale-105'
+                ? 'border-2 border-amber-600 shadow-xl scale-105'
                 : 'border-2 border-transparent hover:border-border'
             }`}
             onClick={() => setSelectedAudience(audience.id)}
