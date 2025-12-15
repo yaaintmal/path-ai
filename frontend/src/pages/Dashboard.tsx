@@ -311,7 +311,12 @@ function CreateUserWidget() {
           'Content-Type': 'application/json',
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        body: JSON.stringify({ name, email, password, roles: roles.split(',').map((r) => r.trim()) }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          roles: roles.split(',').map((r) => r.trim()),
+        }),
       });
       const data = await res.json();
       if (!res.ok) {

@@ -346,15 +346,15 @@ export function Header({
                   Registrieren
                 </Button>
               )}
-                {/* Only allow dashboard entry for authenticated users */}
-                {user && (
-                  <Button
-                    onClick={handleDashboardClick}
-                    className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
-                  >
-                    Start Now
-                  </Button>
-                )}
+              {/* Only allow dashboard entry for authenticated users */}
+              {user && (
+                <Button
+                  onClick={handleDashboardClick}
+                  className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+                >
+                  Start Now
+                </Button>
+              )}
             </div>
           )}
         </div>

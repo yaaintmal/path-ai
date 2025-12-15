@@ -16,7 +16,16 @@ import {
 } from '#routers';
 import path from 'path';
 import { User } from '#models';
-import { amberLog, success, info, loggerError, grayText, amberText, greenText, critical } from '#utils';
+import {
+  amberLog,
+  success,
+  info,
+  loggerError,
+  grayText,
+  amberText,
+  greenText,
+  critical,
+} from '#utils';
 import type { Request, Response } from 'express';
 
 const app = express();
