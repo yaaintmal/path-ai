@@ -160,7 +160,7 @@ export function OnboardingWizard({
     toast.success('Thanks 🤗 Your answers have been saved. Redirecting to home...');
     setTimeout(() => {
       window.location.href = '/';
-    }, 1200);
+    }, 3000);
   };
 
   return (
