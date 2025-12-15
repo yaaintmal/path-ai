@@ -1,5 +1,16 @@
 [
   {
+    "version": "0.7.3",
+    "date": "2025-12-15",
+    "title": "UX: Mobile Responsiveness for Landing Page Header & Footer",
+    "description": "Fixed header title wrapping and improved mobile layout for landing page navigation and footer sections.",
+    "details": [
+      "📱 HEADER TITLE SCALING: Title now responsive (text-lg → text-2xl) and subtitle truncated to prevent overflow on mobile phones",
+      "🔧 LOGO SPACING: Reduced gap and added min-width constraints to prevent layout breaking on small screens",
+      "🎨 FOOTER MOBILE POLISH: Grid layouts responsive (1→2→4 columns), text sizes scaled, icons responsive, proper spacing on all breakpoints"
+    ]
+  },
+  {
     "version": "0.7.2",
     "date": "2025-12-15",
     "title": "Major: Admin Dashboard Layouts & UI Polish — Hail to the King, Baby! 👑",
