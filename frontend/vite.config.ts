@@ -16,7 +16,11 @@ export default defineConfig(({ mode }) => {
       // Allow CORS from specific origins (useful when testing from custom hostnames)
       // You can override via VITE_ALLOWED_ORIGINS (comma-separated)
       cors: (() => {
-        const defaultAllowed = ['https://api-pathai.malick.wtf', 'https://pathai.malick.wtf'];
+        const defaultAllowed = [
+          'https://api-pathai.malick.wtf',
+          'https://pathai.malick.wtf',
+          'http://localhost:5173',
+        ];
         const envAllowed = (env.VITE_ALLOWED_ORIGINS || '')
           .split(',')
           .map((s: string) => s.trim())

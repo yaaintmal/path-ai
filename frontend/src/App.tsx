@@ -18,6 +18,7 @@ import { OnboardingEditor } from './pages/OnboardingEditor';
 import { Registration } from './pages/Registration';
 import { Dashboard } from './pages/Dashboard';
 import { ChangelogPage } from './pages/Changelog';
+import { AdminPage } from './pages/AdminPage';
 import { DashboardSelection } from './components/dashboard/DashboardSelection';
 import { TimerPage } from './pages/TimerPage';
 
@@ -41,6 +42,7 @@ function AppContent() {
   const [showDashboard, setShowDashboard] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
   const [dashboardMode, setDashboardMode] = useState<
     'learning' | 'statistics' | 'completed-topics' | null
   >(null);
@@ -116,6 +118,7 @@ function AppContent() {
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
           setDashboardMode={setDashboardMode}
           hasOnboardingData={hasOnboardingData}
         />
@@ -160,6 +163,7 @@ function AppContent() {
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
           setDashboardMode={setDashboardMode}
           hasOnboardingData={hasOnboardingData}
         />
@@ -182,6 +186,7 @@ function AppContent() {
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
           hasOnboardingData={hasOnboardingData}
         />
         <div className="container mx-auto px-4 py-12">
@@ -203,6 +208,7 @@ function AppContent() {
           setShowOnboardingEditor={setShowOnboardingEditor}
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
           hasOnboardingData={hasOnboardingData}
         />
         <OnboardingWizard setHasOnboardingData={setHasOnboardingData} />
@@ -214,6 +220,25 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-background transition-colors duration-300">
         <ChangelogPage onBack={() => setShowChangelog(false)} />
+      </div>
+    );
+  }
+
+  if (showAdmin) {
+    return (
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <Header
+          setShowOnboarding={setShowOnboarding}
+          setShowRegistration={setShowRegistration}
+          setShowOnboardingEditor={setShowOnboardingEditor}
+          setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
+          hasOnboardingData={hasOnboardingData}
+        />
+        <AdminPage onBack={() => setShowAdmin(false)} />
+        <Footer />
+        <VersionIndicator onClick={() => setShowChangelog(true)} />
       </div>
     );
   }
@@ -249,6 +274,7 @@ function AppContent() {
             setShowOnboardingEditor={setShowOnboardingEditor}
             setShowDashboard={setShowDashboard}
             setShowTimer={setShowTimer}
+            setShowAdmin={setShowAdmin}
             setDashboardMode={setDashboardMode}
             hasOnboardingData={hasOnboardingData}
           />
@@ -276,6 +302,7 @@ function AppContent() {
         setShowOnboardingEditor={setShowOnboardingEditor}
         setShowDashboard={setShowDashboard}
         setShowTimer={setShowTimer}
+        setShowAdmin={setShowAdmin}
         hasOnboardingData={hasOnboardingData}
       />
       {/* 1. Hero: Was ist PathStudio? */}
