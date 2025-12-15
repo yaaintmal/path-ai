@@ -1,5 +1,28 @@
 [
   {
+    "version": "0.7.1",
+    "date": "2025-12-15",
+    "title": "Major: Admin ops polish & UX sync",
+    "description": "Final admin UX polish that centralizes audit trails, modernizes buttons, and adds safer delete flows.",
+    "details": [
+      "🗂️ Admin audit log coverage: create/update/delete user actions now write to `./logs/path-ai-admin-YYYY-MM-DD.log` and are downloadable via `GET /api/admin/logs?type=admin` for forensic review.",
+      "🧭 Admin widgets now share lucid button affordances: every control (api tests, log download, user creation) pairs a lucide-react icon with descriptive text and aria labels for clarity.",
+      "🛡️ User management now uses a Radix dialog modal before deleting a user, keeping the inline list focused and consistent with the rest of the dashboard.",
+      "📈 Admin stats/logs/widgets stay in sync with new user data, exposing inline role switches, last-activity timestamps, and actions guarded by admin middleware."
+    ]
+  },
+  {
+    "version": "0.6.4",
+    "date": "2025-12-15",
+    "title": "Ops: Admin action audit logs",
+    "description": "Audit admin actions (user create/delete) to a separate admin log file for easier review and compliance.",
+    "details": [
+      "🗄️ Admin Audit Logs: Admin actions (create/delete users) are now written to `./logs/path-ai-admin-YYYY-MM-DD.log`",
+      "🔐 Exposed via admin endpoint: `GET /api/admin/logs?type=admin&date=YYYY-MM-DD` (admin-only)",
+      "🧾 Entries include actor (user email/id when available), target info, roles, and IP for forensic review."
+    ]
+  },
+  {
     "version": "0.6.3",
     "date": "2025-12-14",
     "title": "Hotfix: Defused Preflight, CORS Headshots & LAN Ops",

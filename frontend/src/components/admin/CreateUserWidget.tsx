@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getApiUrl } from '../../config/app.config';
+import { UserPlus } from 'lucide-react';
 
 export function CreateUserWidget() {
   const [name, setName] = useState('');
@@ -81,9 +82,12 @@ export function CreateUserWidget() {
       <div className="col-span-full flex items-center gap-2">
         <button
           onClick={createUser}
-          className="px-4 py-2 bg-amber-500 text-white rounded hover:bg-amber-600"
+          className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded hover:bg-amber-600"
+          aria-label="Create user"
+          title="Create user"
         >
-          Create User
+          <UserPlus className="size-4" />
+          <span>Create User</span>
         </button>
         {result && <div className="text-sm font-mono">{result}</div>}
       </div>

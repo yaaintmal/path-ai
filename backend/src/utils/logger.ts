@@ -184,3 +184,57 @@ export function critical(msg: string, ...args: unknown[]) {
   console.error(colorize(CRIT, `[CRITICAL] ${formatted}`));
   writeToCriticalFile('[CRITICAL]', msg, ...args);
 }
+
+// --- Admin actions logging (separate file for admin audit) ---
+let currentAdminDateStr = getDateString(new Date());
+let adminStream: fs.WriteStream | null = null;
+
+function openAdminStream() {
+  ensureLogDir();
+  const filename = `path-ai-admin-${currentAdminDateStr}.log`;
+  const filePath = path.join(LOG_DIR, filename);
+  adminStream = fs.createWriteStream(filePath, { flags: 'a' });
+}
+
+function rotateAdminIfNeeded() {
+  const today = getDateString(new Date());
+  if (today !== currentAdminDateStr || !adminStream) {
+    if (adminStream) {
+      try {
+        adminStream.end();
+      } catch (e) {
+        // ignore
+      }
+      adminStream = null;
+    }
+    currentAdminDateStr = today;
+    openAdminStream();
+  }
+}
+
+function writeToAdminFile(level: string, msg: string, ...args: unknown[]) {
+  try {
+    rotateAdminIfNeeded();
+    if (!adminStream) openAdminStream();
+    if (!adminStream) return;
+    const ts = new Date().toISOString();
+    const formatted = util.format(msg, ...args);
+    const line = `${ts} ${level} ${stripAnsiCodes(formatted)}\n`;
+    adminStream.write(line);
+  } catch (err) {
+    // don't break on logging errors
+  }
+}
+
+process.on('exit', () => {
+  try {
+    if (adminStream) adminStream.end();
+  } catch (e) {}
+});
+
+export function adminLog(msg: string, ...args: unknown[]) {
+  const formatted = util.format(msg, ...args);
+  const ADMIN = '\x1b[95m'; // magenta-ish for admin traces
+  console.log(colorize(ADMIN, `[ADMIN] ${formatted}`));
+  writeToAdminFile('[ADMIN]', msg, ...args);
+}

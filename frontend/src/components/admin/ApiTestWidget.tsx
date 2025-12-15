@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getApiUrl } from '../../config/app.config';
+import { Server, LogIn } from 'lucide-react';
 
 export function ApiTestWidget() {
   const [apiTestResult, setApiTestResult] = useState<string>('');
@@ -38,15 +39,21 @@ export function ApiTestWidget() {
       <div className="flex gap-2 mb-2">
         <button
           onClick={testApiConnection}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2"
+          aria-label="Test health endpoint"
+          title="Test health endpoint"
         >
-          Test Health Endpoint
+          <Server className="size-4" />
+          <span>Test Health Endpoint</span>
         </button>
         <button
           onClick={testLoginEndpoint}
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center gap-2"
+          aria-label="Test login endpoint"
+          title="Test login endpoint"
         >
-          Test Login Endpoint
+          <LogIn className="size-4" />
+          <span>Test Login Endpoint</span>
         </button>
       </div>
       <div className="text-sm text-muted mt-2">
