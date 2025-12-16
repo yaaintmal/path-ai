@@ -21,6 +21,7 @@ import { ChangelogPage } from './pages/Changelog';
 import { AdminPage } from './pages/AdminPage';
 import { DashboardSelection } from './components/dashboard/DashboardSelection';
 import { TimerPage } from './pages/TimerPage';
+import { FooterPage } from './pages/FooterPages';
 
 // Global Elements
 import { Header } from './components/global/Header';
@@ -43,6 +44,7 @@ function AppContent() {
   const [showTimer, setShowTimer] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [footerPage, setFooterPage] = useState<string | null>(null);
   const [dashboardMode, setDashboardMode] = useState<
     'learning' | 'statistics' | 'completed-topics' | null
   >(null);
@@ -255,10 +257,32 @@ function AppContent() {
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
           setShowAdmin={setShowAdmin}
+          setFooterPage={setFooterPage}
           hasOnboardingData={hasOnboardingData}
         />
         <AdminPage onBack={() => setShowAdmin(false)} />
-        <Footer />
+        <Footer setFooterPage={setFooterPage} />
+        <VersionIndicator onClick={() => setShowChangelog(true)} />
+      </div>
+    );
+  }
+
+  if (footerPage) {
+    return (
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <Header
+          setShowOnboarding={setShowOnboarding}
+          setShowRegistration={setShowRegistration}
+          setShowOnboardingEditor={setShowOnboardingEditor}
+          setShowDashboard={setShowDashboard}
+          setShowTimer={setShowTimer}
+          setShowAdmin={setShowAdmin}
+          setDashboardMode={setDashboardMode}
+          setFooterPage={setFooterPage}
+          hasOnboardingData={hasOnboardingData}
+        />
+        <FooterPage page={footerPage} onBack={() => setFooterPage(null)} />
+        <Footer setFooterPage={setFooterPage} />
         <VersionIndicator onClick={() => setShowChangelog(true)} />
       </div>
     );
@@ -274,6 +298,7 @@ function AppContent() {
           setShowDashboard={setShowDashboard}
           setShowTimer={setShowTimer}
           setShowAdmin={setShowAdmin}
+          setFooterPage={setFooterPage}
           hasOnboardingData={hasOnboardingData}
         />
         <OnboardingEditor
@@ -281,7 +306,7 @@ function AppContent() {
           setHasOnboardingData={setHasOnboardingData}
           setShowDashboard={setShowDashboard}
         />
-        <Footer />
+        <Footer setFooterPage={setFooterPage} />
         <VersionIndicator onClick={() => setShowChangelog(true)} />
       </div>
     );
@@ -298,6 +323,7 @@ function AppContent() {
             setShowTimer={setShowTimer}
             setShowAdmin={setShowAdmin}
             setDashboardMode={setDashboardMode}
+            setFooterPage={setFooterPage}
             hasOnboardingData={hasOnboardingData}
           />
           <DashboardSelection
@@ -308,7 +334,7 @@ function AppContent() {
             }}
             onTimerClick={() => setShowTimer(true)}
           />
-          <Footer />
+          <Footer setFooterPage={setFooterPage} />
           <VersionIndicator onClick={() => setShowChangelog(true)} />
         </div>
       );
@@ -325,6 +351,7 @@ function AppContent() {
         setShowDashboard={setShowDashboard}
         setShowTimer={setShowTimer}
         setShowAdmin={setShowAdmin}
+        setFooterPage={setFooterPage}
         hasOnboardingData={hasOnboardingData}
       />
       {/* 1. Hero: Was ist PathStudio? */}
@@ -340,7 +367,7 @@ function AppContent() {
       <DashboardPreview />
       {/* <FAQ /> */}
       <CTA />
-      <Footer />
+      <Footer setFooterPage={setFooterPage} />
       <VersionIndicator onClick={() => setShowChangelog(true)} />
     </div>
   );

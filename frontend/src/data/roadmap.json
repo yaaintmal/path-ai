@@ -1,0 +1,79 @@
+[
+  {
+    "id": "in-progress",
+    "title": "In Progress",
+    "iconName": "Hammer",
+    "color": "text-amber-500",
+    "items": [
+      {
+        "title": "Refactoring Footer & Navigation",
+        "description": "Improving the site structure and adding dedicated pages for legal and company info.",
+        "tag": "Enhancement"
+      },
+      {
+        "title": "Performance Optimization",
+        "description": "Reducing bundle size and improving initial load times.",
+        "tag": "Tech Debt"
+      }
+    ]
+  },
+  {
+    "id": "up-next",
+    "title": "Up Next",
+    "iconName": "Circle",
+    "color": "text-blue-500",
+    "items": [
+      {
+        "title": "Mobile Responsiveness Polish",
+        "description": "Fine-tuning the UI for smaller screens to ensure a perfect experience on all devices.",
+        "tag": "UI/UX"
+      },
+      {
+        "title": "Add More Learning Templates",
+        "description": "Expanding the library of pre-built learning paths for popular topics.",
+        "tag": "Content"
+      },
+      {
+        "title": "User Profile Customization",
+        "description": "Allowing users to update their avatars and personal preferences.",
+        "tag": "Feature"
+      }
+    ]
+  },
+  {
+    "id": "requested",
+    "title": "Requested Features",
+    "iconName": "Lightbulb",
+    "color": "text-purple-500",
+    "items": [
+      {
+        "title": "Social Login",
+        "description": "Login with Google, GitHub, and other providers.",
+        "tag": "Auth"
+      },
+      {
+        "title": "Export to PDF",
+        "description": "Download learning paths and summaries as PDF documents.",
+        "tag": "Feature"
+      }
+    ]
+  },
+  {
+    "id": "completed",
+    "title": "Completed",
+    "iconName": "CheckCircle2",
+    "color": "text-green-500",
+    "items": [
+      {
+        "title": "Dark Mode Toggle",
+        "description": "Seamless switching between light and dark themes.",
+        "tag": "UI"
+      },
+      {
+        "title": "Landing Page Redesign",
+        "description": "New modern look for the home page.",
+        "tag": "UI"
+      }
+    ]
+  }
+]

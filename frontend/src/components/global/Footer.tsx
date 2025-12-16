@@ -1,7 +1,19 @@
 import { Brain, Github, Linkedin } from 'lucide-react';
 import config from '../../config/app.config';
 
-export function Footer() {
+interface FooterProps {
+  setFooterPage?: (page: string | null) => void;
+}
+
+export function Footer({ setFooterPage }: FooterProps) {
+  const handleNav = (e: React.MouseEvent, page: string) => {
+    e.preventDefault();
+    if (setFooterPage) {
+      setFooterPage(page);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <footer className="bg-gray-900 dark:bg-black text-gray-300">
       <div className="container mx-auto px-4 py-12">
@@ -22,22 +34,38 @@ export function Footer() {
             <h4 className="text-white mb-4">Product</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'features')}
+                  className="hover:text-white transition-colors"
+                >
                   Features
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'pricing')}
+                  className="hover:text-white transition-colors"
+                >
                   Pricing
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'faq')}
+                  className="hover:text-white transition-colors"
+                >
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'roadmap')}
+                  className="hover:text-white transition-colors"
+                >
                   Roadmap
                 </a>
               </li>
@@ -48,22 +76,38 @@ export function Footer() {
             <h4 className="text-white mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'about')}
+                  className="hover:text-white transition-colors"
+                >
                   about us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'blog')}
+                  className="hover:text-white transition-colors"
+                >
                   blog
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'career')}
+                  className="hover:text-white transition-colors"
+                >
                   career
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'contact')}
+                  className="hover:text-white transition-colors"
+                >
                   contact
                 </a>
               </li>
@@ -84,22 +128,38 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'data-protection')}
+                  className="hover:text-white transition-colors"
+                >
                   data protection
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'legal-notice')}
+                  className="hover:text-white transition-colors"
+                >
                   legal notice
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'imprint')}
+                  className="hover:text-white transition-colors"
+                >
                   imprint
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'cookie-policy')}
+                  className="hover:text-white transition-colors"
+                >
                   cookie policy
                 </a>
               </li>

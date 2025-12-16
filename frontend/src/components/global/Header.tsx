@@ -28,6 +28,7 @@ interface HeaderProps {
   setShowAdmin?: (show: boolean) => void;
   setShowTimer?: (show: boolean) => void;
   setDashboardMode?: (mode: 'learning' | 'statistics' | null) => void;
+  setFooterPage?: (page: string | null) => void;
   hasOnboardingData?: boolean;
 }
 
@@ -39,6 +40,7 @@ export function Header({
   setShowAdmin,
   setShowTimer,
   setDashboardMode,
+  setFooterPage,
   hasOnboardingData,
 }: HeaderProps) {
   const { user, logout, userDetails } = useAuth();
@@ -76,6 +78,7 @@ export function Header({
     if (setShowTimer) setShowTimer(false);
     if (setShowDashboard) setShowDashboard(true);
     if (setDashboardMode) setDashboardMode(null);
+    if (setFooterPage) setFooterPage(null);
     window.scrollTo(0, 0);
   };
 
@@ -86,16 +89,18 @@ export function Header({
       if (setShowDashboard) setShowDashboard(false);
       if (setShowOnboarding) setShowOnboarding(false);
       if (setShowRegistration) setShowRegistration(false);
+      if (setFooterPage) setFooterPage(null);
       window.scrollTo(0, 0);
     }
   };
 
   const handleAdminClick = (e: React.MouseEvent) => {
     // Debug: verify clicks are received
-    // eslint-disable-next-line no-console
+
     console.log('[Header] Admin clicked', { hasSetter: !!setShowAdmin });
     e.preventDefault();
     if (setShowAdmin) setShowAdmin(true);
+    if (setFooterPage) setFooterPage(null);
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -104,6 +109,7 @@ export function Header({
     if (setShowRegistration) setShowRegistration(false);
     if (setShowOnboardingEditor) setShowOnboardingEditor(false);
     if (setShowDashboard) setShowDashboard(false);
+    if (setFooterPage) setFooterPage(null);
     window.scrollTo(0, 0);
   };
 
@@ -111,6 +117,7 @@ export function Header({
     e.preventDefault();
     if (setShowRegistration) {
       setShowRegistration(true);
+      if (setFooterPage) setFooterPage(null);
       window.scrollTo(0, 0);
     }
   };
@@ -120,6 +127,7 @@ export function Header({
     if (setShowRegistration) {
       // Re-use the registration modal which also supports login; open in login mode
       setShowRegistration(true);
+      if (setFooterPage) setFooterPage(null);
       window.scrollTo(0, 0);
     }
   };
@@ -132,6 +140,7 @@ export function Header({
     if (setShowOnboardingEditor) setShowOnboardingEditor(false);
     if (setShowDashboard) setShowDashboard(false);
     if (setDashboardMode) setDashboardMode(null);
+    if (setFooterPage) setFooterPage(null);
   };
 
   return (
@@ -242,6 +251,7 @@ export function Header({
                       if (setShowOnboarding) setShowOnboarding(false);
                       if (setShowRegistration) setShowRegistration(false);
                       if (setShowOnboardingEditor) setShowOnboardingEditor(false);
+                      if (setFooterPage) setFooterPage(null);
                     }
                   }}
                   className={ICON_BTN_CLASS}
@@ -337,7 +347,6 @@ export function Header({
                       (ud?.roles && Array.isArray(ud.roles) && ud.roles.includes('admin')) ||
                       u?.email === 'mal@dot.com';
                     if (isAdmin && setShowAdmin) {
-                      // eslint-disable-next-line no-console
                       console.log('[Header] Rendering admin button', {
                         isAdmin,
                         hasSetter: !!setShowAdmin,

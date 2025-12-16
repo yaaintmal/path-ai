@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.7.5",
+    "date": "2025-12-16",
+    "title": "UI/UX: Footer Refactor, Roadmap Page & Branding Consistency",
+    "description": "Major refactor of the footer navigation into dedicated template pages, introduction of a Kanban-style Roadmap page, and branding consistency updates.",
+    "details": [
+      "🗺️ ROADMAP PAGE: Added a dedicated, Kanban-style Roadmap page visualizing 'In Progress', 'Up Next', 'Requested', and 'Completed' tasks. Data is decoupled into roadmap.json",
+      "🦶 FOOTER REFACTOR: Refactored footer links (Pricing, FAQ, About, Legal, etc.) to open dedicated template pages instead of dead links",
+      "🎨 BRANDING CONSISTENCY: Updated footer 'Created by' link to match the 'Path AI' header gradient (amber-300 to yellow-600)",
+      "🧭 NAVIGATION: Updated Header and App state to manage footer page navigation seamlessly without full routing (more conditional render logic)",
+      "📄 TEMPLATE PAGES: Created FooterPages.tsx to serve as a unified template for all informational footer content (there were so many links man...)"
+    ]
+  },
+  {
     "version": "0.7.4",
     "date": "2025-12-16",
     "title": "UX/DevOps: Version Indicator LLM Display & Settings Standardization",
