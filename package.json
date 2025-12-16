@@ -8,7 +8,6 @@
     "frontend"
   ],
   "scripts": {
-    "prepare": "husky install .husky",
     "postinstall": "npm run install:all",
     "install:all": "npm install --prefix backend && (test -f frontend/package.json && npm install --prefix frontend || echo \"Skipping frontend install: frontend/package.json not found\")",
     "dev": "npm run dev:backend & npm run dev:frontend",
