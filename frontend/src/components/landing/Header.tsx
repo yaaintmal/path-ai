@@ -3,6 +3,8 @@ import { Moon, Sun } from 'lucide-react';
 import config from '../../config/app.config';
 import { useTheme } from 'next-themes';
 import { useAuth } from '../../contexts/useAuth';
+import { useContext } from 'react';
+import { LanguageContext } from '../../contexts/LanguageContext';
 
 interface HeaderProps {
   setShowOnboarding?: (show: boolean) => void;
@@ -12,6 +14,7 @@ interface HeaderProps {
 export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) {
   const { setTheme, resolvedTheme } = useTheme();
   const { isAuthenticated } = useAuth();
+  const languageContext = useContext(LanguageContext);
 
   const toggleDarkMode = () => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
@@ -125,6 +128,25 @@ export function Header({ setShowOnboarding, setShowRegistration }: HeaderProps) 
           >
             {resolvedTheme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
           </Button>
+
+          {/* Language Toggle */}
+          <div className="inline-flex items-center gap-2 bg-card rounded-full p-1">
+            <button
+              data-testid="header-lang-de"
+              onClick={() => languageContext?.setLanguage('de')}
+              className={`px-3 py-1 rounded-full ${languageContext?.language === 'de' ? 'bg-amber-500 text-white' : ''}`}
+            >
+              DE
+            </button>
+            <button
+              data-testid="header-lang-en"
+              onClick={() => languageContext?.setLanguage('en')}
+              className={`px-3 py-1 rounded-full ${languageContext?.language === 'en' ? 'bg-amber-500 text-white' : ''}`}
+            >
+              EN
+            </button>
+          </div>
+
           <Button variant="ghost" className="font-medium" onClick={handleLoginClick}>
             Anmelden
           </Button>

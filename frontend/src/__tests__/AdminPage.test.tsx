@@ -48,12 +48,12 @@ describe('AdminPage', () => {
     (useAuth as jest.Mock).mockReturnValue({
       user: { id: '1', email: 'admin@e.com', role: 'admin' },
       isAuthenticated: true,
-      userDetails: {},
+      userDetails: { email: 'admin@e.com' },
     });
     render(<AdminPage />);
     // Create User heading is present
     expect(screen.getByText(/Admin: Create User/i)).toBeInTheDocument();
-    // Info card showing signed in email
-    expect(screen.getByText(/You are signed in as:/i)).toBeInTheDocument();
+    // Registered Users widget is present
+    expect(screen.getByTestId('admin-users')).toBeInTheDocument();
   });
 });

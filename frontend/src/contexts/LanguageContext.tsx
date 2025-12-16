@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, type ReactNode } from 'react';
 import { translations } from '../translations';
+import i18n from '../i18n';
 
 export type Language = 'de' | 'en';
 
@@ -25,10 +26,22 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('language', language);
+    // sync i18n when language context changes
+    try {
+      i18n.changeLanguage(language);
+    } catch (e) {
+      // ignore
+    }
   }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
+    // also change i18n immediately
+    try {
+      i18n.changeLanguage(lang);
+    } catch (e) {
+      // ignore
+    }
   };
 
   // Translation function with nested path support (e.g., 'nav.start')

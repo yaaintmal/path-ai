@@ -17,6 +17,7 @@ import {
   Calendar,
   ArrowRight,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const audiences = [
   {
@@ -65,6 +66,7 @@ const audiences = [
 
 export function TargetAudiences() {
   const [selectedAudience, setSelectedAudience] = useState('students');
+  const { t } = useTranslation('landing');
   const current = audiences.find((a) => a.id === selectedAudience);
 
   return (
@@ -78,13 +80,10 @@ export function TargetAudiences() {
       <div className="relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight animate-fade-in">
-            Für{' '}
-            <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-              jeden Lernenden
-            </span>
+            {t('targetAudiences.header.title')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 animate-fade-in-delayed">
-            Von der Grundschule bis zur Universität - Path AI passt sich an deine Bedürfnisse an
+            {t('targetAudiences.header.subtitle')}
           </p>
         </div>
 
@@ -109,8 +108,12 @@ export function TargetAudiences() {
                 >
                   <audience.icon className="size-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-1">{audience.title}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{audience.subtitle}</p>
+                <h3 className="text-xl font-bold mb-1">
+                  {t(`targetAudiences.audiences.${audience.id}.title`)}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {t(`targetAudiences.audiences.${audience.id}.subtitle`)}
+                </p>
               </Card>
             </div>
           ))}
@@ -130,27 +133,34 @@ export function TargetAudiences() {
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">{current.benefits}</p>
 
                 <div className="space-y-4">
-                  {current.features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3 group">
-                      <div
-                        className={`bg-gradient-to-br ${current.color} p-2 rounded-lg flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform`}
-                      >
-                        <feature.icon className="size-5 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-gray-700 dark:text-gray-200 font-medium">
-                          {feature.text}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                  {(() => {
+                    const rawFeatures = t(`targetAudiences.audiences.${current.id}.features`, {
+                      returnObjects: true,
+                    });
+                    const features = Array.isArray(rawFeatures) ? rawFeatures : [];
+                    return features.map((text: string, index: number) => {
+                      const FeatureIcon = current.features[index]?.icon || Target;
+                      return (
+                        <div key={index} className="flex items-start gap-3 group">
+                          <div
+                            className={`bg-gradient-to-br ${current.color} p-2 rounded-lg flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform`}
+                          >
+                            <FeatureIcon className="size-5 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-gray-700 dark:text-gray-200 font-medium">{text}</p>
+                          </div>
+                        </div>
+                      );
+                    });
+                  })()}
                 </div>
 
                 <Button
                   size="lg"
                   className={`mt-8 gap-2 bg-gradient-to-r ${current.color} text-white border-0 hover:opacity-90 transition-opacity shadow-lg`}
                 >
-                  Mehr erfahren <ArrowRight className="size-4" />
+                  {t('targetAudiences.button.learnMore')} <ArrowRight className="size-4" />
                 </Button>
               </div>
 
@@ -174,6 +184,7 @@ export function TargetAudiences() {
 }
 
 function StudentPreview() {
+  const { t } = useTranslation('landing');
   return (
     <Card className="p-6 bg-white dark:bg-gray-950 shadow-2xl border-gray-100 dark:border-gray-800">
       <div className="flex items-center gap-3 mb-4">
@@ -181,31 +192,43 @@ function StudentPreview() {
           <span className="text-xl">👨‍🎓</span>
         </div>
         <div>
-          <div className="text-sm text-muted-foreground">Student</div>
-          <div className="font-medium">Max Mustermann</div>
+          <div className="text-sm text-muted-foreground">
+            {t('targetAudiences.previews.student.role')}
+          </div>
+          <div className="font-medium">{t('targetAudiences.previews.student.name')}</div>
         </div>
       </div>
       <div className="space-y-3">
         <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium">Web Development</span>
-            <Badge className="bg-blue-600 hover:bg-blue-700">Aktiv</Badge>
+            <span className="text-sm font-medium">
+              {t('targetAudiences.previews.student.course')}
+            </span>
+            <Badge className="bg-blue-600 hover:bg-blue-700">
+              {t('targetAudiences.previews.student.badgeActive')}
+            </Badge>
           </div>
-          <div className="text-xs text-muted-foreground mb-2">Fortschritt: 68%</div>
+          <div className="text-xs text-muted-foreground mb-2">
+            {t('targetAudiences.previews.student.progress')}
+          </div>
           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
             <div className="h-full bg-gradient-to-r from-blue-600 to-cyan-600 w-[68%]" />
           </div>
         </div>
         <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-100 dark:border-gray-800">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium">Data Science</span>
-            <Badge variant="outline">Geplant</Badge>
+            <span className="text-sm font-medium">
+              {t('targetAudiences.previews.student.nextCourse')}
+            </span>
+            <Badge variant="outline">{t('targetAudiences.previews.student.planTag')}</Badge>
           </div>
-          <div className="text-xs text-muted-foreground">Start: Nächste Woche</div>
+          <div className="text-xs text-muted-foreground">
+            {t('targetAudiences.previews.student.nextStart')}
+          </div>
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
           <Calendar className="size-4" />
-          <span>Nächste Session: Heute, 18:00 Uhr</span>
+          <span>{t('targetAudiences.previews.student.nextSession')}</span>
         </div>
       </div>
     </Card>
@@ -213,6 +236,7 @@ function StudentPreview() {
 }
 
 function KidsPreview() {
+  const { t } = useTranslation('landing');
   return (
     <Card className="p-6 bg-white dark:bg-gray-950 shadow-2xl border-gray-100 dark:border-gray-800">
       <div className="flex items-center gap-3 mb-4">
@@ -220,8 +244,10 @@ function KidsPreview() {
           <span className="text-xl">👧</span>
         </div>
         <div>
-          <div className="text-sm text-muted-foreground">Path AI</div>
-          <div className="font-medium">Anna, 5. Klasse</div>
+          <div className="text-sm text-muted-foreground">
+            {t('targetAudiences.previews.kids.appName')}
+          </div>
+          <div className="font-medium">{t('targetAudiences.previews.kids.name')}</div>
         </div>
       </div>
       <div className="space-y-3">
@@ -229,14 +255,16 @@ function KidsPreview() {
           <div className="flex items-center gap-2 mb-3">
             <span className="text-2xl">🎯</span>
             <div>
-              <div className="text-sm font-medium">Dein Lerntyp</div>
+              <div className="text-sm font-medium">
+                {t('targetAudiences.previews.kids.learningType.title')}
+              </div>
               <Badge className="bg-orange-600 text-white border-0 mt-1 hover:bg-orange-700">
-                Visuell
+                {t('targetAudiences.previews.kids.learningType.value')}
               </Badge>
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
-            Du lernst am besten mit Bildern und anschaulichen Beispielen!
+            {t('targetAudiences.previews.kids.learningType.description')}
           </p>
         </div>
 
@@ -244,9 +272,13 @@ function KidsPreview() {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <span>📐</span>
-              <span className="text-sm font-medium">Mathematik</span>
+              <span className="text-sm font-medium">
+                {t('targetAudiences.previews.kids.subject1')}
+              </span>
             </div>
-            <span className="text-green-600 font-bold">Note: 2+</span>
+            <span className="text-green-600 font-bold">
+              {t('targetAudiences.previews.kids.subject1.grade')}
+            </span>
           </div>
           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
             <div className="h-full bg-green-600 w-[85%]" />
@@ -257,9 +289,13 @@ function KidsPreview() {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <span>🇬🇧</span>
-              <span className="text-sm font-medium">Englisch</span>
+              <span className="text-sm font-medium">
+                {t('targetAudiences.previews.kids.subject2')}
+              </span>
             </div>
-            <span className="text-blue-600 font-bold">Note: 1-</span>
+            <span className="text-blue-600 font-bold">
+              {t('targetAudiences.previews.kids.subject2.grade')}
+            </span>
           </div>
           <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
             <div className="h-full bg-blue-600 w-[95%]" />
@@ -269,7 +305,7 @@ function KidsPreview() {
         <div className="flex items-center gap-2 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 border border-yellow-200 dark:border-yellow-800">
           <Award className="size-5 text-yellow-600 dark:text-yellow-500" />
           <span className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-            5 Lernabzeichen diese Woche! 🎉
+            {t('targetAudiences.previews.kids.badges')}
           </span>
         </div>
       </div>
@@ -278,6 +314,7 @@ function KidsPreview() {
 }
 
 function TeacherPreview() {
+  const { t } = useTranslation('landing');
   return (
     <Card className="p-6 bg-white dark:bg-gray-950 shadow-2xl border-gray-100 dark:border-gray-800">
       <div className="flex items-center gap-3 mb-4">
@@ -285,46 +322,66 @@ function TeacherPreview() {
           <span className="text-xl">👨‍🏫</span>
         </div>
         <div>
-          <div className="text-sm text-muted-foreground">Lehrerdashboard</div>
-          <div className="font-medium">Klasse 8b - Mathematik</div>
+          <div className="text-sm text-muted-foreground">
+            {t('targetAudiences.previews.teachers.header')}
+          </div>
+          <div className="font-medium">{t('targetAudiences.previews.teachers.class')}</div>
         </div>
       </div>
       <div className="space-y-3">
         <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-medium">Klassenübersicht</span>
+            <span className="text-sm font-medium">
+              {t('targetAudiences.previews.teachers.overview.title')}
+            </span>
             <Badge className="bg-green-600 text-white border-0 hover:bg-green-700">
-              24 Schüler
+              {t('targetAudiences.previews.teachers.overview.count', { count: 24 })}
             </Badge>
           </div>
           <div className="grid grid-cols-3 gap-3 text-center">
             <div>
-              <div className="text-2xl font-bold">18</div>
-              <div className="text-xs text-muted-foreground">Aktiv</div>
+              <div className="text-2xl font-bold">
+                {t('targetAudiences.previews.teachers.stats.active')}
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {t('targetAudiences.previews.teachers.stats.activeLabel')}
+              </div>
             </div>
             <div>
-              <div className="text-2xl font-bold">6</div>
-              <div className="text-xs text-muted-foreground">Brauchen Hilfe</div>
+              <div className="text-2xl font-bold">
+                {t('targetAudiences.previews.teachers.stats.needHelp')}
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {t('targetAudiences.previews.teachers.stats.needHelpLabel')}
+              </div>
             </div>
             <div>
-              <div className="text-2xl font-bold">2.3</div>
-              <div className="text-xs text-muted-foreground">Ø Note</div>
+              <div className="text-2xl font-bold">
+                {t('targetAudiences.previews.teachers.stats.avg')}
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {t('targetAudiences.previews.teachers.stats.avgLabel')}
+              </div>
             </div>
           </div>
         </div>
 
         <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 border border-gray-100 dark:border-gray-800">
-          <div className="text-sm font-medium mb-2">Nächstes Thema vorbereiten</div>
+          <div className="text-sm font-medium mb-2">
+            {t('targetAudiences.previews.teachers.nextTopic.title')}
+          </div>
           <div className="flex items-center gap-2 mb-2">
             <FileText className="size-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Quadratische Gleichungen</span>
+            <span className="text-sm text-muted-foreground">
+              {t('targetAudiences.previews.teachers.nextTopic.topic')}
+            </span>
           </div>
           <Button
             size="sm"
             variant="outline"
             className="w-full gap-2 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
-            Mit KI vorbereiten <ArrowRight className="size-3" />
+            {t('targetAudiences.previews.teachers.nextTopic.cta')} <ArrowRight className="size-3" />
           </Button>
         </div>
 
@@ -332,7 +389,7 @@ function TeacherPreview() {
           <div className="flex items-center gap-2 text-sm">
             <Lightbulb className="size-4 text-yellow-600 dark:text-yellow-500" />
             <span className="font-medium text-yellow-800 dark:text-yellow-200">
-              3 Schüler haben Schwierigkeiten
+              {t('targetAudiences.previews.teachers.notice')}
             </span>
           </div>
         </div>

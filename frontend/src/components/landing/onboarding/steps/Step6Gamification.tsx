@@ -4,6 +4,7 @@ import { Checkbox } from '../../../../ui/checkbox';
 import { StepHeader } from '../components/Headers';
 import learningConfig from '../config/learning-config.json';
 import type { OnboardingData } from '../types';
+import { useTranslation } from 'react-i18next';
 
 interface Step6GamificationProps {
   data: Partial<OnboardingData>;
@@ -12,15 +13,17 @@ interface Step6GamificationProps {
 }
 
 export function Step6Gamification({ data, updateData, toggleArrayItem }: Step6GamificationProps) {
+  const { t } = useTranslation('landing');
+
   return (
     <div className="space-y-6">
       <StepHeader
-        title="Gamification-Einstellungen"
-        description="Wie motivierend soll dein Lernerlebnis sein?"
+        title={t('onboardingwizard.step6.title')}
+        description={t('onboardingwizard.step6.subtitle')}
       />
 
       <div className="space-y-3">
-        <Label className="dark:text-white">Gamification-Level</Label>
+        <Label className="dark:text-white">{t('onboardingwizard.step6.levelLabel')}</Label>
         <RadioGroup
           value={data.gamification || ''}
           onValueChange={(value) => updateData('gamification', value)}
@@ -51,7 +54,7 @@ export function Step6Gamification({ data, updateData, toggleArrayItem }: Step6Ga
 
       {data.gamification !== 'none' && (
         <div className="space-y-3">
-          <Label className="dark:text-white">Welche Belohnungen motivieren dich?</Label>
+          <Label className="dark:text-white">{t('onboardingwizard.step6.rewardsLabel')}</Label>
           <div className="grid md:grid-cols-2 gap-3">
             {learningConfig.rewardTypes
               .filter((r) => r.id !== 'none' || data.gamification === 'light')
