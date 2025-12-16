@@ -74,6 +74,16 @@ export function Footer() {
             <h4 className="text-white mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <a
+                  href="https://polyformproject.org/licenses/noncommercial/1.0.0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  License (PolyForm NC 1.0.0)
+                </a>
+              </li>
+              <li>
                 <a href="#" className="hover:text-white transition-colors">
                   data protection
                 </a>
@@ -98,9 +108,22 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 dark:border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-400 dark:text-gray-500">
-            © 2025 {config.app.name}. Alle Rechte vorbehalten.
-          </p>
+          <div className="flex flex-col gap-1">
+            <p className="text-sm text-gray-400 dark:text-gray-500">
+              © 2025 {config.app.name}. All rights reserved.
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-600">
+              Licensed under{' '}
+              <a
+                href="https://polyformproject.org/licenses/noncommercial/1.0.0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300 underline decoration-dotted"
+              >
+                PolyForm Noncommercial 1.0.0
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-4">
             <div>
               <span className="text-sm text-gray-400 dark:text-gray-500 mr-2">contact dev:</span>
