@@ -125,20 +125,19 @@ export function Footer() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <div>
-              <span className="text-sm text-gray-400 dark:text-gray-500 mr-2">
-                contact{' '}
-                <a
-                  href="https://malick.wtf"
-                  className="hover:text-white transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="link to portfolio of malick"
-                >
-                  malick
-                </a>{' '}
-                / dev of {config.app.name} :
+            <div className="flex items-center gap-2 mr-2">
+              <span className="text-xs text-gray-500 font-medium uppercase tracking-wider">
+                Created by
               </span>
+              <a
+                href="https://malick.wtf"
+                className="text-sm font-bold bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="link to portfolio of malick"
+              >
+                malick
+              </a>
             </div>
             <div>
               <a href="https://github.com/yaaintmal" className="hover:text-white transition-colors">
