@@ -17,6 +17,7 @@ import {
   findExistingVideoWithOptionalTranslation,
   translateCuesPreserveTimings,
 } from '#utils';
+import { uploadToCloudinary } from '#middleware';
 
 // For local storage we compute an etag (sha256) for the uploaded file; for cloudinary the existing flow remains
 // (compute via admin API/HEAD). We compute etag inline in `createVideo` depending on the configured storage driver.
@@ -41,6 +42,18 @@ export const createVideo: RequestHandler<
       // use server public URL for processing (transcription)
       videoUrl = buildPublicUrl(uploadedFile.filename as string);
     } else if (!isLocal) {
+      // If using memory upload we need to upload buffer to Cloudinary first
+      try {
+        if (!uploadedFile.path && (uploadedFile as any).buffer) {
+          const uploadRes = await uploadToCloudinary(uploadedFile, 'ttl_videos');
+          uploadedFile.path = uploadRes.secure_url || uploadRes.url;
+          uploadedFile.filename = uploadRes.public_id;
+        }
+      } catch (err) {
+        console.error('Failed to upload buffer to Cloudinary', err);
+        return res.status(502).json({ message: 'Failed to upload file' });
+      }
+
       // For cloudinary, try to get etag via HEAD request as a fallback
       try {
         const headResp = await fetch(uploadedFile.path as string, { method: 'HEAD' });

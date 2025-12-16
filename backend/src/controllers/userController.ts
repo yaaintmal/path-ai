@@ -53,7 +53,9 @@ export const getAllUsers: RequestHandler<unknown, UserDTO[], unknown> = async (r
   const users = await User.find().select('-password');
   res.status(200).json(
     users.map((user) => {
-      const lastActivity = user.streaks?.lastActivityDate ?? user.updatedAt ?? user.createdAt;
+      // Only expose an explicit lastActivity if the user has an activity date recorded.
+      // Falling back to updatedAt/createdAt caused misleading identical timestamps for seeded users.
+      const lastActivity = user.streaks?.lastActivityDate ?? null;
       return {
         id: user._id.toString(),
         name: user.name,

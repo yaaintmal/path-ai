@@ -1,6 +1,6 @@
 {
   "name": "path-ai-by-mal-backend",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "",
   "main": "dist/app.js",
   "type": "module",
@@ -66,12 +66,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.0.1",
     "multer": "^2.0.2",
-    "multer-storage-cloudinary": "^4.0.0",
     "zod": "^4.1.12"
-  },
-  "overrides": {
-    "multer-storage-cloudinary": {
-      "cloudinary": "2.8.0"
-    }
   }
 }

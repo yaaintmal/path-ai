@@ -18,10 +18,22 @@ export function ErrorPollerWidget() {
     try {
       // Parse critical log for recent login failures and errors
       const today = new Date().toISOString().slice(0, 10);
+      const token = typeof window !== 'undefined' ? window.localStorage.getItem('authToken') : null;
+      const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
       const res = await fetch(`/api/admin/logs?type=critical&date=${today}`, {
         credentials: 'include',
+        headers,
       });
-      if (!res.ok) throw new Error('Failed to fetch logs');
+      if (!res.ok) {
+        let msg = 'Failed to fetch logs';
+        try {
+          const body = await res.json();
+          if (body && body.message) msg = body.message;
+        } catch {
+          /* ignore */
+        }
+        throw new Error(msg);
+      }
       const text = await res.text();
 
       // Parse log lines and extract errors/login failures

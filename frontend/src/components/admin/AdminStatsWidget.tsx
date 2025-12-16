@@ -15,9 +15,22 @@ export function AdminStatsWidget() {
     let mounted = true;
     const load = async () => {
       try {
-        // Try to fetch /api/admin/stats if available; otherwise show placeholders
-        const res = await fetch('/api/admin/stats');
-        if (!res.ok) throw new Error('stats not available');
+        // Try to fetch /api/admin/stats; include credentials so cookies are sent when needed
+        const token =
+          typeof window !== 'undefined' ? window.localStorage.getItem('authToken') : null;
+        const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
+        const res = await fetch('/api/admin/stats', { credentials: 'include', headers });
+        if (!res.ok) {
+          let msg = 'Stats not available';
+          try {
+            const body = await res.json();
+            if (body && body.message) msg = body.message;
+          } catch {
+            if (res.status === 401) msg = 'Unauthorized';
+            else if (res.status === 403) msg = 'Forbidden - admin only';
+          }
+          throw new Error(msg);
+        }
         const data = await res.json();
         if (!mounted) return;
         setStats({
@@ -26,9 +39,11 @@ export function AdminStatsWidget() {
           activeSessions: data.activeSessions,
         });
       } catch (err) {
-        // Not fatal - show fallback placeholders
+        // Not fatal - show fallback placeholders and informative message
         if (!mounted) return;
-        setError('Stats unavailable');
+        const e = err as Error | { message?: string } | undefined;
+        const msg = e?.message ?? 'Stats unavailable';
+        setError(msg);
         setStats({ userCount: undefined, recentErrors: undefined, activeSessions: undefined });
       } finally {
         if (mounted) setLoading(false);

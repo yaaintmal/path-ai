@@ -1,5 +1,54 @@
 [
   {
+    "version": "0.7.5.7",
+    "date": "2025-12-16",
+    "title": "Fix: Registered users lastActivity accuracy",
+    "description": "Ensure admin Registered Users shows meaningful last activity times by only returning explicit streaks lastActivityDate.",
+    "details": [
+      "🧾 ACCURACY: `GET /api/users/admin/all` now returns `lastActivity` only when `user.streaks.lastActivityDate` is present; we no longer fall back to `updatedAt` or `createdAt` which caused identical timestamps.",
+      "🔎 UI IMPROVEMENT: Registered Users widget displays `null` for users with no explicit activity, making recent activity indicators more meaningful.",
+      "🧪 TESTING: Recommend logging into admin, opening Registered Users, and verifying users with no streaks show empty/placeholder activity, while users with streaks show their ISO timestamps."
+    ]
+  },
+  {
+    "version": "0.7.5.6",
+    "date": "2025-12-16",
+    "title": "Fix: Admin auth fallbacks & robust log fetching",
+    "description": "Improved admin UI authentication resilience and error handling for log/stats endpoints, plus a safer build script.",
+    "details": [
+      "🔐 AUTH FALLBACK: Admin widgets (`AdminStatsWidget`, `ErrorPollerWidget`, `AdminLogsWidget`) now include an Authorization header from localStorage (`authToken`) **and** send credentials (`credentials: 'include'`) to handle environments where cookies are not sent (SameSite/Secure constraints).",
+      "🧾 LOG FETCHING: Enhanced error parsing so non-OK responses return clear messages (Unauthorized / Forbidden / backend message) instead of opaque 'Failed to fetch' UI errors.",
+      "🧪 DIAGNOSIS HELP: Added guidance to check that `localStorage.authToken` exists after login and to inspect request headers in the browser Network tab for debugging 401s.",
+      "🔧 SCRIPT (intern only): Refactored `.malb.sh` to print `[MAL]` status messages, add interactive rebuild/transfer/stop choices, and safe error handling (set -euo pipefail + traps)."
+    ]
+  },
+  {
+    "version": "0.7.5.5",
+    "date": "2025-12-16",
+    "title": "Fix: TypeScript import & Admin stats auth improvements",
+    "description": "Small but important fixes: resolved a TypeScript build error and improved admin stats authentication and error visibility in production.",
+    "details": [
+      "🔧 TS BUILD: Added missing `uploadToCloudinary` import to `src/controllers/videoController.ts` to resolve TS2304 during `tsc`.",
+      "🔐 ADMIN STATS: Updated `AdminStatsWidget` to include credentials in fetch requests and to surface informative server error messages (Unauthorized / Forbidden), improving diagnostics on deployed servers.",
+      "🧪 VALIDATION: Recommend running `npm run build` and testing both the admin stats endpoint and a multipart video upload in your deployed environment to confirm fixes."
+    ]
+  },
+
+  {
+    "version": "0.7.5.4",
+    "date": "2025-12-16",
+    "title": "Fix: Cloudinary upload compatibility & dependency resolution",
+    "description": "Resolved `ERESOLVE` dependency conflict by removing `multer-storage-cloudinary` and switching to memory-based multer uploads with programmatic Cloudinary uploader.",
+    "details": [
+      "🐛 ERESOLVE FIX: Addressed npm peer dependency conflict (multer-storage-cloudinary requires cloudinary@^1.x while project uses 2.8.0).",
+      "🔁 UPLOAD REFACTOR: Replaced `multer-storage-cloudinary` with memory storage (multer.memoryStorage) and added `uploadToCloudinary` helper to upload buffers via Cloudinary uploader API.",
+      "🧩 CODE CHANGES: Updated `src/middleware/upload.ts` (added memory storage, `uploadToCloudinary` export), `src/controllers/videoController.ts` to upload buffer before processing when needed, and `src/middleware/index.ts` to export the helper.",
+      "📦 DEPENDENCY: Removed `multer-storage-cloudinary` from `package.json` to avoid peer-compatibility issues.",
+      "🧪 TESTING: Run `npm install` and perform a file upload test (POST /api/videos with multipart form-data) to verify uploads succeed and transcoding/transcription flows remain intact."
+    ]
+  },
+
+  {
     "version": "0.7.5",
     "date": "2025-12-16",
     "title": "UI/UX: Footer Refactor, Roadmap Page & Branding Consistency",
@@ -12,6 +61,7 @@
       "📄 TEMPLATE PAGES: Created FooterPages.tsx to serve as a unified template for all informational footer content (there were so many links man...)"
     ]
   },
+
   {
     "version": "0.7.4",
     "date": "2025-12-16",

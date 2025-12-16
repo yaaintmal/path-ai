@@ -13,8 +13,19 @@ export function AdminLogsWidget() {
     setLoadingType(type);
     try {
       const url = `/api/admin/logs?type=${type}&date=${date}`;
-      const res = await fetch(url, { credentials: 'include' });
-      if (!res.ok) throw new Error('Failed to fetch logs');
+      const token = typeof window !== 'undefined' ? window.localStorage.getItem('authToken') : null;
+      const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
+      const res = await fetch(url, { credentials: 'include', headers });
+      if (!res.ok) {
+        let msg = 'Failed to fetch logs';
+        try {
+          const body = await res.json();
+          if (body && body.message) msg = body.message;
+        } catch {
+          /* ignore */
+        }
+        throw new Error(msg);
+      }
       const blob = await res.blob();
       const filename = `path-ai-${type}-${date}.log`;
       const link = document.createElement('a');
