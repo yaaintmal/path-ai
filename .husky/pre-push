@@ -1,3 +1,0 @@
-#!/bin/sh
-# Disabled pre-push hook: formatting check temporarily disabled to avoid blocking pushes during development.
-exit 0
