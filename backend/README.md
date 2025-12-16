@@ -121,11 +121,3 @@ The script downloads Cloudinary assets, stores them in `UPLOADS_DIR`, and attemp
 - Health check fails: confirm `GET /api/health` returns 200 and check server startup logs
 
 ---
-
-## Notes for maintainers
-
-- If you plan to remove Husky or modify hooks, update root-level hooks and CI accordingly. (We previously disabled the pre-push formatting check while iterating.)
-- Keep `.env.example` in sync with the environment variables listed above.
-- Add any new admin-only endpoints to this README to keep operators aware of available tooling.
-
----
