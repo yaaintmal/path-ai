@@ -13,7 +13,7 @@
 >
 > Please refer to the `LICENSE` file in this repository for the specific legal terms governing this software.
 
-## Ascend Your Knowledge The Gaming Way
+## Ascend Your Knowledge (or battle your skill gap the gaming way)
 
 https://github.com/user-attachments/assets/9601a5a8-16f5-4283-8adb-6b8308d66d4a
 
