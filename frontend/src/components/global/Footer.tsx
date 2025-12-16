@@ -1,4 +1,4 @@
-import { Brain, Github, Linkedin } from 'lucide-react';
+import { BookOpen, Github, Linkedin } from 'lucide-react';
 import config from '../../config/app.config';
 
 interface FooterProps {
@@ -20,9 +20,11 @@ export function Footer({ setFooterPage }: FooterProps) {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-2 rounded-lg">
-                <Brain className="size-5 text-white" />
+              {/* // Logo right here */}
+              <div className="bg-gradient-to-br from-amber-300 via-amber-500 to-yellow-600 p-2 rounded-lg">
+                <BookOpen className="size-5 text-white" aria-hidden="true" />
               </div>
+              {/* // app title from config */}
               <span className="text-xl text-white">{config.app.name}</span>
             </div>
             <p className="text-sm text-gray-400 dark:text-gray-500">

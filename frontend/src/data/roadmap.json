@@ -9,11 +9,6 @@
         "title": "Refactoring Footer & Navigation",
         "description": "Improving the site structure and adding dedicated pages for legal and company info.",
         "tag": "Enhancement"
-      },
-      {
-        "title": "Performance Optimization",
-        "description": "Reducing bundle size and improving initial load times.",
-        "tag": "Tech Debt"
       }
     ]
   },
@@ -73,6 +68,11 @@
         "title": "Landing Page Redesign",
         "description": "New modern look for the home page.",
         "tag": "UI"
+      },
+      {
+        "title": "Performance Optimization",
+        "description": "Reducing bundle size and improving initial load times.",
+        "tag": "Tech Debt"
       }
     ]
   }
