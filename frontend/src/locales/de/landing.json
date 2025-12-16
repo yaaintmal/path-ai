@@ -1,0 +1,1204 @@
+{
+  "targetAudiences": {
+    "header": {
+      "title": "Für jeden Lernenden",
+      "subtitle": "Von der Grundschule bis zur Universität - Path AI passt sich an deine Bedürfnisse an"
+    },
+    "audiences": {
+      "students": {
+        "title": "Studenten & Weiterbildung",
+        "subtitle": "Für lebenslanges Lernen",
+        "features": [
+          "Strukturierte Lernpfade für komplexe Themen",
+          "Fortschritts-Tracking für alle Module",
+          "Gamification: Punkte, Achievements & Belohnungen",
+          "Templates für Karrierepfade (z.B. MERN Stack)"
+        ],
+        "benefits": "Perfekt für Universitätsstudium, Zertifizierungen und berufliche Weiterbildung"
+      },
+      "kids": {
+        "title": "Schüler & Entdecker",
+        "subtitle": "Bessere Noten, mehr Spaß beim Lernen",
+        "features": [
+          "Entdecke deinen persönlichen Lerntyp",
+          "Verbessere deine Noten in allen Fächern",
+          "Spielerisch lernen mit Achievements & Punkten",
+          "Einfache Erklärungen für schwierige Themen"
+        ],
+        "benefits": "Ideal für Schule und Hobby - in allen Fächern und Sprachen"
+      },
+      "teachers": {
+        "title": "Lehrer & Mentoren",
+        "subtitle": "Wissen strukturieren und teilen",
+        "features": [
+          "Erstelle eigene Lernpfad-Templates",
+          "Strukturiere Wissen für deine Schüler",
+          "KI-unterstützte Erstellung von Inhalten",
+          "Teile deine Expertise mit der Community"
+        ],
+        "benefits": "Erstelle perfekte Lernstrukturen und inspiriere andere"
+      }
+    },
+    "button": {
+      "learnMore": "Mehr erfahren"
+    },
+    "previews": {
+      "student": {
+        "role": "Student",
+        "name": "Max Mustermann",
+        "course": "Web Development",
+        "badgeActive": "Aktiv",
+        "progress": "Fortschritt: 68%",
+        "nextCourse": "Data Science",
+        "planTag": "Geplant",
+        "nextStart": "Start: Nächste Woche",
+        "nextSession": "Nächste Session: Heute, 18:00 Uhr"
+      },
+      "kids": {
+        "appName": "Path AI",
+        "name": "Anna, 5. Klasse",
+        "learningType": {
+          "title": "Dein Lerntyp",
+          "value": "Visuell",
+          "description": "Du lernst am besten mit Bildern und anschaulichen Beispielen!"
+        },
+        "subject1": {
+          "name": "Mathematik",
+          "grade": "Note: 2+"
+        },
+        "subject2": {
+          "name": "Englisch",
+          "grade": "Note: 1-"
+        },
+        "badges": "5 Lernabzeichen diese Woche! 🎉"
+      },
+      "teachers": {
+        "header": "Lehrerdashboard",
+        "class": "Klasse 8b - Mathematik",
+        "overview": {
+          "title": "Klassenübersicht",
+          "count": "24 Schüler"
+        },
+        "stats": {
+          "active": "18",
+          "activeLabel": "Aktiv",
+          "needHelp": "6",
+          "needHelpLabel": "Brauchen Hilfe",
+          "avg": "2.3",
+          "avgLabel": "Ø Note"
+        },
+        "nextTopic": {
+          "title": "Nächstes Thema vorbereiten",
+          "topic": "Quadratische Gleichungen",
+          "cta": "Mit KI vorbereiten"
+        },
+        "notice": "3 Schüler haben Schwierigkeiten - individuelle Lernpläne empfohlen"
+      }
+    }
+  },
+  "hero": {
+    "badge": "KI-gestütztes Lernen",
+    "title": "Dein persönlicher KI-Lernplan",
+    "subtitle": "in jeder Sprache",
+    "description": "Keine Standardkurse. Wähle Templates oder erstelle einen individuellen Lernplan, der auf deine Ziele und Vorkenntnisse zugeschnitten ist.",
+    "cta": { "templates": "Templates entdecken", "createCustom": "Custom Lernplan erstellen" },
+    "metrics": {
+      "activeUsers": "10.000+",
+      "activeUsersLabel": "Aktive Lernende",
+      "rating": "4.8/5",
+      "ratingLabel": "Bewertung",
+      "topics": "50+",
+      "topicsLabel": "Themengebiete"
+    },
+    "slides": [
+      {
+        "badge": "KI-Lernpfade",
+        "title": "Dein persönlicher Lernweg",
+        "description": "Unsere KI generiert individuelle Lernpfade für jedes Thema.",
+        "preview": {
+          "question": "Was möchtest du lernen?",
+          "answer": "React und TypeScript",
+          "response": "Ich habe einen Lernpfad mit 12 Modulen für dich erstellt."
+        }
+      },
+      {
+        "badge": "Store & Belohnungen",
+        "title": "Lernen lohnt sich",
+        "description": "Sammle Punkte und tausche sie im Store gegen Boosts und Belohnungen.",
+        "preview": {
+          "question": "Store",
+          "answer": "💎 2.500 Punkte verfügbar",
+          "response": "Du hast Double XP Boost gekauft!"
+        }
+      },
+      {
+        "badge": "Templates",
+        "title": "Bewährte Lernstrukturen",
+        "description": "Nutze kuratierte Templates für beliebte Karrierewege.",
+        "preview": {
+          "question": "Template wählen",
+          "answer": "MERN Full-Stack Developer",
+          "response": "Template geladen: 15 Themen von JS Basics bis Deployment."
+        }
+      },
+      {
+        "badge": "Fortschritt",
+        "title": "Alles im Blick",
+        "description": "Verfolge Streaks, Punkte und abgeschlossene Themen im Dashboard.",
+        "preview": {
+          "question": "Statistik",
+          "answer": "🔥 7-Tage Streak",
+          "response": "Starke Leistung! Du hast diese Woche 5 Themen abgeschlossen."
+        }
+      }
+    ]
+  },
+  "features": {
+    "title": "Lernen, das sich an dich anpasst",
+    "subtitle": "Entdecke eine völlig neue Art zu lernen - individuell, flexibel und immer an deiner Seite.",
+    "items": [
+      { "title": "KI-Lernpfade", "description": "Generiere dynamische Lernpfade für jedes Thema." },
+      {
+        "title": "Templates & Karriere",
+        "description": "Starte mit kuratierten Pfaden, um Zeit bei der Planung zu sparen."
+      },
+      {
+        "title": "Fortschritt & Statistiken",
+        "description": "Visualisiere Lernzeit, Streaks und Erfolge."
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "So einfach geht's",
+    "subtitle": "In nur vier Schritten zu deinem persönlichen KI-Lernplan",
+    "steps": [
+      {
+        "title": "Template wählen",
+        "description": "Starte mit einem kuratierten Karriere-Pfad oder definiere deine Lernziele."
+      },
+      {
+        "title": "Plan generieren",
+        "description": "Die KI erstellt einen maßgeschneiderten Plan mit Modulen, Quizzes und Meilensteinen."
+      },
+      {
+        "title": "Lernen & Üben",
+        "description": "Arbeite interaktive Lektionen durch und festige dein Wissen mit Übungen."
+      },
+      {
+        "title": "Level Up",
+        "description": "Sammle XP, halte deinen Streak und schalte Belohnungen frei."
+      }
+    ]
+  },
+  "prompttemplates": {
+    "badge": "Templates",
+    "headingPart1": "Starte sofort mit",
+    "headingHighlight": "Experten-Pfaden",
+    "subtitle": "Nutze kuratierte Lernpfade für beliebte Karriereziele - von Experten erstellt, von KI personalisiert.",
+    "overviewTitle": "Themen im Überblick",
+    "moreTopics": "+ {{count}} weitere Themen",
+    "skillsTitle": "Skills, die du lernst",
+    "cta": { "start": "Diesen Pfad starten" }
+  },
+  "gamification": {
+    "title": "Gamification",
+    "headingPart1": "Lernen wird zum",
+    "headingHighlight": "Abenteuer",
+    "subtitle": "Bleib motiviert mit Achievements, Punkten und Belohnungen - für Schüler, Studenten und Lehrkräfte",
+    "tabs": { "students": "Schüler & Studenten", "teachers": "Lehrkräfte" },
+    "pointsLabel": "Deine Punkte",
+    "howToEarn": {
+      "title": "So verdienst du Punkte",
+      "completeTask": "Aufgabe abgeschlossen",
+      "weekStreak": "7-Tage-Streak",
+      "weekGoal": "Wochenziel erreicht"
+    },
+    "achievementsTitle": "Achievements",
+    "store": {
+      "title": "Belohnungs-Shop",
+      "description": "Tausche deine Punkte gegen coole Items ein",
+      "sold": "{{count}}x gekauft",
+      "cta": "Zum Shop"
+    },
+    "features": {
+      "0": {
+        "title": "Tipps & Lösungen",
+        "description": "Steckst du fest? Nutze Punkte für hilfreiche Tipps oder die komplette Lösung.",
+        "items": [
+          "💡 Kleiner Tipp - 50 Punkte",
+          "💭 Ausführlicher Hinweis - 100 Punkte",
+          "✅ Komplette Lösung - 200 Punkte"
+        ]
+      },
+      "1": {
+        "title": "Lern-Spiele",
+        "description": "Nimm an Spielen teil, level deine Spielfigur und schalte neue Inhalte frei!",
+        "items": ["🎮 Quest Mode - Level 12", "⚔️ Battle Arena - 5 Siege", "🏆 Rankings - Top 100"]
+      },
+      "2": {
+        "title": "Lernraum-Design",
+        "description": "Gestalte deinen persönlichen Lernraum mit individuellen Themes und Designs.",
+        "items": [
+          "🌙 Dark Mode",
+          "🌸 Sakura Theme",
+          "🌊 Ocean Blue",
+          "🔥 Fire Red",
+          "❄️ Ice Cold",
+          "🌈 Rainbow"
+        ]
+      },
+      "3": {
+        "title": "Charaktere & Items",
+        "description": "Schalte neue Avatare, Badges und spezielle Items frei, um dich von anderen abzuheben.",
+        "items": ["👕 12 Outfits", "🎩 8 Hats", "✨ 20+ Effekte"]
+      }
+    },
+    "teacherRewards": {
+      "0": {
+        "title": "Community-Held",
+        "description": "Teile deine Templates mit der Community",
+        "type": "Badge"
+      },
+      "1": {
+        "title": "Template Creator",
+        "description": "Erstelle 5 eigene Lernpfad-Templates",
+        "type": "Achievement"
+      },
+      "2": {
+        "title": "Pfad-Architekt",
+        "description": "Strukturiere komplexe Themen für andere",
+        "type": "Status"
+      },
+      "3": {
+        "title": "Top-Bewertet",
+        "description": "Deine Templates werden oft genutzt",
+        "type": "Bonus"
+      }
+    },
+    "teacher": {
+      "callout": {
+        "title": "Verdiene als Lehrkraft",
+        "description": "Erstelle hochwertige Templates, verdiene Anerkennung und erhalten besondere Lehrkraft-Vorteile",
+        "cta": "Mehr erfahren"
+      }
+    }
+  },
+  "utils": {
+    "badgesystem": {
+      "title": "Newbie"
+    }
+  },
+  "ui": {
+    "sidebar": {
+      "line_186": "Sidebar",
+      "line_187": "Displays the mobile sidebar.",
+      "line_260": "Toggle Sidebar"
+    },
+    "sheet": {
+      "line_71": "Close"
+    },
+    "pagination": {
+      "line_65": "Previous",
+      "line_78": "Next",
+      "line_93": "More pages"
+    },
+    "dialog": {
+      "line_60": "Close"
+    },
+    "carousel": {
+      "line_188": "Previous slide",
+      "line_218": "Next slide"
+    },
+    "breadcrumb": {
+      "line_89": "More"
+    }
+  },
+  "translations": {
+    "index": {
+      "badge": "Starte deine Reise",
+      "title": "Bereit, deine Lernziele zu erreichen?",
+      "description": "Erstelle jetzt dein kostenloses Konto und erhalte sofort Zugriff auf alle Templates und den KI-Tutor."
+    }
+  },
+  "theme": {
+    "index": {
+      "name": "Aktiv",
+      "text": "#1f2937"
+    }
+  },
+  "pages": {
+    "timerpage": {
+      "line_71": "Back to Overview"
+    },
+    "storepage": {
+      "text": "Nicht genug Punkte!",
+      "line_296": "Back to Dashboard",
+      "line_311": "Store",
+      "line_312": "Exclusive items & power-ups",
+      "line_317": "Trade your hard-earned points for exclusive items and boosts to enhance your\n                  learning journey!",
+      "line_356": "Loading store items..."
+    },
+    "settings": {
+      "line_44": "Settings",
+      "line_46": "Appearance",
+      "line_59": "Use classic backgrounds (improves light/dark contrast)"
+    },
+    "roadmappage": {
+      "line_23": "Back to Home",
+      "line_29": "Roadmap",
+      "line_33": "See what we are working on, what's coming next, and how we are improving Path AI."
+    },
+    "onboardingeditor": {
+      "line_180": "Loading...",
+      "line_210": "Debug: current onboarding data"
+    },
+    "footerpages": {
+      "title": "Features",
+      "content": "Discover the powerful features that make Path AI your ultimate learning companion.",
+      "line_94": "Back to Home",
+      "line_109": "This is a template page. Content will be added soon."
+    },
+    "changelog": {
+      "line_56": "Error loading changelog",
+      "line_76": "All Versions",
+      "line_104": "more changes"
+    },
+    "adminpage": {
+      "line_37": "Unauthorized — this page is for admin users only.",
+      "line_73": "🛠️ Admin: Create User",
+      "line_79": "Registered Users"
+    },
+    "store": {
+      "userstatscard": {
+        "line_39": "Points",
+        "line_60": "x •",
+        "line_76": "days streak",
+        "line_78": "x multiplier",
+        "line_80": "daily",
+        "line_84": "💡 only",
+        "line_85": "day(s) remaining for the next\n                multiplier-bonus!",
+        "line_90": "🚀 Keep on going! Max. 3x for a 18-days-streak",
+        "line_96": "🔥 Get a streak for bonus points",
+        "line_103": "EXP"
+      },
+      "categoryfilter": {
+        "line_26": "All"
+      },
+      "badgessection": {
+        "line_34": "🏆 All Badges",
+        "line_38": "Confetti activated"
+      }
+    },
+    "dashboard": {
+      "titlePart1": "Dein Lernen",
+      "titleHighlight": "Dashboard",
+      "subtitle": "Ein kurzer Überblick über deinen Fortschritt und die nächsten Schritte",
+      "searchPlaceholder": "Durchsuche deine Lerninhalte...",
+      "cta": {
+        "startLearning": "Starten"
+      },
+      "nextLesson": {
+        "title": "nächste Lektion",
+        "pathLabel": "aktueller Lernpfad",
+        "titleExample": "Fortgeschrittene React-Patterns",
+        "badge": "Hauptthema",
+        "cta": "Lektion starten"
+      },
+      "streak": {
+        "title": "aktuelle Serie",
+        "daysStreak": "{days} Tage in Folge 🔥",
+        "bestLabel": "Beste Serie",
+        "totalXpLabel": "Gesamt XP",
+        "bestValue": "15 Tage",
+        "totalXpValue": "2.450"
+      },
+      "progress": {
+        "title": "dein Fortschritt",
+        "levelText": "Level 5 Entdecker",
+        "expText": "850 EXP",
+        "toNextLevel": "150 EXP bis Level 6"
+      },
+      "savedTopics": {
+        "title": "gespeicherte Themen",
+        "types": {
+          "main": "Hauptthema",
+          "sub": "Unterthema"
+        },
+        "generate": "Unterthemen generieren",
+        "open": "Im Lernmodus öffnen"
+      },
+      "templatespage": {
+        "line_45": "Learning Templates",
+        "line_46": "Choose a structured learning path to get started",
+        "line_60": "All",
+        "line_111": "topics,",
+        "line_123": "Topics:",
+        "line_136": "Skills:",
+        "line_154": "Start Learning",
+        "line_164": "No templates found in this category.",
+        "clean": {
+          "line_45": "Learning Templates",
+          "line_46": "Choose a structured learning path to get started",
+          "line_60": "All",
+          "line_111": "topics,",
+          "line_123": "Topics:",
+          "line_136": "Skills:",
+          "line_154": "Start Learning",
+          "line_164": "No templates found in this category."
+        }
+      },
+      "templatedetailspage": {
+        "line_64": "Learning Progress",
+        "line_66": "of",
+        "line_75": "% complete",
+        "line_83": "Topics to Learn",
+        "line_143": "Skills to Acquire",
+        "line_164": "Use template and open learning",
+        "line_170": "Back to templates",
+        "line_177": "💡 Tips",
+        "line_179": "Click on topics to mark them as completed and track your progress",
+        "line_180": "Follow the recommended order to build a strong foundation",
+        "line_181": "Take your time with each topic - mastery is more important than speed",
+        "line_182": "Practice projects alongside the topics for better retention"
+      },
+      "streakwidget": {
+        "line_203": "actual streak",
+        "line_214": "Loading...",
+        "line_218": "days in a row",
+        "line_220": "highest streak:",
+        "line_223": "total score:",
+        "line_226": "no data available"
+      },
+      "statisticsoverview": {
+        "line_200": "Your Journey to Success",
+        "line_204": "Loading...",
+        "line_216": "your streak",
+        "line_220": "actual streak",
+        "line_229": "days in a row",
+        "line_237": "highest streak",
+        "line_245": "days",
+        "line_252": "learning progress",
+        "line_287": "Additional Metrics",
+        "line_304": "Quote",
+        "line_314": "Advanced Metrics",
+        "line_353": "Activity",
+        "line_357": "days active",
+        "line_363": "registered activities in total",
+        "line_370": "Consistency",
+        "line_376": "based on streak",
+        "line_383": "You are doing great! Keep on going 🎉",
+        "line_389": "back to dashboard",
+        "line_395": "no stats available"
+      },
+      "progresswidget": {
+        "line_51": "your progress",
+        "line_75": "EXP",
+        "line_80": "next:",
+        "line_96": "% to",
+        "line_106": "Total Progress (Completion Rate)",
+        "line_116": "of",
+        "line_117": "learned topics",
+        "line_124": "Main Topic Progress",
+        "line_146": "learned",
+        "line_153": "Subtopic Progress",
+        "line_175": "learned",
+        "line_182": "Total EXP (persistent)"
+      },
+      "opentopicspage": {
+        "line_29": "Open topics",
+        "line_37": "Open topics",
+        "line_46": "No open topics found.",
+        "line_59": "Bookmark",
+        "line_104": "Open subtopics",
+        "line_113": "No open subtopics found.",
+        "line_126": "Subtopic"
+      },
+      "nextlessonwidget": {
+        "line_16": "next lesson",
+        "line_22": "choose one of your saved learning paths to start the lesson",
+        "line_33": "next lesson",
+        "line_45": "actual learning path",
+        "line_59": "start lesson"
+      },
+      "learningsection": {
+        "line_43": "Back to overview",
+        "line_58": "Learn Mode"
+      },
+      "fullwidthwidget": {
+        "line_5": "added by Studio",
+        "line_8": "Placeholder content for widget 6. This widget spans the full width.",
+        "line_12": "Content Area"
+      },
+      "enhancedstreakwidget": {
+        "line_102": "Deine Erfolgsstatistiken",
+        "line_114": "Lädt...",
+        "line_119": "Aktueller Streak:",
+        "line_120": "Tage",
+        "line_122": "Bester Streak:",
+        "line_130": "Themen gelernt",
+        "line_140": "Pro Woche",
+        "line_150": "Lektionen abgeschlossen",
+        "line_162": "Durchschn. Engagement pro Tag:",
+        "line_164": "Min.",
+        "line_172": "Keine Statistiken verfügbar"
+      },
+      "completedtopicspage": {
+        "line_27": "Completed topics",
+        "line_33": "No completed topics found.",
+        "line_46": "Learned"
+      },
+      "compactstreakwidget": {
+        "line_89": "actual streak",
+        "line_102": "loading...",
+        "line_110": "days in a row",
+        "line_119": "highest streak",
+        "line_125": "learned in total",
+        "line_131": "per week",
+        "line_140": "no data available"
+      }
+    }
+  },
+  "data": {
+    "learningtemplates": {
+      "name": "MERN Full-Stack Developer",
+      "description": "Complete journey to becoming a full-stack web developer using MongoDB, Express, React, and Node.js"
+    },
+    "templates": {
+      "web": {
+        "name": "Web Development Fundamentals",
+        "description": "Start your web development journey from the ground up"
+      },
+      "security": {
+        "name": "Cybersecurity Fundamentals",
+        "description": "Develop a security mindset, understand common attack vectors and defensive patterns"
+      },
+      "professional": {
+        "name": "Technical Documentation Excellence",
+        "description": "Master documentation practices, API docs, README writing, and knowledge sharing for technical teams"
+      },
+      "languages": {
+        "name": "TypeScript Expert",
+        "description": "Master TypeScript for large-scale application development"
+      },
+      "graphics": {
+        "name": "3D Graphics with Three.js",
+        "description": "Explore 3D graphics, rendering and interaction with the Three.js library"
+      },
+      "games": {
+        "name": "Game Development with Phaser",
+        "description": "Learn how to build 2D browser games using the Phaser framework and game development fundamentals"
+      },
+      "frameworks": {
+        "name": "Next.js — Modern React Framework",
+        "description": "Build production-ready, fast React apps with Next.js, including SSR, SSG and App Router patterns"
+      },
+      "devops": {
+        "name": "DevOps Fundamentals",
+        "description": "Learn DevOps culture, practices, and principles for modern software delivery"
+      },
+      "databases": {
+        "name": "Database Design & SQL",
+        "description": "Learn database design principles and SQL for efficient data management"
+      },
+      "cloud": {
+        "name": "Cloud & DevOps — AWS Cloud Engineer",
+        "description": "Learn core AWS services, cloud networking, infrastructure automation, and operational practices"
+      },
+      "backend": {
+        "name": "Node.js Backend Specialist",
+        "description": "Build scalable and robust backend systems with Node.js and Express"
+      }
+    }
+  },
+  "dashboardPreview": {
+    "progress": {
+      "title": "dein Fortschritt",
+      "levelText": "Level 5 Entdecker",
+      "expText": "850 EXP",
+      "toNextLevel": "150 EXP bis Level 6"
+    },
+    "savedTopics": {
+      "title": "gespeicherte Themen",
+      "types": {
+        "main": "Hauptthema",
+        "sub": "Unterthema"
+      },
+      "generate": "Unterthemen generieren",
+      "open": "Im Lernmodus öffnen"
+    }
+  },
+  "components": {
+    "themeswitcher": {
+      "line_46": "Theme"
+    },
+    "ui": {
+      "pageheader": {
+        "line_19": "Back to Dashboard"
+      }
+    },
+    "timer": {
+      "timerwidget": {
+        "line_77": "Goal:",
+        "line_87": "Current Goal",
+        "line_92": "Select Goal",
+        "line_101": "Select a goal...",
+        "line_124": "Learning Time Goal",
+        "line_147": "Save",
+        "line_167": "Start Session",
+        "line_178": "Stop Session"
+      },
+      "sessionhistorywidget": {
+        "line_36": "Session History",
+        "line_40": "Loading...",
+        "line_42": "No history available",
+        "line_48": "Date",
+        "line_49": "Goal",
+        "line_50": "Path",
+        "line_51": "Duration"
+      },
+      "recentsessionswidget": {
+        "line_27": "Recent Sessions",
+        "line_31": "Loading...",
+        "line_33": "No recent sessions"
+      },
+      "pomodorotemplateswidget": {
+        "name": "Quick Focus",
+        "description": "1 session to get into the zone",
+        "line_54": "Pomodoro Templates",
+        "line_74": "m sessions +",
+        "line_81": "💡 Select a template to auto-set your learning time goal. Start your timer after selecting!"
+      },
+      "currentpathwidget": {
+        "line_15": "Current Learning Path"
+      }
+    },
+    "landing": {
+      "targetaudiences": {
+        "title": "Studenten & Weiterbildung",
+        "subtitle": "Für lebenslanges Lernen",
+        "text": "Strukturierte Lernpfade für komplexe Themen",
+        "benefits": "Perfekt für Universitätsstudium, Zertifizierungen und berufliche Weiterbildung"
+      },
+      "registration": {
+        "line_104": "Kostenlos starten",
+        "line_106": "Erstelle dein",
+        "line_108": "kostenloses Konto",
+        "line_112": "Starte jetzt deine personalisierte Lernreise",
+        "line_122": "Vollständiger Name",
+        "line_143": "E-Mail-Adresse",
+        "line_164": "Passwort",
+        "line_193": "Passwortstärke:",
+        "line_224": "Passwort bestätigen",
+        "line_259": "Passwörter stimmen überein",
+        "line_272": "Ich akzeptiere die",
+        "line_274": "Nutzungsbedingungen",
+        "line_276": "und",
+        "line_278": "Datenschutzrichtlinien",
+        "line_292": "Kostenloses Konto erstellen",
+        "line_303": "Oder",
+        "line_333": "Mit Google fortfahren",
+        "line_342": "Du hast bereits ein Konto?",
+        "line_344": "Jetzt anmelden",
+        "line_354": "KI-Powered",
+        "line_358": "100+ Sprachen",
+        "line_362": "Gamification"
+      },
+      "prompttemplates": {
+        "badge": "Templates",
+        "headingPart1": "Starte sofort mit",
+        "headingHighlight": "Experten-Pfaden",
+        "subtitle": "Nutze kuratierte Lernpfade für beliebte Karriereziele - von Experten erstellt, von KI personalisiert.",
+        "overviewTitle": "Themen im Überblick",
+        "moreTopics": "+ {{count}} weitere Themen",
+        "skillsTitle": "Skills, die du lernst",
+        "cta": { "start": "Diesen Pfad starten" }
+      },
+      "onboardingwizard": {
+        "header": { "title": "Persönliches Setup" },
+        "headingPart1": "Dein",
+        "headingHighlight": "perfektes Dashboard",
+        "subtitle": "Beantworte ein paar Fragen und wir passen alles an deine Bedürfnisse an.",
+        "steps": {
+          "role": "Rolle",
+          "goals": "Ziele",
+          "skills": "Skills",
+          "learningType": "Typ",
+          "time": "Zeit",
+          "gamification": "Gamification",
+          "communication": "Stil"
+        },
+        "step1": {
+          "title": "Welche Rolle hast du?",
+          "subtitle": "Wir passen das Dashboard sofort an deine Rolle an."
+        },
+        "roles": {
+          "student": { "label": "Student", "sub": "Uni & Co." },
+          "pupil": { "label": "Schüler", "sub": "Schule" },
+          "teacher": { "label": "Lehrkraft", "sub": "Dozent" }
+        },
+        "placeholders": {
+          "studentSemester": "z.B. 3. Semester",
+          "pupilGrade": "z.B. 8. Klasse",
+          "teacherType": "z.B. Gymnasium"
+        },
+        "step6": {
+          "title": "Gamification-Einstellungen",
+          "subtitle": "Wie motivierend soll dein Lernerlebnis sein?",
+          "levelLabel": "Gamification-Level",
+          "rewardsLabel": "Welche Belohnungen motivieren dich?"
+        },
+        "nav": {
+          "back": "Zurück",
+          "stepOf": "Schritt {{current}} von {{total}}",
+          "next": "Weiter",
+          "create": "Dashboard erstellen"
+        },
+        "toast": {
+          "saved": "Danke! Deine Antworten wurden gespeichert. Weiterleitung zur Startseite..."
+        }
+      },
+      "howitworks": {
+        "title": "Template wählen",
+        "description": "Starte mit einem kuratierten Karriere-Pfad oder definiere deine ganz persönlichen Lernziele.",
+        "line_53": "So einfach geht's",
+        "line_56": "In nur vier Schritten zu deinem persönlichen KI-Lernplan"
+      },
+      "hero": {
+        "badge": "KI-Lernpfade",
+        "title": "Dein persönlicher Lernweg",
+        "description": "Unsere KI generiert individuelle Lernpfade für jedes Thema - basierend auf deinen Zielen und Vorkenntnissen.",
+        "question": "Was möchtest du lernen?",
+        "answer": "React und TypeScript",
+        "line_136": "KI-gestütztes Lernen",
+        "line_138": "Dein persönlicher",
+        "line_140": "KI-Lernplan",
+        "line_142": "in jeder Sprache",
+        "line_145": "'Keine vorgefertigten Kurse. Wähle aus fertigen Templates für deinen Lerntyp oder\n              erstelle einen komplett individuellen Lernplan mit unserer KI. Lerne mit vielfältigen\n              Lernressourcen (automatisch lokalisiert!) oder interaktiv mit unserer KI.',",
+        "line_151": "Templates entdecken",
+        "line_159": "Custom Lernplan erstellen",
+        "line_166": "Aktive Lernende",
+        "line_171": "Bewertung",
+        "line_176": "Themengebiete"
+      },
+      "header": {
+        "line_65": "Free Knowledge",
+        "line_89": "Dein Dashboard",
+        "line_109": "Dashboard",
+        "line_128": "Anmelden",
+        "line_132": "Registrieren",
+        "line_141": "Dashboard erstellen",
+        "line_144": "Start"
+      },
+      "gamification": {
+        "title": "Gamification",
+        "headingPart1": "Lernen wird zum",
+        "headingHighlight": "Abenteuer",
+        "subtitle": "Bleib motiviert mit Achievements, Punkten und Belohnungen - für Schüler, Studenten und Lehrkräfte",
+        "tabs": { "students": "Schüler & Studenten", "teachers": "Lehrkräfte" },
+        "pointsLabel": "Deine Punkte",
+        "howToEarn": {
+          "title": "So verdienst du Punkte",
+          "completeTask": "Aufgabe abgeschlossen",
+          "weekStreak": "7-Tage-Streak",
+          "weekGoal": "Wochenziel erreicht"
+        },
+        "achievementsTitle": "Achievements",
+        "store": {
+          "title": "Belohnungs-Shop",
+          "description": "Tausche deine Punkte gegen coole Items ein",
+          "sold": "{{count}}x gekauft",
+          "cta": "Zum Shop"
+        },
+        "features": {
+          "0": {
+            "title": "Tipps & Lösungen",
+            "description": "Steckst du fest? Nutze Punkte für hilfreiche Tipps oder die komplette Lösung.",
+            "items": [
+              "💡 Kleiner Tipp - 50 Punkte",
+              "💭 Ausführlicher Hinweis - 100 Punkte",
+              "✅ Komplette Lösung - 200 Punkte"
+            ]
+          },
+          "1": {
+            "title": "Lern-Spiele",
+            "description": "Nimm an Spielen teil, level deine Spielfigur und schalte neue Inhalte frei!",
+            "items": [
+              "🎮 Quest Mode - Level 12",
+              "⚔️ Battle Arena - 5 Siege",
+              "🏆 Rankings - Top 100"
+            ]
+          },
+          "2": {
+            "title": "Lernraum-Design",
+            "description": "Gestalte deinen persönlichen Lernraum mit individuellen Themes und Designs.",
+            "items": [
+              "🌙 Dark Mode",
+              "🌸 Sakura Theme",
+              "🌊 Ocean Blue",
+              "🔥 Fire Red",
+              "❄️ Ice Cold",
+              "🌈 Rainbow"
+            ]
+          },
+          "3": {
+            "title": "Charaktere & Items",
+            "description": "Schalte neue Avatare, Badges und spezielle Items frei, um dich von anderen abzuheben.",
+            "items": ["👕 12 Outfits", "🎩 8 Hats", "✨ 20+ Effekte"]
+          }
+        },
+        "teacherRewards": {
+          "0": {
+            "title": "Community-Held",
+            "description": "Teile deine Templates mit der Community",
+            "type": "Badge"
+          },
+          "1": {
+            "title": "Template Creator",
+            "description": "Erstelle 5 eigene Lernpfad-Templates",
+            "type": "Achievement"
+          },
+          "2": {
+            "title": "Pfad-Architekt",
+            "description": "Strukturiere komplexe Themen für andere",
+            "type": "Status"
+          },
+          "3": {
+            "title": "Top-Bewertet",
+            "description": "Deine Templates werden oft genutzt",
+            "type": "Bonus"
+          }
+        },
+        "teacher": {
+          "callout": {
+            "title": "Verdiene als Lehrkraft",
+            "description": "Erstelle hochwertige Templates, verdiene Anerkennung und erhalten besondere Lehrkraft-Vorteile",
+            "cta": "Mehr erfahren"
+          }
+        }
+      },
+      "footer": {
+        "title": "GitHub",
+        "line_15": "Folge uns auf sozialen Medien",
+        "line_18": "Bleibe in Kontakt und erhalte die neuesten Updates",
+        "line_44": "PathAI",
+        "line_45": "KI-gestützte Lernplattform für moderne Bildung",
+        "line_52": "Produkt",
+        "line_58": "Features",
+        "line_66": "Wie es funktioniert",
+        "line_74": "Gamification",
+        "line_82": "Templates",
+        "line_91": "Unternehmen",
+        "line_97": "Changelog",
+        "line_105": "Blog",
+        "line_113": "Über uns",
+        "line_121": "Kontakt",
+        "line_130": "Direkte Links",
+        "line_153": "© 2025 PathAI. Alle Rechte vorbehalten.",
+        "line_155": "Datenschutz",
+        "line_158": "Nutzungsbedingungen",
+        "line_161": "Impressum"
+      },
+      "features": {
+        "title": "KI-Lernpfade",
+        "description": "Generiere dynamische Lernpfade zu jedem Thema. Die KI erstellt strukturierte Unterthemen, die du Schritt für Schritt meistern kannst.",
+        "line_75": "Lernen, das sich",
+        "line_77": "an dich anpasst",
+        "line_81": "Entdecke eine völlig neue Art zu lernen - individuell, flexibel und immer an deiner\n            Seite."
+      },
+      "dashboardpreview": {
+        "line_19": "Dein persönliches",
+        "line_21": "Lern-Dashboard",
+        "line_25": "Behalte den Überblick über deinen Fortschritt und deine Ziele",
+        "line_45": "Lernen starten",
+        "line_58": "next lesson",
+        "line_65": "actual learning path",
+        "line_66": "Advanced React Patterns",
+        "line_67": "main topic",
+        "line_72": "start lesson",
+        "line_82": "actual streak",
+        "line_91": "Days Streak 🔥",
+        "line_95": "Best Streak",
+        "line_96": "15 Days",
+        "line_99": "Total XP",
+        "line_111": "your progress",
+        "line_128": "Level 5 Explorer",
+        "line_129": "850 EXP",
+        "line_135": "150 EXP to Level 6",
+        "line_143": "saved topics",
+        "title": "TypeScript Generics"
+      },
+      "onboarding": {
+        "steps": {
+          "steplanguage": {
+            "line_52": "Native language",
+            "line_76": "Language preferred for Path AI",
+            "line_79": "Used for content generation"
+          },
+          "step7communication": {
+            "line_56": "Fast fertig!"
+          },
+          "step6gamification": {
+            "line_23": "Gamification-Level",
+            "line_54": "Welche Belohnungen motivieren dich?"
+          },
+          "step5time": {
+            "line_24": "Wie viele Stunden pro Woche?",
+            "line_39": "Bevorzugter Lernrhythmus",
+            "line_66": "Beste Tageszeiten für dich"
+          },
+          "step4learningtype": {
+            "line_42": "🎯 Wir erstellen deinen Lernplan basierend auf deinem bevorzugten Lernstil und stellen\n          passende Inhalte zusammen."
+          },
+          "step3skills": {
+            "line_44": "Level",
+            "line_55": "Anfänger",
+            "line_56": "Fortgeschritten",
+            "line_57": "Experte",
+            "line_66": "💡 Basierend auf deinen Angaben empfehlen wir passende Lernmaterialien und passen die\n          Schwierigkeit automatisch an."
+          }
+        },
+        "components": {
+          "summarydialog": {
+            "line_33": "Summary of your inputs",
+            "line_38": "cancel",
+            "line_44": "save"
+          },
+          "navigationbuttons": {
+            "line_25": "back",
+            "line_30": "save",
+            "line_36": "step",
+            "line_37": "of",
+            "line_41": "next",
+            "line_49": "CREATE dashboard"
+          },
+          "headers": {
+            "line_31": "Let's",
+            "line_35": "your dashboard"
+          }
+        }
+      },
+      "auth": {
+        "forms": {
+          "registerform": {
+            "line_73": "Oder mit E-Mail",
+            "line_89": "Mit der Registrierung stimmst du unseren",
+            "line_91": "Nutzungsbedingungen",
+            "line_93": "und der",
+            "line_95": "Datenschutzerklärung",
+            "line_97": "zu."
+          },
+          "loginform": {
+            "line_92": "Oder mit E-Mail",
+            "line_114": "Angemeldet bleiben",
+            "line_116": "Passwort vergessen?"
+          }
+        }
+      }
+    },
+    "global": {
+      "versionindicator": {
+        "line_109": "Version:",
+        "line_110": "Updated:",
+        "line_111": "Backend:",
+        "line_126": "LLM:",
+        "line_130": "Click to view changelog"
+      },
+      "userdashbutton": {
+        "line_52": "Your Dash"
+      },
+      "header": {
+        "line_155": "Free Knowledge for Everybody",
+        "line_191": "Lvl",
+        "line_399": "Anmelden",
+        "line_403": "Registrieren",
+        "line_412": "Start Now"
+      },
+      "footer": {
+        "line_30": "Your AI-powered learning companion to master new skills efficiently and effectively.",
+        "line_36": "Product",
+        "line_43": "Features",
+        "line_52": "Pricing",
+        "line_61": "FAQ",
+        "line_70": "Roadmap",
+        "line_78": "Company",
+        "line_85": "about us",
+        "line_94": "blog",
+        "line_103": "career",
+        "line_112": "contact",
+        "line_120": "Legal",
+        "line_128": "License (PolyForm NC 1.0.0)",
+        "line_137": "data protection",
+        "line_146": "legal notice",
+        "line_155": "imprint",
+        "line_164": "cookie policy",
+        "line_175": ". All rights reserved.",
+        "line_177": "Licensed under",
+        "line_184": "PolyForm Noncommercial 1.0.0",
+        "line_191": "Created by",
+        "line_200": "malick"
+      }
+    },
+    "dashboard": {
+      "whatsnewwidget": {
+        "line_35": "what's new",
+        "line_41": "View all",
+        "line_55": "Loading...",
+        "line_74": "No updates available"
+      },
+      "dashboardselection": {
+        "line_24": "Continue your learning journey",
+        "line_27": "Choose an activity or customize your dashboard",
+        "line_50": "Continue Learning",
+        "line_51": "Generate a learning path based on your knowledge and interests.",
+        "line_65": "Focus Mode",
+        "line_66": "Start a focused learning session with timer and goal tracking."
+      },
+      "completedpathswidget": {
+        "line_26": "Lastly completed learning paths",
+        "line_50": "Points earned"
+      },
+      "bookmarkswidget": {
+        "line_68": "subtopics",
+        "line_86": "learned",
+        "line_93": "remove",
+        "line_108": "last"
+      },
+      "widgets": {
+        "savedthemeswidget": {
+          "line_27": "saved topics",
+          "line_136": "no saved topics yet.",
+          "line_140": "total:",
+          "line_141": "topics"
+        },
+        "learnwidget": {
+          "line_171": "PATH AI",
+          "line_174": "learn",
+          "line_213": "Wähle einen Startpunkt:",
+          "line_303": "Verfügbare Themen (nach Schwierigkeit):",
+          "line_318": "Schwierigkeit:"
+        },
+        "learn": {
+          "subtopicslist": {
+            "line_25": "available subtopics (according difficulty):",
+            "line_37": "difficulty:"
+          },
+          "startingpointslist": {
+            "line_30": "choose a starting point:"
+          },
+          "learnheader": {
+            "line_11": "Path AI"
+          }
+        }
+      }
+    },
+    "changelog": {
+      "versionchangecard": {
+        "line_28": "Current Version",
+        "line_31": "No data",
+        "line_40": "Current Version"
+      },
+      "recent3changescard": {
+        "line_32": "Recent Releases",
+        "line_35": "No releases found",
+        "line_46": "Recent Releases"
+      },
+      "lastchangelogentrycard": {
+        "line_33": "No Changelog Available",
+        "line_36": "Unable to load changelog entries.",
+        "line_47": "Latest Release",
+        "line_62": "What's New:"
+      },
+      "changelogstatscard": {
+        "line_62": "Changelog",
+        "line_65": "Loading stats…",
+        "line_75": "Changelog",
+        "line_88": "Changelog",
+        "line_91": "No changelog entries found.",
+        "line_118": "Changelog",
+        "line_123": "Total versions",
+        "line_127": "Total details",
+        "line_131": "Avg days between",
+        "line_132": "days",
+        "line_135": "Releases / month",
+        "line_141": "Fun facts",
+        "line_143": "✨ Most used title word:",
+        "line_146": "🔧 Fixes:",
+        "line_147": "• 🧩 Features:",
+        "line_149": "Newest:",
+        "line_154": "Since:",
+        "line_155": "days)"
+      }
+    },
+    "admin": {
+      "errorpollerwidget": {
+        "line_118": "Error Monitor",
+        "line_135": "Auto (30s)",
+        "line_141": "Loading…",
+        "line_143": "No recent errors",
+        "line_160": "Last updated:"
+      },
+      "createuserwidget": {
+        "line_83": "Role:",
+        "line_115": "Create User"
+      },
+      "apitestwidget": {
+        "line_38": "🔧 Debug: API Connection Test",
+        "line_47": "Test Health Endpoint",
+        "line_56": "Test Login Endpoint",
+        "line_60": "Computed API baseUrl:"
+      },
+      "adminuserswidget": {
+        "line_95": "Loading users…",
+        "line_98": "Error:",
+        "line_111": "Name",
+        "line_112": "Email",
+        "line_113": "Roles",
+        "line_114": "Last action",
+        "line_115": "Actions",
+        "line_134": "Save",
+        "line_140": "Cancel",
+        "line_182": "Confirm delete",
+        "line_183": "Are you sure you want to delete user",
+        "line_185": "? This action is irreversible.",
+        "line_193": "Cancel",
+        "line_202": "Delete user"
+      },
+      "adminstatswidget": {
+        "line_61": "System Stats",
+        "line_63": "Loading stats…",
+        "line_69": "Users",
+        "line_73": "Recent Errors",
+        "line_77": "Active Sessions"
+      },
+      "adminlogswidget": {
+        "line_47": "Admin Logs",
+        "line_67": "Download admin",
+        "line_83": "Download critical"
+      }
+    }
+  },
+  "cta": {
+    "badge": "cta.badge",
+    "title": "cta.title",
+    "description": "cta.description",
+    "buttonStart": "cta.buttonStart",
+    "buttonDemo": "cta.buttonDemo",
+    "feature1": "cta.feature1",
+    "feature2": "cta.feature2",
+    "feature3": "cta.feature3"
+  },
+  "": {
+    "tests": {
+      "adminuserswidget": {
+        "test": {
+          "name": "Alice"
+        }
+      },
+      "adminpage": {
+        "test": {
+          "role": "admin"
+        }
+      }
+    }
+  }
+}

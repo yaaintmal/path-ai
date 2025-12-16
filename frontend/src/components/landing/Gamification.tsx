@@ -20,6 +20,7 @@ import {
   Lock,
   Target,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const studentAchievements = [
   { icon: '🔥', name: '7-Tage-Streak', points: 100, unlocked: true },
@@ -71,6 +72,7 @@ const teacherRewards = [
 ];
 
 export function Gamification() {
+  const { t } = useTranslation('landing');
   const [selectedTab, setSelectedTab] = useState('students');
   const [studentPoints] = useState(2450);
 
@@ -89,17 +91,16 @@ export function Gamification() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <Badge className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white border-0 mb-4">
             <Gamepad2 className="size-4 mr-2" />
-            Gamification
+            {t('gamification.title')}
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight animate-fade-in">
-            Lernen wird zum{' '}
+            {t('gamification.headingPart1')}{' '}
             <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-              Abenteuer
+              {t('gamification.headingHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 animate-fade-in-delayed">
-            Bleib motiviert mit Achievements, Punkten und Belohnungen - für Schüler, Studenten und
-            Lehrkräfte
+            {t('gamification.subtitle')}
           </p>
         </div>
 
@@ -107,11 +108,11 @@ export function Gamification() {
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
             <TabsTrigger value="students" className="gap-2">
               <Trophy className="size-4" />
-              Schüler & Studenten
+              {t('gamification.tabs.students')}
             </TabsTrigger>
             <TabsTrigger value="teachers" className="gap-2">
               <Award className="size-4" />
-              Lehrkräfte
+              {t('gamification.tabs.teachers')}
             </TabsTrigger>
           </TabsList>
 
@@ -123,7 +124,9 @@ export function Gamification() {
                 <Card className="h-full p-8 hover:shadow-xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
                   <div className="flex items-center justify-between mb-8">
                     <div>
-                      <div className="text-sm text-muted-foreground mb-2">Deine Punkte</div>
+                      <div className="text-sm text-muted-foreground mb-2">
+                        {t('gamification.pointsLabel')}
+                      </div>
                       <div className="text-5xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                         {studentPoints.toLocaleString()}
                       </div>
@@ -135,35 +138,34 @@ export function Gamification() {
 
                   <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                     <Zap className="size-5 text-amber-600" />
-                    So verdienst du Punkte
+                    {t('gamification.howToEarn.title')}
                   </h3>
                   <div className="space-y-3 mb-8">
                     <div className="flex items-center justify-between bg-amber-500/10 rounded-lg p-4">
                       <div className="flex items-center gap-3">
                         <Zap className="size-4 text-amber-600" />
-                        <span className="text-sm">Aufgabe abgeschlossen</span>
+                        <span className="text-sm">{t('gamification.howToEarn.completeTask')}</span>
                       </div>
                       <Badge className="bg-amber-600 text-white border-0">+50</Badge>
                     </div>
                     <div className="flex items-center justify-between bg-orange-500/10 rounded-lg p-4">
                       <div className="flex items-center gap-3">
                         <Trophy className="size-4 text-orange-600" />
-                        <span className="text-sm">7-Tage-Streak</span>
+                        <span className="text-sm">{t('gamification.howToEarn.weekStreak')}</span>
                       </div>
                       <Badge className="bg-orange-600 text-white border-0">+100</Badge>
                     </div>
                     <div className="flex items-center justify-between bg-green-500/10 rounded-lg p-4">
                       <div className="flex items-center gap-3">
                         <Target className="size-4 text-green-600" />
-                        <span className="text-sm">Wochenziel erreicht</span>
+                        <span className="text-sm">{t('gamification.howToEarn.weekGoal')}</span>
                       </div>
-                      <Badge className="bg-green-600 text-white border-0">+200</Badge>
                     </div>
                   </div>
 
                   <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                     <Award className="size-5 text-amber-600" />
-                    Achievements
+                    {t('gamification.achievementsTitle')}
                   </h3>
                   <div className="grid grid-cols-3 gap-3">
                     {studentAchievements.map((achievement, index) => (
@@ -196,11 +198,11 @@ export function Gamification() {
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-2xl font-bold flex items-center gap-2">
                       <ShoppingBag className="size-6 text-amber-600" />
-                      Belohnungs-Shop
+                      {t('gamification.store.title')}
                     </h3>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">
-                    Tausche deine Punkte gegen coole Items ein
+                    {t('gamification.store.description')}
                   </p>
 
                   <div className="space-y-3">
@@ -214,7 +216,7 @@ export function Gamification() {
                           <div>
                             <div className="text-sm font-bold">{item.name}</div>
                             <div className="text-xs text-gray-600 dark:text-gray-400">
-                              {item.sold}x gekauft
+                              {t('gamification.store.sold', { count: item.sold })}
                             </div>
                           </div>
                         </div>
@@ -228,7 +230,7 @@ export function Gamification() {
 
                   <Button className="w-full mt-6 bg-gradient-to-r from-amber-600 to-orange-600 text-white border-0 hover:shadow-lg">
                     <ShoppingBag className="size-4 mr-2" />
-                    Zum kompletten Shop
+                    {t('gamification.store.cta')}
                   </Button>
                 </Card>
               </div>
@@ -295,21 +297,27 @@ export function Gamification() {
                       <feature.icon className="size-8 text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                      {feature.title}
+                      {t(`gamification.features.${idx}.title`)}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
-                      {feature.description}
+                      {t(`gamification.features.${idx}.description`)}
                     </p>
                     <div className="space-y-2">
-                      {feature.items.map((item, i) => (
-                        <div
-                          key={i}
-                          className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2"
-                        >
-                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full" />
-                          {item}
-                        </div>
-                      ))}
+                      {(() => {
+                        const items = t(`gamification.features.${idx}.items`, {
+                          returnObjects: true,
+                        });
+                        const arr = Array.isArray(items) ? (items as string[]) : [String(items)];
+                        return arr.map((item, i) => (
+                          <div
+                            key={i}
+                            className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-2"
+                          >
+                            <span className="w-1.5 h-1.5 bg-amber-600 rounded-full" />
+                            {item}
+                          </div>
+                        ));
+                      })()}
                     </div>
                   </Card>
                 </div>
@@ -333,13 +341,13 @@ export function Gamification() {
                       <reward.icon className="size-8 text-white" />
                     </div>
                     <h3 className="text-xl font-bold mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                      {reward.title}
+                      {t(`gamification.teacherRewards.${index}.title`)}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                      {reward.description}
+                      {t(`gamification.teacherRewards.${index}.description`)}
                     </p>
                     <Badge className={`bg-gradient-to-r ${reward.color} text-white border-0`}>
-                      {reward.type}
+                      {t(`gamification.teacherRewards.${index}.type`)}
                     </Badge>
                   </Card>
                 </div>
@@ -348,13 +356,12 @@ export function Gamification() {
 
             <div className="text-center p-8 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-800">
               <Sparkles className="size-12 text-amber-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-2">Verdiene als Lehrkraft</h3>
+              <h3 className="text-2xl font-bold mb-2">{t('gamification.teacher.callout.title')}</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                Erstelle hochwertige Templates, verdiene Anerkennung und erhalten besondere
-                Lehrkraft-Vorteile
+                {t('gamification.teacher.callout.description')}
               </p>
               <Button className="bg-gradient-to-r from-amber-600 to-orange-600 text-white border-0 hover:shadow-lg">
-                Mehr erfahren
+                {t('gamification.teacher.callout.cta')}
               </Button>
             </div>
           </TabsContent>

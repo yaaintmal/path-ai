@@ -21,6 +21,7 @@ import {
   Check,
   Sparkles,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface OnboardingData {
   role: string;
@@ -38,16 +39,17 @@ interface OnboardingData {
 }
 
 const steps = [
-  { id: 1, title: 'Rolle', icon: GraduationCap },
-  { id: 2, title: 'Ziele', icon: Target },
-  { id: 3, title: 'Skills', icon: Brain },
-  { id: 4, title: 'Typ', icon: BookOpen },
-  { id: 5, title: 'Zeit', icon: Clock },
-  { id: 6, title: 'Game', icon: Gamepad2 },
-  { id: 7, title: 'Stil', icon: MessageSquare },
+  { id: 1, key: 'role', icon: GraduationCap },
+  { id: 2, key: 'goals', icon: Target },
+  { id: 3, key: 'skills', icon: Brain },
+  { id: 4, key: 'learningType', icon: BookOpen },
+  { id: 5, key: 'time', icon: Clock },
+  { id: 6, key: 'gamification', icon: Gamepad2 },
+  { id: 7, key: 'communication', icon: MessageSquare },
 ];
 
 export function OnboardingWizard() {
+  const { t } = useTranslation('landing');
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<Partial<OnboardingData>>({
     role: '',
@@ -91,7 +93,7 @@ export function OnboardingWizard() {
   const handleSave = () => {
     localStorage.setItem('onboarddata', JSON.stringify(data));
     setConfirmOpen(false);
-    toast.success('Danke! Deine Antworten wurden gespeichert. Weiterleitung zur Startseite...');
+    toast.success(t('onboardingwizard.toast.saved'));
     setTimeout(() => {
       window.location.href = '/';
     }, 1200);
@@ -116,17 +118,15 @@ export function OnboardingWizard() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary mb-6">
             <Sparkles className="size-4" />
-            <span className="text-sm font-medium">Persönliches Setup</span>
+            <span className="text-sm font-medium">{t('onboardingwizard.header.title')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            Dein{' '}
+            {t('onboardingwizard.headingPart1')}{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              perfektes Dashboard
+              {t('onboardingwizard.headingHighlight')}
             </span>
           </h1>
-          <p className="text-xl text-muted-foreground">
-            Beantworte ein paar Fragen und wir passen alles an deine Bedürfnisse an.
-          </p>
+          <p className="text-xl text-muted-foreground">{t('onboardingwizard.subtitle')}</p>
         </div>
 
         {/* Main Card */}
@@ -157,7 +157,7 @@ export function OnboardingWizard() {
                         currentStep === step.id ? 'text-primary' : 'text-muted-foreground'
                       }`}
                     >
-                      {step.title}
+                      {t(`onboardingwizard.steps.${step.key}`)}
                     </span>
                   </div>
                 ))}
@@ -214,11 +214,11 @@ export function OnboardingWizard() {
                 className="gap-2 hover:bg-background"
               >
                 <ArrowLeft className="size-4" />
-                Zurück
+                {t('onboardingwizard.nav.back')}
               </Button>
 
               <div className="text-sm font-medium text-muted-foreground">
-                Schritt {currentStep} von {steps.length}
+                {t('onboardingwizard.nav.stepOf', { current: currentStep, total: steps.length })}
               </div>
 
               {currentStep < steps.length ? (
@@ -226,7 +226,7 @@ export function OnboardingWizard() {
                   onClick={nextStep}
                   className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
                 >
-                  Weiter
+                  {t('onboardingwizard.nav.next')}
                   <ArrowRight className="size-4" />
                 </Button>
               ) : (
@@ -234,7 +234,7 @@ export function OnboardingWizard() {
                   onClick={handleComplete}
                   className="gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 hover:opacity-90 shadow-lg shadow-blue-600/20"
                 >
-                  Dashboard erstellen
+                  {t('onboardingwizard.nav.create')}
                   <Check className="size-4" />
                 </Button>
               )}
@@ -260,11 +260,12 @@ export function OnboardingWizard() {
 // --- Step Components ---
 
 function Step1Role({ data, updateData }: any) {
+  const { t } = useTranslation('landing');
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
       <div>
-        <h2 className="text-2xl font-bold mb-2">Welche Rolle hast du?</h2>
-        <p className="text-muted-foreground">Wir passen das Dashboard sofort an deine Rolle an.</p>
+        <h2 className="text-2xl font-bold mb-2">{t('onboardingwizard.step1.title')}</h2>
+        <p className="text-muted-foreground">{t('onboardingwizard.step1.subtitle')}</p>
       </div>
 
       <RadioGroup value={data.role} onValueChange={(value) => updateData('role', value)}>
@@ -273,22 +274,22 @@ function Step1Role({ data, updateData }: any) {
             {
               id: 'student',
               icon: GraduationCap,
-              label: 'Student',
-              sub: 'Uni & Co.',
+              label: t('onboardingwizard.roles.student.label'),
+              sub: t('onboardingwizard.roles.student.sub'),
               color: 'text-blue-600',
             },
             {
               id: 'pupil',
               icon: BookOpen,
-              label: 'Schüler',
-              sub: 'Schule',
+              label: t('onboardingwizard.roles.pupil.label'),
+              sub: t('onboardingwizard.roles.pupil.sub'),
               color: 'text-orange-600',
             },
             {
               id: 'teacher',
               icon: Users,
-              label: 'Lehrkraft',
-              sub: 'Dozent',
+              label: t('onboardingwizard.roles.teacher.label'),
+              sub: t('onboardingwizard.roles.teacher.sub'),
               color: 'text-green-600',
             },
           ].map((item) => (
@@ -318,10 +319,10 @@ function Step1Role({ data, updateData }: any) {
             type="text"
             placeholder={
               data.role === 'student'
-                ? 'z.B. 3. Semester'
+                ? t('onboardingwizard.placeholders.studentSemester')
                 : data.role === 'pupil'
-                  ? 'z.B. 8. Klasse'
-                  : 'z.B. Gymnasium'
+                  ? t('onboardingwizard.placeholders.pupilGrade')
+                  : t('onboardingwizard.placeholders.teacherType')
             }
             value={data.level || ''}
             onChange={(e) => updateData('level', e.target.value)}

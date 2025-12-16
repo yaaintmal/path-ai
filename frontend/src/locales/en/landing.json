@@ -1,0 +1,1296 @@
+{
+  "targetAudiences": {
+    "header": {
+      "title": "For every learner",
+      "subtitle": "From elementary school to university — Path AI adapts to your needs"
+    },
+    "audiences": {
+      "students": {
+        "title": "Students & Continuing Education",
+        "subtitle": "For lifelong learning",
+        "features": [
+          "Structured learning paths for complex topics",
+          "Progress tracking for every module",
+          "Gamification: points, achievements & rewards",
+          "Templates for career paths (e.g., MERN Stack)"
+        ],
+        "benefits": "Perfect for university, certifications and professional development"
+      },
+      "kids": {
+        "title": "Kids & Explorers",
+        "subtitle": "Better grades, more fun learning",
+        "features": [
+          "Discover your learning style",
+          "Improve your grades across subjects",
+          "Playful achievements & points",
+          "Simple explanations for tough topics"
+        ],
+        "benefits": "Ideal for school and hobbies in all subjects and languages"
+      },
+      "teachers": {
+        "title": "Teachers & Mentors",
+        "subtitle": "Structure and share knowledge",
+        "features": [
+          "Create reusable learning path templates",
+          "Organize knowledge for your students",
+          "AI-assisted content generation",
+          "Share expertise with the community"
+        ],
+        "benefits": "Create great learning experiences and inspire others"
+      }
+    },
+    "button": {
+      "learnMore": "Learn more"
+    },
+    "previews": {
+      "student": {
+        "role": "Student",
+        "name": "Max Mustermann",
+        "course": "Web Development",
+        "badgeActive": "Active",
+        "progress": "Progress: 68%",
+        "nextCourse": "Data Science",
+        "planTag": "Planned",
+        "nextStart": "Start: Next week",
+        "nextSession": "Next session: Today, 6:00 PM"
+      },
+      "kids": {
+        "appName": "Path AI",
+        "name": "Anna, Grade 5",
+        "learningType": {
+          "title": "Your learning type",
+          "value": "Visual",
+          "description": "You learn best with images and examples!"
+        },
+        "subject1": {
+          "name": "Mathematics",
+          "grade": "Grade: 2+"
+        },
+        "subject2": {
+          "name": "English",
+          "grade": "Grade: 1-"
+        },
+        "badges": "5 badges this week! 🎉"
+      },
+      "teachers": {
+        "header": "Teacher dashboard",
+        "class": "Class 8b - Mathematics",
+        "overview": {
+          "title": "Class overview",
+          "count": "24 students"
+        },
+        "stats": {
+          "active": "18",
+          "activeLabel": "Active",
+          "needHelp": "6",
+          "needHelpLabel": "Need help",
+          "avg": "2.3",
+          "avgLabel": "Avg grade"
+        },
+        "nextTopic": {
+          "title": "Prepare next topic",
+          "topic": "Quadratic equations",
+          "cta": "Prepare with AI"
+        },
+        "notice": "3 students are struggling - suggest individual plans"
+      }
+    }
+  },
+  "hero": {
+    "badge": "AI-powered learning",
+    "title": "Your personal AI learning plan",
+    "subtitle": "in any language",
+    "description": "No more one-size-fits-all courses. Choose templates or create a custom plan tailored to your goals and level.",
+    "cta": { "templates": "Discover templates", "createCustom": "Create custom learning plan" },
+    "metrics": {
+      "activeUsers": "10,000+",
+      "activeUsersLabel": "Active learners",
+      "rating": "4.8/5",
+      "ratingLabel": "Rating",
+      "topics": "50+",
+      "topicsLabel": "Topics"
+    },
+    "slides": [
+      {
+        "badge": "AI learning paths",
+        "title": "Personalized learning path",
+        "description": "Our AI generates tailored learning paths for every topic.",
+        "preview": {
+          "question": "What do you want to learn?",
+          "answer": "React and TypeScript",
+          "response": "I created a learning path of 12 modules for you..."
+        }
+      },
+      {
+        "badge": "Store & Rewards",
+        "title": "Learning pays off",
+        "description": "Earn points for progress and redeem in the Store for boosts and cosmetics.",
+        "preview": {
+          "question": "Store",
+          "answer": "💎 2,500 points available",
+          "response": "You bought Double XP Boost!"
+        }
+      },
+      {
+        "badge": "Templates",
+        "title": "Proven learning structures",
+        "description": "Use curated templates for popular careers and topics.",
+        "preview": {
+          "question": "Choose a template",
+          "answer": "MERN Full-Stack Developer",
+          "response": "Template loaded: 15 topics from JS basics to deployment."
+        }
+      },
+      {
+        "badge": "Progress",
+        "title": "Overview at a glance",
+        "description": "Track streaks, points and completed topics in your dashboard.",
+        "preview": {
+          "question": "Statistics",
+          "answer": "🔥 7-day streak",
+          "response": "Great job! You've completed 5 topics this week."
+        }
+      }
+    ]
+  },
+  "features": {
+    "title": "Learning that adapts to you",
+    "subtitle": "Discover a new way to learn—personalized, flexible and always at your side.",
+    "items": [
+      {
+        "title": "AI learning paths",
+        "description": "Generate dynamic learning paths for any topic."
+      },
+      {
+        "title": "Templates & Careers",
+        "description": "Start with curated career paths to save planning time."
+      },
+      {
+        "title": "Progress & Stats",
+        "description": "Visualize learning time, streaks and achievements."
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "subtitle": "Four steps to your personal AI learning plan",
+    "steps": [
+      {
+        "title": "Choose a template",
+        "description": "Start with a curated career path or define your own goals."
+      },
+      {
+        "title": "Generate plan",
+        "description": "The AI creates a tailored plan with modules, quizzes and milestones."
+      },
+      {
+        "title": "Learn & Practice",
+        "description": "Work through interactive lessons and reinforce knowledge with exercises."
+      },
+      {
+        "title": "Level Up",
+        "description": "Earn XP, keep streaks and unlock rewards in the Store."
+      }
+    ]
+  },
+  "audiences": {
+    "students": {
+      "title": "Students & Continuing Education",
+      "subtitle": "For lifelong learning",
+      "features": [
+        "Structured learning paths for complex topics",
+        "Progress tracking for every module",
+        "Gamification: points, achievements & rewards",
+        "Templates for career paths (e.g., MERN Stack)"
+      ],
+      "benefits": "Perfect for university, certifications and professional development"
+    },
+    "kids": {
+      "title": "Kids & Explorers",
+      "subtitle": "Better grades, more fun learning",
+      "features": [
+        "Discover your learning style",
+        "Improve your grades across subjects",
+        "Playful achievements & points",
+        "Simple explanations for tough topics"
+      ],
+      "benefits": "Ideal for school and hobbies in all subjects and languages"
+    },
+    "teachers": {
+      "title": "Teachers & Mentors",
+      "subtitle": "Structure and share knowledge",
+      "features": [
+        "Create reusable learning path templates",
+        "Organize knowledge for your students",
+        "AI-assisted content generation",
+        "Share expertise with the community"
+      ],
+      "benefits": "Create great learning experiences and inspire others"
+    }
+  },
+  "button": {
+    "learnMore": "Learn more"
+  },
+  "previews": {
+    "student": {
+      "role": "Student",
+      "name": "Max Mustermann",
+      "course": "Web Development",
+      "badgeActive": "Active",
+      "progress": "Progress: 68%",
+      "nextCourse": "Data Science",
+      "planTag": "Planned",
+      "nextStart": "Start: Next week",
+      "nextSession": "Next session: Today, 6:00 PM"
+    },
+    "kids": {
+      "appName": "Path AI",
+      "name": "Anna, Grade 5",
+      "learningType": {
+        "title": "Your learning type",
+        "value": "Visual",
+        "description": "You learn best with images and examples!"
+      },
+      "subject1": {
+        "name": "Mathematics",
+        "grade": "Grade: 2+"
+      },
+      "subject2": {
+        "name": "English",
+        "grade": "Grade: 1-"
+      },
+      "badges": "5 badges this week! 🎉"
+    },
+    "teachers": {
+      "header": "Teacher dashboard",
+      "class": "Class 8b - Mathematics",
+      "overview": {
+        "title": "Class overview",
+        "count": "24 students"
+      },
+      "stats": {
+        "active": "18",
+        "activeLabel": "Active",
+        "needHelp": "6",
+        "needHelpLabel": "Need help",
+        "avg": "2.3",
+        "avgLabel": "Avg grade"
+      },
+      "nextTopic": {
+        "title": "Prepare next topic",
+        "topic": "Quadratic equations",
+        "cta": "Prepare with AI"
+      },
+      "notice": "3 students are struggling - suggest individual plans"
+    }
+  },
+  "utils": {
+    "badgesystem": {
+      "title": ""
+    }
+  },
+  "ui": {
+    "sidebar": {
+      "line_186": "",
+      "line_187": "",
+      "line_260": ""
+    },
+    "sheet": {
+      "line_71": ""
+    },
+    "pagination": {
+      "line_65": "",
+      "line_78": "",
+      "line_93": ""
+    },
+    "dialog": {
+      "line_60": ""
+    },
+    "carousel": {
+      "line_188": "",
+      "line_218": ""
+    },
+    "breadcrumb": {
+      "line_89": ""
+    }
+  },
+  "translations": {
+    "index": {
+      "badge": "",
+      "title": "",
+      "description": ""
+    }
+  },
+  "theme": {
+    "index": {
+      "name": "",
+      "text": ""
+    }
+  },
+  "pages": {
+    "timerpage": {
+      "line_71": ""
+    },
+    "storepage": {
+      "text": "",
+      "line_296": "",
+      "line_311": "",
+      "line_312": "",
+      "line_317": "",
+      "line_356": ""
+    },
+    "settings": {
+      "line_44": "",
+      "line_46": "",
+      "line_59": ""
+    },
+    "roadmappage": {
+      "line_23": "",
+      "line_29": "",
+      "line_33": ""
+    },
+    "onboardingeditor": {
+      "line_180": "",
+      "line_210": ""
+    },
+    "footerpages": {
+      "title": "",
+      "content": "",
+      "line_94": "",
+      "line_109": ""
+    },
+    "changelog": {
+      "line_56": "",
+      "line_76": "",
+      "line_104": ""
+    },
+    "adminpage": {
+      "line_37": "",
+      "line_73": "",
+      "line_79": ""
+    },
+    "store": {
+      "userstatscard": {
+        "line_39": "",
+        "line_60": "",
+        "line_76": "",
+        "line_78": "",
+        "line_80": "",
+        "line_84": "",
+        "line_85": "",
+        "line_90": "",
+        "line_96": "",
+        "line_103": ""
+      },
+      "categoryfilter": {
+        "line_26": ""
+      },
+      "badgessection": {
+        "line_34": "",
+        "line_38": ""
+      }
+    },
+    "dashboard": {
+      "titlePart1": "Your learning",
+      "titleHighlight": "Dashboard",
+      "subtitle": "A quick overview of your progress and next steps",
+      "searchPlaceholder": "Search your learning content...",
+      "cta": {
+        "startLearning": "Start Learning"
+      },
+      "nextLesson": {
+        "title": "next lesson",
+        "pathLabel": "actual learning path",
+        "titleExample": "Advanced React Patterns",
+        "badge": "main topic",
+        "cta": "start lesson"
+      },
+      "streak": {
+        "title": "actual streak",
+        "daysStreak": "{days} Days Streak 🔥",
+        "bestLabel": "Best Streak",
+        "totalXpLabel": "Total XP",
+        "bestValue": "15 Days",
+        "totalXpValue": "2,450"
+      },
+      "progress": {
+        "title": "your progress",
+        "levelText": "Level 5 Explorer",
+        "expText": "850 EXP",
+        "toNextLevel": "150 EXP to Level 6"
+      },
+      "savedTopics": {
+        "title": "saved topics",
+        "types": {
+          "main": "main topic",
+          "sub": "subtopic"
+        },
+        "generate": "Generate subtopics",
+        "open": "Open in learning mode"
+      },
+      "templatespage": {
+        "line_45": "",
+        "line_46": "",
+        "line_60": "",
+        "line_111": "",
+        "line_123": "",
+        "line_136": "",
+        "line_154": "",
+        "line_164": "",
+        "clean": {
+          "line_45": "",
+          "line_46": "",
+          "line_60": "",
+          "line_111": "",
+          "line_123": "",
+          "line_136": "",
+          "line_154": "",
+          "line_164": ""
+        }
+      },
+      "templatedetailspage": {
+        "line_64": "",
+        "line_66": "",
+        "line_75": "",
+        "line_83": "",
+        "line_143": "",
+        "line_164": "",
+        "line_170": "",
+        "line_177": "",
+        "line_179": "",
+        "line_180": "",
+        "line_181": "",
+        "line_182": ""
+      },
+      "streakwidget": {
+        "line_203": "",
+        "line_214": "",
+        "line_218": "",
+        "line_220": "",
+        "line_223": "",
+        "line_226": ""
+      },
+      "statisticsoverview": {
+        "line_200": "",
+        "line_204": "",
+        "line_216": "",
+        "line_220": "",
+        "line_229": "",
+        "line_237": "",
+        "line_245": "",
+        "line_252": "",
+        "line_287": "",
+        "line_304": "",
+        "line_314": "",
+        "line_353": "",
+        "line_357": "",
+        "line_363": "",
+        "line_370": "",
+        "line_376": "",
+        "line_383": "",
+        "line_389": "",
+        "line_395": ""
+      },
+      "progresswidget": {
+        "line_51": "",
+        "line_75": "",
+        "line_80": "",
+        "line_96": "",
+        "line_106": "",
+        "line_116": "",
+        "line_117": "",
+        "line_124": "",
+        "line_146": "",
+        "line_153": "",
+        "line_175": "",
+        "line_182": ""
+      },
+      "opentopicspage": {
+        "line_29": "",
+        "line_37": "",
+        "line_46": "",
+        "line_59": "",
+        "line_104": "",
+        "line_113": "",
+        "line_126": ""
+      },
+      "nextlessonwidget": {
+        "line_16": "",
+        "line_22": "",
+        "line_33": "",
+        "line_45": "",
+        "line_59": ""
+      },
+      "learningsection": {
+        "line_43": "",
+        "line_58": ""
+      },
+      "fullwidthwidget": {
+        "line_5": "",
+        "line_8": "",
+        "line_12": ""
+      },
+      "enhancedstreakwidget": {
+        "line_102": "",
+        "line_114": "",
+        "line_119": "",
+        "line_120": "",
+        "line_122": "",
+        "line_130": "",
+        "line_140": "",
+        "line_150": "",
+        "line_162": "",
+        "line_164": "",
+        "line_172": ""
+      },
+      "completedtopicspage": {
+        "line_27": "",
+        "line_33": "",
+        "line_46": ""
+      },
+      "compactstreakwidget": {
+        "line_89": "",
+        "line_102": "",
+        "line_110": "",
+        "line_119": "",
+        "line_125": "",
+        "line_131": "",
+        "line_140": ""
+      }
+    }
+  },
+  "data": {
+    "learningtemplates": {
+      "name": "",
+      "description": ""
+    },
+    "templates": {
+      "web": {
+        "name": "",
+        "description": ""
+      },
+      "security": {
+        "name": "",
+        "description": ""
+      },
+      "professional": {
+        "name": "",
+        "description": ""
+      },
+      "languages": {
+        "name": "",
+        "description": ""
+      },
+      "graphics": {
+        "name": "",
+        "description": ""
+      },
+      "games": {
+        "name": "",
+        "description": ""
+      },
+      "frameworks": {
+        "name": "",
+        "description": ""
+      },
+      "devops": {
+        "name": "",
+        "description": ""
+      },
+      "databases": {
+        "name": "",
+        "description": ""
+      },
+      "cloud": {
+        "name": "",
+        "description": ""
+      },
+      "backend": {
+        "name": "",
+        "description": ""
+      }
+    }
+  },
+  "dashboardPreview": {
+    "progress": {
+      "title": "your progress",
+      "levelText": "Level 5 Explorer",
+      "expText": "850 EXP",
+      "toNextLevel": "150 EXP to Level 6"
+    },
+    "savedTopics": {
+      "title": "saved topics",
+      "types": {
+        "main": "main topic",
+        "sub": "subtopic"
+      },
+      "generate": "Generate subtopics",
+      "open": "Open in learning mode"
+    }
+  },
+  "prompttemplates": {
+    "badge": "Templates",
+    "headingPart1": "Start instantly with",
+    "headingHighlight": "Expert Paths",
+    "subtitle": "Use curated learning paths for popular career goals — created by experts, personalized by AI.",
+    "overviewTitle": "Topics at a glance",
+    "moreTopics": "+ {{count}} more topics",
+    "skillsTitle": "Skills you'll learn",
+    "cta": { "start": "Start this path" }
+  },
+  "gamification": {
+    "title": "Gamification",
+    "headingPart1": "Learning becomes a",
+    "headingHighlight": "Adventure",
+    "subtitle": "Stay motivated with achievements, points and rewards - for students and teachers",
+    "tabs": { "students": "Students", "teachers": "Teachers" },
+    "pointsLabel": "Your points",
+    "howToEarn": {
+      "title": "How to earn points",
+      "completeTask": "Task completed",
+      "weekStreak": "7-day streak",
+      "weekGoal": "Weekly goal reached"
+    },
+    "achievementsTitle": "Achievements",
+    "store": {
+      "title": "Rewards Shop",
+      "description": "Redeem your points for cool items",
+      "sold": "{{count}}x purchased",
+      "cta": "Go to full shop"
+    },
+    "features": {
+      "0": {
+        "title": "Tips & Solutions",
+        "description": "Stuck? Use points for helpful hints or full solutions.",
+        "items": [
+          "💡 Small hint - 50 points",
+          "💭 Detailed hint - 100 points",
+          "✅ Full solution - 200 points"
+        ]
+      },
+      "1": {
+        "title": "Learning Games",
+        "description": "Join games, level up and unlock new content!",
+        "items": ["🎮 Quest Mode - Level 12", "⚔️ Battle Arena - 5 wins", "🏆 Rankings - Top 100"]
+      },
+      "2": {
+        "title": "Workspace Design",
+        "description": "Customize your learning space with themes and designs.",
+        "items": [
+          "🌙 Dark Mode",
+          "🌸 Sakura Theme",
+          "🌊 Ocean Blue",
+          "🔥 Fire Red",
+          "❄️ Ice Cold",
+          "🌈 Rainbow"
+        ]
+      },
+      "3": {
+        "title": "Avatars & Items",
+        "description": "Unlock avatars, badges and special items to stand out.",
+        "items": ["👕 12 Outfits", "🎩 8 Hats", "✨ 20+ Effects"]
+      }
+    },
+    "teacherRewards": {
+      "0": {
+        "title": "Community Hero",
+        "description": "Share your templates with the community",
+        "type": "Badge"
+      },
+      "1": {
+        "title": "Template Creator",
+        "description": "Create 5 custom learning templates",
+        "type": "Achievement"
+      },
+      "2": {
+        "title": "Path Architect",
+        "description": "Structure complex topics for others",
+        "type": "Status"
+      },
+      "3": {
+        "title": "Top Rated",
+        "description": "Your templates are frequently used",
+        "type": "Bonus"
+      }
+    },
+    "teacher": {
+      "callout": {
+        "title": "Earn as a teacher",
+        "description": "Create high-quality templates, earn recognition and special teacher perks",
+        "cta": "Learn more"
+      }
+    }
+  },
+  "components": {
+    "themeswitcher": {
+      "line_46": ""
+    },
+    "ui": {
+      "pageheader": {
+        "line_19": ""
+      }
+    },
+    "timer": {
+      "timerwidget": {
+        "line_77": "",
+        "line_87": "",
+        "line_92": "",
+        "line_101": "",
+        "line_124": "",
+        "line_147": "",
+        "line_167": "",
+        "line_178": ""
+      },
+      "sessionhistorywidget": {
+        "line_36": "",
+        "line_40": "",
+        "line_42": "",
+        "line_48": "",
+        "line_49": "",
+        "line_50": "",
+        "line_51": ""
+      },
+      "recentsessionswidget": {
+        "line_27": "",
+        "line_31": "",
+        "line_33": ""
+      },
+      "pomodorotemplateswidget": {
+        "name": "",
+        "description": "",
+        "line_54": "",
+        "line_74": "",
+        "line_81": ""
+      },
+      "currentpathwidget": {
+        "line_15": ""
+      }
+    },
+    "landing": {
+      "targetaudiences": {
+        "title": "",
+        "subtitle": "",
+        "text": "",
+        "benefits": ""
+      },
+      "registration": {
+        "line_104": "",
+        "line_106": "",
+        "line_108": "",
+        "line_112": "",
+        "line_122": "",
+        "line_143": "",
+        "line_164": "",
+        "line_193": "",
+        "line_224": "",
+        "line_259": "",
+        "line_272": "",
+        "line_274": "",
+        "line_276": "",
+        "line_278": "",
+        "line_292": "",
+        "line_303": "",
+        "line_333": "",
+        "line_342": "",
+        "line_344": "",
+        "line_354": "",
+        "line_358": "",
+        "line_362": ""
+      },
+      "prompttemplates": {
+        "badge": "Templates",
+        "headingPart1": "Start instantly with",
+        "headingHighlight": "Expert Paths",
+        "subtitle": "Use curated learning paths for popular career goals — created by experts, personalized by AI.",
+        "overviewTitle": "Topics at a glance",
+        "moreTopics": "+ {{count}} more topics",
+        "skillsTitle": "Skills you'll learn",
+        "cta": { "start": "Start this path" }
+      },
+      "onboardingwizard": {
+        "header": { "title": "Personal setup" },
+        "headingPart1": "Your",
+        "headingHighlight": "perfect dashboard",
+        "subtitle": "Answer a few questions and we’ll tailor everything to your needs.",
+        "steps": {
+          "role": "Role",
+          "goals": "Goals",
+          "skills": "Skills",
+          "learningType": "Learning type",
+          "time": "Time",
+          "gamification": "Gamification",
+          "communication": "Communication"
+        },
+        "step1": {
+          "title": "Which role do you have?",
+          "subtitle": "We tailor the dashboard immediately to your role."
+        },
+        "roles": {
+          "student": { "label": "Student", "sub": "University & Co." },
+          "pupil": { "label": "Pupil", "sub": "School" },
+          "teacher": { "label": "Teacher", "sub": "Instructor" }
+        },
+        "placeholders": {
+          "studentSemester": "e.g. 3rd semester",
+          "pupilGrade": "e.g. 8th grade",
+          "teacherType": "e.g. High school"
+        },
+        "step6": {
+          "title": "Gamification settings",
+          "subtitle": "How motivating should your learning experience be?",
+          "levelLabel": "Gamification level",
+          "rewardsLabel": "Which rewards motivate you?"
+        },
+        "nav": {
+          "back": "Back",
+          "stepOf": "Step {{current}} of {{total}}",
+          "next": "Next",
+          "create": "Create dashboard"
+        },
+        "toast": { "saved": "Thanks! Your answers are saved. Redirecting to home..." }
+      },
+      "howitworks": {
+        "title": "",
+        "description": "",
+        "line_53": "",
+        "line_56": ""
+      },
+      "hero": {
+        "badge": "",
+        "title": "",
+        "description": "",
+        "question": "",
+        "answer": "",
+        "line_136": "",
+        "line_138": "",
+        "line_140": "",
+        "line_142": "",
+        "line_145": "",
+        "line_151": "",
+        "line_159": "",
+        "line_166": "",
+        "line_171": "",
+        "line_176": ""
+      },
+      "header": {
+        "line_65": "",
+        "line_89": "",
+        "line_109": "",
+        "line_128": "",
+        "line_132": "",
+        "line_141": "",
+        "line_144": ""
+      },
+      "gamification": {
+        "title": "Gamification",
+        "headingPart1": "Learning becomes a",
+        "headingHighlight": "Adventure",
+        "subtitle": "Stay motivated with achievements, points and rewards - for students and teachers",
+        "tabs": { "students": "Students", "teachers": "Teachers" },
+        "pointsLabel": "Your points",
+        "howToEarn": {
+          "title": "How to earn points",
+          "completeTask": "Task completed",
+          "weekStreak": "7-day streak",
+          "weekGoal": "Weekly goal reached"
+        },
+        "achievementsTitle": "Achievements",
+        "store": {
+          "title": "Rewards Shop",
+          "description": "Redeem your points for cool items",
+          "sold": "{{count}}x purchased",
+          "cta": "Go to full shop"
+        },
+        "features": {
+          "0": {
+            "title": "Tips & Solutions",
+            "description": "Stuck? Use points for helpful hints or full solutions.",
+            "items": [
+              "💡 Small hint - 50 points",
+              "💭 Detailed hint - 100 points",
+              "✅ Full solution - 200 points"
+            ]
+          },
+          "1": {
+            "title": "Learning Games",
+            "description": "Join games, level up and unlock new content!",
+            "items": [
+              "🎮 Quest Mode - Level 12",
+              "⚔️ Battle Arena - 5 wins",
+              "🏆 Rankings - Top 100"
+            ]
+          },
+          "2": {
+            "title": "Workspace Design",
+            "description": "Customize your learning space with themes and designs.",
+            "items": [
+              "🌙 Dark Mode",
+              "🌸 Sakura Theme",
+              "🌊 Ocean Blue",
+              "🔥 Fire Red",
+              "❄️ Ice Cold",
+              "🌈 Rainbow"
+            ]
+          },
+          "3": {
+            "title": "Avatars & Items",
+            "description": "Unlock avatars, badges and special items to stand out.",
+            "items": ["👕 12 Outfits", "🎩 8 Hats", "✨ 20+ Effects"]
+          }
+        },
+        "teacherRewards": {
+          "0": {
+            "title": "Community Hero",
+            "description": "Share your templates with the community",
+            "type": "Badge"
+          },
+          "1": {
+            "title": "Template Creator",
+            "description": "Create 5 custom learning templates",
+            "type": "Achievement"
+          },
+          "2": {
+            "title": "Path Architect",
+            "description": "Structure complex topics for others",
+            "type": "Status"
+          },
+          "3": {
+            "title": "Top Rated",
+            "description": "Your templates are frequently used",
+            "type": "Bonus"
+          }
+        },
+        "teacher": {
+          "callout": {
+            "title": "Earn as a teacher",
+            "description": "Create high-quality templates, earn recognition and special teacher perks",
+            "cta": "Learn more"
+          }
+        }
+      },
+      "footer": {
+        "title": "",
+        "line_15": "",
+        "line_18": "",
+        "line_44": "",
+        "line_45": "",
+        "line_52": "",
+        "line_58": "",
+        "line_66": "",
+        "line_74": "",
+        "line_82": "",
+        "line_91": "",
+        "line_97": "",
+        "line_105": "",
+        "line_113": "",
+        "line_121": "",
+        "line_130": "",
+        "line_153": "",
+        "line_155": "",
+        "line_158": "",
+        "line_161": ""
+      },
+      "features": {
+        "title": "",
+        "description": "",
+        "line_75": "",
+        "line_77": "",
+        "line_81": ""
+      },
+      "dashboardpreview": {
+        "line_19": "",
+        "line_21": "",
+        "line_25": "",
+        "line_45": "",
+        "line_58": "",
+        "line_65": "",
+        "line_66": "",
+        "line_67": "",
+        "line_72": "",
+        "line_82": "",
+        "line_91": "",
+        "line_95": "",
+        "line_96": "",
+        "line_99": "",
+        "line_111": "",
+        "line_128": "",
+        "line_129": "",
+        "line_135": "",
+        "line_143": "",
+        "title": ""
+      },
+      "onboarding": {
+        "steps": {
+          "steplanguage": {
+            "line_52": "",
+            "line_76": "",
+            "line_79": ""
+          },
+          "step7communication": {
+            "line_56": ""
+          },
+          "step6gamification": {
+            "line_23": "",
+            "line_54": ""
+          },
+          "step5time": {
+            "line_24": "",
+            "line_39": "",
+            "line_66": ""
+          },
+          "step4learningtype": {
+            "line_42": ""
+          },
+          "step3skills": {
+            "line_44": "",
+            "line_55": "",
+            "line_56": "",
+            "line_57": "",
+            "line_66": ""
+          }
+        },
+        "components": {
+          "summarydialog": {
+            "line_33": "",
+            "line_38": "",
+            "line_44": ""
+          },
+          "navigationbuttons": {
+            "line_25": "",
+            "line_30": "",
+            "line_36": "",
+            "line_37": "",
+            "line_41": "",
+            "line_49": ""
+          },
+          "headers": {
+            "line_31": "",
+            "line_35": ""
+          }
+        }
+      },
+      "auth": {
+        "forms": {
+          "registerform": {
+            "line_73": "",
+            "line_89": "",
+            "line_91": "",
+            "line_93": "",
+            "line_95": "",
+            "line_97": ""
+          },
+          "loginform": {
+            "line_92": "",
+            "line_114": "",
+            "line_116": ""
+          }
+        }
+      }
+    },
+    "global": {
+      "versionindicator": {
+        "line_109": "",
+        "line_110": "",
+        "line_111": "",
+        "line_126": "",
+        "line_130": ""
+      },
+      "userdashbutton": {
+        "line_52": ""
+      },
+      "header": {
+        "line_155": "",
+        "line_191": "",
+        "line_399": "",
+        "line_403": "",
+        "line_412": ""
+      },
+      "footer": {
+        "line_30": "",
+        "line_36": "",
+        "line_43": "",
+        "line_52": "",
+        "line_61": "",
+        "line_70": "",
+        "line_78": "",
+        "line_85": "",
+        "line_94": "",
+        "line_103": "",
+        "line_112": "",
+        "line_120": "",
+        "line_128": "",
+        "line_137": "",
+        "line_146": "",
+        "line_155": "",
+        "line_164": "",
+        "line_175": "",
+        "line_177": "",
+        "line_184": "",
+        "line_191": "",
+        "line_200": ""
+      }
+    },
+    "dashboard": {
+      "whatsnewwidget": {
+        "line_35": "",
+        "line_41": "",
+        "line_55": "",
+        "line_74": ""
+      },
+      "dashboardselection": {
+        "line_24": "",
+        "line_27": "",
+        "line_50": "",
+        "line_51": "",
+        "line_65": "",
+        "line_66": ""
+      },
+      "completedpathswidget": {
+        "line_26": "",
+        "line_50": ""
+      },
+      "bookmarkswidget": {
+        "line_68": "",
+        "line_86": "",
+        "line_93": "",
+        "line_108": ""
+      },
+      "widgets": {
+        "savedthemeswidget": {
+          "line_27": "",
+          "line_136": "",
+          "line_140": "",
+          "line_141": ""
+        },
+        "learnwidget": {
+          "line_171": "",
+          "line_174": "",
+          "line_213": "",
+          "line_303": "",
+          "line_318": ""
+        },
+        "learn": {
+          "subtopicslist": {
+            "line_25": "",
+            "line_37": ""
+          },
+          "startingpointslist": {
+            "line_30": ""
+          },
+          "learnheader": {
+            "line_11": ""
+          }
+        }
+      }
+    },
+    "changelog": {
+      "versionchangecard": {
+        "line_28": "",
+        "line_31": "",
+        "line_40": ""
+      },
+      "recent3changescard": {
+        "line_32": "",
+        "line_35": "",
+        "line_46": ""
+      },
+      "lastchangelogentrycard": {
+        "line_33": "",
+        "line_36": "",
+        "line_47": "",
+        "line_62": ""
+      },
+      "changelogstatscard": {
+        "line_62": "",
+        "line_65": "",
+        "line_75": "",
+        "line_88": "",
+        "line_91": "",
+        "line_118": "",
+        "line_123": "",
+        "line_127": "",
+        "line_131": "",
+        "line_132": "",
+        "line_135": "",
+        "line_141": "",
+        "line_143": "",
+        "line_146": "",
+        "line_147": "",
+        "line_149": "",
+        "line_154": "",
+        "line_155": ""
+      }
+    },
+    "admin": {
+      "errorpollerwidget": {
+        "line_118": "",
+        "line_135": "",
+        "line_141": "",
+        "line_143": "",
+        "line_160": ""
+      },
+      "createuserwidget": {
+        "line_83": "",
+        "line_115": ""
+      },
+      "apitestwidget": {
+        "line_38": "",
+        "line_47": "",
+        "line_56": "",
+        "line_60": ""
+      },
+      "adminuserswidget": {
+        "line_95": "",
+        "line_98": "",
+        "line_111": "",
+        "line_112": "",
+        "line_113": "",
+        "line_114": "",
+        "line_115": "",
+        "line_134": "",
+        "line_140": "",
+        "line_182": "",
+        "line_183": "",
+        "line_185": "",
+        "line_193": "",
+        "line_202": ""
+      },
+      "adminstatswidget": {
+        "line_61": "",
+        "line_63": "",
+        "line_69": "",
+        "line_73": "",
+        "line_77": ""
+      },
+      "adminlogswidget": {
+        "line_47": "",
+        "line_67": "",
+        "line_83": ""
+      }
+    }
+  },
+  "cta": {
+    "badge": "",
+    "title": "",
+    "description": "",
+    "buttonStart": "",
+    "buttonDemo": "",
+    "feature1": "",
+    "feature2": "",
+    "feature3": ""
+  },
+  "": {
+    "tests": {
+      "adminuserswidget": {
+        "test": {
+          "name": ""
+        }
+      },
+      "adminpage": {
+        "test": {
+          "role": ""
+        }
+      }
+    }
+  }
+}

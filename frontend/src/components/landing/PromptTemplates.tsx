@@ -3,9 +3,11 @@ import { Card } from '../../ui/card';
 import { Badge } from '../../ui/badge';
 import { Button } from '../../ui/button';
 import { BookOpen, Clock, BarChart, ArrowRight, Code, Cloud, Database } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { LEARNING_TEMPLATES } from '../../data/learningTemplates';
 
 export function PromptTemplates() {
+  const { t } = useTranslation('landing');
   const [selectedTemplate, setSelectedTemplate] = useState(LEARNING_TEMPLATES[0]);
 
   return (
@@ -13,18 +15,15 @@ export function PromptTemplates() {
       <div className="text-center max-w-3xl mx-auto mb-16">
         <Badge className="bg-gradient-to-r from-green-600 to-emerald-600 text-white border-0 mb-4">
           <BookOpen className="size-4 mr-2" />
-          Templates
+          {t('prompttemplates.badge')}
         </Badge>
         <h2 className="text-4xl md:text-5xl mb-4">
-          Starte sofort mit{' '}
+          {t('prompttemplates.headingPart1')}{' '}
           <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-            Experten-Pfaden
+            {t('prompttemplates.headingHighlight')}
           </span>
         </h2>
-        <p className="text-xl text-muted-foreground">
-          Nutze kuratierte Lernpfade für beliebte Karriereziele - von Experten erstellt, von KI
-          personalisiert.
-        </p>
+        <p className="text-xl text-muted-foreground">{t('prompttemplates.subtitle')}</p>
       </div>
 
       <div className="grid lg:grid-cols-12 gap-8 items-start">
@@ -82,7 +81,7 @@ export function PromptTemplates() {
                 <div>
                   <h4 className="font-semibold mb-4 flex items-center gap-2">
                     <Database className="size-4 text-green-500" />
-                    Themen im Überblick
+                    {t('prompttemplates.overviewTitle')}
                   </h4>
                   <ul className="space-y-3">
                     {selectedTemplate.topics.slice(0, 6).map((topic, i) => (
@@ -95,7 +94,9 @@ export function PromptTemplates() {
                     ))}
                     {selectedTemplate.topics.length > 6 && (
                       <li className="text-sm text-muted-foreground pl-6">
-                        + {selectedTemplate.topics.length - 6} weitere Themen
+                        {t('prompttemplates.moreTopics', {
+                          count: selectedTemplate.topics.length - 6,
+                        })}
                       </li>
                     )}
                   </ul>
@@ -103,7 +104,7 @@ export function PromptTemplates() {
                 <div>
                   <h4 className="font-semibold mb-4 flex items-center gap-2">
                     <Cloud className="size-4 text-blue-500" />
-                    Skills die du lernst
+                    {t('prompttemplates.skillsTitle')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedTemplate.skills.map((skill, i) => (
@@ -117,7 +118,7 @@ export function PromptTemplates() {
 
               <div className="mt-auto pt-8 border-t border-border flex justify-end">
                 <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
-                  Diesen Pfad starten <ArrowRight className="size-4" />
+                  {t('prompttemplates.cta.start')} <ArrowRight className="size-4" />
                 </Button>
               </div>
             </div>

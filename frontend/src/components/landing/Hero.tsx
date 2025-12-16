@@ -9,8 +9,10 @@ import {
   Users,
 } from 'lucide-react';
 /* import { ImageWithFallback } from "./figma/ImageWithFallback";*/
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Badge } from '../../ui/badge';
+import { LanguageContext } from '../../contexts/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 interface HeroProps {
   setShowOnboarding?: (show: boolean) => void;
@@ -76,6 +78,8 @@ const featureSlides = [
 ];
 
 export function Hero({ setShowOnboarding }: HeroProps) {
+  const { t } = useTranslation('landing');
+  const langCtx = useContext(LanguageContext);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -111,7 +115,13 @@ export function Hero({ setShowOnboarding }: HeroProps) {
     }
   };
 
-  const currentFeature = featureSlides[currentSlide];
+  const slides = t('hero.slides', { returnObjects: true }) as Array<{
+    badge?: string;
+    title?: string;
+    description?: string;
+    preview?: { question?: string; answer?: string; response?: string };
+  }>;
+  const currentFeature = { ...featureSlides[currentSlide], ...(slides && slides[currentSlide]) };
   const IconComponent = currentFeature.icon;
 
   return (
@@ -131,25 +141,40 @@ export function Hero({ setShowOnboarding }: HeroProps) {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400">
-              <Sparkles className="size-4" />
-              <span className="text-sm">KI-gestütztes Lernen</span>
+            <div className="flex items-center justify-between">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400">
+                <Sparkles className="size-4" />
+                <span className="text-sm">{t('hero.badge')}</span>
+              </div>
+
+              {/* Language Toggle */}
+              <div className="inline-flex items-center gap-2 bg-card rounded-full p-1">
+                <button
+                  data-testid="lang-de"
+                  onClick={() => langCtx?.setLanguage('de')}
+                  className={`px-3 py-1 rounded-full ${langCtx?.language === 'de' ? 'bg-amber-500 text-white' : ''}`}
+                >
+                  DE
+                </button>
+                <button
+                  data-testid="lang-en"
+                  onClick={() => langCtx?.setLanguage('en')}
+                  className={`px-3 py-1 rounded-full ${langCtx?.language === 'en' ? 'bg-amber-500 text-white' : ''}`}
+                >
+                  EN
+                </button>
+              </div>
             </div>
             <h1 className="text-5xl md:text-6xl text-foreground">
-              Dein persönlicher{' '}
+              {t('hero.title')}{' '}
               <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-                KI-Lernplan
-              </span>{' '}
-              in jeder Sprache
+                {t('hero.subtitle')}
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              'Keine vorgefertigten Kurse. Wähle aus fertigen Templates für deinen Lerntyp oder
-              erstelle einen komplett individuellen Lernplan mit unserer KI. Lerne mit vielfältigen
-              Lernressourcen (automatisch lokalisiert!) oder interaktiv mit unserer KI.',
-            </p>
+            <p className="text-xl text-muted-foreground">{t('hero.description')}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="gap-2">
-                Templates entdecken <ArrowRight className="size-4" />
+                {t('hero.cta.templates')} <ArrowRight className="size-4" />
               </Button>
               <Button
                 size="lg"
@@ -157,23 +182,25 @@ export function Hero({ setShowOnboarding }: HeroProps) {
                 onClick={handleDashboardClick}
                 className="dark:border-border dark:text-muted-foreground dark:hover:bg-accent/50"
               >
-                Custom Lernplan erstellen
+                {t('hero.cta.createCustom')}
               </Button>
             </div>
             <div className="flex items-center gap-8 pt-4">
               <div>
-                <div className="text-2xl text-foreground">10.000+</div>
-                <div className="text-sm text-muted-foreground">Aktive Lernende</div>
+                <div className="text-2xl text-foreground">{t('hero.metrics.activeUsers')}</div>
+                <div className="text-sm text-muted-foreground">
+                  {t('hero.metrics.activeUsersLabel')}
+                </div>
               </div>
               <div className="h-12 w-px bg-border" />
               <div>
-                <div className="text-2xl text-foreground">4.8/5</div>
-                <div className="text-sm text-muted-foreground">Bewertung</div>
+                <div className="text-2xl text-foreground">{t('hero.metrics.rating')}</div>
+                <div className="text-sm text-muted-foreground">{t('hero.metrics.ratingLabel')}</div>
               </div>
               <div className="h-12 w-px bg-border" />
               <div>
-                <div className="text-2xl text-foreground">50+</div>
-                <div className="text-sm text-muted-foreground">Themengebiete</div>
+                <div className="text-2xl text-foreground">{t('hero.metrics.topics')}</div>
+                <div className="text-sm text-muted-foreground">{t('hero.metrics.topicsLabel')}</div>
               </div>
             </div>
           </div>
