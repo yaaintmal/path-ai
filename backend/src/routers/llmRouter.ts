@@ -100,7 +100,7 @@ const callOllama = async (prompt: string, model: string): Promise<string> => {
     truncatedPrompt
   );
 
-  const response = await fetch(ollamaUrl, {
+  const response = await fetch(ollamaUrl!, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
