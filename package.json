@@ -1,6 +1,6 @@
 {
   "name": "path-ai-by-mal",
-  "version": "0.5.1.9.2",
+  "version": "0.7.4.1",
   "license": "PolyForm-Noncommercial-1.0.0",
   "private": true,
   "workspaces": [
@@ -16,8 +16,12 @@
     "build": "npm run build:backend && npm run build:frontend",
     "build:backend": "npm run build --prefix backend",
     "build:frontend": "test -f frontend/package.json && npm run build --prefix frontend || echo \"Skipping frontend build: frontend/package.json not found\"",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "start": "npm run start:backend & npm run start:frontend",
+    "start:backend": "npm run start --prefix backend",
+    "start:frontend": "test -f frontend/package.json && npm run start --prefix frontend || echo \"Skipping frontend start: frontend/package.json not found\"",
+    "lint": "npm run lint:backend & npm run lint:frontend",
+    "lint:backend": "npm run lint --prefix backend",
+    "lint:frontend": "test -f frontend/package.json && npm run lint --prefix frontend || echo \"Skipping frontend lint: frontend/package.json not found\""
   },
   "devDependencies": {
     "baseline-browser-mapping": "^2.9.7",
