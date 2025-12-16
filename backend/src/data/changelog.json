@@ -1,5 +1,17 @@
 [
   {
+    "version": "0.7.4",
+    "date": "2025-12-16",
+    "title": "UX/DevOps: Version Indicator LLM Display & Settings Standardization",
+    "description": "Enhanced version indicator to show active LLM model, standardized Prettier config, and created business-standard VS Code settings.",
+    "details": [
+      "🤖 LLM MODEL DISPLAY: Version indicator now fetches and displays the actual LLM model in use on hover (e.g., 'gemini-2.5-flash' or 'llama3-chatqa:latest')",
+      "🔧 PRETTIER CLEANUP: Moved VS Code editor settings from .prettierrc to .vscode/settings.json, keeping only Prettier rules in config file (business standard... yeah really enterprise-grade defaults)",
+      "🎨 VS CODE SETTINGS: Created business-standard VS Code settings for prettier, editorconfig, and eslint",
+      "🧹 CLEANUP: Cleaned up unnecessary dependencies from frontend/package.json (removed husky and postcss)"
+    ]
+  },
+  {
     "version": "0.7.3",
     "date": "2025-12-15",
     "title": "UX: Mobile Responsiveness for Landing Page Header & Footer",

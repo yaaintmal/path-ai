@@ -64,4 +64,15 @@ router.get('/ping', adminOnly, (req, res) => {
   res.json({ ok: true, userId: req.userId });
 });
 
+// GET /api/admin/llm-config - Returns current LLM model being used
+router.get('/llm-config', adminOnly, (req, res) => {
+  const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';
+  const provider = useGemini ? 'gemini' : 'ollama';
+  const model = useGemini
+    ? process.env.GEMINI_MODEL_ID || 'gemini-2.5-flash'
+    : process.env.OLLAMA_MODEL || 'llama3-chatqa:latest';
+
+  res.json({ provider, model });
+});
+
 export default router;

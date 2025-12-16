@@ -10,6 +10,7 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [versionInfo, setVersionInfo] = useState(getVersionInfo());
   const [backendStatus, setBackendStatus] = useState<'unknown' | 'up' | 'down'>('unknown');
+  const [llmModel, setLlmModel] = useState<string | null>(null);
   const [lastChecked, setLastChecked] = useState<number | null>(null);
 
   // Perform a lightweight backend health check. Throttled by `lastChecked`.
@@ -20,6 +21,21 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       setLastChecked(now);
       const res = await fetch(getApiUrl('/api/changelog/latest'));
       setBackendStatus(res.ok ? 'up' : 'down');
+
+      // Fetch LLM model info if backend is up
+      if (res.ok) {
+        try {
+          const configRes = await fetch(getApiUrl('/api/admin/llm-config'), {
+            credentials: 'include',
+          });
+          if (configRes.ok) {
+            const configData = await configRes.json();
+            setLlmModel(configData.model || null);
+          }
+        } catch {
+          // Silently fail if LLM config fetch fails
+        }
+      }
     } catch {
       setBackendStatus('down');
     }
@@ -106,6 +122,11 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
                 {backendStatus}
               </span>
             </div>
+            {llmModel && (
+              <div className="text-muted-foreground">
+                LLM: <span className="text-blue-400">{llmModel}</span>
+              </div>
+            )}
             {onClick && <div className="text-primary text-xs mt-1">Click to view changelog</div>}
           </div>
         )}

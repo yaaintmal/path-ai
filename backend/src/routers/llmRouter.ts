@@ -88,7 +88,8 @@ const callGemini = async (prompt: string): Promise<string> => {
 
 const callOllama = async (prompt: string, model: string): Promise<string> => {
   // Prefer backend env vars, but fall back to VITE_* variables if set (useful for local dev)
-  const ollamaUrl = process.env.VITE_OLLAMA_API_URL || 'http://192.168.178.6:11434/api/generate';
+  const ollamaUrl = process.env.VITE_OLLAMA_API_URL;
+  // const ollamaUrl = process.env.VITE_OLLAMA_API_URL || 'http://192.168.178.6:11434/api/generate';
   const modelId = process.env.VITE_OLLAMA_MODEL;
 
   const truncatedPrompt = prompt.length > 200 ? `${prompt.slice(0, 200)}...` : prompt;
