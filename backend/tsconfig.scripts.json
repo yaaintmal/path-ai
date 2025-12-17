@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist-scripts",
+    "rootDir": "./",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "baseUrl": "./src", // Use src as base URL for scripts too
+    "paths": {
+      "#*": ["*"] // Inherit or redefine generic path mapping
+    }
+  },
+  "include": ["scripts/**/*.ts", "src/models/*.ts", "src/utils/*.ts"], // Include necessary source files for compilation
+  "exclude": ["node_modules", "dist"]
+}

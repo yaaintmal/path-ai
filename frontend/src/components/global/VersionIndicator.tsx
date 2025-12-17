@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getVersionInfo } from '../../version';
 import { getApiUrl } from '../../config/app.config';
+import type { ChangelogEntry } from '../../api/changelog'; // Import ChangelogEntry type
 
 interface VersionIndicatorProps {
   onClick?: () => void;
@@ -8,7 +9,12 @@ interface VersionIndicatorProps {
 
 export function VersionIndicator({ onClick }: VersionIndicatorProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [versionInfo, setVersionInfo] = useState(getVersionInfo());
+  const initialVersionInfo = getVersionInfo();
+  const [versionInfo, setVersionInfo] = useState({
+    version: initialVersionInfo.version || 'unknown',
+    date: initialVersionInfo.date || 'N/A',
+    timestamp: initialVersionInfo.timestamp || 0,
+  });
   const [backendStatus, setBackendStatus] = useState<'unknown' | 'up' | 'down'>('unknown');
   const [llmModel, setLlmModel] = useState<string | null>(null);
   const [lastChecked, setLastChecked] = useState<number | null>(null);
@@ -25,19 +31,25 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       // Fetch LLM model info if backend is up
       if (res.ok) {
         try {
-          const configRes = await fetch(getApiUrl('/api/admin/llm-config'), {
+          const configRes = await fetch(getApiUrl('/api/llm-route'), {
+            // Updated route for LLM config
             credentials: 'include',
           });
           if (configRes.ok) {
             const configData = await configRes.json();
             setLlmModel(configData.model || null);
+          } else {
+            setLlmModel(null); // Clear LLM model if config fetch fails
           }
         } catch {
-          // Silently fail if LLM config fetch fails
+          setLlmModel(null); // Silently fail if LLM config fetch fails
         }
+      } else {
+        setLlmModel(null);
       }
     } catch {
       setBackendStatus('down');
+      setLlmModel(null);
     }
   };
 
@@ -50,14 +62,14 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
       try {
         const response = await fetch(getApiUrl('/api/changelog/latest'));
         if (response.ok) {
-          const data = await response.json();
-          if (data.success && data.entry) {
-            setVersionInfo({
-              version: data.entry.version,
-              date: data.entry.date || '',
-              timestamp: new Date(data.entry.date || '').getTime(),
-            });
-          }
+          const latestEntry: ChangelogEntry = await response.json(); // Backend now returns ChangelogEntry directly
+          setVersionInfo({
+            version: latestEntry.version || initialVersionInfo.version,
+            date: latestEntry.date || initialVersionInfo.date,
+            timestamp: latestEntry.date
+              ? new Date(latestEntry.date).getTime()
+              : initialVersionInfo.timestamp,
+          });
         }
       } catch (error) {
         console.error('Failed to fetch version info:', error);
@@ -121,6 +133,9 @@ export function VersionIndicator({ onClick }: VersionIndicatorProps) {
               >
                 {backendStatus}
               </span>
+            </div>
+            <div className="text-muted-foreground">
+              API: <code className="break-all">{getApiUrl('')}</code>
             </div>
             {llmModel && (
               <div className="text-muted-foreground">

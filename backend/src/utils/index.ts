@@ -26,7 +26,7 @@ export {
   amberLog,
   info,
   success,
-  error as loggerError,
+  error as loggerError, // Revert to error as loggerError
   adminLog,
   critical,
   debug,

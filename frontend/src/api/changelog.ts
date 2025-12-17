@@ -9,17 +9,17 @@ export interface ChangelogEntry {
 }
 
 export interface ChangelogResponse {
-  success: boolean;
   entries: ChangelogEntry[];
-  lastUpdated?: string;
 }
 
-export async function fetchChangelog(): Promise<ChangelogResponse> {
+
+export async function fetchChangelog(): Promise<ChangelogEntry[]> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/changelog`);
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
+    // The backend now returns an array directly
     return await response.json();
   } catch (error) {
     console.error('Failed to fetch changelog:', error);
@@ -27,28 +27,18 @@ export async function fetchChangelog(): Promise<ChangelogResponse> {
   }
 }
 
-export async function fetchLatestChangelog(): Promise<{ entry: ChangelogEntry }> {
+// Remove fetchRecentChangelog as the endpoint is not implemented in the backend controller
+
+export async function fetchLatestChangelog(): Promise<ChangelogEntry> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/changelog/latest`);
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
+    // The backend now returns the entry directly, not wrapped in an object
     return await response.json();
   } catch (error) {
     console.error('Failed to fetch latest changelog:', error);
-    throw error;
-  }
-}
-
-export async function fetchRecentChangelog(limit = 3): Promise<ChangelogResponse> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/changelog/recent?limit=${limit}`);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to fetch recent changelog:', error);
     throw error;
   }
 }
