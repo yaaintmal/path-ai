@@ -1,28 +1,12 @@
 import { Router } from 'express';
-import {
-  getChangelog,
-  getLatestChangelog,
-  getRecentChangelog,
-} from '../controllers/changelogController.ts';
+import { getChangelog, getLatestChangelogEntry } from '../controllers/changelogController.ts';
 
-const changelogRouter = Router();
+const router = Router();
 
-//
-// * GET /api/changelog
-// Returns all changelog entries
-//
-changelogRouter.get('/', getChangelog);
+// GET /api/changelog - Get all changelog entries
+router.get('/', getChangelog);
 
-//
-// * GET /api/changelog/latest
-// Returns the latest changelog entry
-//
-changelogRouter.get('/latest', getLatestChangelog);
+// GET /api/changelog/latest - Get the latest changelog entry
+router.get('/latest', getLatestChangelogEntry);
 
-//
-// * GET /api/changelog/recent
-// Returns recent changelog entries (limit parameter optional, default 3)
-//
-changelogRouter.get('/recent', getRecentChangelog);
-
-export { changelogRouter };
+export default router;

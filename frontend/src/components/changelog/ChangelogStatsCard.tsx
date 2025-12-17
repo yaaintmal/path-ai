@@ -16,6 +16,9 @@ function topWordsFromTitles(entries: ChangelogEntry[], top = 1) {
     'on',
     'added',
     'updated',
+    'bug', // Added 'bug' to stopwords for more relevant top words
+    'fix', // Added 'fix' to stopwords for more relevant top words
+    'feature', // Added 'feature' to stopwords for more relevant top words
   ]);
   const counts: Record<string, number> = {};
   entries.forEach((e) => {
@@ -43,7 +46,7 @@ export function ChangelogStatsCard() {
     fetchChangelog()
       .then((res) => {
         if (!mounted) return;
-        setEntries(res.entries || []);
+        setEntries(res || []); // Directly assign the array
       })
       .catch((err) => {
         console.error('Failed to load changelog for stats:', err);

@@ -3,8 +3,7 @@ import PageHeader from '../components/ui/PageHeader';
 import { fetchChangelog } from '../api/changelog';
 import { LastChangelogEntryCard } from '../components/changelog/LastChangelogEntryCard';
 import { VersionChangeCard } from '../components/changelog/VersionChangeCard';
-import { Recent3ChangesCard } from '../components/changelog/Recent3ChangesCard';
-import { ChangelogStatsCard } from '../components/changelog/ChangelogStatsCard';
+import { ChangelogStatsCard } from '../components/changelog/ChangelogStatsCard'; // Keep ChangelogStatsCard
 import type { ChangelogEntry } from '../api/changelog';
 
 interface ChangelogPageProps {
@@ -21,12 +20,9 @@ export function ChangelogPage({ onBack }: ChangelogPageProps) {
       try {
         setIsLoading(true);
         setError(null);
-        const result = await fetchChangelog();
-        if (result.success && result.entries) {
-          setAllEntries(result.entries);
-        } else {
-          setError('Failed to load changelog');
-        }
+        // fetchChangelog now directly returns an array of ChangelogEntry
+        const result: ChangelogEntry[] = await fetchChangelog();
+        setAllEntries(result); // Directly set the array
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load changelog');
         console.error(err);
@@ -39,7 +35,7 @@ export function ChangelogPage({ onBack }: ChangelogPageProps) {
   }, []);
 
   const latestEntry = allEntries[0] || null;
-  const recentEntries = allEntries.slice(1, 4);
+  // Recent entries are not explicitly needed in this component anymore
 
   return (
     <div className="min-h-screen bg-background px-4 py-8 md:px-8">
@@ -66,7 +62,7 @@ export function ChangelogPage({ onBack }: ChangelogPageProps) {
         {/* Smaller widgets row */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <VersionChangeCard entry={latestEntry} isLoading={isLoading} />
-          <Recent3ChangesCard entries={recentEntries} isLoading={isLoading} />
+          {/* Removed Recent3ChangesCard */}
           <ChangelogStatsCard />
         </div>
 

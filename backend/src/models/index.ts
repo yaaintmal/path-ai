@@ -5,3 +5,4 @@ export { default as StoreItem } from './StoreItem.ts';
 export { default as UserInventory } from './UserInventory.ts';
 export { LearningSession } from './LearningSession.ts';
 export { default as UserInteraction } from './UserInteraction.ts';
+export { default as ChangelogEntry } from './ChangelogEntry.ts';

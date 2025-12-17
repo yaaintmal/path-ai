@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchRecentChangelog, type ChangelogEntry } from '../../api/changelog';
+import { fetchChangelog, type ChangelogEntry } from '../../api/changelog'; // Import fetchChangelog
 import { useAuth } from '../../contexts/useAuth';
 import IconButton from '../ui/IconButton';
 import { BookOpen } from 'lucide-react';
@@ -15,8 +15,15 @@ export function WhatsNewWidget() {
     const load = async () => {
       setLoading(true);
       try {
-        const res = await fetchRecentChangelog(3);
-        if (mounted && res?.entries) setEntries(res.entries);
+        const allChangelogEntries = await fetchChangelog(); // Fetch all entries
+        if (mounted && allChangelogEntries) {
+          // Sort by version (assuming version is comparable string like '0.7.8')
+          // and then take the first 3
+          const sortedEntries = allChangelogEntries.sort((a, b) =>
+            b.version.localeCompare(a.version, undefined, { numeric: true, sensitivity: 'base' })
+          );
+          setEntries(sortedEntries.slice(0, 3));
+        }
       } catch (err) {
         console.error('Failed to load recent changelog:', err);
       } finally {

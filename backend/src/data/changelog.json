@@ -1,5 +1,16 @@
 [
   {
+    "version": "0.7.8",
+    "date": "2025-12-16",
+    "title": "Fix: Multilanguage build & Jest type declarations",
+    "description": "Resolved build errors related to missing i18next type declarations and Jest test file compilation issues.",
+    "details": [
+      "✅ DEPENDENCY RESOLUTION: Ensured all i18next-related packages (`i18next`, `react-i18next`, `i18next-browser-languagedetector`) are correctly installed and recognized by the build system.",
+      "🚫 BUILD EXCLUSION: Excluded the `src/test` directory from the main `tsconfig.app.json` to prevent Jest-specific type errors (`TS2304`) during the application build process.",
+      "🛠️ BUILD STABILITY: The frontend now builds successfully, resolving previous compilation failures caused by incorrect type inference in the test setup files."
+    ]
+  },
+  {
     "version": "0.7.5.7",
     "date": "2025-12-16",
     "title": "Fix: Registered users lastActivity accuracy",
@@ -232,7 +243,7 @@
     "title": "Feature: Pomodoro Templates for Quick Session Setup",
     "description": "Added pre-configured Pomodoro session templates to help users instantly choose their focus intensity.",
     "details": [
-      "Introduced 'Quick Focus' (1×25m), 'Deep Work' (3×25m), and 'Marathon Session' (5×25m) templates.",
+      "Introduced 'Quick Focus' (1×25m), 'Deep Work' (3×25m), 'Marathon Session' (5×25m) templates.",
       "Templates automatically set learning time goals when selected, eliminating manual configuration.",
       "Disabled Pomodoro template selection while a timer is actively running to prevent mid-session confusion.",
       "Added a helpful 💡 tip explaining how to use the templates effectively.",
