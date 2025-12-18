@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getApiUrl } from '../../config/app.config';
 
 interface Stats {
   userCount?: number;
@@ -19,7 +20,8 @@ export function AdminStatsWidget() {
         const token =
           typeof window !== 'undefined' ? window.localStorage.getItem('authToken') : null;
         const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
-        const res = await fetch('/api/admin/stats', { credentials: 'include', headers });
+        const url = getApiUrl('/api/admin/stats');
+        const res = await fetch(url, { credentials: 'include', headers });
         if (!res.ok) {
           let msg = 'Stats not available';
           try {
@@ -31,12 +33,36 @@ export function AdminStatsWidget() {
           }
           throw new Error(msg);
         }
-        const data = await res.json();
+        // Parse response safely — if the server returns non-JSON (HTML or proxy error), capture raw text for debugging
+        let data:
+          | { userCount?: number; recentErrors?: number; activeSessions?: number }
+          | undefined;
+        try {
+          const text = await res.text();
+          const contentType = res.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            data = JSON.parse(text);
+          } else {
+            // Try to JSON.parse anyway, but if it fails surface the raw text in the error
+            try {
+              data = JSON.parse(text);
+            } catch {
+              throw new Error(
+                `Invalid JSON response (content-type: ${contentType}). First 500 chars: ${text.slice(0, 500)}`
+              );
+            }
+          }
+        } catch (err) {
+          // Re-throw with clearer message
+          const msg = err instanceof Error ? err.message : String(err);
+          throw new Error(`Failed to parse stats response: ${msg}`);
+        }
+
         if (!mounted) return;
         setStats({
-          userCount: data.userCount,
-          recentErrors: data.recentErrors,
-          activeSessions: data.activeSessions,
+          userCount: data?.userCount,
+          recentErrors: data?.recentErrors,
+          activeSessions: data?.activeSessions,
         });
       } catch (err) {
         // Not fatal - show fallback placeholders and informative message

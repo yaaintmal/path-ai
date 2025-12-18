@@ -31,7 +31,22 @@ export function AdminUsersWidget() {
     setError(null);
     try {
       const res = await fetch(getApiUrl('/api/users/admin/all'), { credentials: 'include' });
-      if (!res.ok) throw new Error('Failed to fetch users');
+      if (!res.ok) {
+        let msg = 'Failed to fetch users';
+        try {
+          const text = await res.text();
+          try {
+            const body = JSON.parse(text);
+            if (body && body.message) msg = body.message;
+            else msg = `Invalid response. First 500 chars: ${text.slice(0, 500)}`;
+          } catch {
+            msg = `Invalid response. First 500 chars: ${text.slice(0, 500)}`;
+          }
+        } catch {
+          /* ignore */
+        }
+        throw new Error(msg);
+      }
       const data = await res.json();
       setUsers(data || []);
     } catch (err) {
