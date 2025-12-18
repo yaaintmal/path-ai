@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AlertTriangle, LogIn, Eye, RefreshCw } from 'lucide-react';
+import { getApiUrl } from '../../config/app.config';
 
 interface ErrorEntry {
   timestamp: string;
@@ -20,15 +21,39 @@ export function ErrorPollerWidget() {
       const today = new Date().toISOString().slice(0, 10);
       const token = typeof window !== 'undefined' ? window.localStorage.getItem('authToken') : null;
       const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
-      const res = await fetch(`/api/admin/logs?type=critical&date=${today}`, {
+      const url = getApiUrl(`/api/admin/logs?type=critical&date=${today}`);
+      const res = await fetch(url, {
         credentials: 'include',
         headers,
       });
       if (!res.ok) {
         let msg = 'Failed to fetch logs';
         try {
-          const body = await res.json();
-          if (body && body.message) msg = body.message;
+          const text = await res.text();
+          try {
+            const body = JSON.parse(text);
+            if (body && body.message) msg = body.message;
+            else msg = `Invalid response. First 500 chars: ${text.slice(0, 500)}`;
+          } catch {
+            msg = `Invalid response. First 500 chars: ${text.slice(0, 500)}`;
+          }
+        } catch {
+          /* ignore */
+        }
+        throw new Error(msg);
+      }
+      if (!res.ok) {
+        let msg = 'Failed to fetch logs';
+        try {
+          const text = await res.text();
+          try {
+            const body = JSON.parse(text);
+            if (body && body.message) msg = body.message;
+            else
+              msg = `Invalid response from logs endpoint. First 500 chars: ${text.slice(0, 500)}`;
+          } catch {
+            msg = `Invalid response from logs endpoint. First 500 chars: ${text.slice(0, 500)}`;
+          }
         } catch {
           /* ignore */
         }

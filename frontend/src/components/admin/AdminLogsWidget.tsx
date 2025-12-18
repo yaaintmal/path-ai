@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Download } from 'lucide-react';
+import { getApiUrl } from '../../config/app.config';
 
 export function AdminLogsWidget() {
   const [date, setDate] = useState<string>(new Date().toISOString().slice(0, 10));
@@ -12,15 +13,21 @@ export function AdminLogsWidget() {
     setLoading(true);
     setLoadingType(type);
     try {
-      const url = `/api/admin/logs?type=${type}&date=${date}`;
+      const url = getApiUrl(`/api/admin/logs?type=${type}&date=${date}`);
       const token = typeof window !== 'undefined' ? window.localStorage.getItem('authToken') : null;
       const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
       const res = await fetch(url, { credentials: 'include', headers });
       if (!res.ok) {
         let msg = 'Failed to fetch logs';
         try {
-          const body = await res.json();
-          if (body && body.message) msg = body.message;
+          const text = await res.text();
+          try {
+            const body = JSON.parse(text);
+            if (body && body.message) msg = body.message;
+            else msg = `Invalid response. First 500 chars: ${text.slice(0, 500)}`;
+          } catch {
+            msg = `Invalid response. First 500 chars: ${text.slice(0, 500)}`;
+          }
         } catch {
           /* ignore */
         }
