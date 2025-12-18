@@ -9,16 +9,12 @@ import {
   storeRouter,
   llmRouter,
   changelogRouter,
-    authRouter,
-    timerRouter,
-    interactionRouter,
-    adminRouter,
+  authRouter,
+  timerRouter,
+  interactionRouter,
+  adminRouter,
+} from '#routers';
 
-  } from '#routers';
-  
-
-  
-  
 import path from 'path';
 import { User } from '#models';
 import {
@@ -48,6 +44,7 @@ const rawCors =
   [
     'http://localhost:5173',
     'http://localhost:4173',
+    'https://pathai.one',
     'https://pathai.malick.wtf',
     'http://192.168.178.9:5173',
   ].join(',');
@@ -112,7 +109,6 @@ app.use('/api/changelog', changelogRouter); // Mount the changelog router
 
 // Also expose a top-level discovery route that returns LLM provider/model info
 app.get('/api/llm-route', (_req: Request, res: Response) => {
-
   const useGemini = process.env.USE_GOOGLE_GEMINI === 'true';
   const model = useGemini
     ? process.env.GEMINI_MODEL_ID || 'gemini-2.5-flash'

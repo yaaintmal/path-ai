@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
           'https://api-pathai.malick.wtf',
           'https://pathai.malick.wtf',
           'http://localhost:5173',
+          'https://pathai.one',
         ];
         const envAllowed = (env.VITE_ALLOWED_ORIGINS || '')
           .split(',')
@@ -36,7 +37,7 @@ export default defineConfig(({ mode }) => {
       // Allow specific hostnames to access the dev server (e.g., custom DNS / hosts entries)
       // VITE_ALLOWED_HOSTS can be set as a comma-separated list, e.g. 'path.malick.wtf,.example.com'
       allowedHosts: (() => {
-        const defaultAllowed = ['path.malick.wtf', 'pathai.malick.wtf'];
+        const defaultAllowed = ['path.malick.wtf', 'pathai.malick.wtf', 'pathai.one'];
         const envAllowed = (env.VITE_ALLOWED_HOSTS || '')
           .split(',')
           .map((s: string) => s.trim())
