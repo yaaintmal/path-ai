@@ -2,6 +2,32 @@
   "name": "path-ai-by-mal-frontend",
   "private": true,
   "version": "7.1.0",
+  "description": "PathAI — learning dashboard with templates and Focus Mode",
+  "author": {
+    "name": "Malick",
+    "email": "me@malick.cloud",
+    "url": "https://pathai.one"
+  },
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaaintmal/path-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yaaintmal/path-ai/issues"
+  },
+  "homepage": "https://github.com/yaaintmal/path-ai#readme",
+  "keywords": [
+    "learning",
+    "focus-mode",
+    "templates",
+    "dashboard",
+    "gamification",
+    "edtech"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

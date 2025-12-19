@@ -2,7 +2,19 @@
   "name": "path-ai-by-mal",
   "version": "0.7.5.6",
   "license": "PolyForm-Noncommercial-1.0.0",
+  "author": {
+    "name": "Malick",
+    "email": "me@malick.cloud",
+    "url": "https://pathai.one"
+  },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaaintmal/path-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yaaintmal/path-ai/issues"
+  },
   "workspaces": [
     "backend",
     "frontend"

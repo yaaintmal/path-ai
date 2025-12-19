@@ -1,7 +1,6 @@
 {
   "name": "path-ai-by-mal-backend",
   "version": "5.3.0",
-  "description": "",
   "main": "dist/app.js",
   "type": "module",
   "imports": {
@@ -72,9 +71,32 @@
     "migrate:changelog": "ts-node scripts/migrate-changelog.ts",
     "add:changelog": "ts-node scripts/add-changelog.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "PathAI backend — APIs for Learning Dashboard, Templates, and Focus Mode",
+  "keywords": [
+    "learning",
+    "dashboard",
+    "focus-mode",
+    "templates",
+    "backend",
+    "edtech"
+  ],
+  "author": {
+    "name": "Malick",
+    "email": "me@malick.cloud",
+    "url": "https://pathai.one"
+  },
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaaintmal/path-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yaaintmal/path-ai/issues"
+  },
+  "homepage": "https://github.com/yaaintmal/path-ai#readme",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.10",
