@@ -77,7 +77,7 @@ Notes:
 
 ## Storage migration: Cloudinary → local
 
-If you are switching from `cloudinary` to `local`, the repo ships with a migration script:
+If you are switching from `cloudinary` to `local`, the repo ships with a migration script (only necessary if your coming from pathstudio project or alpha versions otherwise considerable as deprecated):
 
 **Script:** `backend/scripts/migrate-cloudinary-to-local.ts`
 
