@@ -65,11 +65,15 @@ export const translations = {
       ctaButton: 'Jetzt direkt loslegen',
     },
     cta: {
-      badge: 'Starte deine Reise',
-      title: 'Bereit, deine Lernziele zu erreichen?',
+      badge: 'Kostenlos & open source',
+      title: 'Bereit, dein Lernen zu transformieren?',
       description:
-        'Erstelle jetzt dein kostenloses Konto und erhalte sofort Zugriff auf alle Templates und den KI-Tutor.',
-      button: 'Kostenlos starten',
+        'Fordere Demo-Zugang an oder erkunde das EDU-Repo um es selbst zu hosten und durch Machen zu lernen.',
+      buttonDemo: 'Demo-Zugang anfordern',
+      buttonEdu: 'EDU-Repo ansehen',
+      feature1: 'Kostenlos nutzbar',
+      feature2: 'Open source',
+      feature3: 'Self-Hosting möglich',
     },
     languageFeature: {
       badge: 'Global Lernen',
@@ -159,11 +163,14 @@ export const translations = {
       ctaButton: 'Get started now',
     },
     cta: {
-      badge: 'Start your journey',
-      title: 'Ready to achieve your learning goals?',
-      description:
-        'Create your free account now and get instant access to all templates and the AI tutor.',
-      button: 'Get started for free',
+      badge: 'Free & open source',
+      title: 'Ready to transform your learning?',
+      description: 'Request demo access or explore the EDU repo to self-host and learn by doing.',
+      buttonDemo: 'Request demo access',
+      buttonEdu: 'View EDU repo',
+      feature1: 'Free to use',
+      feature2: 'Open source',
+      feature3: 'Self-host option',
     },
     languageFeature: {
       badge: 'Global Learning',

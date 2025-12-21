@@ -1,5 +1,4 @@
-import { Button } from '../../ui/button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useLanguage } from '../../contexts/useLanguage';
@@ -29,8 +28,7 @@ export function CTA() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6"
             >
-              <Sparkles className="size-4" />
-              <span className="text-sm">{t('cta.badge')}</span>
+              <span className="text-sm font-medium">{t('cta.badge')}</span>
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -54,16 +52,22 @@ export function CTA() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Button size="lg" variant="secondary" className="gap-2 shadow-lg hover:shadow-xl">
-                {t('cta.buttonStart')} <ArrowRight className="size-4" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent text-white border-white hover:bg-white/10 shadow-lg"
+              <a
+                href="mailto:me@malick.cloud?subject=Demo%20access%20request"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-amber-700 font-semibold rounded-lg hover:opacity-90 transition shadow-lg"
               >
+                <Mail className="size-4" />
                 {t('cta.buttonDemo')}
-              </Button>
+              </a>
+              <a
+                href="https://github.com/yaaintmal/path-ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent text-white border-2 border-white font-semibold rounded-lg hover:bg-white/10 transition shadow-lg"
+              >
+                <Github className="size-4" />
+                {t('cta.buttonEdu')}
+              </a>
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -75,18 +79,21 @@ export function CTA() {
                 { text: t('cta.feature1') },
                 { text: t('cta.feature2') },
                 { text: t('cta.feature3') },
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <svg className="size-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>{item.text}</span>
-                </div>
-              ))}
+              ].map(
+                (item, index) =>
+                  item.text && (
+                    <div key={index} className="flex items-center gap-2">
+                      <svg className="size-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>{item.text}</span>
+                    </div>
+                  )
+              )}
             </motion.div>
           </div>
         </motion.div>

@@ -2,6 +2,8 @@
   "targetAudiences": {
     "header": {
       "title": "Für jeden Lernenden",
+      "headingPart1": "Für jeden",
+      "headingHighlight": "Lernenden",
       "subtitle": "Von der Grundschule bis zur Universität - Path AI passt sich an deine Bedürfnisse an"
     },
     "audiences": {
@@ -154,7 +156,9 @@
     ]
   },
   "features": {
-    "title": "Lernen, das sich an dich anpasst",
+    "title": "Lernen, dass sich Dir anpasst",
+    "headingPart1": "Lernen, dass sich",
+    "headingHighlight": "Dir anpasst",
     "subtitle": "Entdecke eine völlig neue Art zu lernen - individuell, flexibel und immer an deiner Seite.",
     "items": [
       { "title": "KI-Lernpfade", "description": "Generiere dynamische Lernpfade für jedes Thema." },
@@ -170,6 +174,8 @@
   },
   "howItWorks": {
     "title": "So einfach geht's",
+    "headingPart1": "Vier Schritte zu deinem",
+    "headingHighlight": "Persönlichen KI-Lernplan",
     "subtitle": "In nur vier Schritten zu deinem persönlichen KI-Lernplan",
     "steps": [
       {
@@ -901,8 +907,8 @@
       "features": {
         "title": "KI-Lernpfade",
         "description": "Generiere dynamische Lernpfade zu jedem Thema. Die KI erstellt strukturierte Unterthemen, die du Schritt für Schritt meistern kannst.",
-        "line_75": "Lernen, das sich",
-        "line_77": "an dich anpasst",
+        "line_75": "Lernen, dass sich",
+        "line_77": "Dir anpasst",
         "line_81": "Entdecke eine völlig neue Art zu lernen - individuell, flexibel und immer an deiner\n            Seite."
       },
       "dashboardpreview": {
@@ -1178,26 +1184,24 @@
     }
   },
   "cta": {
-    "badge": "cta.badge",
-    "title": "cta.title",
-    "description": "cta.description",
-    "buttonStart": "cta.buttonStart",
-    "buttonDemo": "cta.buttonDemo",
-    "feature1": "cta.feature1",
-    "feature2": "cta.feature2",
-    "feature3": "cta.feature3"
+    "badge": "Kostenlos & open source",
+    "title": "Bereit, dein Lernen zu transformieren?",
+    "description": "Fordere Demo-Zugang an oder erkunde das EDU-Repo um es selbst zu hosten und durch Machen zu lernen.",
+    "buttonDemo": "Demo-Zugang anfordern",
+    "buttonEdu": "EDU-Repo ansehen",
+    "feature1": "Kostenlos nutzbar",
+    "feature2": "Open source",
+    "feature3": "Self-Hosting möglich"
   },
-  "": {
-    "tests": {
-      "adminuserswidget": {
-        "test": {
-          "name": "Alice"
-        }
-      },
-      "adminpage": {
-        "test": {
-          "role": "admin"
-        }
+  "tests": {
+    "adminuserswidget": {
+      "test": {
+        "name": "Alice"
+      }
+    },
+    "adminpage": {
+      "test": {
+        "role": "admin"
       }
     }
   }

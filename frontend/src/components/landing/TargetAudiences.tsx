@@ -80,7 +80,10 @@ export function TargetAudiences() {
       <div className="relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight animate-fade-in">
-            {t('targetAudiences.header.title')}
+            {t('targetAudiences.header.headingPart1')}{' '}
+            <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+              {t('targetAudiences.header.headingHighlight')}
+            </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 animate-fade-in-delayed">
             {t('targetAudiences.header.subtitle')}

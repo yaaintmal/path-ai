@@ -25,7 +25,7 @@ import { FooterPage } from './pages/FooterPages';
 
 // Global Elements
 import { Header } from './components/global/Header';
-import { Footer } from './components/global/Footer';
+import Footer from './components/global/Footer';
 import { VersionIndicator } from './components/global/VersionIndicator';
 
 // Contexts

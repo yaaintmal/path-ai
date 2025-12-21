@@ -1,4 +1,4 @@
-import { BookOpen, Github, Linkedin } from 'lucide-react';
+import { BookOpen, Github, Linkedin, Mail } from 'lucide-react';
 import config from '../../config/app.config';
 
 interface FooterProps {
@@ -17,8 +17,8 @@ export function Footer({ setFooterPage }: FooterProps) {
   return (
     <footer className="bg-gray-900 dark:bg-black text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               {/* // Logo right here */}
               <div className="bg-gradient-to-br from-amber-300 via-amber-500 to-yellow-600 p-2 rounded-lg">
@@ -27,8 +27,22 @@ export function Footer({ setFooterPage }: FooterProps) {
               {/* // app title from config */}
               <span className="text-xl text-white">{config.app.name}</span>
             </div>
+
+            <h4 className="text-white mb-2">Our mission</h4>
             <p className="text-sm text-gray-400 dark:text-gray-500">
-              Your AI-powered learning companion to master new skills efficiently and effectively.
+              Hi — I'm Malick, one of the devs behind Path AI. I believe in free, accessible
+              learning; so Path AI provides AI-guided, structured learning paths that help anyone
+              build skills and keep momentum. The EDU repo is included so you can self-host, inspect
+              the code, and learn by doing.
+            </p>
+            <p className="mt-3">
+              <a
+                href="#"
+                onClick={(e) => handleNav(e, 'about')}
+                className="text-amber-300 hover:underline text-sm"
+              >
+                Learn more about our approach
+              </a>
             </p>
           </div>
 
@@ -47,10 +61,10 @@ export function Footer({ setFooterPage }: FooterProps) {
               <li>
                 <a
                   href="#"
-                  onClick={(e) => handleNav(e, 'pricing')}
+                  onClick={(e) => handleNav(e, 'demo')}
                   className="hover:text-white transition-colors"
                 >
-                  Pricing
+                  Demo — free open demo
                 </a>
               </li>
               <li>
@@ -62,6 +76,21 @@ export function Footer({ setFooterPage }: FooterProps) {
                   FAQ
                 </a>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white mb-4">About</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'about')}
+                  className="hover:text-white transition-colors"
+                >
+                  About
+                </a>
+              </li>
               <li>
                 <a
                   href="#"
@@ -71,46 +100,16 @@ export function Footer({ setFooterPage }: FooterProps) {
                   Roadmap
                 </a>
               </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white mb-4">Company</h4>
-            <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'about')}
-                  className="hover:text-white transition-colors"
+                  href="https://github.com/yaaintmal/path-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors inline-flex items-center gap-2"
+                  aria-label="Open EDU repository on GitHub (self-host)"
                 >
-                  about us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'blog')}
-                  className="hover:text-white transition-colors"
-                >
-                  blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'career')}
-                  className="hover:text-white transition-colors"
-                >
-                  career
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'contact')}
-                  className="hover:text-white transition-colors"
-                >
-                  contact
+                  <Github className="size-4" aria-hidden="true" />
+                  EDU repo — self‑host & learn
                 </a>
               </li>
             </ul>
@@ -121,48 +120,30 @@ export function Footer({ setFooterPage }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'imprint')}
+                  className="hover:text-white transition-colors"
+                >
+                  Imprint
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onClick={(e) => handleNav(e, 'privacy-policy')}
+                  className="hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://polyformproject.org/licenses/noncommercial/1.0.0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
                   License (PolyForm NC 1.0.0)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'data-protection')}
-                  className="hover:text-white transition-colors"
-                >
-                  data protection
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'legal-notice')}
-                  className="hover:text-white transition-colors"
-                >
-                  legal notice
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'imprint')}
-                  className="hover:text-white transition-colors"
-                >
-                  imprint
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={(e) => handleNav(e, 'cookie-policy')}
-                  className="hover:text-white transition-colors"
-                >
-                  cookie policy
                 </a>
               </li>
             </ul>
@@ -214,9 +195,22 @@ export function Footer({ setFooterPage }: FooterProps) {
                 <Linkedin className="size-5" />
               </a>
             </div>
+
+            <div className="ml-2">
+              <a
+                href="#"
+                onClick={(e) => handleNav(e, 'contact')}
+                className="inline-flex items-center gap-2 bg-amber-300 text-black px-3 py-1 rounded text-sm font-medium hover:opacity-90"
+              >
+                <Mail className="size-4" aria-hidden="true" />
+                Request demo access
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+
+export default Footer;

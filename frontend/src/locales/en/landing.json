@@ -2,6 +2,8 @@
   "targetAudiences": {
     "header": {
       "title": "For every learner",
+      "headingPart1": "For every",
+      "headingHighlight": "learner",
       "subtitle": "From elementary school to university — Path AI adapts to your needs"
     },
     "audiences": {
@@ -155,6 +157,8 @@
   },
   "features": {
     "title": "Learning that adapts to you",
+    "headingPart1": "Learning that",
+    "headingHighlight": "adapts to you",
     "subtitle": "Discover a new way to learn—personalized, flexible and always at your side.",
     "items": [
       {
@@ -173,6 +177,8 @@
   },
   "howItWorks": {
     "title": "How it works",
+    "headingPart1": "Four steps to your",
+    "headingHighlight": "Personal AI Learning Plan",
     "subtitle": "Four steps to your personal AI learning plan",
     "steps": [
       {
@@ -1270,14 +1276,14 @@
     }
   },
   "cta": {
-    "badge": "",
-    "title": "",
-    "description": "",
-    "buttonStart": "",
-    "buttonDemo": "",
-    "feature1": "",
-    "feature2": "",
-    "feature3": ""
+    "badge": "Free & open source",
+    "title": "Ready to transform your learning?",
+    "description": "Request demo access or explore the EDU repo to self-host and learn by doing.",
+    "buttonDemo": "Request demo access",
+    "buttonEdu": "View EDU repo",
+    "feature1": "Free to use",
+    "feature2": "Open source",
+    "feature3": "Self-host option"
   },
   "": {
     "tests": {
