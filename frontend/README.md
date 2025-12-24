@@ -1,8 +1,8 @@
-# PathAI Frontend — Operation: Brain Expansion 🙌🏽🤖🧠💥
+# PathAI.One Frontend — Operation: Brain Expansion 🙌🏽🤖🧠💥
 
 > "Rip and learn. Build the factory, survive the tutorial, and for the love of code, don't forget to hydrate."
 
-Welcome to the frontend of PathAI. We are building a machine that turns "I don't know" into "I know Kung Fu." It is built like a factory, polished like a speedrun, and shipped with the kind of efficiency that makes engineers weep with joy.
+Welcome to the frontend of PathAI.One. We are building a machine that turns "I don't know" into "I know Kung Fu." It is built like a factory, polished like a speedrun, and shipped with the kind of efficiency that makes engineers weep with joy.
 
 **Our Mission:** To **bring free knowledge to everyone** (and look cool doing it).
 
@@ -64,7 +64,7 @@ npm run -w frontend lint
 Place these in `frontend/.env` (or whisper them into the void):
 
 - `VITE_API_URL` — Where the backend lives (e.g., `https://api-pathai.example`). Don't ghost the backend.
-- `VITE_APP_NAME` — The name on the tin (default: `Path AI`).
+- `VITE_APP_NAME` — The name on the tin (default: `PathAI.One`).
 - `VITE_OLLAMA_API_URL` — If you're running local AI (you cyberpunk, you).
 - `VITE_OLLAMA_MODEL` — The brain in the jar (e.g., `llama3-chatqa:latest`).
 
