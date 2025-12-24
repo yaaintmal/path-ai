@@ -2,7 +2,7 @@
 
 ---
 
-## Welcome to PathAI! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
+## Welcome to PathAI.One! We're here to transform the way you learn—whether you're a student discovering new subjects, a teacher preparing engaging lessons, or an educational institution scaling personalized learning.
 
 > ⚠️ **IMPORTANT: LICENSE NOTICE**
 >
