@@ -1,4 +1,4 @@
-# PathAI - Free Knowledge for Everybody
+# PathAI.One - Free Knowledge for Everyone
 
 ---
 
