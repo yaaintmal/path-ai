@@ -13,10 +13,6 @@
 >
 > Please refer to the `LICENSE` file in this repository for the specific legal terms governing this software.
 
-## Ascend Your Knowledge (or battle your skill gap the gaming way)
-
-https://github.com/user-attachments/assets/9601a5a8-16f5-4283-8adb-6b8308d66d4a
-
 ## What Can You Do?
 
 ### 🎯 Personalized Learning Paths
@@ -68,4 +64,4 @@ Sign up for free and complete a quick onboarding. You'll be learning within minu
 
 ---
 
-**PathAI** — _Make Every Learning Moment Count_
+**PathAI.One** — _Make Every Learning Moment Count_
