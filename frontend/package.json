@@ -95,7 +95,7 @@
     "i18next-browser-languagedetector": "^8.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@types/canvas-confetti": "^1.9.0",
