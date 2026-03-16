@@ -111,7 +111,7 @@
     "ts-jest": "^29.1.0",
     "@types/jest": "^30.0.0",
     "supertest": "^7.1.4",
-    "@types/supertest": "^6.0.3"
+    "@types/supertest": "^7.2.0"
   },
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.27.0",
